@@ -1,20 +1,20 @@
-require('dotenv').config();
-const webpack = require('webpack');
 const path = require('path');
-const DIST_DIR = path.join(__dirname, '/client/dist');
+const DIST_DIR = path.join(__dirname, '/public');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const BundleAnalyzerPlugin =
-   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
    resolve: {
       extensions: ['.js', '.json', '.ts', '.tsx'],
    },
-   entry: `${path.join(__dirname, '/client/src')}/index.tsx`,
+   entry: {
+      popup: `${path.join(__dirname, './src')}/index.tsx`,
+      content: `${path.join(__dirname, './src')}/contentScript/DOMEvaluator.ts`,
+      background: `${path.join(__dirname, './src')}/background/background.ts`
+   },
    output: {
-      filename: 'bundle.js',
+      filename: '[name].js',
       path: DIST_DIR,
       publicPath: '/',
    },
@@ -38,12 +38,12 @@ module.exports = {
    },
    plugins: [
       new HtmlWebpackPlugin({
-         title: 'Skeleton Template',
-         template: 'template.html',
+         inject: false,
+         title: 'chrome-tab-extension',
+         template: 'src/index.html',
+         filename: 'popup.html'
       }),
       new MiniCssExtractPlugin(),
       new ForkTsCheckerWebpackPlugin(),
-      //! uncomment this line to visualize webpack bundles in browser
-      // new BundleAnalyzerPlugin(),
    ],
 };

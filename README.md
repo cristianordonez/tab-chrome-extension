@@ -36,9 +36,6 @@ This project was built with the following technologies:
 npm install
 ```
 
--  Create a client/dist directory and a index.html file for webpack to output content to.
--  Make sure all express server routes begin with '/api'
--  Create .env file for all sensitive keys
 -  Then, if environment is set to development, run the application like so:
 
 ```bash

@@ -1,6 +1,4 @@
 node_modules
-client/dist
-cypress
 *.test.ts
 *.test.tsx
 jestGlobals.ts

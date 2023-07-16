@@ -1,5 +1,5 @@
 {
-   "name": "tabs-chrome-extension",
+   "name": "tabs-workspace-manager",
    "version": "0.0.1",
    "description": "Chrome extension to manage tabs",
    "scripts": {
@@ -22,7 +22,9 @@
    "dependencies": {
       "react": "18.2.0",
       "react-dom": "18.2.0",
+      "react-icons": "^4.10.1",
       "react-router-dom": "6.14.1",
+      "styled-components": "^6.0.4",
       "webextension-polyfill": "^0.10.0"
    },
    "devDependencies": {

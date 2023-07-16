@@ -10,8 +10,11 @@ module.exports = {
    },
    entry: {
       popup: `${path.join(__dirname, './src')}/index.tsx`,
-      content: `${path.join(__dirname, './src')}/contentScript/DOMEvaluator.ts`,
-      background: `${path.join(__dirname, './src')}/background/background.ts`
+      content: `${path.join(
+         __dirname,
+         './src'
+      )}/contentScript/contentScript.ts`,
+      background: `${path.join(__dirname, './src')}/background/background.ts`,
    },
    output: {
       filename: '[name].js',
@@ -40,8 +43,8 @@ module.exports = {
       new HtmlWebpackPlugin({
          inject: false,
          title: 'chrome-tab-extension',
-         template: 'src/index.html',
-         filename: 'popup.html'
+         template: 'template.html',
+         filename: 'popup.html',
       }),
       new MiniCssExtractPlugin(),
       new ForkTsCheckerWebpackPlugin(),

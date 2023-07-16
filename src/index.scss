@@ -1,0 +1,9 @@
+body,
+html {
+   margin: 0;
+   overscroll-behavior: contain;
+   width: 100%; /* max: 1000px */
+   height: 100%; /* max: 750px */
+   background-color: #000000;
+   font-family: 'Lato';
+}

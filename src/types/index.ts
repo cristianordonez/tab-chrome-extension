@@ -7,19 +7,30 @@ export type DOMMessageResponse = {
    headlines: string[];
 };
 
-export type Theme = {
-   colors: {
-      primary: string;
-      secondary: string;
-      background: string;
-      card: string;
-      text: string;
-      border: string;
-      notification: string;
-      error: string;
-      button: string;
-      success: string;
-      black: string;
-   };
-   font: string;
-};
+// export type TabType = {
+//    active: boolean;
+//    audible: boolean;
+//    autoDiscardable: boolean;
+//    discarded: boolean;
+//    favIconUrl: string;
+//    groupId: number;
+//    height: number;
+//    highlighted: boolean;
+//    id: number;
+//    incognito: boolean;
+//    index: number;
+//    mutedInfo: { muted: boolean };
+//    pinned: boolean;
+//    selected: boolean;
+//    status: string;
+//    title: string;
+//    url: string;
+//    width: number;
+//    windowId: number;
+// };
+
+export interface RouteType {
+   element: () => React.ReactElement;
+   path: string;
+   label: string;
+}

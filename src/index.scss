@@ -1,9 +1,8 @@
 body,
 html {
-   margin: 0;
+   margin: 1em;
    overscroll-behavior: contain;
-   width: 100%; /* max: 1000px */
-   height: 100%; /* max: 750px */
+   min-width: 400px;
+   min-height: 600px;
    background-color: #000000;
-   font-family: 'Lato';
 }

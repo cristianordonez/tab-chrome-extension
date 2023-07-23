@@ -55905,7 +55905,7 @@ function TabHeader(_a) {
         setValue(newValue);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(material_1.Tabs, { value: value, textColor: 'primary', indicatorColor: 'primary', "aria-label": 'Navigate between sections', onChange: handleChange }, routes.map(function (route) { return (react_1.default.createElement(material_1.Tab, { component: react_router_dom_1.Link, value: route.label, label: route.label, to: route.path })); }))));
+        react_1.default.createElement(material_1.Tabs, { value: value, textColor: 'primary', indicatorColor: 'primary', "aria-label": 'Navigate between sections', onChange: handleChange }, routes.map(function (route, i) { return (react_1.default.createElement(material_1.Tab, { component: react_router_dom_1.Link, value: i, label: route.label, to: route.path })); }))));
 }
 exports["default"] = TabHeader;
 

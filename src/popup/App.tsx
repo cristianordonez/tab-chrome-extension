@@ -3,21 +3,26 @@ import {
    ThemeProvider,
    createTheme,
    responsiveFontSizes,
+   styled,
 } from '@mui/material/styles';
 import React from 'react';
-import { FaExpandAlt } from 'react-icons/fa';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { tabs } from 'webextension-polyfill';
 import { RouteType } from '../types';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
-import CurrentWorkspace from './pages/current-workspaces/CurrentWorkspace';
-import SavedWorkspaces from './pages/saved-workspaces/SavedWorkspaces';
+import CurrentGroups from './pages/current-groups/CurrentGroups';
+import GroupRules from './pages/group-rules/GroupRules';
+import SavedGroups from './pages/saved-groups/SavedGroups';
 import { getDesignTokens } from './theme';
 
 export const ColorModeContext = React.createContext({
    toggleColorMode: () => {},
+});
+
+const GlobalStyles = styled('div')({
+   minWidth: '600px',
+   minHeight: '800px',
 });
 
 export default function App() {
@@ -25,10 +30,19 @@ export default function App() {
    const routes: RouteType[] = [
       {
          path: '/popup.html',
-         element: CurrentWorkspace,
-         label: 'Current Workspace',
+         element: CurrentGroups,
+         label: 'Current Groups',
       },
-      { path: '/saved', element: SavedWorkspaces, label: 'Saved Workspaces' },
+      {
+         path: '/saved',
+         element: SavedGroups,
+         label: 'Saved Groups',
+      },
+      {
+         path: '/rules',
+         element: GroupRules,
+         label: 'Rules',
+      },
    ];
 
    const colorMode = React.useMemo(
@@ -47,34 +61,27 @@ export default function App() {
    let theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
    theme = responsiveFontSizes(theme);
    return (
-      <BrowserRouter>
-         <ColorModeContext.Provider value={colorMode}>
-            <ThemeProvider theme={theme}>
-               <CssBaseline />
-               <Center>
-                  <>
-                     <TabHeader routes={routes} />
-                     {/* <TabGroup direction='row'>
-                        {routes.map((route) => (
-                           <TabLink
-                              label={route.label}
-                              key={route.label}
-                              route={route.path}
-                           />
-                        ))}
-                     </TabGroup> */}
-                     <Routes>
-                        {routes.map(({ path, element: Component }) => (
-                           <Route path={path} element={<Component />} />
-                        ))}
-                     </Routes>
-                     <FaExpandAlt
-                        onClick={() => tabs.create({ url: 'popup.html' })}
-                     />
-                  </>
-               </Center>
-            </ThemeProvider>
-         </ColorModeContext.Provider>
-      </BrowserRouter>
+      <GlobalStyles>
+         <BrowserRouter>
+            <ColorModeContext.Provider value={colorMode}>
+               <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  <Center column>
+                     <>
+                        <TabHeader routes={routes} />
+                        <Routes>
+                           {routes.map(({ path, element: Component }) => (
+                              <Route path={path} element={<Component />} />
+                           ))}
+                        </Routes>
+                     </>
+                  </Center>
+                  {/* <FaExpandAlt
+                     onClick={() => tabs.create({ url: 'popup.html' })}
+                  /> */}
+               </ThemeProvider>
+            </ColorModeContext.Provider>
+         </BrowserRouter>
+      </GlobalStyles>
    );
 }

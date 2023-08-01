@@ -27,27 +27,11 @@ export const getDesignTokens = (mode: PaletteMode) => ({
          : {
               background: {
                  default: '#000000',
-                 //   default: '#FFFFFF',
                  paper: '#0F0F0F',
               },
            }),
    },
    typography: {
-      fontFamily: ['Open', 'Sans'].join(','),
+      fontFamily: 'Open Sans',
    },
 });
-//    colors: {
-//       primary: '#AE71EA',
-//       secondary: '#4355FA',
-//       background: '#000000',
-//       card: '#0F0F0F',
-//       text: '#FFFFFF',
-//       border: '#3A3A3A',
-//       notification: '#0F0F0F',
-//       error: '#EF4444',
-//       button: '#9CA5F2',
-//       success: '#4BD37B',
-//       black: '#FFFFFF',
-//    },
-//    font: 'Open Sans',
-// };

@@ -25,6 +25,7 @@ export default function TabHeader({ routes }: Props) {
             indicatorColor='primary'
             aria-label='Navigate between sections'
             onChange={handleChange}
+            centered
          >
             {routes.map((route, i) => (
                <Tab
@@ -32,6 +33,7 @@ export default function TabHeader({ routes }: Props) {
                   value={i}
                   label={route.label}
                   to={route.path}
+                  sx={{ fontWeight: '700' }}
                />
             ))}
          </Tabs>

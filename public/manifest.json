@@ -4,26 +4,18 @@
    "version": "0.0.1",
    "manifest_version": 3,
    "background": {
-    "service_worker": "background.js"
+      "service_worker": "background.js"
    },
    "action": {
-       "default_popup": "popup.html",
-       "default_title": "Open the popup"
+      "default_popup": "popup.html",
+      "default_title": "Open the popup"
    },
-   "permissions": [
-    "tabGroups",
-    "tabs",
-    "storage",
-    "activeTab"
-   ],
-   "host_permissions": [
-        "http://*/*",
-        "https://*/*"
-  ],
-  "content_scripts": [
-   {
-       "matches": ["http://*/*", "https://*/*"],
-       "js": ["content.js"]
-   }
-  ]
+   "permissions": ["tabGroups", "tabs", "storage", "activeTab", "sessions"],
+   "host_permissions": ["http://*/*", "https://*/*"],
+   "content_scripts": [
+      {
+         "matches": ["http://*/*", "https://*/*"],
+         "js": ["content.js"]
+      }
+   ]
 }

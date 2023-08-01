@@ -5,13 +5,18 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = merge(common, {
    mode: 'production',
-   // mode: 'production',
    watch: true,
    optimization: {
       runtimeChunk: false,
       minimize: false,
-      // minimize: true,
       usedExports: true,
-      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+      minimizer: [
+         new TerserPlugin({
+            terserOptions: { format: { comments: false } },
+            extractComments: false,
+            parallel: true,
+         }),
+         new CssMinimizerPlugin(),
+      ],
    },
 });

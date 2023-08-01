@@ -3,6 +3,8 @@ const DIST_DIR = path.join(__dirname, '/public');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const BundleAnalyzerPlugin =
+   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
    resolve: {
@@ -48,5 +50,6 @@ module.exports = {
       }),
       new MiniCssExtractPlugin(),
       new ForkTsCheckerWebpackPlugin(),
+      new BundleAnalyzerPlugin(),
    ],
 };

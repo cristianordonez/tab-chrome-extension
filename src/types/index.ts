@@ -19,28 +19,8 @@ interface TabGroup {
    [key: number]: Tabs.Tab[];
 }
 
-interface TabType {
-   // active: false;
-   // audible: false;
-   // autoDiscardable: true;
-   // discarded: false;
-   // favIconUrl: 'https://www.google.com/images/icons/product/chrome_web_store-32.png';
-   // groupId: -1;
-   // height: 2448;
-   // highlighted: false;
-   // id: 1016557520;
-   // incognito: false;
-   // index: 1;
-   // mutedInfo: {
-   //    muted: false;
-   // }
-   // pinned: false;
-   // selected: false;
-   // status: 'complete';
-   // title: 'Chrome Web Store - Extensions';
-   // url: 'https://chrome.google.com/webstore/category/extensions';
-   // width: 1440;
-   // windowId: 1016557519;
+interface StorageGroup extends chrome.tabGroups.TabGroup {
+   tabs: chrome.tabs.Tab[];
 }
 
 interface GroupInfoType {
@@ -68,6 +48,6 @@ export {
    DOMMessageResponse,
    GroupInfoType,
    RouteType,
+   StorageGroup,
    TabGroup,
-   TabType,
 };

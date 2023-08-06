@@ -29,8 +29,4 @@ const getAllTabs = async () => {
    return allTabs;
 };
 
-const getTabGroups = async () => {
-   // const groups = await chrome.t
-};
-
-export { getAllTabs, getCurrentTab, getTabGroups, reduceTabs };
+export { getAllTabs, getCurrentTab, reduceTabs };

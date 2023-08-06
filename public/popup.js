@@ -51043,7 +51043,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
-var tabGroupUtils_1 = __webpack_require__(289);
+var tabGroupUtils_1 = __webpack_require__(2289);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroup(_a) {
@@ -51226,7 +51226,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
-var sessionUtils_1 = __webpack_require__(520);
+var sessionUtils_1 = __webpack_require__(7520);
 var tabUtils_1 = __webpack_require__(6937);
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
 function CurrentGroups() {
@@ -51342,7 +51342,7 @@ exports.getDesignTokens = getDesignTokens;
 
 /***/ }),
 
-/***/ 520:
+/***/ 7520:
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
@@ -51402,11 +51402,22 @@ exports.getLastSession = getLastSession;
 
 /***/ }),
 
-/***/ 289:
+/***/ 2289:
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51444,7 +51455,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getTabGroupInfo = void 0;
+exports.updateTabGroup = exports.saveNewTabGroup = exports.getTabGroups = exports.getTabGroupInfo = void 0;
 var getTabGroupInfo = function (groupId, windowId) { return __awaiter(void 0, void 0, Promise, function () {
     var groupInfo;
     return __generator(this, function (_a) {
@@ -51467,6 +51478,50 @@ var getTabGroupInfo = function (groupId, windowId) { return __awaiter(void 0, vo
     });
 }); };
 exports.getTabGroupInfo = getTabGroupInfo;
+var getTabGroups = function () { return __awaiter(void 0, void 0, Promise, function () {
+    var groups;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, chrome.tabGroups.query({})];
+            case 1:
+                groups = _a.sent();
+                return [2, groups];
+        }
+    });
+}); };
+exports.getTabGroups = getTabGroups;
+var saveNewTabGroup = function (group) { return __awaiter(void 0, void 0, Promise, function () {
+    var newTabGroup;
+    var _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                newTabGroup = __assign(__assign({}, group), { tabs: [] });
+                return [4, chrome.storage.local.set((_a = {},
+                        _a[group.id] = newTabGroup,
+                        _a))];
+            case 1:
+                _b.sent();
+                return [2, newTabGroup.id];
+        }
+    });
+}); };
+exports.saveNewTabGroup = saveNewTabGroup;
+var updateTabGroup = function (group, previousGroup) { return __awaiter(void 0, void 0, Promise, function () {
+    var updatedGroup;
+    var _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                updatedGroup = __assign(__assign({}, previousGroup), group);
+                return [4, chrome.storage.local.set((_a = {}, _a[group.id] = updatedGroup, _a))];
+            case 1:
+                _b.sent();
+                return [2, group.id];
+        }
+    });
+}); };
+exports.updateTabGroup = updateTabGroup;
 
 
 /***/ }),
@@ -51522,7 +51577,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.reduceTabs = exports.getTabGroups = exports.getCurrentTab = exports.getAllTabs = void 0;
+exports.reduceTabs = exports.getCurrentTab = exports.getAllTabs = void 0;
 var reduceTabs = function (tabs) {
     var tabGroups = tabs.reduce(function (previousObject, currentObject) {
         var _a;
@@ -51562,12 +51617,6 @@ var getAllTabs = function () { return __awaiter(void 0, void 0, void 0, function
     });
 }); };
 exports.getAllTabs = getAllTabs;
-var getTabGroups = function () { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        return [2];
-    });
-}); };
-exports.getTabGroups = getTabGroups;
 
 
 /***/ }),

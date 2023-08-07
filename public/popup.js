@@ -51451,7 +51451,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateTabGroup = exports.takeTabSnapshotForGroup = exports.takeTabSnapshotAll = exports.saveNewTabGroup = exports.getTabsByGroup = exports.getTabGroupInfo = exports.getTabGroupFromStorage = exports.getCurrentTabGroups = void 0;
+exports.updateTabGroup = exports.updateOrCreateTabGroup = exports.takeTabSnapshotForGroup = exports.takeTabSnapshotAll = exports.saveNewTabGroup = exports.getTabsByGroup = exports.getTabGroupInfo = exports.getTabGroupFromStorage = void 0;
 var tabUtils_1 = __webpack_require__(6937);
 var getTabGroupInfo = function (groupId, windowId) { return __awaiter(void 0, void 0, Promise, function () {
     var groupInfo;
@@ -51474,18 +51474,6 @@ var getTabGroupInfo = function (groupId, windowId) { return __awaiter(void 0, vo
     });
 }); };
 exports.getTabGroupInfo = getTabGroupInfo;
-var getCurrentTabGroups = function () { return __awaiter(void 0, void 0, Promise, function () {
-    var groups;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, chrome.tabGroups.query({})];
-            case 1:
-                groups = _a.sent();
-                return [2, groups];
-        }
-    });
-}); };
-exports.getCurrentTabGroups = getCurrentTabGroups;
 var saveNewTabGroup = function (group) { return __awaiter(void 0, void 0, Promise, function () {
     var newTabGroup;
     var _a;
@@ -51499,7 +51487,7 @@ var saveNewTabGroup = function (group) { return __awaiter(void 0, void 0, Promis
                     tabs: [],
                 };
                 return [4, chrome.storage.local.set((_a = {},
-                        _a[group.id] = newTabGroup,
+                        _a[group.title || ''] = newTabGroup,
                         _a))];
             case 1:
                 _b.sent();
@@ -51520,7 +51508,7 @@ var updateTabGroup = function (group, previousGroup) { return __awaiter(void 0, 
                     title: group.title || '',
                     tabs: previousGroup.tabs,
                 };
-                return [4, chrome.storage.local.set((_a = {}, _a[group.id] = updatedGroup, _a))];
+                return [4, chrome.storage.local.set((_a = {}, _a[group.title || ''] = updatedGroup, _a))];
             case 1:
                 _b.sent();
                 return [2, updatedGroup];
@@ -51528,16 +51516,16 @@ var updateTabGroup = function (group, previousGroup) { return __awaiter(void 0, 
     });
 }); };
 exports.updateTabGroup = updateTabGroup;
-var getTabGroupFromStorage = function (id) { return __awaiter(void 0, void 0, Promise, function () {
+var getTabGroupFromStorage = function (title) { return __awaiter(void 0, void 0, Promise, function () {
     var tabGroup, _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                return [4, chrome.storage.local.get(["".concat(id)])];
+                return [4, chrome.storage.local.get(["".concat(title)])];
             case 1:
                 tabGroup = _b.sent();
-                return [2, tabGroup["".concat(id)]];
+                return [2, tabGroup["".concat(title)]];
             case 2:
                 _a = _b.sent();
                 return [2, null];
@@ -51595,6 +51583,24 @@ var takeTabSnapshotForGroup = function (groupId) { return __awaiter(void 0, void
     });
 }); };
 exports.takeTabSnapshotForGroup = takeTabSnapshotForGroup;
+var updateOrCreateTabGroup = function (group) { return __awaiter(void 0, void 0, void 0, function () {
+    var currentGroup;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, getTabGroupFromStorage(group.title || '')];
+            case 1:
+                currentGroup = _a.sent();
+                if (currentGroup) {
+                    updateTabGroup(group, currentGroup);
+                }
+                else {
+                    saveNewTabGroup(group);
+                }
+                return [2];
+        }
+    });
+}); };
+exports.updateOrCreateTabGroup = updateOrCreateTabGroup;
 
 
 /***/ }),

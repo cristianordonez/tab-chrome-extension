@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTabGroupInfo } from '../../utils/tabGroupUtils';
+import { getTabGroupInfo } from '../../utils/tabGroupUtil';
 import Circle from './Circle';
 import Row from './Row';
 

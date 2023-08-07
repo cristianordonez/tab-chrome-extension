@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TabGroup } from '../../../types';
 import { getLastSession } from '../../../utils/sessionUtils';
-import { getTabsByGroup } from '../../../utils/tabGroupUtils';
+import { getTabsByGroup } from '../../../utils/tabGroupUtil';
 import RowGroup from '../../components/RowGroup';
 
 export default function CurrentGroups() {

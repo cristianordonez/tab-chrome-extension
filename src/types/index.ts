@@ -1,14 +1,3 @@
-import { Tabs } from 'webextension-polyfill';
-
-type DOMMessage = {
-   type: 'GET_DOM';
-};
-
-type DOMMessageResponse = {
-   title: string;
-   headlines: string[];
-};
-
 interface RouteType {
    element: () => React.ReactElement;
    path: string;
@@ -16,19 +5,28 @@ interface RouteType {
 }
 
 interface TabGroup {
-   [key: number]: Tabs.Tab[];
+   [key: number]: chrome.tabs.Tab[];
 }
 
-interface StorageGroup extends chrome.tabGroups.TabGroup {
-   tabs: chrome.tabs.Tab[];
-}
+type StorageGroup = {
+   [key: number]: StorageGroupValue;
+};
 
-interface GroupInfoType {
-   collapsed: boolean;
-   color: string;
+interface StorageGroupValue {
    id: number;
+   color: ColorEnum;
+   tabs: StorageTab;
    title: string;
-   windowId: number;
+}
+
+type StorageTab = {
+   [key: number]: StorageTabValue;
+};
+interface StorageTabValue {
+   tabId: number;
+   url: string;
+   title: string;
+   favIconUrl: string;
 }
 
 type ColorEnum =
@@ -44,10 +42,10 @@ type ColorEnum =
 
 export {
    ColorEnum,
-   DOMMessage,
-   DOMMessageResponse,
-   GroupInfoType,
    RouteType,
    StorageGroup,
+   StorageGroupValue,
+   StorageTab,
+   StorageTabValue,
    TabGroup,
 };

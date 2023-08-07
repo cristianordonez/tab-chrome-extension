@@ -10,7 +10,14 @@
       "default_popup": "popup.html",
       "default_title": "Open the popup"
    },
-   "permissions": ["tabGroups", "tabs", "storage", "activeTab", "sessions"],
+   "permissions": [
+      "tabGroups",
+      "tabs",
+      "storage",
+      "activeTab",
+      "sessions",
+      "windows"
+   ],
    "host_permissions": ["http://*/*", "https://*/*"],
    "content_scripts": [
       {

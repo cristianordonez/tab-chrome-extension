@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Tabs } from 'webextension-polyfill';
 import { getTabGroupInfo } from '../../utils/tabGroupUtils';
 import Circle from './Circle';
 import Row from './Row';
 
 interface Props {
-   tabs: Tabs.Tab[];
+   tabs: chrome.tabs.Tab[];
    groupId: number;
    windowId: number | undefined;
 }

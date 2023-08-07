@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TabGroup } from '../../../types';
 import { getLastSession } from '../../../utils/sessionUtils';
-import { getAllTabs, reduceTabs } from '../../../utils/tabUtils';
+import { getTabsByGroup } from '../../../utils/tabGroupUtils';
 import RowGroup from '../../components/RowGroup';
 
 export default function CurrentGroups() {
@@ -9,8 +9,7 @@ export default function CurrentGroups() {
 
    useEffect(() => {
       const getTabs = async () => {
-         const allTabs = await getAllTabs();
-         const tabGroups = reduceTabs(allTabs);
+         const tabGroups = await getTabsByGroup();
          setCurrentTabs(tabGroups);
       };
       getTabs();

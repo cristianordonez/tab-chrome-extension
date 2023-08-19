@@ -114,11 +114,12 @@ class TabGroupUtil {
 
    // retrieves tab group information from local storage given group id
    private async getGroupFromStorage(id: number) {
-      const savedGroup = chrome.storage.local.get([`${id}`]);
-      if (Object.keys(savedGroup).length == 0) {
-         return null;
+      const savedGroup = await chrome.storage.local.get([`${id}`]);
+      console.log('savedGroup: ', savedGroup);
+      if (`${id}` in savedGroup) {
+         return savedGroup[`${id}`];
       } else {
-         return savedGroup;
+         return null;
       }
    }
 

@@ -291,14 +291,19 @@ var TabGroupUtil = (function () {
         return __awaiter(this, void 0, void 0, function () {
             var savedGroup;
             return __generator(this, function (_a) {
-                savedGroup = chrome.storage.local.get(["".concat(id)]);
-                if (Object.keys(savedGroup).length == 0) {
-                    return [2, null];
+                switch (_a.label) {
+                    case 0: return [4, chrome.storage.local.get(["".concat(id)])];
+                    case 1:
+                        savedGroup = _a.sent();
+                        console.log('savedGroup: ', savedGroup);
+                        if ("".concat(id) in savedGroup) {
+                            return [2, savedGroup["".concat(id)]];
+                        }
+                        else {
+                            return [2, null];
+                        }
+                        return [2];
                 }
-                else {
-                    return [2, savedGroup];
-                }
-                return [2];
             });
         });
     };

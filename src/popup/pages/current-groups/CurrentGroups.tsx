@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { TabGroup } from '../../../types';
+import { AllTabsType } from '../../../types';
 import { getLastSession } from '../../../utils/sessionUtils';
-import { getTabsByGroup } from '../../../utils/tabGroupUtil';
+import { TabGroupUtil } from '../../../utils/tabGroupUtil';
 import RowGroup from '../../components/RowGroup';
 
 export default function CurrentGroups() {
-   const [currentTabs, setCurrentTabs] = useState<TabGroup>({});
+   const [currentTabs, setCurrentTabs] = useState<AllTabsType>({});
 
    useEffect(() => {
       const getTabs = async () => {
-         const tabGroups = await getTabsByGroup();
+         const tabGroups = await TabGroupUtil.getTabsByGroup();
          setCurrentTabs(tabGroups);
       };
       getTabs();

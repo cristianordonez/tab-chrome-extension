@@ -4,7 +4,7 @@ interface RouteType {
    label: string;
 }
 
-interface TabGroup {
+interface AllTabsType {
    [key: number]: chrome.tabs.Tab[];
 }
 
@@ -41,11 +41,11 @@ type ColorEnum =
    | 'orange';
 
 export {
+   AllTabsType,
    ColorEnum,
    RouteType,
    StorageGroup,
    StorageGroupValue,
    StorageTab,
    StorageTabValue,
-   TabGroup,
 };

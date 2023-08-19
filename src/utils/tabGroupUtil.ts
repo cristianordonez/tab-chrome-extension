@@ -1,10 +1,21 @@
-import { StorageGroupValue, TabGroup } from '../types';
-import { getAllTabs } from './tabUtils';
+import { AllTabsType, StorageGroup, StorageGroupValue } from '../types';
 
 class TabGroupUtil {
    maxGroups;
+   tabGroups;
    constructor(maxGroups: number) {
       this.maxGroups = maxGroups;
+      this.tabGroups = {} as StorageGroup;
+   }
+
+   async initialize() {
+      try {
+         const groups = await chrome.storage.local.get(['groups']);
+         this.tabGroups = groups;
+         // this.tabGroups = groups['groups'];
+      } catch {
+         await chrome.storage.local.set({ ['groups']: {} });
+      }
    }
 
    static async getTabGroupInfo(
@@ -25,59 +36,73 @@ class TabGroupUtil {
       }
    }
 
-   async saveNewTabGroup(
+   private async saveNewTabGroup(
       group: chrome.tabGroups.TabGroup
-   ): Promise<StorageGroupValue> {
+   ): Promise<void> {
       const newTabGroup = {
          id: group.id,
          color: group.color,
          title: group.title || '',
          tabs: [],
       };
-      // todo only save group if there is less than 5 saved
+      const currentGroups = this.tabGroups;
+      currentGroups[`${group.id}`] = newTabGroup;
       await chrome.storage.local.set({
-         [group.title || '']: newTabGroup,
-         // // [group.id]: newTabGroup,
+         ['groups']: currentGroups,
       });
-      return newTabGroup;
+      console.log('currentGroups in saveNewTabGroup: ', currentGroups);
+      this.tabGroups = currentGroups;
    }
 
-   async updateTabGroup(
+   private async updateTabGroup(
       group: chrome.tabGroups.TabGroup,
       previousGroup: StorageGroupValue
-   ): Promise<StorageGroupValue> {
+   ): Promise<void> {
       const updatedGroup = {
          id: previousGroup.id,
          color: group.color,
          title: group.title || '',
          tabs: previousGroup.tabs,
       };
-      await chrome.storage.local.set({ [group.title || '']: updatedGroup });
-      return updatedGroup;
+      const currentGroups = this.tabGroups;
+      currentGroups[updatedGroup.id] = updatedGroup;
+      await chrome.storage.local.set({ ['groups']: currentGroups });
+      console.log('currentGroups in updateTabGroup: ', currentGroups);
+      this.tabGroups = currentGroups;
    }
 
-   async getTabGroupFromStorage(
-      title: string
-   ): Promise<StorageGroupValue | null> {
-      try {
-         const tabGroup = await chrome.storage.local.get([`${title}`]);
-         return tabGroup[`${title}`];
-      } catch {
+   getTabGroupFromStorage(groupId: number): StorageGroupValue | null {
+      const currentGroups = this.tabGroups;
+      if (Object.prototype.hasOwnProperty.call(currentGroups, groupId)) {
+         return currentGroups[`${groupId}`];
+      } else {
          return null;
       }
    }
 
+   tabGroupTitleExists(title: string): boolean {
+      // returns true if name already exists
+      const currentGroups = this.tabGroups;
+      let doesExist = false;
+      return false;
+   }
+
    async updateOrCreateTabGroup(group: chrome.tabGroups.TabGroup) {
-      const currentGroup = await this.getTabGroupFromStorage(group.title || '');
-      if (currentGroup) {
-         this.updateTabGroup(group, currentGroup);
+      const currentGroup = this.tabGroups;
+      console.log('this: ', this);
+      console.log('this.tabGroups: ', this.tabGroups);
+
+      console.log('group: ', group);
+      console.log('currentGroup: ', currentGroup);
+      if (Object.prototype.hasOwnProperty.call(currentGroup, group.id)) {
+         this.updateTabGroup(group, currentGroup[`${group.id}`]);
       } else {
          this.saveNewTabGroup(group);
       }
    }
 
-   async getTabsByGroup(): Promise<TabGroup> {
-      const allTabs = await getAllTabs();
+   static async getTabsByGroup(): Promise<AllTabsType> {
+      const allTabs = await chrome.tabs.query({});
       const tabGroups = allTabs.reduce((previousObject, currentObject) => {
          const groupId = currentObject['groupId'];
          if (
@@ -90,18 +115,18 @@ class TabGroupUtil {
          return Object.assign(previousObject, {
             [currentObject.groupId]: [...currentItems, currentObject],
          });
-      }, {} as TabGroup);
+      }, {} as AllTabsType);
       return tabGroups;
    }
 
    async takeTabSnapshotAll(): Promise<void> {
-      const currentTabs = await this.getTabsByGroup();
+      const currentTabs = await TabGroupUtil.getTabsByGroup();
       console.log('currentTabs: ', currentTabs);
    }
 
    async takeTabSnapshotForGroup(groupId: number): Promise<void> {
       console.log('groupId: ', groupId);
-      const currentTabs = await this.getTabsByGroup();
+      const currentTabs = await TabGroupUtil.getTabsByGroup();
       console.log('currentTabs: ', currentTabs);
    }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTabGroupInfo } from '../../utils/tabGroupUtil';
+import { TabGroupUtil } from '../../utils/tabGroupUtil';
 import Circle from './Circle';
 import Row from './Row';
 
@@ -21,7 +21,7 @@ export default function RowGroup({ tabs, groupId, windowId }: Props) {
 
    useEffect(() => {
       const getCurrentGroup = async () => {
-         const info = await getTabGroupInfo(groupId, windowId);
+         const info = await TabGroupUtil.getTabGroupInfo(groupId, windowId);
          setGroupInfo(info);
       };
       getCurrentGroup();

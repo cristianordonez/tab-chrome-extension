@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { AllTabsType } from '../../../types';
+import { ChromeTabs } from '../../../types';
 import { getLastSession } from '../../../utils/sessionUtils';
 import { TabGroupUtil } from '../../../utils/tabGroupUtil';
 import RowGroup from '../../components/RowGroup';
 
 export default function CurrentGroups() {
-   const [currentTabs, setCurrentTabs] = useState<AllTabsType>({});
+   const [currentTabs, setCurrentTabs] = useState<ChromeTabs>({});
 
    useEffect(() => {
       const getTabs = async () => {

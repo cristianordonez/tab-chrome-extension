@@ -4,13 +4,15 @@
 // and other parts are limited. But the background doesn’t have a UI and can not access DOM.
 import { TabGroupUtil } from '../utils/tabGroupUtil';
 
-const tabGroupUtil = new TabGroupUtil(5);
+const tabGroupUtil = new TabGroupUtil(5, 1);
 tabGroupUtil.initialize();
 
-chrome.tabGroups.onUpdated.addListener(async function (
+// chrome.storage.local.clear();
+chrome.tabGroups.onRemoved.addListener(async function (
    group: chrome.tabGroups.TabGroup
 ) {
    await tabGroupUtil.updateOrCreateTabGroup(group);
+   await tabGroupUtil.debug(group);
 });
 
 chrome.tabs.onUpdated.addListener(async function (
@@ -19,7 +21,8 @@ chrome.tabs.onUpdated.addListener(async function (
    tab: chrome.tabs.Tab
 ) {
    // console.log('tab: ', tab);
-   const all = await chrome.storage.local.get(null);
-   console.log('all: ', all);
-   await tabGroupUtil.takeTabSnapshotAll();
+   if ('status' in changeInfo && changeInfo['status'] == 'complete') {
+      console.log('changeInfo: ', changeInfo);
+   }
+   // await tabGroupUtil.takeTabSnapshotAll();
 });

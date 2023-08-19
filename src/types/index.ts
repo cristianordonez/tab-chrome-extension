@@ -4,25 +4,27 @@ interface RouteType {
    label: string;
 }
 
-interface AllTabsType {
+interface ChromeTabs {
    [key: number]: chrome.tabs.Tab[];
 }
 
-type StorageGroup = {
-   [key: number]: StorageGroupValue;
-};
-
-interface StorageGroupValue {
-   id: number;
-   color: ColorEnum;
-   tabs: StorageTab;
-   title: string;
+interface LocalStorageTabGroups {
+   [key: number]: LocalStorageTabGroup;
 }
 
-type StorageTab = {
-   [key: number]: StorageTabValue;
-};
-interface StorageTabValue {
+interface LocalStorageTabGroup {
+   id: number;
+   color: ColorEnum;
+   tabs: LocalStorageTab[];
+   title: string;
+   createdAt: number;
+}
+
+interface LocalStorageTitles {
+   [key: string]: number[];
+}
+
+interface LocalStorageTab {
    tabId: number;
    url: string;
    title: string;
@@ -41,11 +43,11 @@ type ColorEnum =
    | 'orange';
 
 export {
-   AllTabsType,
+   ChromeTabs,
    ColorEnum,
+   LocalStorageTab,
+   LocalStorageTabGroup,
+   LocalStorageTabGroups,
+   LocalStorageTitles,
    RouteType,
-   StorageGroup,
-   StorageGroupValue,
-   StorageTab,
-   StorageTabValue,
 };

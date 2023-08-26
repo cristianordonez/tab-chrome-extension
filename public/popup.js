@@ -51456,31 +51456,7 @@ var TabGroupUtil = (function () {
     function TabGroupUtil(maxGroups, maxTitleDuplicates) {
         this.maxGroups = maxGroups;
         this.maxTitleDuplicates = maxTitleDuplicates;
-        this.groups = {};
-        this.savedTitles = {};
     }
-    TabGroupUtil.prototype.initialize = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var savedTitles;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4, chrome.storage.local.get(['savedTitles'])];
-                    case 1:
-                        savedTitles = _b.sent();
-                        console.log('savedTitles: ', savedTitles);
-                        if (!('savedTitles' in savedTitles)) return [3, 2];
-                        this.savedTitles = savedTitles.savedTitles;
-                        return [3, 4];
-                    case 2: return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = {}, _a))];
-                    case 3:
-                        _b.sent();
-                        _b.label = 4;
-                    case 4: return [2];
-                }
-            });
-        });
-    };
     TabGroupUtil.getTabsByGroup = function () {
         return __awaiter(this, void 0, Promise, function () {
             var allTabs, tabGroups;
@@ -51533,7 +51509,7 @@ var TabGroupUtil = (function () {
             var groupInfo, limitReached, oldest;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, chrome.storage.local.get(["".concat(group.id)])];
+                    case 0: return [4, this.getGroupFromStorage(group.id)];
                     case 1:
                         groupInfo = _a.sent();
                         return [4, this.titleLimitReached(group)];
@@ -51543,18 +51519,297 @@ var TabGroupUtil = (function () {
                         return [4, this.findOldestTabGroup(group.title || '')];
                     case 3:
                         oldest = _a.sent();
-                        console.log('oldest: ', oldest);
                         if (oldest !== null) {
                             this.deleteTabGroup(oldest);
                         }
                         _a.label = 4;
                     case 4:
-                        if (Object.keys(groupInfo).length == 0) {
-                            this.saveNewTabGroup(group);
+                        if (groupInfo !== null) {
+                            if (Object.keys(groupInfo).length == 0) {
+                                this.saveNew(group);
+                            }
+                            else {
+                                this.update(group, groupInfo);
+                            }
+                        }
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.deleteTabGroup = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, this.deleteFromGroups(id)];
+                    case 1:
+                        _a.sent();
+                        return [4, this.deleteFromSavedTitles(id)];
+                    case 2:
+                        _a.sent();
+                        return [3, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.error(e_1);
+                        return [3, 4];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.takeSnapshot = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var allTabs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.getTabsByGroup()];
+                    case 1:
+                        allTabs = _a.sent();
+                        Object.entries(allTabs).forEach(function (_a) {
+                            var groupId = _a[0], tabs = _a[1];
+                            console.log("".concat(groupId, ": ").concat(tabs));
+                        });
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.getGroupFromStorage = function (id) {
+        return __awaiter(this, void 0, Promise, function () {
+            var savedGroups;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.getKey('group')];
+                    case 1:
+                        savedGroups = (_a.sent());
+                        if ("".concat(id) in savedGroups) {
+                            return [2, savedGroups["".concat(id)]];
                         }
                         else {
-                            this.updateTabGroup(group, groupInfo["".concat(group.id)]);
+                            return [2, null];
                         }
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.findOldestTabGroup = function (title) {
+        return __awaiter(this, void 0, Promise, function () {
+            var oldest, result, allTitles, saved, i, current;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        oldest = Infinity;
+                        result = null;
+                        return [4, this.getKey('savedTitles')];
+                    case 1:
+                        allTitles = (_a.sent());
+                        saved = allTitles["".concat(title)];
+                        i = 0;
+                        _a.label = 2;
+                    case 2:
+                        if (!(i < saved.length)) return [3, 5];
+                        return [4, this.getGroupFromStorage(saved[i])];
+                    case 3:
+                        current = _a.sent();
+                        if (current !== null && current.createdAt < oldest) {
+                            result = current.id;
+                        }
+                        _a.label = 4;
+                    case 4:
+                        i++;
+                        return [3, 2];
+                    case 5: return [2, result];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.getKey = function (key) {
+        return __awaiter(this, void 0, Promise, function () {
+            var storage, defaultStorage;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4, chrome.storage.local.get([key])];
+                    case 1:
+                        storage = _b.sent();
+                        if (!("".concat(key) in storage)) return [3, 2];
+                        return [2, storage["".concat(key)]];
+                    case 2:
+                        console.info("Key ".concat(key, " has not yet been set. Setting to default value."));
+                        defaultStorage = {};
+                        return [4, chrome.storage.local.set((_a = {}, _a["".concat(key)] = defaultStorage, _a))];
+                    case 3:
+                        _b.sent();
+                        return [2, defaultStorage];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.titleLimitReached = function (group) {
+        return __awaiter(this, void 0, Promise, function () {
+            var title, savedTitles, cachedIds;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        title = group.title == undefined ? '' : group.title;
+                        return [4, this.getKey('savedTitles')];
+                    case 1:
+                        savedTitles = (_a.sent());
+                        if (title in savedTitles) {
+                            cachedIds = savedTitles[title];
+                            if (cachedIds.length < this.maxTitleDuplicates) {
+                                return [2, false];
+                            }
+                            else {
+                                return [2, true];
+                            }
+                        }
+                        else {
+                            return [2, false];
+                        }
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.saveNew = function (group) {
+        return __awaiter(this, void 0, Promise, function () {
+            var newTabGroup;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        newTabGroup = {
+                            id: group.id,
+                            color: group.color,
+                            title: group.title || '',
+                            tabs: [],
+                            createdAt: Date.now(),
+                        };
+                        return [4, this.saveToSavedGroups(newTabGroup)];
+                    case 1:
+                        _a.sent();
+                        return [4, this.saveToSavedTitles(group)];
+                    case 2:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.update = function (group, previousGroup) {
+        return __awaiter(this, void 0, Promise, function () {
+            var updatedGroup;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        updatedGroup = {
+                            id: previousGroup.id,
+                            color: group.color,
+                            title: group.title || '',
+                            tabs: previousGroup.tabs,
+                            createdAt: previousGroup.createdAt,
+                        };
+                        return [4, this.saveToSavedGroups(updatedGroup)];
+                    case 1:
+                        _a.sent();
+                        return [4, this.saveToSavedTitles(group)];
+                    case 2:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.saveToSavedGroups = function (group) {
+        return __awaiter(this, void 0, Promise, function () {
+            var groups;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4, this.getKey('groups')];
+                    case 1:
+                        groups = (_b.sent());
+                        groups[group.id] = group;
+                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = groups, _a))];
+                    case 2:
+                        _b.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.saveToSavedTitles = function (group) {
+        return __awaiter(this, void 0, Promise, function () {
+            var title, savedTitles;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        title = group.title !== undefined ? group.title : '';
+                        return [4, this.getKey('savedTitles')];
+                    case 1:
+                        savedTitles = (_b.sent());
+                        if (title in savedTitles) {
+                            savedTitles[title].push(group.id);
+                        }
+                        else {
+                            savedTitles[title] = [group.id];
+                        }
+                        return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = savedTitles, _a))];
+                    case 2:
+                        _b.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.deleteFromGroups = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var groups;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4, this.getKey('groups')];
+                    case 1:
+                        groups = (_b.sent());
+                        delete groups[id];
+                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = groups, _a))];
+                    case 2:
+                        _b.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.deleteFromSavedTitles = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var savedTitles, titleKey, idList, index;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4, this.getKey('savedTitles')];
+                    case 1:
+                        savedTitles = (_b.sent());
+                        for (titleKey in savedTitles) {
+                            idList = savedTitles["".concat(titleKey)];
+                            if (idList.includes(id)) {
+                                if (idList.length == 1) {
+                                    delete savedTitles[titleKey];
+                                }
+                                else {
+                                    index = idList.indexOf(id);
+                                    idList.splice(index, 1);
+                                    savedTitles[titleKey] = idList;
+                                }
+                            }
+                        }
+                        return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = savedTitles, _a))];
+                    case 2:
+                        _b.sent();
                         return [2];
                 }
             });
@@ -51570,188 +51825,12 @@ var TabGroupUtil = (function () {
                         all = _a.sent();
                         console.log('all: ', all);
                         if (!(group !== undefined)) return [3, 3];
-                        console.log('group: ', group);
                         return [4, this.getGroupFromStorage(group.id)];
                     case 2:
                         info = _a.sent();
                         console.log('info: ', info);
                         _a.label = 3;
                     case 3: return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.deleteTabGroup = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var titleKey, idList, index, e_1;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _b.trys.push([0, 3, , 4]);
-                        return [4, chrome.storage.local.remove(["".concat(id)])];
-                    case 1:
-                        _b.sent();
-                        for (titleKey in this.savedTitles) {
-                            idList = this.savedTitles[titleKey];
-                            if (idList.includes(id)) {
-                                index = idList.indexOf(id);
-                                idList.splice(index, 1);
-                                this.savedTitles[titleKey] = idList;
-                            }
-                        }
-                        return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = this.savedTitles, _a))];
-                    case 2:
-                        _b.sent();
-                        return [3, 4];
-                    case 3:
-                        e_1 = _b.sent();
-                        console.error(e_1);
-                        return [3, 4];
-                    case 4: return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.getGroupFromStorage = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var savedGroup;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, chrome.storage.local.get(["".concat(id)])];
-                    case 1:
-                        savedGroup = _a.sent();
-                        console.log('savedGroup: ', savedGroup);
-                        if ("".concat(id) in savedGroup) {
-                            return [2, savedGroup["".concat(id)]];
-                        }
-                        else {
-                            return [2, null];
-                        }
-                        return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.findOldestTabGroup = function (title) {
-        return __awaiter(this, void 0, Promise, function () {
-            var oldest, result, saved, i, current;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        oldest = Infinity;
-                        result = null;
-                        saved = this.savedTitles[title];
-                        console.log('saved: ', saved);
-                        i = 0;
-                        _a.label = 1;
-                    case 1:
-                        if (!(i < saved.length)) return [3, 4];
-                        return [4, this.getGroupFromStorage(saved[i])];
-                    case 2:
-                        current = _a.sent();
-                        console.log('current: ', current);
-                        if (current !== null && current.createdAt < oldest) {
-                            result = current.id;
-                        }
-                        _a.label = 3;
-                    case 3:
-                        i++;
-                        return [3, 1];
-                    case 4: return [2, result];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.titleLimitReached = function (group) {
-        return __awaiter(this, void 0, Promise, function () {
-            var title, cachedIds;
-            return __generator(this, function (_a) {
-                title = group.title == undefined ? '' : group.title;
-                if (title in this.savedTitles) {
-                    cachedIds = this.savedTitles[title];
-                    console.log('cachedIds in titleLimitReached: ', cachedIds);
-                    if (cachedIds.length < this.maxTitleDuplicates) {
-                        return [2, false];
-                    }
-                    else {
-                        return [2, true];
-                    }
-                }
-                else {
-                    return [2, false];
-                }
-                return [2];
-            });
-        });
-    };
-    TabGroupUtil.prototype.saveNewTabGroup = function (group) {
-        return __awaiter(this, void 0, Promise, function () {
-            var newTabGroup;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        newTabGroup = {
-                            id: group.id,
-                            color: group.color,
-                            title: group.title || '',
-                            tabs: [],
-                            createdAt: Date.now(),
-                        };
-                        return [4, chrome.storage.local.set((_a = {},
-                                _a["".concat(group.id)] = newTabGroup,
-                                _a))];
-                    case 1:
-                        _b.sent();
-                        this.saveToSavedTitles(group);
-                        return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.saveToSavedTitles = function (group) {
-        return __awaiter(this, void 0, Promise, function () {
-            var title;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        title = group.title !== undefined ? group.title : '';
-                        if (title in this.savedTitles) {
-                            this.savedTitles[title].push(group.id);
-                        }
-                        else {
-                            this.savedTitles[title] = [group.id];
-                        }
-                        console.log('currentTitles before setting: ', this.savedTitles);
-                        return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = this.savedTitles, _a))];
-                    case 1:
-                        _b.sent();
-                        return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.updateTabGroup = function (group, previousGroup) {
-        return __awaiter(this, void 0, Promise, function () {
-            var updatedGroup;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        updatedGroup = {
-                            id: previousGroup.id,
-                            color: group.color,
-                            title: group.title || '',
-                            tabs: previousGroup.tabs,
-                            createdAt: previousGroup.createdAt,
-                        };
-                        return [4, chrome.storage.local.set((_a = {}, _a["".concat(updatedGroup.id)] = updatedGroup, _a))];
-                    case 1:
-                        _b.sent();
-                        this.saveToSavedTitles(group);
-                        return [2];
                 }
             });
         });

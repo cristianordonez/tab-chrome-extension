@@ -20,15 +20,15 @@ interface LocalStorageTabGroup {
    createdAt: number;
 }
 
-interface LocalStorageTitles {
-   [key: string]: number[];
-}
-
 interface LocalStorageTab {
    tabId: number;
    url: string;
    title: string;
    favIconUrl: string;
+}
+
+interface LocalStorageTitles {
+   [key: string]: number[];
 }
 
 type ColorEnum =

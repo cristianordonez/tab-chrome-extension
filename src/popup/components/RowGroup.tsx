@@ -1,3 +1,4 @@
+import { List } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { TabGroupUtil } from '../../utils/tabGroupUtil';
 import Circle from './Circle';
@@ -15,8 +16,6 @@ export default function RowGroup({ tabs, groupId, windowId }: Props) {
       chrome.tabGroups.TabGroup | undefined
    >(undefined);
 
-   const circle = <Circle color='red' />;
-
    const action = () => {};
 
    useEffect(() => {
@@ -31,7 +30,7 @@ export default function RowGroup({ tabs, groupId, windowId }: Props) {
       return <></>;
    } else {
       return (
-         <>
+         <List>
             <Row
                isParent={true}
                PrefixIcon={<Circle color={groupInfo.color} />}
@@ -52,7 +51,7 @@ export default function RowGroup({ tabs, groupId, windowId }: Props) {
             ) : (
                <></>
             )}
-         </>
+         </List>
       );
    }
 }

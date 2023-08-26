@@ -1,3 +1,4 @@
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { CssBaseline, PaletteMode } from '@mui/material';
 import {
    ThemeProvider,
@@ -76,9 +77,9 @@ export default function App() {
                         </Routes>
                      </>
                   </Center>
-                  {/* <FaExpandAlt
-                     onClick={() => tabs.create({ url: 'popup.html' })}
-                  /> */}
+                  <OpenInFullIcon
+                     onClick={() => chrome.tabs.create({ url: 'popup.html' })}
+                  />
                </ThemeProvider>
             </ColorModeContext.Provider>
          </BrowserRouter>

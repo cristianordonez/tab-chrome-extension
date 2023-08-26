@@ -440,7 +440,6 @@ var TabGroupUtil = (function () {
                         if (!("".concat(key) in storage)) return [3, 2];
                         return [2, storage["".concat(key)]];
                     case 2:
-                        console.info("Key ".concat(key, " has not yet been set. Setting to default value."));
                         defaultStorage = {};
                         return [4, chrome.storage.local.set((_a = {}, _a["".concat(key)] = defaultStorage, _a))];
                     case 3:

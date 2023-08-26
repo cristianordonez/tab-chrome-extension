@@ -11,6 +11,7 @@ const StyledListItem = styled(ListItem)<ListItemProps>(({ theme }) => ({
    backgroundColor: theme.palette.background.paper,
    alignItems: 'center',
    justifyContent: 'flex-start',
+   height: '100%',
 }));
 
 interface Props {
@@ -45,34 +46,37 @@ export default function Row({
    };
 
    return (
-      <>
-         <StyledListItem
-            alignItems='center'
-            secondaryAction={
-               <IconButton>
-                  {isParent ? <DeleteIcon /> : <RemoveCircleIcon />}
-               </IconButton>
-            }
-         >
-            {isParent == true &&
-            PrefixIcon !== undefined &&
-            PrefixIcon !== null ? (
-               <ListItemIcon>{PrefixIcon}</ListItemIcon>
-            ) : (
-               <></>
-            )}
-            <ListItemText primary={title} secondary={label} />
-            {isParent ? (
-               <IconButton
-                  onClick={handleShowChildren}
-                  sx={{ marginRight: '4em' }}
-               >
-                  {arrowIcon}
-               </IconButton>
-            ) : (
-               <></>
-            )}
-         </StyledListItem>
-      </>
+      <StyledListItem
+         alignItems='center'
+         divider
+         secondaryAction={
+            <IconButton>
+               {isParent ? (
+                  <DeleteIcon onClick={action} />
+               ) : (
+                  <RemoveCircleIcon onClick={action} />
+               )}
+            </IconButton>
+         }
+      >
+         {isParent == true &&
+         PrefixIcon !== undefined &&
+         PrefixIcon !== null ? (
+            <ListItemIcon>{PrefixIcon}</ListItemIcon>
+         ) : (
+            <></>
+         )}
+         <ListItemText inset={!isParent} primary={title} secondary={label} />
+         {isParent ? (
+            <IconButton
+               onClick={handleShowChildren}
+               sx={{ marginRight: '4em' }}
+            >
+               {arrowIcon}
+            </IconButton>
+         ) : (
+            <></>
+         )}
+      </StyledListItem>
    );
 }

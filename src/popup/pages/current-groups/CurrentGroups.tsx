@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { ChromeTabs } from '../../../types';
-import { getLastSession } from '../../../utils/sessionUtils';
 import { TabGroupUtil } from '../../../utils/tabGroupUtil';
 import RowGroup from '../../components/RowGroup';
 
@@ -14,8 +13,6 @@ export default function CurrentGroups() {
       };
       getTabs();
    }, []);
-
-   const sessions = getLastSession();
 
    return (
       <>

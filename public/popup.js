@@ -2633,7 +2633,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(5893);
+var _jsxRuntime = __webpack_require__(8521);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
 }), 'ChevronRight');
@@ -2654,7 +2654,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(5893);
+var _jsxRuntime = __webpack_require__(8521);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"
 }), 'Circle');
@@ -2675,7 +2675,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(5893);
+var _jsxRuntime = __webpack_require__(8521);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
 }), 'Delete');
@@ -2696,10 +2696,31 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(5893);
+var _jsxRuntime = __webpack_require__(8521);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
 }), 'ExpandMore');
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 9137:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+"use client";
+
+var _interopRequireDefault = __webpack_require__(4836);
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
+var _jsxRuntime = __webpack_require__(8521);
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M21 11V3h-8l3.29 3.29-10 10L3 13v8h8l-3.29-3.29 10-10z"
+}), 'OpenInFull');
 exports["default"] = _default;
 
 /***/ }),
@@ -2717,7 +2738,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(5893);
+var _jsxRuntime = __webpack_require__(8521);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"
 }), 'RemoveCircle');
@@ -3065,7 +3086,7 @@ TransitionGroup.defaultProps = defaultProps;
 // EXTERNAL MODULE: ./node_modules/@emotion/react/dist/emotion-react.browser.esm.js
 var emotion_react_browser_esm = __webpack_require__(917);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__(8521);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ButtonBase/Ripple.js
 'use client';
 
@@ -3853,7 +3874,7 @@ if (false) {}
 /* harmony import */ var _listItemClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7037);
 /* harmony import */ var _ListItemButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8686);
 /* harmony import */ var _ListItemSecondaryAction__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(9685);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
@@ -4190,7 +4211,7 @@ const listItemButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["def
 /* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1657);
 /* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9773);
 /* harmony import */ var _listItemSecondaryActionClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9126);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
@@ -4300,7 +4321,7 @@ const listItemSecondaryActionClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1_
 /* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1657);
 /* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(948);
 /* harmony import */ var _svgIconClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2994);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
@@ -5888,7 +5909,7 @@ function getCollapseUtilityClass(slot) {
 const collapseClasses = (0,generateUtilityClasses/* default */.Z)('MuiCollapse', ['root', 'horizontal', 'vertical', 'entered', 'hidden', 'wrapper', 'wrapperInner']);
 /* harmony default export */ const Collapse_collapseClasses = (collapseClasses);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__(8521);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/Collapse/Collapse.js
 'use client';
 
@@ -25792,7 +25813,7 @@ function RadioButtonIcon(props) {
  false ? 0 : void 0;
 /* harmony default export */ const Radio_RadioButtonIcon = (RadioButtonIcon);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createChainedFunction.js
-var utils_createChainedFunction = __webpack_require__(7450);
+var utils_createChainedFunction = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/RadioGroup/RadioGroupContext.js
 
 /**
@@ -37009,7 +37030,7 @@ var react = __webpack_require__(7294);
 // EXTERNAL MODULE: ./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js + 2 modules
 var ThemeProvider = __webpack_require__(5974);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__(8521);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/styles/ThemeProvider.js
 'use client';
 
@@ -37551,7 +37572,7 @@ function useThemeProps({
 
 /***/ }),
 
-/***/ 7450:
+/***/ 5893:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37574,7 +37595,7 @@ function useThemeProps({
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7462);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _SvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2373);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
@@ -37648,7 +37669,7 @@ var ClassNameGenerator = __webpack_require__(7078);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/capitalize.js
 var capitalize = __webpack_require__(8216);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createChainedFunction.js
-var createChainedFunction = __webpack_require__(7450);
+var createChainedFunction = __webpack_require__(5893);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createSvgIcon.js
 var createSvgIcon = __webpack_require__(2066);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/debounce.js
@@ -37941,7 +37962,7 @@ function useTheme() {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(917);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 
 
 
@@ -37973,7 +37994,7 @@ function GlobalStyles(props) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5260);
 /* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2898);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8521);
 
 
 
@@ -38284,7 +38305,7 @@ const internal_processStyles = (tag, processor) => {
 /* harmony import */ var _useThemeProps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9628);
 /* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3264);
 /* harmony import */ var _createTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(360);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 
 
 const _excluded = ["className", "component", "disableGutters", "fixed", "maxWidth", "classes"];
@@ -38430,7 +38451,7 @@ function createContainer(options = {}) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _mui_styled_engine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1234);
 /* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6682);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
@@ -38475,7 +38496,7 @@ function GlobalStyles({
 /* harmony import */ var _createTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(360);
 /* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5408);
 /* harmony import */ var _spacing__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2605);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 
 
 const _excluded = ["component", "direction", "spacing", "divider", "children", "className", "useFlexGap"];
@@ -38662,7 +38683,7 @@ var ThemeContext = __webpack_require__(4819);
 const hasSymbol = typeof Symbol === 'function' && Symbol.for;
 /* harmony default export */ const nested = (hasSymbol ? Symbol.for('mui.nested') : '__THEME_NESTED__');
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__(8521);
 ;// CONCATENATED MODULE: ./node_modules/@mui/private-theming/ThemeProvider/ThemeProvider.js
 
 
@@ -39041,7 +39062,7 @@ const generateDirectionClasses = direction => {
   return [`direction-xs-${String(direction)}`];
 };
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__(8521);
 ;// CONCATENATED MODULE: ./node_modules/@mui/system/esm/Unstable_Grid/createGrid.js
 
 
@@ -39897,7 +39918,7 @@ function compose(...styles) {
 /* harmony import */ var _styleFunctionSx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6523);
 /* harmony import */ var _styleFunctionSx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9707);
 /* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6682);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
@@ -40541,7 +40562,7 @@ var useTheme = __webpack_require__(6760);
 // EXTERNAL MODULE: ./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js + 2 modules
 var ThemeProvider = __webpack_require__(5974);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__(8521);
 ;// CONCATENATED MODULE: ./node_modules/@mui/system/esm/cssVars/getInitColorSchemeScript.js
 
 
@@ -50729,7 +50750,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 5893:
+/***/ 8521:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -50811,6 +50832,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ColorModeContext = void 0;
+var OpenInFull_1 = __importDefault(__webpack_require__(9137));
 var material_1 = __webpack_require__(6547);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
@@ -50869,7 +50891,8 @@ function App() {
                             react_1.default.createElement(react_router_dom_1.Routes, null, routes.map(function (_a) {
                                 var path = _a.path, Component = _a.element;
                                 return (react_1.default.createElement(react_router_dom_1.Route, { path: path, element: react_1.default.createElement(Component, null) }));
-                            })))))))));
+                            })))),
+                    react_1.default.createElement(OpenInFull_1.default, { onClick: function () { return chrome.tabs.create({ url: 'popup.html' }); } }))))));
 }
 exports["default"] = App;
 
@@ -50951,6 +50974,7 @@ var StyledListItem = (0, system_1.styled)(ListItem_1.default)(function (_a) {
         backgroundColor: theme.palette.background.paper,
         alignItems: 'center',
         justifyContent: 'flex-start',
+        height: '100%',
     });
 });
 function Row(_a) {
@@ -50961,13 +50985,12 @@ function Row(_a) {
             setShowChildren(!showChildren);
         }
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(StyledListItem, { alignItems: 'center', secondaryAction: react_1.default.createElement(material_1.IconButton, null, isParent ? react_1.default.createElement(Delete_1.default, null) : react_1.default.createElement(RemoveCircle_1.default, null)) },
-            isParent == true &&
-                PrefixIcon !== undefined &&
-                PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-            react_1.default.createElement(material_1.ListItemText, { primary: title, secondary: label }),
-            isParent ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)))));
+    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, isParent ? (react_1.default.createElement(Delete_1.default, { onClick: action })) : (react_1.default.createElement(RemoveCircle_1.default, { onClick: action }))) },
+        isParent == true &&
+            PrefixIcon !== undefined &&
+            PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        react_1.default.createElement(material_1.ListItemText, { inset: !isParent, primary: title, secondary: label }),
+        isParent ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = Row;
 
@@ -51042,6 +51065,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __webpack_require__(1738);
 var Circle_1 = __importDefault(__webpack_require__(3970));
@@ -51051,7 +51075,6 @@ function RowGroup(_a) {
     var tabs = _a.tabs, groupId = _a.groupId, windowId = _a.windowId;
     var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
     var _c = (0, react_1.useState)(undefined), groupInfo = _c[0], setGroupInfo = _c[1];
-    var circle = react_1.default.createElement(Circle_1.default, { color: 'red' });
     var action = function () { };
     (0, react_1.useEffect)(function () {
         var getCurrentGroup = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -51072,7 +51095,7 @@ function RowGroup(_a) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
     else {
-        return (react_1.default.createElement(react_1.default.Fragment, null,
+        return (react_1.default.createElement(material_1.List, null,
             react_1.default.createElement(Row_1.default, { isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: groupInfo.color }), title: groupInfo.title || '', label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), action: action, showChildren: showTabs, setShowChildren: setShowTabs }),
             showTabs ? (tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, title: tab.title || '', action: action })); })) : (react_1.default.createElement(react_1.default.Fragment, null))));
     }
@@ -51226,7 +51249,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
-var sessionUtils_1 = __webpack_require__(7520);
 var tabGroupUtil_1 = __webpack_require__(1738);
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
 function CurrentGroups() {
@@ -51247,7 +51269,6 @@ function CurrentGroups() {
         }); };
         getTabs();
     }, []);
-    var sessions = (0, sessionUtils_1.getLastSession)();
     return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, groupId: Number(groupId), windowId: currentTabs[Number(groupId)][0].windowId, tabs: currentTabs[Number(groupId)] })); })));
 }
 exports["default"] = CurrentGroups;
@@ -51337,65 +51358,6 @@ var getDesignTokens = function (mode) { return ({
     },
 }); };
 exports.getDesignTokens = getDesignTokens;
-
-
-/***/ }),
-
-/***/ 7520:
-/***/ (function(__unused_webpack_module, exports) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getLastSession = void 0;
-var getLastSession = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var lastClosed;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, chrome.sessions.getRecentlyClosed()];
-            case 1:
-                lastClosed = _a.sent();
-                return [2, lastClosed];
-        }
-    });
-}); };
-exports.getLastSession = getLastSession;
 
 
 /***/ }),
@@ -51773,7 +51735,6 @@ var TabGroupUtil = (function () {
                         if (!("".concat(key) in storage)) return [3, 2];
                         return [2, storage["".concat(key)]];
                     case 2:
-                        console.info("Key ".concat(key, " has not yet been set. Setting to default value."));
                         defaultStorage = {};
                         return [4, chrome.storage.local.set((_a = {}, _a["".concat(key)] = defaultStorage, _a))];
                     case 3:

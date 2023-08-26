@@ -217,9 +217,6 @@ class TabGroupUtil {
       if (`${key}` in storage) {
          return storage[`${key}`];
       } else {
-         console.info(
-            `Key ${key} has not yet been set. Setting to default value.`
-         );
          const defaultStorage = {};
          await chrome.storage.local.set({ [`${key}`]: defaultStorage });
          return defaultStorage;

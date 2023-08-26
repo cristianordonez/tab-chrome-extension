@@ -21,7 +21,7 @@ export default function RowGroup({ tabs, groupId, windowId }: Props) {
 
    useEffect(() => {
       const getCurrentGroup = async () => {
-         const info = await TabGroupUtil.getTabGroupInfo(groupId, windowId);
+         const info = await TabGroupUtil.getGroupFromAPI(groupId);
          setGroupInfo(info);
       };
       getCurrentGroup();

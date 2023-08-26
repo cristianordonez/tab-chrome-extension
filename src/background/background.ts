@@ -5,18 +5,18 @@
 import { TabGroupUtil } from '../utils/tabGroupUtil';
 
 const tabGroupUtil = new TabGroupUtil(5, 1);
+TabGroupUtil.initialize();
 
 // chrome.storage.local.clear();
 
+// todo find better event listener to target
 chrome.tabs.onUpdated.addListener(async function (
    tabId: number,
    changeInfo: object,
    tab: chrome.tabs.Tab
 ) {
-   console.log('tab: ', tab.url);
    if ('status' in changeInfo && changeInfo['status'] == 'complete') {
+      await tabGroupUtil.takeSnapshot();
       await tabGroupUtil.debug();
-      TabGroupUtil.takeSnapshot();
    }
-   // await tabGroupUtil.takeTabSnapshotAll();
 });

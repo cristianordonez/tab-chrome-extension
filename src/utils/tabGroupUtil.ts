@@ -14,6 +14,7 @@ class TabGroupUtil {
       this.maxTitleDuplicates = maxTitleDuplicates;
    }
 
+   // sets default storage values if have not been set
    static async initialize(): Promise<void> {
       const groups = TabGroupUtil.getKey('groups');
       const savedTitles = TabGroupUtil.getKey('savedTitles');
@@ -306,4 +307,5 @@ class TabGroupUtil {
    }
 }
 
-export { TabGroupUtil };
+const tabGroupUtilInstance = new TabGroupUtil(5, 1);
+export { TabGroupUtil as default, tabGroupUtilInstance };

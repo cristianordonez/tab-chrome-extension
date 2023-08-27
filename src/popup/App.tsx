@@ -6,9 +6,10 @@ import {
    responsiveFontSizes,
    styled,
 } from '@mui/material/styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteType } from '../types';
+import { tabGroupUtilInstance } from '../utils/tabGroupUtil';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
@@ -61,6 +62,14 @@ export default function App() {
 
    let theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
    theme = responsiveFontSizes(theme);
+
+   useEffect(() => {
+      const updateSnapshot = async () => {
+         await tabGroupUtilInstance.takeSnapshot();
+      };
+      updateSnapshot();
+   }, []);
+
    return (
       <GlobalStyles>
          <BrowserRouter>

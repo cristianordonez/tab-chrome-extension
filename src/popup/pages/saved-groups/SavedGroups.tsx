@@ -2,7 +2,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { LocalStorageTabGroups } from '../../../types';
-import { TabGroupUtil } from '../../../utils/tabGroupUtil';
+import TabGroupUtil from '../../../utils/tabGroupUtil';
 import RowGroup from '../../components/RowGroup';
 
 export default function SavedGroups() {

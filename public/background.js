@@ -44,23 +44,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var tabGroupUtil_1 = __webpack_require__(1738);
-var tabGroupUtil = new tabGroupUtil_1.TabGroupUtil(5, 1);
-tabGroupUtil_1.TabGroupUtil.initialize();
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+chrome.commands.onCommand.addListener(function (command) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!('status' in changeInfo && changeInfo['status'] == 'complete')) return [3, 3];
-                    console.log('tab: ', tab);
-                    return [4, tabGroupUtil.takeSnapshot()];
+                    if (!(command === 'take_snapshot')) return [3, 2];
+                    return [4, tabGroupUtil_1.tabGroupUtilInstance.takeSnapshot()];
                 case 1:
                     _a.sent();
-                    return [4, tabGroupUtil.debug()];
-                case 2:
-                    _a.sent();
-                    _a.label = 3;
-                case 3: return [2];
+                    _a.label = 2;
+                case 2: return [2];
             }
         });
     });
@@ -121,7 +115,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TabGroupUtil = void 0;
+exports.tabGroupUtilInstance = exports["default"] = void 0;
 var TabGroupUtil = (function () {
     function TabGroupUtil(maxGroups, maxTitleDuplicates) {
         this.maxGroups = maxGroups;
@@ -596,7 +590,9 @@ var TabGroupUtil = (function () {
     };
     return TabGroupUtil;
 }());
-exports.TabGroupUtil = TabGroupUtil;
+exports["default"] = TabGroupUtil;
+var tabGroupUtilInstance = new TabGroupUtil(5, 1);
+exports.tabGroupUtilInstance = tabGroupUtilInstance;
 
 
 /***/ })

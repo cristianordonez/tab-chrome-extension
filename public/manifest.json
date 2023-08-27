@@ -16,7 +16,8 @@
       "storage",
       "activeTab",
       "favicon",
-      "windows"
+      "windows",
+      "commands"
    ],
    "host_permissions": ["http://*/*", "https://*/*"],
    "content_scripts": [
@@ -31,5 +32,16 @@
          "matches": ["<all_urls>"],
          "extension_ids": ["*"]
       }
-   ]
+   ],
+   "commands": {
+      "take_snapshot": {
+         "suggested_key": {
+            "windows": "Ctrl+Shift+S",
+            "mac": "Command+Shift+S",
+            "chromeos": "Ctrl+Shift+U",
+            "linux": "Ctrl+Shift+J"
+         },
+         "description": "Save all current tab groups to storage."
+      }
+   }
 }

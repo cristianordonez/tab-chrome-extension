@@ -1,3 +1,5 @@
+import { AlertColor } from '@mui/material';
+
 // data structure to store route objects
 interface RouteType {
    element: () => React.ReactElement;
@@ -57,7 +59,14 @@ interface LocalStorageTabGroups {
    [key: number]: LocalStorageTabGroup;
 }
 
+interface AlertSettings {
+   isOpen: boolean;
+   alertSeverity: AlertColor;
+   alertMessage: string;
+}
+
 export {
+   AlertSettings,
    ColorEnum,
    CurrentTabs,
    LocalStorageTab,

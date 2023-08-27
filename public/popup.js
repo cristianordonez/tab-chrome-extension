@@ -2604,19 +2604,24 @@ var insertStyles = function insertStyles(cache, serialized, isStringTag) {
 
 /***/ }),
 
-/***/ 8442:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ 540:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Z: () => (/* binding */ isHostComponent)
-/* harmony export */ });
-/**
- * Determines if a given element is a DOM element name (i.e. not a React component).
- */
-function isHostComponent(element) {
-  return typeof element === 'string';
-}
+
+"use client";
+
+var _interopRequireDefault = __webpack_require__(4836);
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
+var _jsxRuntime = __webpack_require__(8521);
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+}), 'Add');
+exports["default"] = _default;
 
 /***/ }),
 
@@ -3870,43 +3875,33 @@ if (false) {}
 
 /***/ }),
 
-/***/ 9861:
+/***/ 619:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ZP: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* unused harmony exports overridesResolver, ListItemRoot */
+/* unused harmony export overridesResolver */
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(3366);
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7462);
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7462);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(6010);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(6010);
 /* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4780);
-/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(8442);
 /* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1796);
-/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(948);
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(948);
 /* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1657);
-/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(6458);
-/* harmony import */ var _utils_isMuiElement__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(6798);
+/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6458);
 /* harmony import */ var _utils_useEnhancedEffect__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(8974);
-/* harmony import */ var _utils_useForkRef__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(1705);
+/* harmony import */ var _utils_useForkRef__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1705);
 /* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(9773);
-/* harmony import */ var _listItemClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7037);
-/* harmony import */ var _ListItemButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8686);
-/* harmony import */ var _ListItemSecondaryAction__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(9685);
+/* harmony import */ var _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8686);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
 'use client';
 
 
 
-const _excluded = ["className"],
-  _excluded2 = ["alignItems", "autoFocus", "button", "children", "className", "component", "components", "componentsProps", "ContainerComponent", "ContainerProps", "dense", "disabled", "disableGutters", "disablePadding", "divider", "focusVisibleClassName", "secondaryAction", "selected", "slotProps", "slots"];
-
-
-
-
-
+const _excluded = ["alignItems", "autoFocus", "component", "children", "dense", "disableGutters", "divider", "focusVisibleClassName", "selected", "className"];
 
 
 
@@ -3924,79 +3919,44 @@ const overridesResolver = (props, styles) => {
   const {
     ownerState
   } = props;
-  return [styles.root, ownerState.dense && styles.dense, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart, ownerState.divider && styles.divider, !ownerState.disableGutters && styles.gutters, !ownerState.disablePadding && styles.padding, ownerState.button && styles.button, ownerState.hasSecondaryAction && styles.secondaryAction];
+  return [styles.root, ownerState.dense && styles.dense, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart, ownerState.divider && styles.divider, !ownerState.disableGutters && styles.gutters];
 };
 const useUtilityClasses = ownerState => {
   const {
     alignItems,
-    button,
     classes,
     dense,
     disabled,
     disableGutters,
-    disablePadding,
     divider,
-    hasSecondaryAction,
     selected
   } = ownerState;
   const slots = {
-    root: ['root', dense && 'dense', !disableGutters && 'gutters', !disablePadding && 'padding', divider && 'divider', disabled && 'disabled', button && 'button', alignItems === 'flex-start' && 'alignItemsFlexStart', hasSecondaryAction && 'secondaryAction', selected && 'selected'],
-    container: ['container']
+    root: ['root', dense && 'dense', !disableGutters && 'gutters', divider && 'divider', disabled && 'disabled', alignItems === 'flex-start' && 'alignItemsFlexStart', selected && 'selected']
   };
-  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(slots, _listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* .getListItemUtilityClass */ .o, classes);
+  const composedClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(slots, _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__/* .getListItemButtonUtilityClass */ .t, classes);
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z)({}, classes, composedClasses);
 };
-const ListItemRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP)('div', {
-  name: 'MuiListItem',
+const ListItemButtonRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .ZP)(_ButtonBase__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+  shouldForwardProp: prop => (0,_styles_styled__WEBPACK_IMPORTED_MODULE_5__/* .rootShouldForwardProp */ .FO)(prop) || prop === 'classes',
+  name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver
 })(({
   theme,
   ownerState
-}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z)({
   display: 'flex',
+  flexGrow: 1,
   justifyContent: 'flex-start',
   alignItems: 'center',
   position: 'relative',
   textDecoration: 'none',
-  width: '100%',
+  minWidth: 0,
   boxSizing: 'border-box',
-  textAlign: 'left'
-}, !ownerState.disablePadding && (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
+  textAlign: 'left',
   paddingTop: 8,
-  paddingBottom: 8
-}, ownerState.dense && {
-  paddingTop: 4,
-  paddingBottom: 4
-}, !ownerState.disableGutters && {
-  paddingLeft: 16,
-  paddingRight: 16
-}, !!ownerState.secondaryAction && {
-  // Add some space to avoid collision as `ListItemSecondaryAction`
-  // is absolutely positioned.
-  paddingRight: 48
-}), !!ownerState.secondaryAction && {
-  [`& > .${_ListItemButton__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z.root}`]: {
-    paddingRight: 48
-  }
-}, {
-  [`&.${_listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus
-  },
-  [`&.${_listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.selected}`]: {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_7__/* .alpha */ .Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${_listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.focusVisible}`]: {
-      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_7__/* .alpha */ .Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
-    }
-  },
-  [`&.${_listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity
-  }
-}, ownerState.alignItems === 'flex-start' && {
-  alignItems: 'flex-start'
-}, ownerState.divider && {
-  borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-  backgroundClip: 'padding-box'
-}, ownerState.button && {
+  paddingBottom: 8,
   transition: theme.transitions.create('background-color', {
     duration: theme.transitions.duration.shortest
   }),
@@ -4008,60 +3968,55 @@ const ListItemRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_4__/* ["default"
       backgroundColor: 'transparent'
     }
   },
-  [`&.${_listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.selected}:hover`]: {
+  [`&.${_listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.selected}`]: {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_7__/* .alpha */ .Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    [`&.${_listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.focusVisible}`]: {
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_7__/* .alpha */ .Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+    }
+  },
+  [`&.${_listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.selected}:hover`]: {
     backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_7__/* .alpha */ .Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_7__/* .alpha */ .Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity)
     }
+  },
+  [`&.${_listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.focusVisible}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.focus
+  },
+  [`&.${_listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.disabled}`]: {
+    opacity: (theme.vars || theme).palette.action.disabledOpacity
   }
-}, ownerState.hasSecondaryAction && {
-  // Add some space to avoid collision as `ListItemSecondaryAction`
-  // is absolutely positioned.
-  paddingRight: 48
+}, ownerState.divider && {
+  borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+  backgroundClip: 'padding-box'
+}, ownerState.alignItems === 'flex-start' && {
+  alignItems: 'flex-start'
+}, !ownerState.disableGutters && {
+  paddingLeft: 16,
+  paddingRight: 16
+}, ownerState.dense && {
+  paddingTop: 4,
+  paddingBottom: 4
 }));
-const ListItemContainer = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP)('li', {
-  name: 'MuiListItem',
-  slot: 'Container',
-  overridesResolver: (props, styles) => styles.container
-})({
-  position: 'relative'
-});
-
-/**
- * Uses an additional container component if `ListItemSecondaryAction` is the last child.
- */
-const ListItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ListItem(inProps, ref) {
+const ListItemButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ListItemButton(inProps, ref) {
   const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z)({
     props: inProps,
-    name: 'MuiListItem'
+    name: 'MuiListItemButton'
   });
   const {
       alignItems = 'center',
       autoFocus = false,
-      button = false,
-      children: childrenProp,
-      className,
-      component: componentProp,
-      components = {},
-      componentsProps = {},
-      ContainerComponent = 'li',
-      ContainerProps: {
-        className: ContainerClassName
-      } = {},
+      component = 'div',
+      children,
       dense = false,
-      disabled = false,
       disableGutters = false,
-      disablePadding = false,
       divider = false,
       focusVisibleClassName,
-      secondaryAction,
       selected = false,
-      slotProps = {},
-      slots = {}
+      className
     } = props,
-    ContainerProps = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)(props.ContainerProps, _excluded),
-    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)(props, _excluded2);
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)(props, _excluded);
   const context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_List_ListContext__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z);
   const childContext = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
     dense: dense || context.dense || false,
@@ -4076,123 +4031,54 @@ const ListItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(func
       } else if (false) {}
     }
   }, [autoFocus]);
-  const children = react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(childrenProp);
-
-  // v4 implementation, deprecated in v5, will be removed in v6
-  const hasSecondaryAction = children.length && (0,_utils_isMuiElement__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z)(children[children.length - 1], ['ListItemSecondaryAction']);
-  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, props, {
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z)({}, props, {
     alignItems,
-    autoFocus,
-    button,
     dense: childContext.dense,
-    disabled,
     disableGutters,
-    disablePadding,
     divider,
-    hasSecondaryAction,
     selected
   });
   const classes = useUtilityClasses(ownerState);
-  const handleRef = (0,_utils_useForkRef__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z)(listItemRef, ref);
-  const Root = slots.root || components.Root || ListItemRoot;
-  const rootProps = slotProps.root || componentsProps.root || {};
-  const componentProps = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
-    className: (0,clsx__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z)(classes.root, rootProps.className, className),
-    disabled
-  }, other);
-  let Component = componentProp || 'li';
-  if (button) {
-    componentProps.component = componentProp || 'div';
-    componentProps.focusVisibleClassName = (0,clsx__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z)(_listItemClasses__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z.focusVisible, focusVisibleClassName);
-    Component = _ButtonBase__WEBPACK_IMPORTED_MODULE_15__/* ["default"] */ .Z;
-  }
-
-  // v4 implementation, deprecated in v5, will be removed in v6
-  if (hasSecondaryAction) {
-    // Use div by default.
-    Component = !componentProps.component && !componentProp ? 'div' : Component;
-
-    // Avoid nesting of li > li.
-    if (ContainerComponent === 'li') {
-      if (Component === 'li') {
-        Component = 'div';
-      } else if (componentProps.component === 'li') {
-        componentProps.component = 'div';
-      }
-    }
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_List_ListContext__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z.Provider, {
-      value: childContext,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(ListItemContainer, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
-        as: ContainerComponent,
-        className: (0,clsx__WEBPACK_IMPORTED_MODULE_14__/* ["default"] */ .Z)(classes.container, ContainerClassName),
-        ref: handleRef,
-        ownerState: ownerState
-      }, ContainerProps, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Root, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, rootProps, !(0,_mui_base__WEBPACK_IMPORTED_MODULE_16__/* ["default"] */ .Z)(Root) && {
-          as: Component,
-          ownerState: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, ownerState, rootProps.ownerState)
-        }, componentProps, {
-          children: children
-        })), children.pop()]
-      }))
-    });
-  }
+  const handleRef = (0,_utils_useForkRef__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z)(listItemRef, ref);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_List_ListContext__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z.Provider, {
     value: childContext,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(Root, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, rootProps, {
-      as: Component,
-      ref: handleRef
-    }, !(0,_mui_base__WEBPACK_IMPORTED_MODULE_16__/* ["default"] */ .Z)(Root) && {
-      ownerState: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, ownerState, rootProps.ownerState)
-    }, componentProps, {
-      children: [children, secondaryAction && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ListItemSecondaryAction__WEBPACK_IMPORTED_MODULE_17__/* ["default"] */ .Z, {
-        children: secondaryAction
-      })]
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ListItemButtonRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z)({
+      ref: handleRef,
+      href: other.href || other.to
+      // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
+      ,
+      component: (other.href || other.to) && component === 'div' ? 'button' : component,
+      focusVisibleClassName: (0,clsx__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z)(classes.focusVisible, focusVisibleClassName),
+      ownerState: ownerState,
+      className: (0,clsx__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .Z)(classes.root, className)
+    }, other, {
+      classes: classes,
+      children: children
     }))
   });
 });
  false ? 0 : void 0;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListItem);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListItemButton);
 
 /***/ }),
 
-/***/ 7696:
+/***/ 471:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _ListItem__WEBPACK_IMPORTED_MODULE_0__.ZP),
-/* harmony export */   getListItemUtilityClass: () => (/* reexport safe */ _listItemClasses__WEBPACK_IMPORTED_MODULE_1__.o),
-/* harmony export */   listItemClasses: () => (/* reexport safe */ _listItemClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
+/* harmony export */   "default": () => (/* reexport safe */ _ListItemButton__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   getListItemButtonUtilityClass: () => (/* reexport safe */ _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_1__.t),
+/* harmony export */   listItemButtonClasses: () => (/* reexport safe */ _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
 /* harmony export */ });
-/* harmony import */ var _ListItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9861);
-/* harmony import */ var _listItemClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7037);
+/* harmony import */ var _ListItemButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(619);
+/* harmony import */ var _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8686);
 'use client';
 
 
 
 
-
-/***/ }),
-
-/***/ 7037:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   o: () => (/* binding */ getListItemUtilityClass)
-/* harmony export */ });
-/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
-/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
-
-
-function getListItemUtilityClass(slot) {
-  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiListItem', slot);
-}
-const listItemClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiListItem', ['root', 'container', 'focusVisible', 'dense', 'alignItemsFlexStart', 'disabled', 'divider', 'gutters', 'padding', 'button', 'secondaryAction', 'selected']);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (listItemClasses);
 
 /***/ }),
 
@@ -4213,116 +4099,6 @@ function getListItemButtonUtilityClass(slot) {
 }
 const listItemButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiListItemButton', ['root', 'focusVisible', 'dense', 'alignItemsFlexStart', 'disabled', 'divider', 'gutters', 'selected']);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (listItemButtonClasses);
-
-/***/ }),
-
-/***/ 9685:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3366);
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7462);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6010);
-/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4780);
-/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(948);
-/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1657);
-/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9773);
-/* harmony import */ var _listItemSecondaryActionClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9126);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
-'use client';
-
-
-
-const _excluded = ["className"];
-
-
-
-
-
-
-
-
-
-const useUtilityClasses = ownerState => {
-  const {
-    disableGutters,
-    classes
-  } = ownerState;
-  const slots = {
-    root: ['root', disableGutters && 'disableGutters']
-  };
-  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(slots, _listItemSecondaryActionClasses__WEBPACK_IMPORTED_MODULE_3__/* .getListItemSecondaryActionClassesUtilityClass */ .A, classes);
-};
-const ListItemSecondaryActionRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP)('div', {
-  name: 'MuiListItemSecondaryAction',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [styles.root, ownerState.disableGutters && styles.disableGutters];
-  }
-})(({
-  ownerState
-}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
-  position: 'absolute',
-  right: 16,
-  top: '50%',
-  transform: 'translateY(-50%)'
-}, ownerState.disableGutters && {
-  right: 0
-}));
-
-/**
- * Must be used as the last child of ListItem to function properly.
- */
-const ListItemSecondaryAction = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ListItemSecondaryAction(inProps, ref) {
-  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)({
-    props: inProps,
-    name: 'MuiListItemSecondaryAction'
-  });
-  const {
-      className
-    } = props,
-    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)(props, _excluded);
-  const context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_List_ListContext__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z);
-  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, props, {
-    disableGutters: context.disableGutters
-  });
-  const classes = useUtilityClasses(ownerState);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ListItemSecondaryActionRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
-    className: (0,clsx__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)(classes.root, className),
-    ownerState: ownerState,
-    ref: ref
-  }, other));
-});
- false ? 0 : void 0;
-ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListItemSecondaryAction);
-
-/***/ }),
-
-/***/ 9126:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (/* binding */ getListItemSecondaryActionClassesUtilityClass),
-/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
-/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
-
-
-function getListItemSecondaryActionClassesUtilityClass(slot) {
-  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiListItemSecondaryAction', slot);
-}
-const listItemSecondaryActionClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiListItemSecondaryAction', ['root', 'disableGutters']);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (listItemSecondaryActionClasses);
 
 /***/ }),
 
@@ -4686,7 +4462,7 @@ const red = {
 
 /***/ }),
 
-/***/ 6547:
+/***/ 629:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4760,11 +4536,11 @@ __webpack_require__.d(__webpack_exports__, {
   LinearProgress: () => (/* reexport */ LinearProgress_LinearProgress),
   Link: () => (/* reexport */ Link_Link),
   List: () => (/* reexport */ List_List),
-  ListItem: () => (/* reexport */ ListItem/* default */.ZP),
+  ListItem: () => (/* reexport */ ListItem_ListItem),
   ListItemAvatar: () => (/* reexport */ ListItemAvatar_ListItemAvatar),
-  ListItemButton: () => (/* reexport */ ListItemButton_ListItemButton),
+  ListItemButton: () => (/* reexport */ ListItemButton/* default */.Z),
   ListItemIcon: () => (/* reexport */ ListItemIcon_ListItemIcon),
-  ListItemSecondaryAction: () => (/* reexport */ ListItemSecondaryAction/* default */.Z),
+  ListItemSecondaryAction: () => (/* reexport */ ListItemSecondaryAction_ListItemSecondaryAction),
   ListItemText: () => (/* reexport */ ListItemText_ListItemText),
   ListSubheader: () => (/* reexport */ ListSubheader_ListSubheader),
   Menu: () => (/* reexport */ Menu_Menu),
@@ -4968,11 +4744,11 @@ __webpack_require__.d(__webpack_exports__, {
   getLinearProgressUtilityClass: () => (/* reexport */ getLinearProgressUtilityClass),
   getLinkUtilityClass: () => (/* reexport */ getLinkUtilityClass),
   getListItemAvatarUtilityClass: () => (/* reexport */ getListItemAvatarUtilityClass),
-  getListItemButtonUtilityClass: () => (/* reexport */ listItemButtonClasses/* getListItemButtonUtilityClass */.t),
+  getListItemButtonUtilityClass: () => (/* reexport */ material_ListItemButton.getListItemButtonUtilityClass),
   getListItemIconUtilityClass: () => (/* reexport */ getListItemIconUtilityClass),
-  getListItemSecondaryActionClassesUtilityClass: () => (/* reexport */ listItemSecondaryActionClasses/* getListItemSecondaryActionClassesUtilityClass */.A),
+  getListItemSecondaryActionClassesUtilityClass: () => (/* reexport */ getListItemSecondaryActionClassesUtilityClass),
   getListItemTextUtilityClass: () => (/* reexport */ getListItemTextUtilityClass),
-  getListItemUtilityClass: () => (/* reexport */ material_ListItem.getListItemUtilityClass),
+  getListItemUtilityClass: () => (/* reexport */ getListItemUtilityClass),
   getListSubheaderUtilityClass: () => (/* reexport */ getListSubheaderUtilityClass),
   getListUtilityClass: () => (/* reexport */ getListUtilityClass),
   getLuminance: () => (/* reexport */ styles.getLuminance),
@@ -5047,10 +4823,10 @@ __webpack_require__.d(__webpack_exports__, {
   linkClasses: () => (/* reexport */ Link_linkClasses),
   listClasses: () => (/* reexport */ List_listClasses),
   listItemAvatarClasses: () => (/* reexport */ ListItemAvatar_listItemAvatarClasses),
-  listItemButtonClasses: () => (/* reexport */ listItemButtonClasses/* default */.Z),
-  listItemClasses: () => (/* reexport */ material_ListItem.listItemClasses),
+  listItemButtonClasses: () => (/* reexport */ material_ListItemButton.listItemButtonClasses),
+  listItemClasses: () => (/* reexport */ ListItem_listItemClasses),
   listItemIconClasses: () => (/* reexport */ ListItemIcon_listItemIconClasses),
-  listItemSecondaryActionClasses: () => (/* reexport */ listItemSecondaryActionClasses/* default */.Z),
+  listItemSecondaryActionClasses: () => (/* reexport */ ListItemSecondaryAction_listItemSecondaryActionClasses),
   listItemTextClasses: () => (/* reexport */ ListItemText_listItemTextClasses),
   listSubheaderClasses: () => (/* reexport */ ListSubheader_listSubheaderClasses),
   makeStyles: () => (/* reexport */ styles.makeStyles),
@@ -10662,8 +10438,13 @@ function getPopperUtilityClass(slot) {
 }
 const popperClasses = (0,generateUtilityClasses/* default */.Z)('MuiPopper', ['root']);
 /* harmony default export */ const Popper_popperClasses = ((/* unused pure expression or super */ null && (popperClasses)));
-// EXTERNAL MODULE: ./node_modules/@mui/base/utils/isHostComponent.js
-var isHostComponent = __webpack_require__(8442);
+;// CONCATENATED MODULE: ./node_modules/@mui/base/utils/isHostComponent.js
+/**
+ * Determines if a given element is a DOM element name (i.e. not a React component).
+ */
+function isHostComponent(element) {
+  return typeof element === 'string';
+}
 ;// CONCATENATED MODULE: ./node_modules/@mui/base/utils/appendOwnerState.js
 
 
@@ -10682,7 +10463,7 @@ var isHostComponent = __webpack_require__(8442);
  * @param ownerState
  */
 function appendOwnerState(elementType, otherProps, ownerState) {
-  if (elementType === undefined || (0,isHostComponent/* default */.Z)(elementType)) {
+  if (elementType === undefined || isHostComponent(elementType)) {
     return otherProps;
   }
   return (0,esm_extends/* default */.Z)({}, otherProps, {
@@ -16813,7 +16594,7 @@ const Modal_Modal_Modal = /*#__PURE__*/react.forwardRef(function Modal(inProps, 
       backdrop: BackdropSlot
     },
     slotProps: {
-      root: () => (0,esm_extends/* default */.Z)({}, resolveComponentProps(rootSlotProps, ownerState), !(0,isHostComponent/* default */.Z)(RootSlot) && {
+      root: () => (0,esm_extends/* default */.Z)({}, resolveComponentProps(rootSlotProps, ownerState), !isHostComponent(RootSlot) && {
         as: component,
         theme
       }, {
@@ -18979,7 +18760,7 @@ const InputBase = /*#__PURE__*/react.forwardRef(function InputBase(inProps, ref)
   const Input = slots.input || components.Input || InputBaseComponent;
   inputProps = (0,esm_extends/* default */.Z)({}, inputProps, (_slotProps$input = slotProps.input) != null ? _slotProps$input : componentsProps.input);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)(react.Fragment, {
-    children: [!disableInjectingGlobalStyles && inputGlobalStyles, /*#__PURE__*/(0,jsx_runtime.jsxs)(Root, (0,esm_extends/* default */.Z)({}, rootProps, !(0,isHostComponent/* default */.Z)(Root) && {
+    children: [!disableInjectingGlobalStyles && inputGlobalStyles, /*#__PURE__*/(0,jsx_runtime.jsxs)(Root, (0,esm_extends/* default */.Z)({}, rootProps, !isHostComponent(Root) && {
       ownerState: (0,esm_extends/* default */.Z)({}, ownerState, rootProps.ownerState)
     }, {
       ref: ref,
@@ -19007,7 +18788,7 @@ const InputBase = /*#__PURE__*/react.forwardRef(function InputBase(inProps, ref)
           onKeyDown: onKeyDown,
           onKeyUp: onKeyUp,
           type: type
-        }, inputProps, !(0,isHostComponent/* default */.Z)(Input) && {
+        }, inputProps, !isHostComponent(Input) && {
           as: InputComponent,
           ownerState: (0,esm_extends/* default */.Z)({}, ownerState, inputProps.ownerState)
         }, {
@@ -22869,10 +22650,359 @@ const List = /*#__PURE__*/react.forwardRef(function List(inProps, ref) {
 
 
 
-// EXTERNAL MODULE: ./node_modules/@mui/material/ListItem/ListItem.js
-var ListItem = __webpack_require__(9861);
-// EXTERNAL MODULE: ./node_modules/@mui/material/ListItem/index.js
-var material_ListItem = __webpack_require__(7696);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItem/listItemClasses.js
+
+
+function getListItemUtilityClass(slot) {
+  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiListItem', slot);
+}
+const listItemClasses = (0,generateUtilityClasses/* default */.Z)('MuiListItem', ['root', 'container', 'focusVisible', 'dense', 'alignItemsFlexStart', 'disabled', 'divider', 'gutters', 'padding', 'button', 'secondaryAction', 'selected']);
+/* harmony default export */ const ListItem_listItemClasses = (listItemClasses);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/listItemButtonClasses.js
+var listItemButtonClasses = __webpack_require__(8686);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/listItemSecondaryActionClasses.js
+
+
+function getListItemSecondaryActionClassesUtilityClass(slot) {
+  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiListItemSecondaryAction', slot);
+}
+const listItemSecondaryActionClasses = (0,generateUtilityClasses/* default */.Z)('MuiListItemSecondaryAction', ['root', 'disableGutters']);
+/* harmony default export */ const ListItemSecondaryAction_listItemSecondaryActionClasses = (listItemSecondaryActionClasses);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/ListItemSecondaryAction.js
+'use client';
+
+
+
+const ListItemSecondaryAction_excluded = ["className"];
+
+
+
+
+
+
+
+
+
+const ListItemSecondaryAction_useUtilityClasses = ownerState => {
+  const {
+    disableGutters,
+    classes
+  } = ownerState;
+  const slots = {
+    root: ['root', disableGutters && 'disableGutters']
+  };
+  return (0,composeClasses/* default */.Z)(slots, getListItemSecondaryActionClassesUtilityClass, classes);
+};
+const ListItemSecondaryActionRoot = (0,styled/* default */.ZP)('div', {
+  name: 'MuiListItemSecondaryAction',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, ownerState.disableGutters && styles.disableGutters];
+  }
+})(({
+  ownerState
+}) => (0,esm_extends/* default */.Z)({
+  position: 'absolute',
+  right: 16,
+  top: '50%',
+  transform: 'translateY(-50%)'
+}, ownerState.disableGutters && {
+  right: 0
+}));
+
+/**
+ * Must be used as the last child of ListItem to function properly.
+ */
+const ListItemSecondaryAction = /*#__PURE__*/react.forwardRef(function ListItemSecondaryAction(inProps, ref) {
+  const props = (0,useThemeProps/* default */.Z)({
+    props: inProps,
+    name: 'MuiListItemSecondaryAction'
+  });
+  const {
+      className
+    } = props,
+    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, ListItemSecondaryAction_excluded);
+  const context = react.useContext(ListContext/* default */.Z);
+  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
+    disableGutters: context.disableGutters
+  });
+  const classes = ListItemSecondaryAction_useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(ListItemSecondaryActionRoot, (0,esm_extends/* default */.Z)({
+    className: (0,clsx_m/* default */.Z)(classes.root, className),
+    ownerState: ownerState,
+    ref: ref
+  }, other));
+});
+ false ? 0 : void 0;
+ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
+/* harmony default export */ const ListItemSecondaryAction_ListItemSecondaryAction = (ListItemSecondaryAction);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItem/ListItem.js
+'use client';
+
+
+
+const ListItem_excluded = ["className"],
+  ListItem_excluded2 = ["alignItems", "autoFocus", "button", "children", "className", "component", "components", "componentsProps", "ContainerComponent", "ContainerProps", "dense", "disabled", "disableGutters", "disablePadding", "divider", "focusVisibleClassName", "secondaryAction", "selected", "slotProps", "slots"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const ListItem_overridesResolver = (props, styles) => {
+  const {
+    ownerState
+  } = props;
+  return [styles.root, ownerState.dense && styles.dense, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart, ownerState.divider && styles.divider, !ownerState.disableGutters && styles.gutters, !ownerState.disablePadding && styles.padding, ownerState.button && styles.button, ownerState.hasSecondaryAction && styles.secondaryAction];
+};
+const ListItem_useUtilityClasses = ownerState => {
+  const {
+    alignItems,
+    button,
+    classes,
+    dense,
+    disabled,
+    disableGutters,
+    disablePadding,
+    divider,
+    hasSecondaryAction,
+    selected
+  } = ownerState;
+  const slots = {
+    root: ['root', dense && 'dense', !disableGutters && 'gutters', !disablePadding && 'padding', divider && 'divider', disabled && 'disabled', button && 'button', alignItems === 'flex-start' && 'alignItemsFlexStart', hasSecondaryAction && 'secondaryAction', selected && 'selected'],
+    container: ['container']
+  };
+  return (0,composeClasses/* default */.Z)(slots, getListItemUtilityClass, classes);
+};
+const ListItemRoot = (0,styled/* default */.ZP)('div', {
+  name: 'MuiListItem',
+  slot: 'Root',
+  overridesResolver: ListItem_overridesResolver
+})(({
+  theme,
+  ownerState
+}) => (0,esm_extends/* default */.Z)({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  position: 'relative',
+  textDecoration: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
+  textAlign: 'left'
+}, !ownerState.disablePadding && (0,esm_extends/* default */.Z)({
+  paddingTop: 8,
+  paddingBottom: 8
+}, ownerState.dense && {
+  paddingTop: 4,
+  paddingBottom: 4
+}, !ownerState.disableGutters && {
+  paddingLeft: 16,
+  paddingRight: 16
+}, !!ownerState.secondaryAction && {
+  // Add some space to avoid collision as `ListItemSecondaryAction`
+  // is absolutely positioned.
+  paddingRight: 48
+}), !!ownerState.secondaryAction && {
+  [`& > .${listItemButtonClasses/* default */.Z.root}`]: {
+    paddingRight: 48
+  }
+}, {
+  [`&.${ListItem_listItemClasses.focusVisible}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.focus
+  },
+  [`&.${ListItem_listItemClasses.selected}`]: {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    [`&.${ListItem_listItemClasses.focusVisible}`]: {
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+    }
+  },
+  [`&.${ListItem_listItemClasses.disabled}`]: {
+    opacity: (theme.vars || theme).palette.action.disabledOpacity
+  }
+}, ownerState.alignItems === 'flex-start' && {
+  alignItems: 'flex-start'
+}, ownerState.divider && {
+  borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+  backgroundClip: 'padding-box'
+}, ownerState.button && {
+  transition: theme.transitions.create('background-color', {
+    duration: theme.transitions.duration.shortest
+  }),
+  '&:hover': {
+    textDecoration: 'none',
+    backgroundColor: (theme.vars || theme).palette.action.hover,
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent'
+    }
+  },
+  [`&.${ListItem_listItemClasses.selected}:hover`]: {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity)
+    }
+  }
+}, ownerState.hasSecondaryAction && {
+  // Add some space to avoid collision as `ListItemSecondaryAction`
+  // is absolutely positioned.
+  paddingRight: 48
+}));
+const ListItemContainer = (0,styled/* default */.ZP)('li', {
+  name: 'MuiListItem',
+  slot: 'Container',
+  overridesResolver: (props, styles) => styles.container
+})({
+  position: 'relative'
+});
+
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ */
+const ListItem = /*#__PURE__*/react.forwardRef(function ListItem(inProps, ref) {
+  const props = (0,useThemeProps/* default */.Z)({
+    props: inProps,
+    name: 'MuiListItem'
+  });
+  const {
+      alignItems = 'center',
+      autoFocus = false,
+      button = false,
+      children: childrenProp,
+      className,
+      component: componentProp,
+      components = {},
+      componentsProps = {},
+      ContainerComponent = 'li',
+      ContainerProps: {
+        className: ContainerClassName
+      } = {},
+      dense = false,
+      disabled = false,
+      disableGutters = false,
+      disablePadding = false,
+      divider = false,
+      focusVisibleClassName,
+      secondaryAction,
+      selected = false,
+      slotProps = {},
+      slots = {}
+    } = props,
+    ContainerProps = (0,objectWithoutPropertiesLoose/* default */.Z)(props.ContainerProps, ListItem_excluded),
+    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, ListItem_excluded2);
+  const context = react.useContext(ListContext/* default */.Z);
+  const childContext = react.useMemo(() => ({
+    dense: dense || context.dense || false,
+    alignItems,
+    disableGutters
+  }), [alignItems, context.dense, dense, disableGutters]);
+  const listItemRef = react.useRef(null);
+  (0,utils_useEnhancedEffect/* default */.Z)(() => {
+    if (autoFocus) {
+      if (listItemRef.current) {
+        listItemRef.current.focus();
+      } else if (false) {}
+    }
+  }, [autoFocus]);
+  const children = react.Children.toArray(childrenProp);
+
+  // v4 implementation, deprecated in v5, will be removed in v6
+  const hasSecondaryAction = children.length && (0,isMuiElement/* default */.Z)(children[children.length - 1], ['ListItemSecondaryAction']);
+  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
+    alignItems,
+    autoFocus,
+    button,
+    dense: childContext.dense,
+    disabled,
+    disableGutters,
+    disablePadding,
+    divider,
+    hasSecondaryAction,
+    selected
+  });
+  const classes = ListItem_useUtilityClasses(ownerState);
+  const handleRef = (0,useForkRef/* default */.Z)(listItemRef, ref);
+  const Root = slots.root || components.Root || ListItemRoot;
+  const rootProps = slotProps.root || componentsProps.root || {};
+  const componentProps = (0,esm_extends/* default */.Z)({
+    className: (0,clsx_m/* default */.Z)(classes.root, rootProps.className, className),
+    disabled
+  }, other);
+  let Component = componentProp || 'li';
+  if (button) {
+    componentProps.component = componentProp || 'div';
+    componentProps.focusVisibleClassName = (0,clsx_m/* default */.Z)(ListItem_listItemClasses.focusVisible, focusVisibleClassName);
+    Component = ButtonBase/* default */.Z;
+  }
+
+  // v4 implementation, deprecated in v5, will be removed in v6
+  if (hasSecondaryAction) {
+    // Use div by default.
+    Component = !componentProps.component && !componentProp ? 'div' : Component;
+
+    // Avoid nesting of li > li.
+    if (ContainerComponent === 'li') {
+      if (Component === 'li') {
+        Component = 'div';
+      } else if (componentProps.component === 'li') {
+        componentProps.component = 'div';
+      }
+    }
+    return /*#__PURE__*/(0,jsx_runtime.jsx)(ListContext/* default */.Z.Provider, {
+      value: childContext,
+      children: /*#__PURE__*/(0,jsx_runtime.jsxs)(ListItemContainer, (0,esm_extends/* default */.Z)({
+        as: ContainerComponent,
+        className: (0,clsx_m/* default */.Z)(classes.container, ContainerClassName),
+        ref: handleRef,
+        ownerState: ownerState
+      }, ContainerProps, {
+        children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Root, (0,esm_extends/* default */.Z)({}, rootProps, !isHostComponent(Root) && {
+          as: Component,
+          ownerState: (0,esm_extends/* default */.Z)({}, ownerState, rootProps.ownerState)
+        }, componentProps, {
+          children: children
+        })), children.pop()]
+      }))
+    });
+  }
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(ListContext/* default */.Z.Provider, {
+    value: childContext,
+    children: /*#__PURE__*/(0,jsx_runtime.jsxs)(Root, (0,esm_extends/* default */.Z)({}, rootProps, {
+      as: Component,
+      ref: handleRef
+    }, !isHostComponent(Root) && {
+      ownerState: (0,esm_extends/* default */.Z)({}, ownerState, rootProps.ownerState)
+    }, componentProps, {
+      children: [children, secondaryAction && /*#__PURE__*/(0,jsx_runtime.jsx)(ListItemSecondaryAction_ListItemSecondaryAction, {
+        children: secondaryAction
+      })]
+    }))
+  });
+});
+ false ? 0 : void 0;
+/* harmony default export */ const ListItem_ListItem = (ListItem);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItem/index.js
+'use client';
+
+
+
+
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemAvatar/listItemAvatarClasses.js
 
 
@@ -22955,177 +23085,10 @@ const ListItemAvatar = /*#__PURE__*/react.forwardRef(function ListItemAvatar(inP
 
 
 
-// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/listItemButtonClasses.js
-var listItemButtonClasses = __webpack_require__(8686);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemButton/ListItemButton.js
-'use client';
-
-
-
-const ListItemButton_excluded = ["alignItems", "autoFocus", "component", "children", "dense", "disableGutters", "divider", "focusVisibleClassName", "selected", "className"];
-
-
-
-
-
-
-
-
-
-
-
-
-
-const ListItemButton_overridesResolver = (props, styles) => {
-  const {
-    ownerState
-  } = props;
-  return [styles.root, ownerState.dense && styles.dense, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart, ownerState.divider && styles.divider, !ownerState.disableGutters && styles.gutters];
-};
-const ListItemButton_useUtilityClasses = ownerState => {
-  const {
-    alignItems,
-    classes,
-    dense,
-    disabled,
-    disableGutters,
-    divider,
-    selected
-  } = ownerState;
-  const slots = {
-    root: ['root', dense && 'dense', !disableGutters && 'gutters', divider && 'divider', disabled && 'disabled', alignItems === 'flex-start' && 'alignItemsFlexStart', selected && 'selected']
-  };
-  const composedClasses = (0,composeClasses/* default */.Z)(slots, listItemButtonClasses/* getListItemButtonUtilityClass */.t, classes);
-  return (0,esm_extends/* default */.Z)({}, classes, composedClasses);
-};
-const ListItemButtonRoot = (0,styled/* default */.ZP)(ButtonBase/* default */.Z, {
-  shouldForwardProp: prop => (0,styled/* rootShouldForwardProp */.FO)(prop) || prop === 'classes',
-  name: 'MuiListItemButton',
-  slot: 'Root',
-  overridesResolver: ListItemButton_overridesResolver
-})(({
-  theme,
-  ownerState
-}) => (0,esm_extends/* default */.Z)({
-  display: 'flex',
-  flexGrow: 1,
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  textDecoration: 'none',
-  minWidth: 0,
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  paddingTop: 8,
-  paddingBottom: 8,
-  transition: theme.transitions.create('background-color', {
-    duration: theme.transitions.duration.shortest
-  }),
-  '&:hover': {
-    textDecoration: 'none',
-    backgroundColor: (theme.vars || theme).palette.action.hover,
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent'
-    }
-  },
-  [`&.${listItemButtonClasses/* default */.Z.selected}`]: {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${listItemButtonClasses/* default */.Z.focusVisible}`]: {
-      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
-    }
-  },
-  [`&.${listItemButtonClasses/* default */.Z.selected}:hover`]: {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette.primary.main, theme.palette.action.selectedOpacity)
-    }
-  },
-  [`&.${listItemButtonClasses/* default */.Z.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus
-  },
-  [`&.${listItemButtonClasses/* default */.Z.disabled}`]: {
-    opacity: (theme.vars || theme).palette.action.disabledOpacity
-  }
-}, ownerState.divider && {
-  borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
-  backgroundClip: 'padding-box'
-}, ownerState.alignItems === 'flex-start' && {
-  alignItems: 'flex-start'
-}, !ownerState.disableGutters && {
-  paddingLeft: 16,
-  paddingRight: 16
-}, ownerState.dense && {
-  paddingTop: 4,
-  paddingBottom: 4
-}));
-const ListItemButton = /*#__PURE__*/react.forwardRef(function ListItemButton(inProps, ref) {
-  const props = (0,useThemeProps/* default */.Z)({
-    props: inProps,
-    name: 'MuiListItemButton'
-  });
-  const {
-      alignItems = 'center',
-      autoFocus = false,
-      component = 'div',
-      children,
-      dense = false,
-      disableGutters = false,
-      divider = false,
-      focusVisibleClassName,
-      selected = false,
-      className
-    } = props,
-    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, ListItemButton_excluded);
-  const context = react.useContext(ListContext/* default */.Z);
-  const childContext = react.useMemo(() => ({
-    dense: dense || context.dense || false,
-    alignItems,
-    disableGutters
-  }), [alignItems, context.dense, dense, disableGutters]);
-  const listItemRef = react.useRef(null);
-  (0,utils_useEnhancedEffect/* default */.Z)(() => {
-    if (autoFocus) {
-      if (listItemRef.current) {
-        listItemRef.current.focus();
-      } else if (false) {}
-    }
-  }, [autoFocus]);
-  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
-    alignItems,
-    dense: childContext.dense,
-    disableGutters,
-    divider,
-    selected
-  });
-  const classes = ListItemButton_useUtilityClasses(ownerState);
-  const handleRef = (0,useForkRef/* default */.Z)(listItemRef, ref);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(ListContext/* default */.Z.Provider, {
-    value: childContext,
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)(ListItemButtonRoot, (0,esm_extends/* default */.Z)({
-      ref: handleRef,
-      href: other.href || other.to
-      // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
-      ,
-      component: (other.href || other.to) && component === 'div' ? 'button' : component,
-      focusVisibleClassName: (0,clsx_m/* default */.Z)(classes.focusVisible, focusVisibleClassName),
-      ownerState: ownerState,
-      className: (0,clsx_m/* default */.Z)(classes.root, className)
-    }, other, {
-      classes: classes,
-      children: children
-    }))
-  });
-});
- false ? 0 : void 0;
-/* harmony default export */ const ListItemButton_ListItemButton = (ListItemButton);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemButton/index.js
-'use client';
-
-
-
-
+// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/ListItemButton.js
+var ListItemButton = __webpack_require__(619);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/index.js
+var material_ListItemButton = __webpack_require__(471);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemIcon/listItemIconClasses.js
 
 
@@ -23211,10 +23174,6 @@ const ListItemIcon = /*#__PURE__*/react.forwardRef(function ListItemIcon(inProps
 
 
 
-// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/ListItemSecondaryAction.js
-var ListItemSecondaryAction = __webpack_require__(9685);
-// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/listItemSecondaryActionClasses.js
-var listItemSecondaryActionClasses = __webpack_require__(9126);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/index.js
 'use client';
 
@@ -23923,7 +23882,7 @@ const Popover = /*#__PURE__*/react.forwardRef(function Popover(inProps, ref) {
       slotProps: rootSlotPropsProp
     } = _useSlotProps,
     rootProps = (0,objectWithoutPropertiesLoose/* default */.Z)(_useSlotProps, _excluded3);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(RootSlot, (0,esm_extends/* default */.Z)({}, rootProps, !(0,isHostComponent/* default */.Z)(RootSlot) && {
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(RootSlot, (0,esm_extends/* default */.Z)({}, rootProps, !isHostComponent(RootSlot) && {
     slotProps: rootSlotPropsProp
   }, {
     children: /*#__PURE__*/(0,jsx_runtime.jsx)(TransitionComponent, (0,esm_extends/* default */.Z)({
@@ -28182,7 +28141,7 @@ function useSlider(parameters) {
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/utils/shouldSpreadAdditionalProps.js
 
 const shouldSpreadAdditionalProps = Slot => {
-  return !Slot || !(0,isHostComponent/* default */.Z)(Slot);
+  return !Slot || !isHostComponent(Slot);
 };
 /* harmony default export */ const utils_shouldSpreadAdditionalProps = (shouldSpreadAdditionalProps);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/Slider/sliderClasses.js
@@ -28790,7 +28749,7 @@ const Slider = /*#__PURE__*/react.forwardRef(function Slider(inputProps, ref) {
       return /*#__PURE__*/(0,jsx_runtime.jsxs)(react.Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(MarkSlot, (0,esm_extends/* default */.Z)({
           "data-index": index
-        }, markProps, !(0,isHostComponent/* default */.Z)(MarkSlot) && {
+        }, markProps, !isHostComponent(MarkSlot) && {
           markActive
         }, {
           style: (0,esm_extends/* default */.Z)({}, style, markProps.style),
@@ -28798,7 +28757,7 @@ const Slider = /*#__PURE__*/react.forwardRef(function Slider(inputProps, ref) {
         })), mark.label != null ? /*#__PURE__*/(0,jsx_runtime.jsx)(MarkLabelSlot, (0,esm_extends/* default */.Z)({
           "aria-hidden": true,
           "data-index": index
-        }, markLabelProps, !(0,isHostComponent/* default */.Z)(MarkLabelSlot) && {
+        }, markLabelProps, !isHostComponent(MarkLabelSlot) && {
           markLabelActive: markActive
         }, {
           style: (0,esm_extends/* default */.Z)({}, style, markLabelProps.style),
@@ -28813,7 +28772,7 @@ const Slider = /*#__PURE__*/react.forwardRef(function Slider(inputProps, ref) {
       return (
         /*#__PURE__*/
         /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
-        (0,jsx_runtime.jsx)(ValueLabelComponent, (0,esm_extends/* default */.Z)({}, !(0,isHostComponent/* default */.Z)(ValueLabelComponent) && {
+        (0,jsx_runtime.jsx)(ValueLabelComponent, (0,esm_extends/* default */.Z)({}, !isHostComponent(ValueLabelComponent) && {
           valueLabelFormat,
           valueLabelDisplay,
           value: typeof valueLabelFormat === 'function' ? valueLabelFormat(scale(value), index) : valueLabelFormat,
@@ -33796,7 +33755,7 @@ const TablePagination = /*#__PURE__*/react.forwardRef(function TablePagination(i
           // TODO v5 remove `selectIcon`
           icon: (0,clsx_m/* default */.Z)(classes.selectIcon, (SelectProps.classes || {}).icon)
         }),
-        children: rowsPerPageOptions.map(rowsPerPageOption => /*#__PURE__*/(0,react.createElement)(MenuItemComponent, (0,esm_extends/* default */.Z)({}, !(0,isHostComponent/* default */.Z)(MenuItemComponent) && {
+        children: rowsPerPageOptions.map(rowsPerPageOption => /*#__PURE__*/(0,react.createElement)(MenuItemComponent, (0,esm_extends/* default */.Z)({}, !isHostComponent(MenuItemComponent) && {
           ownerState
         }, {
           className: classes.menuItem,
@@ -50913,7 +50872,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ColorModeContext = void 0;
 var OpenInFull_1 = __importDefault(__webpack_require__(9137));
-var material_1 = __webpack_require__(6547);
+var material_1 = __webpack_require__(629);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
@@ -51048,6 +51007,31 @@ exports["default"] = Circle;
 
 /***/ }),
 
+/***/ 482:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Add_1 = __importDefault(__webpack_require__(540));
+var material_1 = __webpack_require__(629);
+var react_1 = __importDefault(__webpack_require__(7294));
+var Row_1 = __importDefault(__webpack_require__(9416));
+function CreateGroup() {
+    var handleCreate = function () {
+        console.log('HERE IN HANDLE CREATE');
+    };
+    return (react_1.default.createElement(material_1.List, null,
+        react_1.default.createElement(Row_1.default, { title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreate })));
+}
+exports["default"] = CreateGroup;
+
+
+/***/ }),
+
 /***/ 210:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -51057,7 +51041,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6547);
+var material_1 = __webpack_require__(629);
 var react_1 = __importDefault(__webpack_require__(7294));
 function CustomAlert(_a) {
     var handleAlert = _a.handleAlert, alertSettings = _a.alertSettings;
@@ -51080,11 +51064,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
-var material_1 = __webpack_require__(6547);
-var ListItem_1 = __importDefault(__webpack_require__(7696));
+var material_1 = __webpack_require__(629);
+var ListItemButton_1 = __importDefault(__webpack_require__(471));
 var system_1 = __webpack_require__(8579);
 var react_1 = __importDefault(__webpack_require__(7294));
-var StyledListItem = (0, system_1.styled)(ListItem_1.default)(function (_a) {
+var StyledListItem = (0, system_1.styled)(ListItemButton_1.default)(function (_a) {
     var theme = _a.theme;
     return ({
         backgroundColor: theme.palette.background.paper,
@@ -51094,17 +51078,19 @@ var StyledListItem = (0, system_1.styled)(ListItem_1.default)(function (_a) {
     });
 });
 function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, AffixIcon = _a.AffixIcon, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.isParent, isParent = _c === void 0 ? false : _c, _d = _a.label, label = _d === void 0 ? '' : _d, showChildren = _a.showChildren, setShowChildren = _a.setShowChildren, groupId = _a.groupId;
+    var PrefixIcon = _a.PrefixIcon, AffixIcon = _a.AffixIcon, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f;
     var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
-    var handleShowChildren = function () {
+    var handleShowChildren = function (e) {
+        e.stopPropagation();
         if (setShowChildren) {
             setShowChildren(!showChildren);
         }
     };
-    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, AffixIcon !== undefined && AffixIcon !== null ? (AffixIcon) : (react_1.default.createElement(react_1.default.Fragment, null))) },
+    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, onClick: handleClick },
         PrefixIcon !== undefined && PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isParent ? '16px' : '14px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: !isParent, primary: title, secondary: label }),
-        isParent ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
+        react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary }),
+        hasChildren ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        AffixIcon !== undefined && AffixIcon !== null ? (react_1.default.createElement(material_1.IconButton, null, AffixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = Row;
 
@@ -51143,22 +51129,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Add_1 = __importDefault(__webpack_require__(540));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var material_1 = __webpack_require__(6547);
+var material_1 = __webpack_require__(629);
 var react_1 = __importStar(__webpack_require__(7294));
 var constructFaviconUrl_1 = __webpack_require__(4127);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroup(_a) {
-    var tabs = _a.tabs, groupId = _a.groupId, title = _a.title, color = _a.color, MainRowBtn = _a.MainRowBtn;
-    var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
-    var action = function () { };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(material_1.List, null,
-            react_1.default.createElement(Row_1.default, { groupId: groupId, isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), title: title, label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: MainRowBtn }),
-            react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
-                react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, groupId: groupId, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '50%', width: '50%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
-                        react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: action })) })); }))))));
+    var MainRowBtn = _a.MainRowBtn, _b = _a.tabs, tabs = _b === void 0 ? [] : _b, _c = _a.groupId, groupId = _c === void 0 ? 0 : _c, _d = _a.title, title = _d === void 0 ? '' : _d, _e = _a.color, color = _e === void 0 ? 'grey' : _e, _f = _a.secondary, secondary = _f === void 0 ? '' : _f;
+    var _g = (0, react_1.useState)(false), showTabs = _g[0], setShowTabs = _g[1];
+    var handleCloseTab = function () { };
+    var handleCreate = function () {
+        console.log('HERE IN HANDLE CREATE');
+    };
+    return (react_1.default.createElement(material_1.List, null,
+        react_1.default.createElement(Row_1.default, { hasChildren: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: MainRowBtn, handleClick: handleCreate }),
+        react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
+            react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true },
+                react_1.default.createElement(react_1.default.Fragment, null,
+                    tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: groupId, isChild: true, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
+                            react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: handleCloseTab })) })); }),
+                    react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, { fontSize: 'small' }), title: 'Create new tab', isChild: true }))))));
 }
 exports["default"] = RowGroup;
 
@@ -51194,7 +51186,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6547);
+var material_1 = __webpack_require__(629);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 function TabHeader(_a) {
@@ -51352,9 +51344,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Save_1 = __importDefault(__webpack_require__(6818));
-var material_1 = __webpack_require__(6547);
+var material_1 = __webpack_require__(629);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __importStar(__webpack_require__(1738));
+var CreateGroup_1 = __importDefault(__webpack_require__(482));
 var CustomAlert_1 = __importDefault(__webpack_require__(210));
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
@@ -51385,22 +51378,25 @@ function CurrentGroups() {
         }); };
         getTabs();
     }, []);
-    var saveGroup = function (groupId, tabs) { return __awaiter(_this, void 0, void 0, function () {
+    var saveGroup = function (e, groupId, tabs) { return __awaiter(_this, void 0, void 0, function () {
         var err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4, tabGroupUtil_1.tabGroupUtilInstance.updateOrCreateGroup(groupId, tabs)];
+                    e.stopPropagation();
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4, tabGroupUtil_1.tabGroupUtilInstance.updateOrCreateGroup(groupId, tabs)];
+                case 2:
                     _a.sent();
                     setAlertSettings('success', 'Tab group saved');
-                    return [3, 3];
-                case 2:
+                    return [3, 4];
+                case 3:
                     err_2 = _a.sent();
                     setAlertSettings('error', 'Something went wrong');
-                    return [3, 3];
-                case 3: return [2];
+                    return [3, 4];
+                case 4: return [2];
             }
         });
     }); };
@@ -51408,10 +51404,11 @@ function CurrentGroups() {
         setAlertSettings();
     };
     return (react_1.default.createElement("div", null,
-        Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
-                react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: function () {
-                        return saveGroup(Number(groupId), currentTabs[Number(groupId)].tabs);
+        Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, secondary: "".concat(currentTabs[Number(groupId)].tabs.length, " tab").concat(currentTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
+                react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: function (e) {
+                        return saveGroup(e, Number(groupId), currentTabs[Number(groupId)].tabs);
                     } })) })); }),
+        react_1.default.createElement(CreateGroup_1.default, null),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = CurrentGroups;
@@ -51506,9 +51503,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Delete_1 = __importDefault(__webpack_require__(733));
-var material_1 = __webpack_require__(6547);
+var material_1 = __webpack_require__(629);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __importStar(__webpack_require__(1738));
+var CreateGroup_1 = __importDefault(__webpack_require__(482));
 var CustomAlert_1 = __importDefault(__webpack_require__(210));
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
@@ -51537,26 +51535,29 @@ function SavedGroups() {
             setAlertSettings('error', 'Something went wrong');
         }
     }, []);
-    var handleDelete = function (groupId, title) { return __awaiter(_this, void 0, void 0, function () {
+    var handleDelete = function (e, groupId, title) { return __awaiter(_this, void 0, void 0, function () {
         var err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4, tabGroupUtil_1.tabGroupUtilInstance.deleteTabGroup(groupId, title)];
+                    e.stopPropagation();
+                    _a.label = 1;
                 case 1:
-                    _a.sent();
-                    return [4, getSavedGroups()];
+                    _a.trys.push([1, 4, , 5]);
+                    return [4, tabGroupUtil_1.tabGroupUtilInstance.deleteTabGroup(groupId, title)];
                 case 2:
                     _a.sent();
-                    setAlertSettings('success', 'Tab group has been deleted');
-                    return [3, 4];
+                    return [4, getSavedGroups()];
                 case 3:
+                    _a.sent();
+                    setAlertSettings('success', 'Tab group has been deleted');
+                    return [3, 5];
+                case 4:
                     err_1 = _a.sent();
                     console.error(err_1);
                     setAlertSettings('error', 'Something went wrong');
-                    return [3, 4];
-                case 4: return [2];
+                    return [3, 5];
+                case 5: return [2];
             }
         });
     }); };
@@ -51564,10 +51565,11 @@ function SavedGroups() {
         setAlertSettings();
     };
     return (react_1.default.createElement("div", null,
-        Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
-                react_1.default.createElement(Delete_1.default, { fontSize: 'small', onClick: function () {
-                        return handleDelete(Number(groupId), savedTabs[Number(groupId)].title);
+        Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, secondary: "".concat(savedTabs[Number(groupId)].tabs.length, " tab").concat(savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
+                react_1.default.createElement(Delete_1.default, { fontSize: 'small', onClick: function (e) {
+                        return handleDelete(e, Number(groupId), savedTabs[Number(groupId)].title);
                     } })) })); }),
+        react_1.default.createElement(CreateGroup_1.default, null),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = SavedGroups;

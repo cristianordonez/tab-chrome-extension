@@ -1,3 +1,4 @@
+import AddIcon from '@mui/icons-material/Add';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Box, Collapse, List, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
@@ -7,47 +8,52 @@ import Circle from './Circle';
 import Row from './Row';
 
 interface Props {
-   tabs: chrome.tabs.Tab[] | LocalStorageTab[];
-   groupId: number;
-   title: string;
-   color: ColorEnum;
    MainRowBtn: React.ReactElement;
+   tabs?: chrome.tabs.Tab[] | LocalStorageTab[];
+   groupId?: number;
+   title?: string;
+   color?: ColorEnum;
+   secondary?: string;
 }
 
 export default function RowGroup({
-   tabs,
-   groupId,
-   title,
-   color,
    MainRowBtn,
+   tabs = [],
+   groupId = 0,
+   title = '',
+   color = 'grey',
+   secondary = '',
 }: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
 
-   const action = () => {};
+   const handleCloseTab = () => {};
 
+   const handleCreate = () => {
+      console.log('HERE IN HANDLE CREATE');
+   };
    return (
-      <>
-         <List>
-            <Row
-               groupId={groupId}
-               isParent={true}
-               PrefixIcon={<Circle color={color} />}
-               title={title}
-               label={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
-               showChildren={showTabs}
-               setShowChildren={setShowTabs}
-               AffixIcon={MainRowBtn}
-            />
-            <Collapse in={showTabs} timeout={'auto'} unmountOnExit>
-               <List component='div' disablePadding>
+      <List>
+         <Row
+            hasChildren={true}
+            PrefixIcon={<Circle color={color} />}
+            title={title}
+            secondary={secondary}
+            showChildren={showTabs}
+            setShowChildren={setShowTabs}
+            AffixIcon={MainRowBtn}
+            handleClick={handleCreate}
+         />
+         <Collapse in={showTabs} timeout={'auto'} unmountOnExit>
+            <List component='div' disablePadding>
+               <>
                   {tabs.map((tab) => (
                      <Row
-                        isParent={false}
-                        groupId={groupId}
+                        key={groupId}
+                        isChild={true}
                         PrefixIcon={
                            <Box
                               component='img'
-                              sx={{ height: '50%', width: '50%' }}
+                              sx={{ height: '35%', width: '35%' }}
                               alt={`Favicon for ${tab.title}`}
                               src={faviconURL(tab.url || '')}
                            />
@@ -57,15 +63,20 @@ export default function RowGroup({
                            <Tooltip title='Close tab'>
                               <RemoveCircleIcon
                                  fontSize='small'
-                                 onClick={action}
+                                 onClick={handleCloseTab}
                               />
                            </Tooltip>
                         }
                      />
                   ))}
-               </List>
-            </Collapse>
-         </List>
-      </>
+                  <Row
+                     PrefixIcon={<AddIcon fontSize='small' />}
+                     title='Create new tab'
+                     isChild={true}
+                  />
+               </>
+            </List>
+         </Collapse>
+      </List>
    );
 }

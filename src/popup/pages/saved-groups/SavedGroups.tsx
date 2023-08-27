@@ -5,6 +5,7 @@ import { LocalStorageTabGroups } from '../../../types';
 import TabGroupUtil, {
    tabGroupUtilInstance,
 } from '../../../utils/tabGroupUtil';
+import CreateGroup from '../../components/CreateGroup';
 import CustomAlert from '../../components/CustomAlert';
 import RowGroup from '../../components/RowGroup';
 import useAlertSettings from '../../hooks/useAlertSettings';
@@ -27,7 +28,12 @@ export default function SavedGroups() {
       }
    }, []);
 
-   const handleDelete = async (groupId: number, title: string) => {
+   const handleDelete = async (
+      e: React.MouseEvent,
+      groupId: number,
+      title: string
+   ) => {
+      e.stopPropagation();
       try {
          await tabGroupUtilInstance.deleteTabGroup(groupId, title);
          await getSavedGroups();
@@ -47,6 +53,9 @@ export default function SavedGroups() {
          {Object.keys(savedTabs).map((groupId) => (
             <RowGroup
                key={groupId}
+               secondary={`${savedTabs[Number(groupId)].tabs.length} tab${
+                  savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''
+               }`}
                title={savedTabs[Number(groupId)].title}
                color={savedTabs[Number(groupId)].color}
                groupId={Number(groupId)}
@@ -55,8 +64,9 @@ export default function SavedGroups() {
                   <Tooltip title='Delete tab group'>
                      <DeleteIcon
                         fontSize='small'
-                        onClick={() =>
+                        onClick={(e) =>
                            handleDelete(
+                              e,
                               Number(groupId),
                               savedTabs[Number(groupId)].title
                            )
@@ -66,6 +76,7 @@ export default function SavedGroups() {
                }
             />
          ))}
+         <CreateGroup />
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </div>
    );

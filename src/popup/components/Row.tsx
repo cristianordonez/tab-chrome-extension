@@ -1,37 +1,45 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { IconButton, ListItemIcon, ListItemText } from '@mui/material';
-import ListItem, { ListItemProps } from '@mui/material/ListItem';
+// import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import ListItemButton, {
+   ListItemButtonProps,
+} from '@mui/material/ListItemButton';
 import { styled } from '@mui/system';
 import React, { Dispatch, SetStateAction } from 'react';
 
-const StyledListItem = styled(ListItem)<ListItemProps>(({ theme }) => ({
-   backgroundColor: theme.palette.background.paper,
-   alignItems: 'center',
-   justifyContent: 'flex-start',
-   height: '100%',
-}));
+const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
+   // const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
+   ({ theme }) => ({
+      backgroundColor: theme.palette.background.paper,
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      height: '100%',
+   })
+);
 
 interface Props {
    PrefixIcon?: React.ReactElement;
    AffixIcon?: React.ReactElement;
-   title: string;
-   isParent?: boolean;
-   label?: string;
-   showChildren?: boolean;
    setShowChildren?: Dispatch<SetStateAction<boolean>>;
-   groupId: number;
+   title: string;
+   hasChildren?: boolean;
+   isChild?: boolean;
+   secondary?: string;
+   showChildren?: boolean;
+   handleClick?: () => void;
 }
 
 export default function Row({
    PrefixIcon,
    AffixIcon,
-   title = '',
-   isParent = false,
-   label = '',
-   showChildren,
    setShowChildren,
-   groupId,
+   handleClick,
+   title = '',
+   hasChildren = false,
+   isChild = false,
+   secondary = '',
+   showChildren = false,
 }: Props) {
    const arrowIcon = showChildren ? (
       <ExpandMoreIcon fontSize='large' />
@@ -39,45 +47,40 @@ export default function Row({
       <ChevronRightIcon fontSize='large' />
    );
 
-   const handleShowChildren = () => {
+   const handleShowChildren = (e: React.MouseEvent) => {
+      e.stopPropagation();
       if (setShowChildren) {
          setShowChildren(!showChildren);
       }
    };
 
    return (
-      <StyledListItem
-         alignItems='center'
-         divider
-         secondaryAction={
-            <IconButton>
-               {AffixIcon !== undefined && AffixIcon !== null ? (
-                  AffixIcon
-               ) : (
-                  <></>
-               )}
-            </IconButton>
-         }
-      >
+      <StyledListItem alignItems='center' divider onClick={handleClick}>
          {PrefixIcon !== undefined && PrefixIcon !== null ? (
             <ListItemIcon>{PrefixIcon}</ListItemIcon>
          ) : (
             <></>
          )}
+
          <ListItemText
-            primaryTypographyProps={{ fontSize: isParent ? '16px' : '14px' }}
+            primaryTypographyProps={{ fontSize: isChild ? '14px' : '16px' }}
             secondaryTypographyProps={{ fontSize: '12px' }}
-            inset={!isParent}
+            inset={isChild}
             primary={title}
-            secondary={label}
+            secondary={secondary}
          />
-         {isParent ? (
+         {hasChildren ? (
             <IconButton
                onClick={handleShowChildren}
                sx={{ marginRight: '4em' }}
             >
                {arrowIcon}
             </IconButton>
+         ) : (
+            <></>
+         )}
+         {AffixIcon !== undefined && AffixIcon !== null ? (
+            <IconButton>{AffixIcon}</IconButton>
          ) : (
             <></>
          )}

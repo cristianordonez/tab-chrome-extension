@@ -2662,6 +2662,27 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 733:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+"use client";
+
+var _interopRequireDefault = __webpack_require__(4836);
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
+var _jsxRuntime = __webpack_require__(8521);
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+}), 'Delete');
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ 3508:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -50964,8 +50985,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
-var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var Save_1 = __importDefault(__webpack_require__(6818));
 var material_1 = __webpack_require__(6547);
 var ListItem_1 = __importDefault(__webpack_require__(7696));
 var system_1 = __webpack_require__(8579);
@@ -50980,17 +50999,14 @@ var StyledListItem = (0, system_1.styled)(ListItem_1.default)(function (_a) {
     });
 });
 function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.isParent, isParent = _c === void 0 ? false : _c, _d = _a.label, label = _d === void 0 ? '' : _d, action = _a.action, showChildren = _a.showChildren, setShowChildren = _a.setShowChildren, groupId = _a.groupId;
+    var PrefixIcon = _a.PrefixIcon, AffixIcon = _a.AffixIcon, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.isParent, isParent = _c === void 0 ? false : _c, _d = _a.label, label = _d === void 0 ? '' : _d, showChildren = _a.showChildren, setShowChildren = _a.setShowChildren, groupId = _a.groupId;
     var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
     var handleShowChildren = function () {
         if (setShowChildren) {
             setShowChildren(!showChildren);
         }
     };
-    console.log('groupId: ', groupId);
-    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, isParent ? (react_1.default.createElement(material_1.Tooltip, { title: 'Save or update tab group' },
-            react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: action }))) : (react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
-            react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: action })))) },
+    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, AffixIcon !== undefined && AffixIcon !== null ? (AffixIcon) : (react_1.default.createElement(react_1.default.Fragment, null))) },
         PrefixIcon !== undefined && PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isParent ? '16px' : '14px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: !isParent, primary: title, secondary: label }),
         isParent ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
@@ -51032,20 +51048,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var RemoveCircle_1 = __importDefault(__webpack_require__(336));
 var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
 var constructFaviconUrl_1 = __webpack_require__(4127);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroup(_a) {
-    var tabs = _a.tabs, groupId = _a.groupId, title = _a.title, color = _a.color;
+    var tabs = _a.tabs, groupId = _a.groupId, title = _a.title, color = _a.color, MainRowBtn = _a.MainRowBtn;
     var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
     var action = function () { };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(material_1.List, null,
-            react_1.default.createElement(Row_1.default, { groupId: groupId, isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), title: title, label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), action: action, showChildren: showTabs, setShowChildren: setShowTabs }),
+            react_1.default.createElement(Row_1.default, { groupId: groupId, isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), title: title, label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: MainRowBtn }),
             react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
-                react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, groupId: groupId, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '50%', width: '50%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), action: action, title: tab.title || '' })); }))))));
+                react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, groupId: groupId, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '50%', width: '50%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
+                        react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: action })) })); }))))));
 }
 exports["default"] = RowGroup;
 
@@ -51195,6 +51213,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Save_1 = __importDefault(__webpack_require__(6818));
+var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __webpack_require__(1738);
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
@@ -51217,7 +51237,8 @@ function CurrentGroups() {
         }); };
         getTabs();
     }, []);
-    return (react_1.default.createElement("div", null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs })); })));
+    return (react_1.default.createElement("div", null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
+            react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: function () { } })) })); })));
 }
 exports["default"] = CurrentGroups;
 
@@ -51310,6 +51331,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Delete_1 = __importDefault(__webpack_require__(733));
+var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __webpack_require__(1738);
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
@@ -51331,7 +51354,8 @@ function SavedGroups() {
         }); };
         getSavedGroups();
     }, []);
-    return (react_1.default.createElement("div", null, Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs })); })));
+    return (react_1.default.createElement("div", null, Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
+            react_1.default.createElement(Delete_1.default, { fontSize: 'small', onClick: function () { } })) })); })));
 }
 exports["default"] = SavedGroups;
 
@@ -51580,13 +51604,13 @@ var TabGroupUtil = (function () {
                     case 1:
                         allTabs = _a.sent();
                         Object.entries(allTabs).forEach(function (_a) {
-                            var groupId = _a[0], tabs = _a[1];
+                            var groupId = _a[0], groupInfo = _a[1];
                             return __awaiter(_this, void 0, void 0, function () {
                                 return __generator(this, function (_b) {
                                     switch (_b.label) {
                                         case 0:
                                             if (!(Number(groupId) !== -1)) return [3, 2];
-                                            return [4, this.updateOrCreateGroup(Number(groupId), tabs)];
+                                            return [4, this.updateOrCreateGroup(Number(groupId), groupInfo.tabs)];
                                         case 1:
                                             _b.sent();
                                             _b.label = 2;

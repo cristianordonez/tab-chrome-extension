@@ -1,4 +1,5 @@
-import { Box, Collapse, List } from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { Box, Collapse, List, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import { ColorEnum, LocalStorageTab } from '../../types';
 import { faviconURL } from '../../utils/constructFaviconUrl';
@@ -10,33 +11,20 @@ interface Props {
    groupId: number;
    title: string;
    color: ColorEnum;
+   MainRowBtn: React.ReactElement;
 }
 
-export default function RowGroup({ tabs, groupId, title, color }: Props) {
+export default function RowGroup({
+   tabs,
+   groupId,
+   title,
+   color,
+   MainRowBtn,
+}: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
-   // //const [groupInfo, setGroupInfo] = useState<
-   // //   chrome.tabGroups.TabGroup | undefined
-   // //>(undefined);
 
    const action = () => {};
 
-   // todo
-   // change to save icon
-   // add create new tab row
-   // add highlight to inner row borders
-   // add create new group button
-   // //useEffect(() => {
-   // //   const getCurrentGroup = async () => {
-   // //      const info = await TabGroupUtil.getGroupFromAPI(groupId);
-   // //      setGroupInfo(info);
-   // //   };
-   // //   getCurrentGroup();
-   // //}, [groupId]);
-   // //console.log('tabs: ', tabs);
-
-   // if (!groupInfo) {
-   //    return <></>;
-   // } else {
    return (
       <>
          <List>
@@ -46,9 +34,9 @@ export default function RowGroup({ tabs, groupId, title, color }: Props) {
                PrefixIcon={<Circle color={color} />}
                title={title}
                label={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
-               action={action}
                showChildren={showTabs}
                setShowChildren={setShowTabs}
+               AffixIcon={MainRowBtn}
             />
             <Collapse in={showTabs} timeout={'auto'} unmountOnExit>
                <List component='div' disablePadding>
@@ -64,8 +52,15 @@ export default function RowGroup({ tabs, groupId, title, color }: Props) {
                               src={faviconURL(tab.url || '')}
                            />
                         }
-                        action={action}
                         title={tab.title || ''}
+                        AffixIcon={
+                           <Tooltip title='Close tab'>
+                              <RemoveCircleIcon
+                                 fontSize='small'
+                                 onClick={action}
+                              />
+                           </Tooltip>
+                        }
                      />
                   ))}
                </List>
@@ -73,5 +68,4 @@ export default function RowGroup({ tabs, groupId, title, color }: Props) {
          </List>
       </>
    );
-   //// }
 }

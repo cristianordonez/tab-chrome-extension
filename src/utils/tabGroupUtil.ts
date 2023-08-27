@@ -85,9 +85,9 @@ class TabGroupUtil {
    // saves or updates all current tab groups
    async takeSnapshot() {
       const allTabs = await TabGroupUtil.getCurrentTabGroups();
-      Object.entries(allTabs).forEach(async ([groupId, tabs]) => {
+      Object.entries(allTabs).forEach(async ([groupId, groupInfo]) => {
          if (Number(groupId) !== -1) {
-            await this.updateOrCreateGroup(Number(groupId), tabs);
+            await this.updateOrCreateGroup(Number(groupId), groupInfo.tabs);
          }
       });
    }

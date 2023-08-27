@@ -1,3 +1,5 @@
+import SaveIcon from '@mui/icons-material/Save';
+import { Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { CurrentTabs } from '../../../types';
 import { TabGroupUtil } from '../../../utils/tabGroupUtil';
@@ -24,6 +26,11 @@ export default function CurrentGroups() {
                title={currentTabs[Number(groupId)].title}
                groupId={Number(groupId)}
                tabs={currentTabs[Number(groupId)].tabs}
+               MainRowBtn={
+                  <Tooltip title='Save tab group and associated tabs'>
+                     <SaveIcon fontSize='small' onClick={() => {}} />
+                  </Tooltip>
+               }
             />
          ))}
       </div>

@@ -243,13 +243,13 @@ var TabGroupUtil = (function () {
                     case 1:
                         allTabs = _a.sent();
                         Object.entries(allTabs).forEach(function (_a) {
-                            var groupId = _a[0], tabs = _a[1];
+                            var groupId = _a[0], groupInfo = _a[1];
                             return __awaiter(_this, void 0, void 0, function () {
                                 return __generator(this, function (_b) {
                                     switch (_b.label) {
                                         case 0:
                                             if (!(Number(groupId) !== -1)) return [3, 2];
-                                            return [4, this.updateOrCreateGroup(Number(groupId), tabs)];
+                                            return [4, this.updateOrCreateGroup(Number(groupId), groupInfo.tabs)];
                                         case 1:
                                             _b.sent();
                                             _b.label = 2;

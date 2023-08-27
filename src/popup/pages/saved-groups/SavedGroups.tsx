@@ -1,3 +1,5 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { LocalStorageTabGroups } from '../../../types';
 import { TabGroupUtil } from '../../../utils/tabGroupUtil';
@@ -23,6 +25,11 @@ export default function SavedGroups() {
                color={savedTabs[Number(groupId)].color}
                groupId={Number(groupId)}
                tabs={savedTabs[Number(groupId)].tabs}
+               MainRowBtn={
+                  <Tooltip title='Delete tab group'>
+                     <DeleteIcon fontSize='small' onClick={() => {}} />
+                  </Tooltip>
+               }
             />
          ))}
       </div>

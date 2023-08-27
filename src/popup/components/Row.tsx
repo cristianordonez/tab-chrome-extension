@@ -1,9 +1,7 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import SaveIcon from '@mui/icons-material/Save';
-import { IconButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material';
+import { IconButton, ListItemIcon, ListItemText } from '@mui/material';
 import ListItem, { ListItemProps } from '@mui/material/ListItem';
 import { styled } from '@mui/system';
 import React, { Dispatch, SetStateAction } from 'react';
@@ -17,10 +15,10 @@ const StyledListItem = styled(ListItem)<ListItemProps>(({ theme }) => ({
 
 interface Props {
    PrefixIcon?: React.ReactElement;
+   AffixIcon?: React.ReactElement;
    title: string;
    isParent?: boolean;
    label?: string;
-   action: () => void;
    showChildren?: boolean;
    setShowChildren?: Dispatch<SetStateAction<boolean>>;
    groupId: number;
@@ -28,10 +26,10 @@ interface Props {
 
 export default function Row({
    PrefixIcon,
+   AffixIcon,
    title = '',
    isParent = false,
    label = '',
-   action,
    showChildren,
    setShowChildren,
    groupId,
@@ -48,21 +46,16 @@ export default function Row({
       }
    };
 
-   console.log('groupId: ', groupId);
    return (
       <StyledListItem
          alignItems='center'
          divider
          secondaryAction={
             <IconButton>
-               {isParent ? (
-                  <Tooltip title='Save or update tab group'>
-                     <SaveIcon fontSize='small' onClick={action} />
-                  </Tooltip>
+               {AffixIcon !== undefined && AffixIcon !== null ? (
+                  AffixIcon
                ) : (
-                  <Tooltip title='Close tab'>
-                     <RemoveCircleIcon fontSize='small' onClick={action} />
-                  </Tooltip>
+                  <></>
                )}
             </IconButton>
          }

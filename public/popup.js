@@ -51211,6 +51211,49 @@ exports["default"] = TabHeader;
 
 /***/ }),
 
+/***/ 594:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var react_1 = __webpack_require__(7294);
+var defaultAlertSettings = {
+    isOpen: false,
+    alertSeverity: 'success',
+    alertMessage: '',
+};
+function useAlertSettings() {
+    var _a = (0, react_1.useState)(defaultAlertSettings), alertSettings = _a[0], setState = _a[1];
+    var updateSettings = function (alertSeverity, alertMessage) {
+        var currentSettings = __assign({}, alertSettings);
+        if (alertSeverity !== undefined) {
+            currentSettings.alertSeverity = alertSeverity;
+        }
+        if (alertMessage !== undefined) {
+            currentSettings.alertMessage = alertMessage;
+        }
+        currentSettings.isOpen = !alertSettings.isOpen;
+        setState(currentSettings);
+    };
+    return [alertSettings, updateSettings];
+}
+exports["default"] = useAlertSettings;
+
+
+/***/ }),
+
 /***/ 7808:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -51245,17 +51288,6 @@ exports.useLocalStorageState = useLocalStorageState;
 
 "use strict";
 
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -51325,18 +51357,14 @@ var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __importStar(__webpack_require__(1738));
 var CustomAlert_1 = __importDefault(__webpack_require__(210));
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
-var defaultAlertSettings = {
-    isOpen: false,
-    alertSeverity: 'success',
-    alertMessage: '',
-};
+var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 function CurrentGroups() {
     var _this = this;
     var _a = (0, react_1.useState)({}), currentTabs = _a[0], setCurrentTabs = _a[1];
-    var _b = (0, react_1.useState)(defaultAlertSettings), alertSettings = _b[0], setDefaultAlertSettings = _b[1];
+    var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
     (0, react_1.useEffect)(function () {
         var getTabs = function () { return __awaiter(_this, void 0, void 0, function () {
-            var tabGroups, err_1, alert;
+            var tabGroups, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -51349,10 +51377,7 @@ function CurrentGroups() {
                     case 2:
                         err_1 = _a.sent();
                         console.error(err_1);
-                        alert = __assign({}, alertSettings);
-                        alert.alertMessage = 'Something went wrong';
-                        alert.alertSeverity = 'error';
-                        alert.isOpen = true;
+                        setAlertSettings('error', 'Something went wrong');
                         return [3, 3];
                     case 3: return [2];
                 }
@@ -51361,37 +51386,26 @@ function CurrentGroups() {
         getTabs();
     }, []);
     var saveGroup = function (groupId, tabs) { return __awaiter(_this, void 0, void 0, function () {
-        var alert, err_2;
+        var err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    alert = __assign({}, alertSettings);
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, 4, 5]);
+                    _a.trys.push([0, 2, , 3]);
                     return [4, tabGroupUtil_1.tabGroupUtilInstance.updateOrCreateGroup(groupId, tabs)];
-                case 2:
+                case 1:
                     _a.sent();
-                    alert.alertMessage = 'Tab group saved';
-                    alert.alertSeverity = 'success';
-                    return [3, 5];
-                case 3:
+                    setAlertSettings('success', 'Tab group saved');
+                    return [3, 3];
+                case 2:
                     err_2 = _a.sent();
-                    alert.alertMessage = 'Something went wrong';
-                    alert.alertSeverity = 'error';
-                    return [3, 5];
-                case 4:
-                    alert.isOpen = true;
-                    setDefaultAlertSettings(alert);
-                    return [7];
-                case 5: return [2];
+                    setAlertSettings('error', 'Something went wrong');
+                    return [3, 3];
+                case 3: return [2];
             }
         });
     }); };
     var handleAlert = function () {
-        var currentAlertSettings = __assign({}, alertSettings);
-        currentAlertSettings.isOpen = !alertSettings.isOpen;
-        setDefaultAlertSettings(currentAlertSettings);
+        setAlertSettings();
     };
     return (react_1.default.createElement("div", null,
         Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
@@ -51494,28 +51508,67 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Delete_1 = __importDefault(__webpack_require__(733));
 var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
-var tabGroupUtil_1 = __importDefault(__webpack_require__(1738));
+var tabGroupUtil_1 = __importStar(__webpack_require__(1738));
+var CustomAlert_1 = __importDefault(__webpack_require__(210));
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
+var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 function SavedGroups() {
     var _this = this;
     var _a = (0, react_1.useState)({}), savedTabs = _a[0], setSavedTabs = _a[1];
+    var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
+    var getSavedGroups = function () { return __awaiter(_this, void 0, void 0, function () {
+        var groups;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, tabGroupUtil_1.default.getSavedTabGroups()];
+                case 1:
+                    groups = _a.sent();
+                    setSavedTabs(groups);
+                    return [2];
+            }
+        });
+    }); };
     (0, react_1.useEffect)(function () {
-        var getSavedGroups = function () { return __awaiter(_this, void 0, void 0, function () {
-            var groups;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, tabGroupUtil_1.default.getSavedTabGroups()];
-                    case 1:
-                        groups = _a.sent();
-                        setSavedTabs(groups);
-                        return [2];
-                }
-            });
-        }); };
-        getSavedGroups();
+        try {
+            getSavedGroups();
+        }
+        catch (err) {
+            console.error(err);
+            setAlertSettings('error', 'Something went wrong');
+        }
     }, []);
-    return (react_1.default.createElement("div", null, Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
-            react_1.default.createElement(Delete_1.default, { fontSize: 'small', onClick: function () { } })) })); })));
+    var handleDelete = function (groupId, title) { return __awaiter(_this, void 0, void 0, function () {
+        var err_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4, tabGroupUtil_1.tabGroupUtilInstance.deleteTabGroup(groupId, title)];
+                case 1:
+                    _a.sent();
+                    return [4, getSavedGroups()];
+                case 2:
+                    _a.sent();
+                    setAlertSettings('success', 'Tab group has been deleted');
+                    return [3, 4];
+                case 3:
+                    err_1 = _a.sent();
+                    console.error(err_1);
+                    setAlertSettings('error', 'Something went wrong');
+                    return [3, 4];
+                case 4: return [2];
+            }
+        });
+    }); };
+    var handleAlert = function () {
+        setAlertSettings();
+    };
+    return (react_1.default.createElement("div", null,
+        Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
+                react_1.default.createElement(Delete_1.default, { fontSize: 'small', onClick: function () {
+                        return handleDelete(Number(groupId), savedTabs[Number(groupId)].title);
+                    } })) })); }),
+        react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = SavedGroups;
 

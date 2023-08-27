@@ -15,7 +15,7 @@
       "tabs",
       "storage",
       "activeTab",
-      "sessions",
+      "favicon",
       "windows"
    ],
    "host_permissions": ["http://*/*", "https://*/*"],
@@ -23,6 +23,13 @@
       {
          "matches": ["http://*/*", "https://*/*"],
          "js": ["content.js"]
+      }
+   ],
+   "web_accessible_resources": [
+      {
+         "resources": ["_favicon/*"],
+         "matches": ["<all_urls>"],
+         "extension_ids": ["*"]
       }
    ]
 }

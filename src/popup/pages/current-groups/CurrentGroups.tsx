@@ -15,7 +15,7 @@ export default function CurrentGroups() {
    }, []);
 
    return (
-      <>
+      <div>
          {Object.keys(currentTabs).map((groupId) => (
             <RowGroup
                key={groupId}
@@ -24,6 +24,6 @@ export default function CurrentGroups() {
                tabs={currentTabs[Number(groupId)]}
             />
          ))}
-      </>
+      </div>
    );
 }

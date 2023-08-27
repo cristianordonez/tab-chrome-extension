@@ -1,8 +1,9 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { IconButton, ListItemIcon, ListItemText } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+import { IconButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material';
 import ListItem, { ListItemProps } from '@mui/material/ListItem';
 import { styled } from '@mui/system';
 import React, { Dispatch, SetStateAction } from 'react';
@@ -52,21 +53,29 @@ export default function Row({
          secondaryAction={
             <IconButton>
                {isParent ? (
-                  <DeleteIcon onClick={action} />
+                  <Tooltip title='Save or update tab group'>
+                     <SaveIcon fontSize='small' onClick={action} />
+                  </Tooltip>
                ) : (
-                  <RemoveCircleIcon onClick={action} />
+                  <Tooltip title='Close tab'>
+                     <RemoveCircleIcon fontSize='small' onClick={action} />
+                  </Tooltip>
                )}
             </IconButton>
          }
       >
-         {isParent == true &&
-         PrefixIcon !== undefined &&
-         PrefixIcon !== null ? (
+         {PrefixIcon !== undefined && PrefixIcon !== null ? (
             <ListItemIcon>{PrefixIcon}</ListItemIcon>
          ) : (
             <></>
          )}
-         <ListItemText inset={!isParent} primary={title} secondary={label} />
+         <ListItemText
+            primaryTypographyProps={{ fontSize: isParent ? '16px' : '14px' }}
+            secondaryTypographyProps={{ fontSize: '12px' }}
+            inset={!isParent}
+            primary={title}
+            secondary={label}
+         />
          {isParent ? (
             <IconButton
                onClick={handleShowChildren}

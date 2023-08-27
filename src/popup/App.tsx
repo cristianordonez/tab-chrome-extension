@@ -67,7 +67,7 @@ export default function App() {
             <ColorModeContext.Provider value={colorMode}>
                <ThemeProvider theme={theme}>
                   <CssBaseline />
-                  <Center column>
+                  <Center column gap={1}>
                      <>
                         <TabHeader routes={routes} />
                         <Routes>
@@ -75,11 +75,17 @@ export default function App() {
                               <Route path={path} element={<Component />} />
                            ))}
                         </Routes>
+                        <OpenInFullIcon
+                           onClick={() =>
+                              chrome.tabs.create({ url: 'popup.html' })
+                           }
+                        />
+                        <link
+                           type='image/x-icon'
+                           href='https://static-website.miro.com/miro-site-pages-assets/static/application-renderer/staging/favicons/favicon.ico'
+                        />
                      </>
                   </Center>
-                  <OpenInFullIcon
-                     onClick={() => chrome.tabs.create({ url: 'popup.html' })}
-                  />
                </ThemeProvider>
             </ColorModeContext.Provider>
          </BrowserRouter>

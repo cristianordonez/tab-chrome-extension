@@ -2662,27 +2662,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 1733:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-"use client";
-
-var _interopRequireDefault = __webpack_require__(4836);
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
-var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
-}), 'Delete');
-exports["default"] = _default;
-
-/***/ }),
-
 /***/ 3508:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -2742,6 +2721,27 @@ var _jsxRuntime = __webpack_require__(8521);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"
 }), 'RemoveCircle');
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ 818:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+"use client";
+
+var _interopRequireDefault = __webpack_require__(4836);
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
+var _jsxRuntime = __webpack_require__(8521);
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"
+}), 'Save');
 exports["default"] = _default;
 
 /***/ }),
@@ -50885,14 +50885,17 @@ function App() {
             react_1.default.createElement(exports.ColorModeContext.Provider, { value: colorMode },
                 react_1.default.createElement(styles_1.ThemeProvider, { theme: theme },
                     react_1.default.createElement(material_1.CssBaseline, null),
-                    react_1.default.createElement(Center_1.default, { column: true },
+                    react_1.default.createElement(Center_1.default, { column: true, gap: 1 },
                         react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(TabHeader_1.default, { routes: routes }),
                             react_1.default.createElement(react_router_dom_1.Routes, null, routes.map(function (_a) {
                                 var path = _a.path, Component = _a.element;
                                 return (react_1.default.createElement(react_router_dom_1.Route, { path: path, element: react_1.default.createElement(Component, null) }));
-                            })))),
-                    react_1.default.createElement(OpenInFull_1.default, { onClick: function () { return chrome.tabs.create({ url: 'popup.html' }); } }))))));
+                            })),
+                            react_1.default.createElement(OpenInFull_1.default, { onClick: function () {
+                                    return chrome.tabs.create({ url: 'popup.html' });
+                                } }),
+                            react_1.default.createElement("link", { type: 'image/x-icon', href: 'https://static-website.miro.com/miro-site-pages-assets/static/application-renderer/staging/favicons/favicon.ico' }))))))));
 }
 exports["default"] = App;
 
@@ -50913,18 +50916,18 @@ var react_1 = __importDefault(__webpack_require__(7294));
 var StyledCenter = (0, styles_1.styled)('div', {
     shouldForwardProp: function (prop) { return prop !== 'direction'; },
 })(function (_a) {
-    var column = _a.column;
+    var column = _a.column, gap = _a.gap;
     return ({
         display: 'flex',
         flexDirection: column ? 'column' : 'row',
         width: '100%',
         height: '100%',
-        gap: '1em',
+        gap: "".concat(gap, "em"),
     });
 });
 function Center(_a) {
-    var children = _a.children, _b = _a.column, column = _b === void 0 ? false : _b;
-    return react_1.default.createElement(StyledCenter, { column: column }, children);
+    var children = _a.children, _b = _a.column, column = _b === void 0 ? false : _b, _c = _a.gap, gap = _c === void 0 ? 0 : _c;
+    return (react_1.default.createElement(StyledCenter, { column: column, gap: gap }, children));
 }
 exports["default"] = Center;
 
@@ -50961,9 +50964,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
-var Delete_1 = __importDefault(__webpack_require__(1733));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
+var Save_1 = __importDefault(__webpack_require__(818));
 var material_1 = __webpack_require__(6547);
 var ListItem_1 = __importDefault(__webpack_require__(7696));
 var system_1 = __webpack_require__(8579);
@@ -50985,11 +50988,11 @@ function Row(_a) {
             setShowChildren(!showChildren);
         }
     };
-    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, isParent ? (react_1.default.createElement(Delete_1.default, { onClick: action })) : (react_1.default.createElement(RemoveCircle_1.default, { onClick: action }))) },
-        isParent == true &&
-            PrefixIcon !== undefined &&
-            PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        react_1.default.createElement(material_1.ListItemText, { inset: !isParent, primary: title, secondary: label }),
+    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, isParent ? (react_1.default.createElement(material_1.Tooltip, { title: 'Save or update tab group' },
+            react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: action }))) : (react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
+            react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: action })))) },
+        PrefixIcon !== undefined && PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isParent ? '16px' : '14px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: !isParent, primary: title, secondary: label }),
         isParent ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = Row;
@@ -51067,6 +51070,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
+var constructFaviconUrl_1 = __webpack_require__(127);
 var tabGroupUtil_1 = __webpack_require__(1738);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
@@ -51091,13 +51095,16 @@ function RowGroup(_a) {
         }); };
         getCurrentGroup();
     }, [groupId, windowId]);
+    console.log('tabs: ', tabs);
     if (!groupInfo) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
     else {
-        return (react_1.default.createElement(material_1.List, null,
-            react_1.default.createElement(Row_1.default, { isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: groupInfo.color }), title: groupInfo.title || '', label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), action: action, showChildren: showTabs, setShowChildren: setShowTabs }),
-            showTabs ? (tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, title: tab.title || '', action: action })); })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(material_1.List, null,
+                react_1.default.createElement(Row_1.default, { isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: groupInfo.color }), title: groupInfo.title || '', label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), action: action, showChildren: showTabs, setShowChildren: setShowTabs }),
+                react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
+                    react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '50%', width: '50%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), action: action, title: tab.title || '' })); }))))));
     }
 }
 exports["default"] = RowGroup;
@@ -51269,7 +51276,7 @@ function CurrentGroups() {
         }); };
         getTabs();
     }, []);
-    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, groupId: Number(groupId), windowId: currentTabs[Number(groupId)][0].windowId, tabs: currentTabs[Number(groupId)] })); })));
+    return (react_1.default.createElement("div", null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, groupId: Number(groupId), windowId: currentTabs[Number(groupId)][0].windowId, tabs: currentTabs[Number(groupId)] })); })));
 }
 exports["default"] = CurrentGroups;
 
@@ -51358,6 +51365,24 @@ var getDesignTokens = function (mode) { return ({
     },
 }); };
 exports.getDesignTokens = getDesignTokens;
+
+
+/***/ }),
+
+/***/ 127:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.faviconURL = void 0;
+var faviconURL = function (u) {
+    var url = new URL(chrome.runtime.getURL('/_favicon/'));
+    url.searchParams.set('pageUrl', u);
+    url.searchParams.set('size', '32');
+    return url.toString();
+};
+exports.faviconURL = faviconURL;
 
 
 /***/ }),

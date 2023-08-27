@@ -1,36 +1,11 @@
+// data structure to store route objects
 interface RouteType {
    element: () => React.ReactElement;
    path: string;
    label: string;
 }
 
-interface ChromeTabs {
-   [key: number]: chrome.tabs.Tab[];
-}
-
-interface LocalStorageTabGroups {
-   [key: number]: LocalStorageTabGroup;
-}
-
-interface LocalStorageTabGroup {
-   id: number;
-   color: ColorEnum;
-   tabs: LocalStorageTab[];
-   title: string;
-   createdAt: number;
-}
-
-interface LocalStorageTab {
-   tabId: number;
-   url: string;
-   title: string;
-   favIconUrl: string;
-}
-
-interface LocalStorageTitles {
-   [key: string]: number[];
-}
-
+// color of tab groups
 type ColorEnum =
    | 'grey'
    | 'blue'
@@ -42,9 +17,49 @@ type ColorEnum =
    | 'cyan'
    | 'orange';
 
+// interface for saved titles in local storage
+interface LocalStorageTitles {
+   [key: string]: number[];
+}
+
+// shared keys between tab groups
+interface SharedTabGroup {
+   id: number;
+   color: ColorEnum;
+   title: string;
+   createdAt: number;
+}
+
+// single tab in saved tab groups array
+interface LocalStorageTab {
+   tabId: number;
+   url: string;
+   title: string;
+}
+
+// CURRENT TAB GROUPS
+// single tab group retrieved from reduced data structure
+interface CurrentTabGroup extends SharedTabGroup {
+   tabs: chrome.tabs.Tab[];
+}
+
+interface CurrentTabs {
+   [key: number]: CurrentTabGroup;
+}
+
+// SAVED TAB GROUPS
+// single tab group saved in local storage
+interface LocalStorageTabGroup extends SharedTabGroup {
+   tabs: LocalStorageTab[];
+}
+
+interface LocalStorageTabGroups {
+   [key: number]: LocalStorageTabGroup;
+}
+
 export {
-   ChromeTabs,
    ColorEnum,
+   CurrentTabs,
    LocalStorageTab,
    LocalStorageTabGroup,
    LocalStorageTabGroups,

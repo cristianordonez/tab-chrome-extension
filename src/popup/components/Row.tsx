@@ -23,6 +23,7 @@ interface Props {
    action: () => void;
    showChildren?: boolean;
    setShowChildren?: Dispatch<SetStateAction<boolean>>;
+   groupId: number;
 }
 
 export default function Row({
@@ -33,6 +34,7 @@ export default function Row({
    action,
    showChildren,
    setShowChildren,
+   groupId,
 }: Props) {
    const arrowIcon = showChildren ? (
       <ExpandMoreIcon fontSize='large' />
@@ -46,6 +48,7 @@ export default function Row({
       }
    };
 
+   console.log('groupId: ', groupId);
    return (
       <StyledListItem
          alignItems='center'

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { ChromeTabs } from '../../../types';
+import { CurrentTabs } from '../../../types';
 import { TabGroupUtil } from '../../../utils/tabGroupUtil';
 import RowGroup from '../../components/RowGroup';
 
 export default function CurrentGroups() {
-   const [currentTabs, setCurrentTabs] = useState<ChromeTabs>({});
+   const [currentTabs, setCurrentTabs] = useState<CurrentTabs>({});
 
    useEffect(() => {
       const getTabs = async () => {
-         const tabGroups = await TabGroupUtil.getTabsByGroup();
+         const tabGroups = await TabGroupUtil.getCurrentTabGroups();
+         console.log('tabGroups: ', tabGroups);
          setCurrentTabs(tabGroups);
       };
       getTabs();
@@ -19,9 +20,10 @@ export default function CurrentGroups() {
          {Object.keys(currentTabs).map((groupId) => (
             <RowGroup
                key={groupId}
+               color={currentTabs[Number(groupId)].color}
+               title={currentTabs[Number(groupId)].title}
                groupId={Number(groupId)}
-               windowId={currentTabs[Number(groupId)][0].windowId}
-               tabs={currentTabs[Number(groupId)]}
+               tabs={currentTabs[Number(groupId)].tabs}
             />
          ))}
       </div>

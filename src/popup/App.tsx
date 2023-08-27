@@ -80,10 +80,6 @@ export default function App() {
                               chrome.tabs.create({ url: 'popup.html' })
                            }
                         />
-                        <link
-                           type='image/x-icon'
-                           href='https://static-website.miro.com/miro-site-pages-assets/static/application-renderer/staging/favicons/favicon.ico'
-                        />
                      </>
                   </Center>
                </ThemeProvider>

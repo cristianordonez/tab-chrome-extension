@@ -1,5 +1,5 @@
 import {
-   ChromeTabs,
+   CurrentTabs,
    LocalStorageTab,
    LocalStorageTabGroup,
    LocalStorageTabGroups,
@@ -26,26 +26,46 @@ class TabGroupUtil {
    }
 
    // gets all active tabs and groups by groupId into proper data structure
-   static async getTabsByGroup(): Promise<ChromeTabs> {
+   static async getCurrentTabGroups(): Promise<CurrentTabs> {
       const allTabs = await chrome.tabs.query({});
-      const tabGroups = allTabs.reduce((previousObject, currentObject) => {
-         const groupId = currentObject['groupId'];
-         if (
-            Object.prototype.hasOwnProperty.call(previousObject, groupId) ==
-            false
-         ) {
-            previousObject[groupId] = [];
-         }
-         const currentItems = previousObject[groupId];
-         return Object.assign(previousObject, {
-            [currentObject.groupId]: [...currentItems, currentObject],
-         });
-      }, {} as ChromeTabs);
+      const tabGroups = await allTabs.reduce(
+         async (previousObjectPromise, currentTab) => {
+            const previousObject = await previousObjectPromise;
+            const groupId = currentTab['groupId'];
+            const groupInfo = await TabGroupUtil.getCurrentGroupInfo(groupId);
+            if (
+               Object.prototype.hasOwnProperty.call(previousObject, groupId) ==
+               false
+            ) {
+               previousObject[`${groupId}`] = {
+                  id: groupId,
+                  color: groupInfo.color,
+                  title: groupInfo.title || '',
+                  createdAt: Date.now(),
+                  tabs: [],
+               };
+            }
+            const currentItems = previousObject[`${groupId}`];
+            currentItems.tabs.push(currentTab);
+            return Object.assign(previousObject, {
+               [`${currentTab.groupId}`]: { ...currentItems },
+            });
+         },
+         Promise.resolve({}) as Promise<CurrentTabs>
+      );
       return tabGroups;
    }
 
+   // gets all currently saved tab groups from local storage
+   static async getSavedTabGroups(): Promise<LocalStorageTabGroups> {
+      const saved = (await TabGroupUtil.getKey(
+         'groups'
+      )) as LocalStorageTabGroups;
+      return saved;
+   }
+
    // given groupId will get all information about given tab group from chrome API
-   static async getGroupFromAPI(
+   static async getCurrentGroupInfo(
       groupId: number
    ): Promise<chrome.tabGroups.TabGroup> {
       if (groupId == -1) {
@@ -64,7 +84,7 @@ class TabGroupUtil {
 
    // saves or updates all current tab groups
    async takeSnapshot() {
-      const allTabs = await TabGroupUtil.getTabsByGroup();
+      const allTabs = await TabGroupUtil.getCurrentTabGroups();
       Object.entries(allTabs).forEach(async ([groupId, tabs]) => {
          if (Number(groupId) !== -1) {
             await this.updateOrCreateGroup(Number(groupId), tabs);
@@ -73,13 +93,12 @@ class TabGroupUtil {
    }
 
    // add group to local storage given groupId
-   // todo
    async updateOrCreateGroup(
       groupId: number,
       tabs: chrome.tabs.Tab[]
    ): Promise<void> {
-      const storageInfo = await TabGroupUtil.getGroupFromStorage(groupId);
-      const groupDetails = await TabGroupUtil.getGroupFromAPI(groupId);
+      const storageInfo = await TabGroupUtil.getSavedGroupInfo(groupId);
+      const groupDetails = await TabGroupUtil.getCurrentGroupInfo(groupId);
       const formattedTabs = TabGroupUtil.formatTabList(tabs);
       if (storageInfo !== null) {
          await this.update(groupDetails, storageInfo, formattedTabs);
@@ -146,7 +165,7 @@ class TabGroupUtil {
    }
 
    // retrieves tab group information from local storage given group id
-   private static async getGroupFromStorage(
+   private static async getSavedGroupInfo(
       id: number
    ): Promise<LocalStorageTabGroup | null> {
       const savedGroups = (await TabGroupUtil.getKey(
@@ -168,7 +187,7 @@ class TabGroupUtil {
       )) as LocalStorageTitles;
       const saved = allTitles[`${title}`];
       for (let i = 0; i < saved.length; i++) {
-         const current = await TabGroupUtil.getGroupFromStorage(saved[i]);
+         const current = await TabGroupUtil.getSavedGroupInfo(saved[i]);
          if (current !== null && current.createdAt < oldest) {
             result = current.id;
          }
@@ -203,7 +222,6 @@ class TabGroupUtil {
             tabId: tab.id || Number(Date.now()),
             url: tab.url || '',
             title: tab.title || '',
-            favIconUrl: tab.favIconUrl || '',
          };
       });
       return storageTabs;
@@ -282,7 +300,7 @@ class TabGroupUtil {
       const all = await chrome.storage.local.get(null);
       console.log('all data saved in local storage: ', all);
       if (group !== undefined) {
-         const info = await TabGroupUtil.getGroupFromStorage(group.id);
+         const info = await TabGroupUtil.getSavedGroupInfo(group.id);
          console.log('group information saved in local storage: ', info);
       }
    }

@@ -16,6 +16,7 @@ chrome.tabs.onUpdated.addListener(async function (
    tab: chrome.tabs.Tab
 ) {
    if ('status' in changeInfo && changeInfo['status'] == 'complete') {
+      console.log('tab: ', tab);
       await tabGroupUtil.takeSnapshot();
       await tabGroupUtil.debug();
    }

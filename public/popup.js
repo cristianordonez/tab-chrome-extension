@@ -2725,7 +2725,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 818:
+/***/ 6818:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -50894,8 +50894,7 @@ function App() {
                             })),
                             react_1.default.createElement(OpenInFull_1.default, { onClick: function () {
                                     return chrome.tabs.create({ url: 'popup.html' });
-                                } }),
-                            react_1.default.createElement("link", { type: 'image/x-icon', href: 'https://static-website.miro.com/miro-site-pages-assets/static/application-renderer/staging/favicons/favicon.ico' }))))))));
+                                } }))))))));
 }
 exports["default"] = App;
 
@@ -50966,7 +50965,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var Save_1 = __importDefault(__webpack_require__(818));
+var Save_1 = __importDefault(__webpack_require__(6818));
 var material_1 = __webpack_require__(6547);
 var ListItem_1 = __importDefault(__webpack_require__(7696));
 var system_1 = __webpack_require__(8579);
@@ -50981,13 +50980,14 @@ var StyledListItem = (0, system_1.styled)(ListItem_1.default)(function (_a) {
     });
 });
 function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.isParent, isParent = _c === void 0 ? false : _c, _d = _a.label, label = _d === void 0 ? '' : _d, action = _a.action, showChildren = _a.showChildren, setShowChildren = _a.setShowChildren;
+    var PrefixIcon = _a.PrefixIcon, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.isParent, isParent = _c === void 0 ? false : _c, _d = _a.label, label = _d === void 0 ? '' : _d, action = _a.action, showChildren = _a.showChildren, setShowChildren = _a.setShowChildren, groupId = _a.groupId;
     var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
     var handleShowChildren = function () {
         if (setShowChildren) {
             setShowChildren(!showChildren);
         }
     };
+    console.log('groupId: ', groupId);
     return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, secondaryAction: react_1.default.createElement(material_1.IconButton, null, isParent ? (react_1.default.createElement(material_1.Tooltip, { title: 'Save or update tab group' },
             react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: action }))) : (react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
             react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: action })))) },
@@ -51028,84 +51028,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var material_1 = __webpack_require__(6547);
 var react_1 = __importStar(__webpack_require__(7294));
-var constructFaviconUrl_1 = __webpack_require__(127);
-var tabGroupUtil_1 = __webpack_require__(1738);
+var constructFaviconUrl_1 = __webpack_require__(4127);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroup(_a) {
-    var _this = this;
-    var tabs = _a.tabs, groupId = _a.groupId, windowId = _a.windowId;
+    var tabs = _a.tabs, groupId = _a.groupId, title = _a.title, color = _a.color;
     var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
-    var _c = (0, react_1.useState)(undefined), groupInfo = _c[0], setGroupInfo = _c[1];
     var action = function () { };
-    (0, react_1.useEffect)(function () {
-        var getCurrentGroup = function () { return __awaiter(_this, void 0, void 0, function () {
-            var info;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, tabGroupUtil_1.TabGroupUtil.getGroupFromAPI(groupId)];
-                    case 1:
-                        info = _a.sent();
-                        setGroupInfo(info);
-                        return [2];
-                }
-            });
-        }); };
-        getCurrentGroup();
-    }, [groupId, windowId]);
-    console.log('tabs: ', tabs);
-    if (!groupInfo) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
-    }
-    else {
-        return (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(material_1.List, null,
-                react_1.default.createElement(Row_1.default, { isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: groupInfo.color }), title: groupInfo.title || '', label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), action: action, showChildren: showTabs, setShowChildren: setShowTabs }),
-                react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
-                    react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '50%', width: '50%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), action: action, title: tab.title || '' })); }))))));
-    }
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(material_1.List, null,
+            react_1.default.createElement(Row_1.default, { groupId: groupId, isParent: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), title: title, label: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), action: action, showChildren: showTabs, setShowChildren: setShowTabs }),
+            react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
+                react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { isParent: false, groupId: groupId, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '50%', width: '50%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), action: action, title: tab.title || '' })); }))))));
 }
 exports["default"] = RowGroup;
 
@@ -51266,9 +51206,10 @@ function CurrentGroups() {
             var tabGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, tabGroupUtil_1.TabGroupUtil.getTabsByGroup()];
+                    case 0: return [4, tabGroupUtil_1.TabGroupUtil.getCurrentTabGroups()];
                     case 1:
                         tabGroups = _a.sent();
+                        console.log('tabGroups: ', tabGroups);
                         setCurrentTabs(tabGroups);
                         return [2];
                 }
@@ -51276,7 +51217,7 @@ function CurrentGroups() {
         }); };
         getTabs();
     }, []);
-    return (react_1.default.createElement("div", null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, groupId: Number(groupId), windowId: currentTabs[Number(groupId)][0].windowId, tabs: currentTabs[Number(groupId)] })); })));
+    return (react_1.default.createElement("div", null, Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs })); })));
 }
 exports["default"] = CurrentGroups;
 
@@ -51306,14 +51247,91 @@ exports["default"] = GroupRules;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var react_1 = __importDefault(__webpack_require__(7294));
+var react_1 = __importStar(__webpack_require__(7294));
+var tabGroupUtil_1 = __webpack_require__(1738);
+var RowGroup_1 = __importDefault(__webpack_require__(3278));
 function SavedGroups() {
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "test saved")));
+    var _this = this;
+    var _a = (0, react_1.useState)({}), savedTabs = _a[0], setSavedTabs = _a[1];
+    (0, react_1.useEffect)(function () {
+        var getSavedGroups = function () { return __awaiter(_this, void 0, void 0, function () {
+            var groups;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, tabGroupUtil_1.TabGroupUtil.getSavedTabGroups()];
+                    case 1:
+                        groups = _a.sent();
+                        setSavedTabs(groups);
+                        return [2];
+                }
+            });
+        }); };
+        getSavedGroups();
+    }, []);
+    return (react_1.default.createElement("div", null, Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs })); })));
 }
 exports["default"] = SavedGroups;
 
@@ -51369,7 +51387,7 @@ exports.getDesignTokens = getDesignTokens;
 
 /***/ }),
 
-/***/ 127:
+/***/ 4127:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -51392,6 +51410,17 @@ exports.faviconURL = faviconURL;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51428,15 +51457,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TabGroupUtil = void 0;
 var TabGroupUtil = (function () {
@@ -51469,32 +51489,66 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.getTabsByGroup = function () {
+    TabGroupUtil.getCurrentTabGroups = function () {
         return __awaiter(this, void 0, Promise, function () {
             var allTabs, tabGroups;
+            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, chrome.tabs.query({})];
                     case 1:
                         allTabs = _a.sent();
-                        tabGroups = allTabs.reduce(function (previousObject, currentObject) {
-                            var _a;
-                            var groupId = currentObject['groupId'];
-                            if (Object.prototype.hasOwnProperty.call(previousObject, groupId) ==
-                                false) {
-                                previousObject[groupId] = [];
-                            }
-                            var currentItems = previousObject[groupId];
-                            return Object.assign(previousObject, (_a = {},
-                                _a[currentObject.groupId] = __spreadArray(__spreadArray([], currentItems, true), [currentObject], false),
-                                _a));
-                        }, {});
+                        return [4, allTabs.reduce(function (previousObjectPromise, currentTab) { return __awaiter(_this, void 0, void 0, function () {
+                                var previousObject, groupId, groupInfo, currentItems;
+                                var _a;
+                                return __generator(this, function (_b) {
+                                    switch (_b.label) {
+                                        case 0: return [4, previousObjectPromise];
+                                        case 1:
+                                            previousObject = _b.sent();
+                                            groupId = currentTab['groupId'];
+                                            return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
+                                        case 2:
+                                            groupInfo = _b.sent();
+                                            if (Object.prototype.hasOwnProperty.call(previousObject, groupId) ==
+                                                false) {
+                                                previousObject["".concat(groupId)] = {
+                                                    id: groupId,
+                                                    color: groupInfo.color,
+                                                    title: groupInfo.title || '',
+                                                    createdAt: Date.now(),
+                                                    tabs: [],
+                                                };
+                                            }
+                                            currentItems = previousObject["".concat(groupId)];
+                                            currentItems.tabs.push(currentTab);
+                                            return [2, Object.assign(previousObject, (_a = {},
+                                                    _a["".concat(currentTab.groupId)] = __assign({}, currentItems),
+                                                    _a))];
+                                    }
+                                });
+                            }); }, Promise.resolve({}))];
+                    case 2:
+                        tabGroups = _a.sent();
                         return [2, tabGroups];
                 }
             });
         });
     };
-    TabGroupUtil.getGroupFromAPI = function (groupId) {
+    TabGroupUtil.getSavedTabGroups = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var saved;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabGroupUtil.getKey('groups')];
+                    case 1:
+                        saved = (_a.sent());
+                        return [2, saved];
+                }
+            });
+        });
+    };
+    TabGroupUtil.getCurrentGroupInfo = function (groupId) {
         return __awaiter(this, void 0, Promise, function () {
             var groupInfo;
             return __generator(this, function (_a) {
@@ -51522,7 +51576,7 @@ var TabGroupUtil = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, TabGroupUtil.getTabsByGroup()];
+                    case 0: return [4, TabGroupUtil.getCurrentTabGroups()];
                     case 1:
                         allTabs = _a.sent();
                         Object.entries(allTabs).forEach(function (_a) {
@@ -51551,10 +51605,10 @@ var TabGroupUtil = (function () {
             var storageInfo, groupDetails, formattedTabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, TabGroupUtil.getGroupFromStorage(groupId)];
+                    case 0: return [4, TabGroupUtil.getSavedGroupInfo(groupId)];
                     case 1:
                         storageInfo = _a.sent();
-                        return [4, TabGroupUtil.getGroupFromAPI(groupId)];
+                        return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
                     case 2:
                         groupDetails = _a.sent();
                         formattedTabs = TabGroupUtil.formatTabList(tabs);
@@ -51660,7 +51714,7 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.getGroupFromStorage = function (id) {
+    TabGroupUtil.getSavedGroupInfo = function (id) {
         return __awaiter(this, void 0, Promise, function () {
             var savedGroups;
             return __generator(this, function (_a) {
@@ -51695,7 +51749,7 @@ var TabGroupUtil = (function () {
                         _a.label = 2;
                     case 2:
                         if (!(i < saved.length)) return [3, 5];
-                        return [4, TabGroupUtil.getGroupFromStorage(saved[i])];
+                        return [4, TabGroupUtil.getSavedGroupInfo(saved[i])];
                     case 3:
                         current = _a.sent();
                         if (current !== null && current.createdAt < oldest) {
@@ -51743,7 +51797,6 @@ var TabGroupUtil = (function () {
                 tabId: tab.id || Number(Date.now()),
                 url: tab.url || '',
                 title: tab.title || '',
-                favIconUrl: tab.favIconUrl || '',
             };
         });
         return storageTabs;
@@ -51868,7 +51921,7 @@ var TabGroupUtil = (function () {
                         all = _a.sent();
                         console.log('all data saved in local storage: ', all);
                         if (!(group !== undefined)) return [3, 3];
-                        return [4, TabGroupUtil.getGroupFromStorage(group.id)];
+                        return [4, TabGroupUtil.getSavedGroupInfo(group.id)];
                     case 2:
                         info = _a.sent();
                         console.log('group information saved in local storage: ', info);

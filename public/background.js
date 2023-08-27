@@ -52,6 +52,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
             switch (_a.label) {
                 case 0:
                     if (!('status' in changeInfo && changeInfo['status'] == 'complete')) return [3, 3];
+                    console.log('tab: ', tab);
                     return [4, tabGroupUtil.takeSnapshot()];
                 case 1:
                     _a.sent();
@@ -72,6 +73,17 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 /***/ (function(__unused_webpack_module, exports) {
 
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -108,15 +120,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TabGroupUtil = void 0;
 var TabGroupUtil = (function () {
@@ -149,32 +152,66 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.getTabsByGroup = function () {
+    TabGroupUtil.getCurrentTabGroups = function () {
         return __awaiter(this, void 0, Promise, function () {
             var allTabs, tabGroups;
+            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, chrome.tabs.query({})];
                     case 1:
                         allTabs = _a.sent();
-                        tabGroups = allTabs.reduce(function (previousObject, currentObject) {
-                            var _a;
-                            var groupId = currentObject['groupId'];
-                            if (Object.prototype.hasOwnProperty.call(previousObject, groupId) ==
-                                false) {
-                                previousObject[groupId] = [];
-                            }
-                            var currentItems = previousObject[groupId];
-                            return Object.assign(previousObject, (_a = {},
-                                _a[currentObject.groupId] = __spreadArray(__spreadArray([], currentItems, true), [currentObject], false),
-                                _a));
-                        }, {});
+                        return [4, allTabs.reduce(function (previousObjectPromise, currentTab) { return __awaiter(_this, void 0, void 0, function () {
+                                var previousObject, groupId, groupInfo, currentItems;
+                                var _a;
+                                return __generator(this, function (_b) {
+                                    switch (_b.label) {
+                                        case 0: return [4, previousObjectPromise];
+                                        case 1:
+                                            previousObject = _b.sent();
+                                            groupId = currentTab['groupId'];
+                                            return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
+                                        case 2:
+                                            groupInfo = _b.sent();
+                                            if (Object.prototype.hasOwnProperty.call(previousObject, groupId) ==
+                                                false) {
+                                                previousObject["".concat(groupId)] = {
+                                                    id: groupId,
+                                                    color: groupInfo.color,
+                                                    title: groupInfo.title || '',
+                                                    createdAt: Date.now(),
+                                                    tabs: [],
+                                                };
+                                            }
+                                            currentItems = previousObject["".concat(groupId)];
+                                            currentItems.tabs.push(currentTab);
+                                            return [2, Object.assign(previousObject, (_a = {},
+                                                    _a["".concat(currentTab.groupId)] = __assign({}, currentItems),
+                                                    _a))];
+                                    }
+                                });
+                            }); }, Promise.resolve({}))];
+                    case 2:
+                        tabGroups = _a.sent();
                         return [2, tabGroups];
                 }
             });
         });
     };
-    TabGroupUtil.getGroupFromAPI = function (groupId) {
+    TabGroupUtil.getSavedTabGroups = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var saved;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabGroupUtil.getKey('groups')];
+                    case 1:
+                        saved = (_a.sent());
+                        return [2, saved];
+                }
+            });
+        });
+    };
+    TabGroupUtil.getCurrentGroupInfo = function (groupId) {
         return __awaiter(this, void 0, Promise, function () {
             var groupInfo;
             return __generator(this, function (_a) {
@@ -202,7 +239,7 @@ var TabGroupUtil = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, TabGroupUtil.getTabsByGroup()];
+                    case 0: return [4, TabGroupUtil.getCurrentTabGroups()];
                     case 1:
                         allTabs = _a.sent();
                         Object.entries(allTabs).forEach(function (_a) {
@@ -231,10 +268,10 @@ var TabGroupUtil = (function () {
             var storageInfo, groupDetails, formattedTabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, TabGroupUtil.getGroupFromStorage(groupId)];
+                    case 0: return [4, TabGroupUtil.getSavedGroupInfo(groupId)];
                     case 1:
                         storageInfo = _a.sent();
-                        return [4, TabGroupUtil.getGroupFromAPI(groupId)];
+                        return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
                     case 2:
                         groupDetails = _a.sent();
                         formattedTabs = TabGroupUtil.formatTabList(tabs);
@@ -340,7 +377,7 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.getGroupFromStorage = function (id) {
+    TabGroupUtil.getSavedGroupInfo = function (id) {
         return __awaiter(this, void 0, Promise, function () {
             var savedGroups;
             return __generator(this, function (_a) {
@@ -375,7 +412,7 @@ var TabGroupUtil = (function () {
                         _a.label = 2;
                     case 2:
                         if (!(i < saved.length)) return [3, 5];
-                        return [4, TabGroupUtil.getGroupFromStorage(saved[i])];
+                        return [4, TabGroupUtil.getSavedGroupInfo(saved[i])];
                     case 3:
                         current = _a.sent();
                         if (current !== null && current.createdAt < oldest) {
@@ -423,7 +460,6 @@ var TabGroupUtil = (function () {
                 tabId: tab.id || Number(Date.now()),
                 url: tab.url || '',
                 title: tab.title || '',
-                favIconUrl: tab.favIconUrl || '',
             };
         });
         return storageTabs;
@@ -548,7 +584,7 @@ var TabGroupUtil = (function () {
                         all = _a.sent();
                         console.log('all data saved in local storage: ', all);
                         if (!(group !== undefined)) return [3, 3];
-                        return [4, TabGroupUtil.getGroupFromStorage(group.id)];
+                        return [4, TabGroupUtil.getSavedGroupInfo(group.id)];
                     case 2:
                         info = _a.sent();
                         console.log('group information saved in local storage: ', info);

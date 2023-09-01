@@ -1,4 +1,5 @@
 import {
+   ColorEnum,
    CurrentTabs,
    LocalStorageTab,
    LocalStorageTabGroup,
@@ -12,17 +13,78 @@ class TabGroupUtil {
    constructor(maxGroups: number, maxTitleDuplicates: number) {
       this.maxGroups = maxGroups;
       this.maxTitleDuplicates = maxTitleDuplicates;
+      TabGroupUtil.initialize();
    }
 
-   // sets default storage values if have not been set
-   static async initialize(): Promise<void> {
-      const groups = TabGroupUtil.getKey('groups');
-      const savedTitles = TabGroupUtil.getKey('savedTitles');
-      if (groups == null) {
-         await chrome.storage.local.set({ ['groups']: {} });
+   // saves or updates all current tab groups
+   async takeSnapshot() {
+      const allTabs = await TabGroupUtil.getCurrentTabGroups();
+      Object.entries(allTabs).forEach(async ([groupId, groupInfo]) => {
+         if (Number(groupId) !== -1) {
+            await this.updateOrCreateGroup(Number(groupId), groupInfo.tabs);
+         }
+      });
+   }
+
+   // add group to local storage given groupId
+   async updateOrCreateGroup(
+      groupId: number,
+      tabs: chrome.tabs.Tab[]
+   ): Promise<void> {
+      const storageInfo = await TabGroupUtil.getSavedGroupInfo(groupId);
+      const groupDetails = await TabGroupUtil.getCurrentGroupInfo(groupId);
+      const formattedTabs = TabGroupUtil.formatTabList(tabs);
+      if (storageInfo !== null) {
+         await this.update(groupDetails, storageInfo, formattedTabs);
+      } else {
+         await this.saveNew(groupDetails, formattedTabs);
       }
-      if (savedTitles == null) {
-         await chrome.storage.local.set({ ['savedTitles']: {} });
+   }
+
+   // uses tab group id to delete item from local storage
+   async deleteTabGroup(id: number, title: string) {
+      try {
+         await TabGroupUtil.deleteFromGroups(id);
+         await TabGroupUtil.deleteFromSavedTitles(id, title);
+      } catch (e) {
+         console.error(e);
+      }
+   }
+
+   // creates and opens new tab group, returning group id of created group
+   static async createTabGroup(
+      title: string = '',
+      color?: ColorEnum,
+      tabIds?: number[]
+   ): Promise<number | undefined> {
+      // if no tabIds given create new one
+      try {
+         let newGroupTabs;
+         if (!tabIds) {
+            const newTab = await TabGroupUtil.createTab();
+            newGroupTabs = newTab.id;
+         } else {
+            newGroupTabs = tabIds;
+         }
+         const newGroupId = await chrome.tabs.group({ tabIds: newGroupTabs });
+         await chrome.tabGroups.update(newGroupId, { color, title });
+         return newGroupId;
+      } catch (err) {
+         console.error(err);
+         return;
+      }
+   }
+
+   // creates new tab with given url or new tab page, returning tab id
+   static async createTab(
+      url?: string,
+      active: boolean = false
+   ): Promise<chrome.tabs.Tab> {
+      const newTab = await chrome.tabs.create({ url, active: active });
+      if (newTab !== undefined) {
+         return newTab;
+      } else {
+         throw Error(`Unable to create new tab with url ${url}`);
       }
    }
 
@@ -83,38 +145,15 @@ class TabGroupUtil {
       }
    }
 
-   // saves or updates all current tab groups
-   async takeSnapshot() {
-      const allTabs = await TabGroupUtil.getCurrentTabGroups();
-      Object.entries(allTabs).forEach(async ([groupId, groupInfo]) => {
-         if (Number(groupId) !== -1) {
-            await this.updateOrCreateGroup(Number(groupId), groupInfo.tabs);
-         }
-      });
-   }
-
-   // add group to local storage given groupId
-   async updateOrCreateGroup(
-      groupId: number,
-      tabs: chrome.tabs.Tab[]
-   ): Promise<void> {
-      const storageInfo = await TabGroupUtil.getSavedGroupInfo(groupId);
-      const groupDetails = await TabGroupUtil.getCurrentGroupInfo(groupId);
-      const formattedTabs = TabGroupUtil.formatTabList(tabs);
-      if (storageInfo !== null) {
-         await this.update(groupDetails, storageInfo, formattedTabs);
-      } else {
-         await this.saveNew(groupDetails, formattedTabs);
+   // sets default storage values if have not been set
+   private static async initialize(): Promise<void> {
+      const groups = TabGroupUtil.getKey('groups');
+      const savedTitles = TabGroupUtil.getKey('savedTitles');
+      if (groups == null) {
+         await chrome.storage.local.set({ ['groups']: {} });
       }
-   }
-
-   // uses tab group id to delete item from local storage
-   async deleteTabGroup(id: number, title: string) {
-      try {
-         await TabGroupUtil.deleteFromGroups(id);
-         await TabGroupUtil.deleteFromSavedTitles(id, title);
-      } catch (e) {
-         console.error(e);
+      if (savedTitles == null) {
+         await chrome.storage.local.set({ ['savedTitles']: {} });
       }
    }
 

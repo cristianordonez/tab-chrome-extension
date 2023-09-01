@@ -2604,7 +2604,7 @@ var insertStyles = function insertStyles(cache, serialized, isStringTag) {
 
 /***/ }),
 
-/***/ 540:
+/***/ 6540:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -2667,7 +2667,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 733:
+/***/ 1733:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -3875,7 +3875,7 @@ if (false) {}
 
 /***/ }),
 
-/***/ 619:
+/***/ 8619:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4062,7 +4062,7 @@ const ListItemButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
 
 /***/ }),
 
-/***/ 471:
+/***/ 1471:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4072,7 +4072,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getListItemButtonUtilityClass: () => (/* reexport safe */ _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_1__.t),
 /* harmony export */   listItemButtonClasses: () => (/* reexport safe */ _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
 /* harmony export */ });
-/* harmony import */ var _ListItemButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(619);
+/* harmony import */ var _ListItemButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8619);
 /* harmony import */ var _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8686);
 'use client';
 
@@ -4462,7 +4462,7 @@ const red = {
 
 /***/ }),
 
-/***/ 629:
+/***/ 6629:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -23086,9 +23086,9 @@ const ListItemAvatar = /*#__PURE__*/react.forwardRef(function ListItemAvatar(inP
 
 
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/ListItemButton.js
-var ListItemButton = __webpack_require__(619);
+var ListItemButton = __webpack_require__(8619);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/index.js
-var material_ListItemButton = __webpack_require__(471);
+var material_ListItemButton = __webpack_require__(1471);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemIcon/listItemIconClasses.js
 
 
@@ -50872,7 +50872,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ColorModeContext = void 0;
 var OpenInFull_1 = __importDefault(__webpack_require__(9137));
-var material_1 = __webpack_require__(629);
+var material_1 = __webpack_require__(6629);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
@@ -50880,7 +50880,7 @@ var tabGroupUtil_1 = __webpack_require__(1738);
 var Center_1 = __importDefault(__webpack_require__(1081));
 var TabHeader_1 = __importDefault(__webpack_require__(2314));
 var useLocalStorageState_1 = __webpack_require__(7808);
-var CurrentGroups_1 = __importDefault(__webpack_require__(5239));
+var current_groups_1 = __importDefault(__webpack_require__(137));
 var GroupRules_1 = __importDefault(__webpack_require__(8312));
 var SavedGroups_1 = __importDefault(__webpack_require__(1947));
 var theme_1 = __webpack_require__(5825);
@@ -50897,7 +50897,7 @@ function App() {
     var routes = [
         {
             path: '/popup.html',
-            element: CurrentGroups_1.default,
+            element: current_groups_1.default,
             label: 'Current Groups',
         },
         {
@@ -51007,32 +51007,126 @@ exports["default"] = Circle;
 
 /***/ }),
 
-/***/ 482:
+/***/ 184:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var Add_1 = __importDefault(__webpack_require__(540));
-var material_1 = __webpack_require__(629);
-var react_1 = __importDefault(__webpack_require__(7294));
+var Add_1 = __importDefault(__webpack_require__(6540));
+var material_1 = __webpack_require__(6629);
+var react_1 = __importStar(__webpack_require__(7294));
+var tabGroupUtil_1 = __importDefault(__webpack_require__(1738));
+var Modal_1 = __importDefault(__webpack_require__(9964));
 var Row_1 = __importDefault(__webpack_require__(9416));
-function CreateGroup() {
-    var handleCreate = function () {
-        console.log('HERE IN HANDLE CREATE');
+function CreateGroupRow(_a) {
+    var _this = this;
+    var _b = _a.save, save = _b === void 0 ? false : _b;
+    var _c = (0, react_1.useState)(false), open = _c[0], setOpen = _c[1];
+    var _d = (0, react_1.useState)(''), inputValue = _d[0], setInputValue = _d[1];
+    var handleCreate = function () { return __awaiter(_this, void 0, void 0, function () {
+        var groupId;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, tabGroupUtil_1.default.createTabGroup(inputValue)];
+                case 1:
+                    groupId = _a.sent();
+                    return [2, groupId];
+            }
+        });
+    }); };
+    var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
+        var groupId;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    e.preventDefault();
+                    return [4, handleCreate()];
+                case 1:
+                    groupId = _a.sent();
+                    console.log('inputValue: ', inputValue);
+                    console.log('groupId: ', groupId);
+                    setOpen(!open);
+                    return [2];
+            }
+        });
+    }); };
+    var toggleModal = function () {
+        setOpen(!open);
     };
-    return (react_1.default.createElement(material_1.List, null,
-        react_1.default.createElement(Row_1.default, { title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreate })));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(material_1.List, null,
+            react_1.default.createElement(Row_1.default, { title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: toggleModal })),
+        react_1.default.createElement(Modal_1.default, { open: open, handleClose: toggleModal, title: 'Group Name', inputValue: inputValue, setInputValue: setInputValue, buttonAction: handleSubmit, buttonText: 'Save' })));
 }
-exports["default"] = CreateGroup;
+exports["default"] = CreateGroupRow;
 
 
 /***/ }),
 
-/***/ 210:
+/***/ 6210:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51041,7 +51135,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(629);
+var material_1 = __webpack_require__(6629);
 var react_1 = __importDefault(__webpack_require__(7294));
 function CustomAlert(_a) {
     var handleAlert = _a.handleAlert, alertSettings = _a.alertSettings;
@@ -51049,6 +51143,57 @@ function CustomAlert(_a) {
         react_1.default.createElement(material_1.Alert, { onClose: handleAlert, severity: alertSettings.alertSeverity }, alertSettings.alertMessage)));
 }
 exports["default"] = CustomAlert;
+
+
+/***/ }),
+
+/***/ 778:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(6629);
+var react_1 = __importDefault(__webpack_require__(7294));
+function Input(_a) {
+    var value = _a.value, setValue = _a.setValue, _b = _a.label, label = _b === void 0 ? '' : _b, _c = _a.id, id = _c === void 0 ? '' : _c, _d = _a.type, type = _d === void 0 ? 'text' : _d;
+    return (react_1.default.createElement(material_1.TextField, { autoFocus: true, margin: 'dense', id: id, value: value, label: label, type: type, fullWidth: true, variant: 'standard', onChange: function (e) {
+            return setValue(e.target.value);
+        } }));
+}
+exports["default"] = Input;
+
+
+/***/ }),
+
+/***/ 9964:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(6629);
+var react_1 = __importDefault(__webpack_require__(7294));
+var Input_1 = __importDefault(__webpack_require__(778));
+function Modal(_a) {
+    var title = _a.title, body = _a.body, open = _a.open, handleClose = _a.handleClose, buttonText = _a.buttonText, buttonAction = _a.buttonAction, inputValue = _a.inputValue, setInputValue = _a.setInputValue, _b = _a.cancel, cancel = _b === void 0 ? true : _b;
+    return (react_1.default.createElement(material_1.Dialog, { open: open, onClose: handleClose, fullWidth: true, maxWidth: 'xs' },
+        title !== undefined ? react_1.default.createElement(material_1.DialogTitle, null, title) : react_1.default.createElement(react_1.default.Fragment, null),
+        react_1.default.createElement("form", { onSubmit: buttonAction || undefined },
+            react_1.default.createElement(material_1.DialogContent, null,
+                body !== undefined ? (react_1.default.createElement(material_1.DialogContentText, null, body)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+                inputValue !== undefined && setInputValue !== undefined ? (react_1.default.createElement(Input_1.default, { value: inputValue, setValue: setInputValue })) : (react_1.default.createElement(react_1.default.Fragment, null))),
+            react_1.default.createElement(material_1.DialogActions, null,
+                cancel ? (react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleClose }, "Cancel")) : (react_1.default.createElement(react_1.default.Fragment, null)),
+                buttonAction !== undefined && buttonText !== undefined ? (react_1.default.createElement(material_1.Button, { variant: 'contained', type: 'submit' }, buttonText)) : (react_1.default.createElement(react_1.default.Fragment, null))))));
+}
+exports["default"] = Modal;
 
 
 /***/ }),
@@ -51064,8 +51209,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
-var material_1 = __webpack_require__(629);
-var ListItemButton_1 = __importDefault(__webpack_require__(471));
+var material_1 = __webpack_require__(6629);
+var ListItemButton_1 = __importDefault(__webpack_require__(1471));
 var system_1 = __webpack_require__(8579);
 var react_1 = __importDefault(__webpack_require__(7294));
 var StyledListItem = (0, system_1.styled)(ListItemButton_1.default)(function (_a) {
@@ -51129,9 +51274,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var Add_1 = __importDefault(__webpack_require__(540));
+var Add_1 = __importDefault(__webpack_require__(6540));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var material_1 = __webpack_require__(629);
+var material_1 = __webpack_require__(6629);
 var react_1 = __importStar(__webpack_require__(7294));
 var constructFaviconUrl_1 = __webpack_require__(4127);
 var Circle_1 = __importDefault(__webpack_require__(3970));
@@ -51186,7 +51331,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(629);
+var material_1 = __webpack_require__(6629);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 function TabHeader(_a) {
@@ -51275,7 +51420,7 @@ exports.useLocalStorageState = useLocalStorageState;
 
 /***/ }),
 
-/***/ 5239:
+/***/ 137:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51344,11 +51489,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Save_1 = __importDefault(__webpack_require__(6818));
-var material_1 = __webpack_require__(629);
+var material_1 = __webpack_require__(6629);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __importStar(__webpack_require__(1738));
-var CreateGroup_1 = __importDefault(__webpack_require__(482));
-var CustomAlert_1 = __importDefault(__webpack_require__(210));
+var CreateGroupRow_1 = __importDefault(__webpack_require__(184));
+var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 function CurrentGroups() {
@@ -51405,10 +51550,10 @@ function CurrentGroups() {
     };
     return (react_1.default.createElement("div", null,
         Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, secondary: "".concat(currentTabs[Number(groupId)].tabs.length, " tab").concat(currentTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
-                react_1.default.createElement(Save_1.default, { fontSize: 'small', onClick: function (e) {
+                react_1.default.createElement(Save_1.default, { onClick: function (e) {
                         return saveGroup(e, Number(groupId), currentTabs[Number(groupId)].tabs);
                     } })) })); }),
-        react_1.default.createElement(CreateGroup_1.default, null),
+        react_1.default.createElement(CreateGroupRow_1.default, null),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = CurrentGroups;
@@ -51502,12 +51647,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var Delete_1 = __importDefault(__webpack_require__(733));
-var material_1 = __webpack_require__(629);
+var Delete_1 = __importDefault(__webpack_require__(1733));
+var material_1 = __webpack_require__(6629);
 var react_1 = __importStar(__webpack_require__(7294));
 var tabGroupUtil_1 = __importStar(__webpack_require__(1738));
-var CreateGroup_1 = __importDefault(__webpack_require__(482));
-var CustomAlert_1 = __importDefault(__webpack_require__(210));
+var CreateGroupRow_1 = __importDefault(__webpack_require__(184));
+var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var RowGroup_1 = __importDefault(__webpack_require__(3278));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 function SavedGroups() {
@@ -51566,10 +51711,10 @@ function SavedGroups() {
     };
     return (react_1.default.createElement("div", null,
         Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, secondary: "".concat(savedTabs[Number(groupId)].tabs.length, " tab").concat(savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
-                react_1.default.createElement(Delete_1.default, { fontSize: 'small', onClick: function (e) {
+                react_1.default.createElement(Delete_1.default, { onClick: function (e) {
                         return handleDelete(e, Number(groupId), savedTabs[Number(groupId)].title);
                     } })) })); }),
-        react_1.default.createElement(CreateGroup_1.default, null),
+        react_1.default.createElement(CreateGroupRow_1.default, null),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = SavedGroups;
@@ -51702,28 +51847,142 @@ var TabGroupUtil = (function () {
     function TabGroupUtil(maxGroups, maxTitleDuplicates) {
         this.maxGroups = maxGroups;
         this.maxTitleDuplicates = maxTitleDuplicates;
+        TabGroupUtil.initialize();
     }
-    TabGroupUtil.initialize = function () {
-        return __awaiter(this, void 0, Promise, function () {
-            var groups, savedTitles;
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        groups = TabGroupUtil.getKey('groups');
-                        savedTitles = TabGroupUtil.getKey('savedTitles');
-                        if (!(groups == null)) return [3, 2];
-                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = {}, _a))];
+    TabGroupUtil.prototype.takeSnapshot = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var allTabs;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabGroupUtil.getCurrentTabGroups()];
                     case 1:
-                        _c.sent();
-                        _c.label = 2;
+                        allTabs = _a.sent();
+                        Object.entries(allTabs).forEach(function (_a) {
+                            var groupId = _a[0], groupInfo = _a[1];
+                            return __awaiter(_this, void 0, void 0, function () {
+                                return __generator(this, function (_b) {
+                                    switch (_b.label) {
+                                        case 0:
+                                            if (!(Number(groupId) !== -1)) return [3, 2];
+                                            return [4, this.updateOrCreateGroup(Number(groupId), groupInfo.tabs)];
+                                        case 1:
+                                            _b.sent();
+                                            _b.label = 2;
+                                        case 2: return [2];
+                                    }
+                                });
+                            });
+                        });
+                        return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.updateOrCreateGroup = function (groupId, tabs) {
+        return __awaiter(this, void 0, Promise, function () {
+            var storageInfo, groupDetails, formattedTabs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabGroupUtil.getSavedGroupInfo(groupId)];
+                    case 1:
+                        storageInfo = _a.sent();
+                        return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
                     case 2:
-                        if (!(savedTitles == null)) return [3, 4];
-                        return [4, chrome.storage.local.set((_b = {}, _b['savedTitles'] = {}, _b))];
+                        groupDetails = _a.sent();
+                        formattedTabs = TabGroupUtil.formatTabList(tabs);
+                        if (!(storageInfo !== null)) return [3, 4];
+                        return [4, this.update(groupDetails, storageInfo, formattedTabs)];
                     case 3:
-                        _c.sent();
-                        _c.label = 4;
+                        _a.sent();
+                        return [3, 6];
+                    case 4: return [4, this.saveNew(groupDetails, formattedTabs)];
+                    case 5:
+                        _a.sent();
+                        _a.label = 6;
+                    case 6: return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.prototype.deleteTabGroup = function (id, title) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4, TabGroupUtil.deleteFromGroups(id)];
+                    case 1:
+                        _a.sent();
+                        return [4, TabGroupUtil.deleteFromSavedTitles(id, title)];
+                    case 2:
+                        _a.sent();
+                        return [3, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.error(e_1);
+                        return [3, 4];
                     case 4: return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.createTabGroup = function (title, color, tabIds) {
+        if (title === void 0) { title = ''; }
+        return __awaiter(this, void 0, Promise, function () {
+            var newGroupTabs, newTab, newGroupId, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 6, , 7]);
+                        newGroupTabs = void 0;
+                        if (!!tabIds) return [3, 2];
+                        return [4, TabGroupUtil.createTab()];
+                    case 1:
+                        newTab = _a.sent();
+                        newGroupTabs = newTab.id;
+                        return [3, 3];
+                    case 2:
+                        newGroupTabs = tabIds;
+                        _a.label = 3;
+                    case 3:
+                        console.log('newGroupTabs: ', newGroupTabs);
+                        return [4, chrome.tabs.group({ tabIds: newGroupTabs })];
+                    case 4:
+                        newGroupId = _a.sent();
+                        console.log('newGroupId: ', newGroupId);
+                        console.log('color: ', color);
+                        console.log('title: ', title);
+                        return [4, chrome.tabGroups.update(newGroupId, { color: color, title: title })];
+                    case 5:
+                        _a.sent();
+                        return [2, newGroupId];
+                    case 6:
+                        err_1 = _a.sent();
+                        console.error(err_1);
+                        return [2];
+                    case 7: return [2];
+                }
+            });
+        });
+    };
+    TabGroupUtil.createTab = function (url, active) {
+        if (active === void 0) { active = false; }
+        return __awaiter(this, void 0, Promise, function () {
+            var newTab;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.create({ url: url, active: active })];
+                    case 1:
+                        newTab = _a.sent();
+                        if (newTab !== undefined) {
+                            return [2, newTab];
+                        }
+                        else {
+                            throw Error("Unable to create new tab with url ".concat(url));
+                        }
+                        return [2];
                 }
             });
         });
@@ -51809,80 +52068,26 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.prototype.takeSnapshot = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var allTabs;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, TabGroupUtil.getCurrentTabGroups()];
-                    case 1:
-                        allTabs = _a.sent();
-                        Object.entries(allTabs).forEach(function (_a) {
-                            var groupId = _a[0], groupInfo = _a[1];
-                            return __awaiter(_this, void 0, void 0, function () {
-                                return __generator(this, function (_b) {
-                                    switch (_b.label) {
-                                        case 0:
-                                            if (!(Number(groupId) !== -1)) return [3, 2];
-                                            return [4, this.updateOrCreateGroup(Number(groupId), groupInfo.tabs)];
-                                        case 1:
-                                            _b.sent();
-                                            _b.label = 2;
-                                        case 2: return [2];
-                                    }
-                                });
-                            });
-                        });
-                        return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.updateOrCreateGroup = function (groupId, tabs) {
+    TabGroupUtil.initialize = function () {
         return __awaiter(this, void 0, Promise, function () {
-            var storageInfo, groupDetails, formattedTabs;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, TabGroupUtil.getSavedGroupInfo(groupId)];
-                    case 1:
-                        storageInfo = _a.sent();
-                        return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
-                    case 2:
-                        groupDetails = _a.sent();
-                        formattedTabs = TabGroupUtil.formatTabList(tabs);
-                        if (!(storageInfo !== null)) return [3, 4];
-                        return [4, this.update(groupDetails, storageInfo, formattedTabs)];
-                    case 3:
-                        _a.sent();
-                        return [3, 6];
-                    case 4: return [4, this.saveNew(groupDetails, formattedTabs)];
-                    case 5:
-                        _a.sent();
-                        _a.label = 6;
-                    case 6: return [2];
-                }
-            });
-        });
-    };
-    TabGroupUtil.prototype.deleteTabGroup = function (id, title) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var groups, savedTitles;
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4, TabGroupUtil.deleteFromGroups(id)];
+                        groups = TabGroupUtil.getKey('groups');
+                        savedTitles = TabGroupUtil.getKey('savedTitles');
+                        if (!(groups == null)) return [3, 2];
+                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = {}, _a))];
                     case 1:
-                        _a.sent();
-                        return [4, TabGroupUtil.deleteFromSavedTitles(id, title)];
+                        _c.sent();
+                        _c.label = 2;
                     case 2:
-                        _a.sent();
-                        return [3, 4];
+                        if (!(savedTitles == null)) return [3, 4];
+                        return [4, chrome.storage.local.set((_b = {}, _b['savedTitles'] = {}, _b))];
                     case 3:
-                        e_1 = _a.sent();
-                        console.error(e_1);
-                        return [3, 4];
+                        _c.sent();
+                        _c.label = 4;
                     case 4: return [2];
                 }
             });

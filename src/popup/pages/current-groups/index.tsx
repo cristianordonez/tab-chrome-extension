@@ -5,7 +5,7 @@ import { CurrentTabs } from '../../../types';
 import TabGroupUtil, {
    tabGroupUtilInstance,
 } from '../../../utils/tabGroupUtil';
-import CreateGroup from '../../components/CreateGroup';
+import CreateGroupRow from '../../components/CreateGroupRow';
 import CustomAlert from '../../components/CustomAlert';
 import RowGroup from '../../components/RowGroup';
 import useAlertSettings from '../../hooks/useAlertSettings';
@@ -62,7 +62,6 @@ export default function CurrentGroups() {
                MainRowBtn={
                   <Tooltip title='Save tab group and associated tabs'>
                      <SaveIcon
-                        fontSize='small'
                         onClick={(e) =>
                            saveGroup(
                               e,
@@ -75,7 +74,7 @@ export default function CurrentGroups() {
                }
             />
          ))}
-         <CreateGroup />
+         <CreateGroupRow />
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </div>
    );

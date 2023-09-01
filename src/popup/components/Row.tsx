@@ -1,7 +1,6 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { IconButton, ListItemIcon, ListItemText } from '@mui/material';
-// import ListItem, { ListItemProps } from '@mui/material/ListItem';
 import ListItemButton, {
    ListItemButtonProps,
 } from '@mui/material/ListItemButton';
@@ -9,7 +8,6 @@ import { styled } from '@mui/system';
 import React, { Dispatch, SetStateAction } from 'react';
 
 const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
-   // const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
    ({ theme }) => ({
       backgroundColor: theme.palette.background.paper,
       alignItems: 'center',

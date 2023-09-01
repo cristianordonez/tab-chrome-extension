@@ -5,7 +5,7 @@ import { LocalStorageTabGroups } from '../../../types';
 import TabGroupUtil, {
    tabGroupUtilInstance,
 } from '../../../utils/tabGroupUtil';
-import CreateGroup from '../../components/CreateGroup';
+import CreateGroupRow from '../../components/CreateGroupRow';
 import CustomAlert from '../../components/CustomAlert';
 import RowGroup from '../../components/RowGroup';
 import useAlertSettings from '../../hooks/useAlertSettings';
@@ -63,7 +63,7 @@ export default function SavedGroups() {
                MainRowBtn={
                   <Tooltip title='Delete tab group'>
                      <DeleteIcon
-                        fontSize='small'
+                        // fontSize='large'
                         onClick={(e) =>
                            handleDelete(
                               e,
@@ -76,7 +76,7 @@ export default function SavedGroups() {
                }
             />
          ))}
-         <CreateGroup />
+         <CreateGroupRow />
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </div>
    );

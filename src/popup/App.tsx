@@ -13,7 +13,7 @@ import { tabGroupUtilInstance } from '../utils/tabGroupUtil';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
-import CurrentGroups from './pages/current-groups/CurrentGroups';
+import CurrentGroups from './pages/current-groups';
 import GroupRules from './pages/group-rules/GroupRules';
 import SavedGroups from './pages/saved-groups/SavedGroups';
 import { getDesignTokens } from './theme';

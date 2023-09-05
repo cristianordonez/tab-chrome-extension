@@ -22,6 +22,7 @@ export default function CurrentGroups() {
       getTabs();
    }, []);
 
+   // gets and updates all current tab groups
    const getTabs = async () => {
       try {
          const tabGroups = await TabGroupUtil.getCurrentTabGroups();
@@ -68,12 +69,18 @@ export default function CurrentGroups() {
    };
 
    // called by Modal to create new group with given title
-   const handleCreate = async () => {
+   const handleCreateGroup = async () => {
       const output = await getOutput({ title: 'Group Name' });
       if (output) {
          await TabGroupUtil.createTabGroup(output);
          getTabs();
       }
+   };
+
+   // opens new tab when clicking on create new tab row
+   const handleCreateTab = async (groupId: number) => {
+      await TabGroupUtil.updateCurrentTabGroup(groupId);
+      getTabs();
    };
 
    return (
@@ -88,6 +95,7 @@ export default function CurrentGroups() {
                title={currentTabs[Number(groupId)].title}
                groupId={Number(groupId)}
                tabs={currentTabs[Number(groupId)].tabs}
+               handleCreateTab={handleCreateTab}
                MainRowBtn={
                   <Tooltip title='Save tab group and associated tabs'>
                      <SaveIcon
@@ -107,7 +115,7 @@ export default function CurrentGroups() {
             <Row
                title='Create new group'
                PrefixIcon={<AddIcon />}
-               handleClick={handleCreate}
+               handleClick={handleCreateGroup}
             />
          </List>
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />

@@ -51165,20 +51165,28 @@ var constructFaviconUrl_1 = __webpack_require__(4127);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroup(_a) {
-    var MainRowBtn = _a.MainRowBtn, _b = _a.tabs, tabs = _b === void 0 ? [] : _b, _c = _a.groupId, groupId = _c === void 0 ? 0 : _c, _d = _a.title, title = _d === void 0 ? '' : _d, _e = _a.color, color = _e === void 0 ? 'grey' : _e, _f = _a.secondary, secondary = _f === void 0 ? '' : _f;
+    var MainRowBtn = _a.MainRowBtn, _b = _a.tabs, tabs = _b === void 0 ? [] : _b, _c = _a.groupId, groupId = _c === void 0 ? 0 : _c, _d = _a.title, title = _d === void 0 ? '' : _d, _e = _a.color, color = _e === void 0 ? 'grey' : _e, _f = _a.secondary, secondary = _f === void 0 ? '' : _f, handleCreateTab = _a.handleCreateTab;
     var _g = (0, react_1.useState)(false), showTabs = _g[0], setShowTabs = _g[1];
     var handleCloseTab = function () { };
-    var handleCreate = function () {
-        console.log('HERE IN HANDLE CREATE');
-    };
+    var handleCreate = function () { };
     return (react_1.default.createElement(material_1.List, null,
         react_1.default.createElement(Row_1.default, { hasChildren: true, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: MainRowBtn, handleClick: handleCreate }),
         react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
             react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true },
                 react_1.default.createElement(react_1.default.Fragment, null,
-                    tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: groupId, isChild: true, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
-                            react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: handleCloseTab })) })); }),
-                    react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, { fontSize: 'small' }), title: 'Create new tab', isChild: true }))))));
+                    tabs.map(function (tab) {
+                        var currentUrl;
+                        if ('url' in tab && tab.url !== '') {
+                            currentUrl = tab.url;
+                        }
+                        else if ('pendingUrl' in tab && tab.pendingUrl !== '') {
+                            console.log('tab: ', tab);
+                            currentUrl = tab.pendingUrl;
+                        }
+                        return (react_1.default.createElement(Row_1.default, { key: groupId, isChild: true, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(currentUrl || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
+                                react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: handleCloseTab })) }));
+                    }),
+                    react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, { fontSize: 'small' }), title: 'Create new tab', isChild: true, handleClick: function () { return handleCreateTab(groupId); } }))))));
 }
 exports["default"] = RowGroup;
 
@@ -51592,7 +51600,7 @@ function CurrentGroups() {
     var handleAlert = function () {
         setAlertSettings();
     };
-    var handleCreate = function () { return __awaiter(_this, void 0, void 0, function () {
+    var handleCreateGroup = function () { return __awaiter(_this, void 0, void 0, function () {
         var output;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -51609,13 +51617,24 @@ function CurrentGroups() {
             }
         });
     }); };
+    var handleCreateTab = function (groupId) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, tabGroupUtil_1.default.updateCurrentTabGroup(groupId)];
+                case 1:
+                    _a.sent();
+                    getTabs();
+                    return [2];
+            }
+        });
+    }); };
     return (react_1.default.createElement("div", null,
-        Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, secondary: "".concat(currentTabs[Number(groupId)].tabs.length, " tab").concat(currentTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
+        Object.keys(currentTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, color: currentTabs[Number(groupId)].color, secondary: "".concat(currentTabs[Number(groupId)].tabs.length, " tab").concat(currentTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: currentTabs[Number(groupId)].title, groupId: Number(groupId), tabs: currentTabs[Number(groupId)].tabs, handleCreateTab: handleCreateTab, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
                 react_1.default.createElement(Save_1.default, { onClick: function (e) {
                         return saveGroup(e, Number(groupId), currentTabs[Number(groupId)].tabs);
                     } })) })); }),
         react_1.default.createElement(material_1.List, null,
-            react_1.default.createElement(Row_1.default, { title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreate })),
+            react_1.default.createElement(Row_1.default, { title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup })),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = CurrentGroups;
@@ -51780,8 +51799,18 @@ function SavedGroups() {
             }
         });
     }); };
+    var handleCreateTab = function (groupId) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, tabGroupUtil_1.default.updateCurrentTabGroup(groupId)];
+                case 1:
+                    _a.sent();
+                    return [2];
+            }
+        });
+    }); };
     return (react_1.default.createElement("div", null,
-        Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, secondary: "".concat(savedTabs[Number(groupId)].tabs.length, " tab").concat(savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: savedTabs[Number(groupId)].title, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
+        Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(RowGroup_1.default, { key: groupId, secondary: "".concat(savedTabs[Number(groupId)].tabs.length, " tab").concat(savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''), title: savedTabs[Number(groupId)].title, handleCreateTab: handleCreateTab, color: savedTabs[Number(groupId)].color, groupId: Number(groupId), tabs: savedTabs[Number(groupId)].tabs, MainRowBtn: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
                 react_1.default.createElement(Delete_1.default, { onClick: function (e) {
                         return handleDelete(e, Number(groupId), savedTabs[Number(groupId)].title);
                     } })) })); }),
@@ -52032,25 +52061,62 @@ var TabGroupUtil = (function () {
             });
         });
     };
+    TabGroupUtil.updateCurrentTabGroup = function (groupId, tabIds) {
+        return __awaiter(this, void 0, Promise, function () {
+            var groupDetails, newGroupTabs, newTab, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 8, , 9]);
+                        return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
+                    case 1:
+                        groupDetails = _a.sent();
+                        if (!(groupDetails !== null)) return [3, 6];
+                        newGroupTabs = void 0;
+                        if (!!tabIds) return [3, 3];
+                        return [4, TabGroupUtil.createTab()];
+                    case 2:
+                        newTab = _a.sent();
+                        newGroupTabs = newTab.id;
+                        return [3, 4];
+                    case 3:
+                        newGroupTabs = tabIds;
+                        _a.label = 4;
+                    case 4: return [4, chrome.tabs.group({ groupId: groupId, tabIds: newGroupTabs })];
+                    case 5:
+                        _a.sent();
+                        return [3, 7];
+                    case 6: throw new Error('Given group does not exist. Unable to add tab to it.');
+                    case 7: return [3, 9];
+                    case 8:
+                        err_2 = _a.sent();
+                        console.error(err_2);
+                        return [2];
+                    case 9: return [2];
+                }
+            });
+        });
+    };
     TabGroupUtil.createTab = function (active, url, pinned) {
         if (active === void 0) { active = false; }
         if (url === void 0) { url = undefined; }
         if (pinned === void 0) { pinned = false; }
         return __awaiter(this, void 0, Promise, function () {
-            var newTab;
+            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, chrome.tabs.create({ url: url, active: active, pinned: pinned })];
-                    case 1:
-                        newTab = _a.sent();
-                        if (newTab !== undefined) {
-                            return [2, newTab];
-                        }
-                        else {
-                            throw Error("Unable to create new tab with url ".concat(url));
-                        }
-                        return [2];
-                }
+                return [2, new Promise(function (resolve) {
+                        chrome.tabs.create({ url: url, active: active, pinned: pinned }, function (tab) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                                    if (info.status === 'complete' && tabId === tab.id) {
+                                        chrome.tabs.onUpdated.removeListener(listener);
+                                        resolve(tab);
+                                    }
+                                });
+                                return [2];
+                            });
+                        }); });
+                    })];
             });
         });
     };

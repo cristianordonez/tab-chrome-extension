@@ -235,25 +235,62 @@ var TabGroupUtil = (function () {
             });
         });
     };
+    TabGroupUtil.updateCurrentTabGroup = function (groupId, tabIds) {
+        return __awaiter(this, void 0, Promise, function () {
+            var groupDetails, newGroupTabs, newTab, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 8, , 9]);
+                        return [4, TabGroupUtil.getCurrentGroupInfo(groupId)];
+                    case 1:
+                        groupDetails = _a.sent();
+                        if (!(groupDetails !== null)) return [3, 6];
+                        newGroupTabs = void 0;
+                        if (!!tabIds) return [3, 3];
+                        return [4, TabGroupUtil.createTab()];
+                    case 2:
+                        newTab = _a.sent();
+                        newGroupTabs = newTab.id;
+                        return [3, 4];
+                    case 3:
+                        newGroupTabs = tabIds;
+                        _a.label = 4;
+                    case 4: return [4, chrome.tabs.group({ groupId: groupId, tabIds: newGroupTabs })];
+                    case 5:
+                        _a.sent();
+                        return [3, 7];
+                    case 6: throw new Error('Given group does not exist. Unable to add tab to it.');
+                    case 7: return [3, 9];
+                    case 8:
+                        err_2 = _a.sent();
+                        console.error(err_2);
+                        return [2];
+                    case 9: return [2];
+                }
+            });
+        });
+    };
     TabGroupUtil.createTab = function (active, url, pinned) {
         if (active === void 0) { active = false; }
         if (url === void 0) { url = undefined; }
         if (pinned === void 0) { pinned = false; }
         return __awaiter(this, void 0, Promise, function () {
-            var newTab;
+            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, chrome.tabs.create({ url: url, active: active, pinned: pinned })];
-                    case 1:
-                        newTab = _a.sent();
-                        if (newTab !== undefined) {
-                            return [2, newTab];
-                        }
-                        else {
-                            throw Error("Unable to create new tab with url ".concat(url));
-                        }
-                        return [2];
-                }
+                return [2, new Promise(function (resolve) {
+                        chrome.tabs.create({ url: url, active: active, pinned: pinned }, function (tab) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                                    if (info.status === 'complete' && tabId === tab.id) {
+                                        chrome.tabs.onUpdated.removeListener(listener);
+                                        resolve(tab);
+                                    }
+                                });
+                                return [2];
+                            });
+                        }); });
+                    })];
             });
         });
     };

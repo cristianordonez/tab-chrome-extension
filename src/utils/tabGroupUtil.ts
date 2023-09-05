@@ -74,18 +74,58 @@ class TabGroupUtil {
       }
    }
 
+   // updates existing tab group by adding given tabs to it, and creating new tab if needed
+   static async updateCurrentTabGroup(
+      groupId: number,
+      tabIds?: number | number[]
+   ): Promise<void> {
+      try {
+         const groupDetails = await TabGroupUtil.getCurrentGroupInfo(groupId);
+         if (groupDetails !== null) {
+            let newGroupTabs;
+            if (!tabIds) {
+               const newTab = await TabGroupUtil.createTab();
+               newGroupTabs = newTab.id;
+            } else {
+               newGroupTabs = tabIds;
+            }
+            await chrome.tabs.group({ groupId, tabIds: newGroupTabs });
+         } else {
+            throw new Error(
+               'Given group does not exist. Unable to add tab to it.'
+            );
+         }
+      } catch (err) {
+         console.error(err);
+         return;
+      }
+   }
+
    // creates new tab with given url or new tab page, returning tab id
    static async createTab(
       active: boolean = false,
       url: string | undefined = undefined,
       pinned: boolean = false
    ): Promise<chrome.tabs.Tab> {
-      const newTab = await chrome.tabs.create({ url, active, pinned });
-      if (newTab !== undefined) {
-         return newTab;
-      } else {
-         throw Error(`Unable to create new tab with url ${url}`);
-      }
+      return new Promise((resolve) => {
+         chrome.tabs.create({ url, active, pinned }, async (tab) => {
+            chrome.tabs.onUpdated.addListener(function listener(
+               tabId: number,
+               info: chrome.tabs.TabChangeInfo
+            ) {
+               if (info.status === 'complete' && tabId === tab.id) {
+                  chrome.tabs.onUpdated.removeListener(listener);
+                  resolve(tab);
+               }
+            });
+         });
+      });
+      // const newTab = await chrome.tabs.create({ url, active, pinned });
+      // if (newTab !== undefined) {
+      //    return newTab;
+      // } else {
+      //    throw Error(`Unable to create new tab with url ${url}`);
+      // }
    }
 
    // gets all active tabs and groups by groupId into proper data structure

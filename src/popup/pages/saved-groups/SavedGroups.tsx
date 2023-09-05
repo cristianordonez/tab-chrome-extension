@@ -52,6 +52,11 @@ export default function SavedGroups() {
       await TabGroupUtil.createTabGroup(title);
    };
 
+   // opens new tab when clicking on create new tab row
+   const handleCreateTab = async (groupId: number) => {
+      await TabGroupUtil.updateCurrentTabGroup(groupId);
+   };
+
    return (
       <div>
          {Object.keys(savedTabs).map((groupId) => (
@@ -61,13 +66,13 @@ export default function SavedGroups() {
                   savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''
                }`}
                title={savedTabs[Number(groupId)].title}
+               handleCreateTab={handleCreateTab}
                color={savedTabs[Number(groupId)].color}
                groupId={Number(groupId)}
                tabs={savedTabs[Number(groupId)].tabs}
                MainRowBtn={
                   <Tooltip title='Delete tab group'>
                      <DeleteIcon
-                        // fontSize='large'
                         onClick={(e) =>
                            handleDelete(
                               e,

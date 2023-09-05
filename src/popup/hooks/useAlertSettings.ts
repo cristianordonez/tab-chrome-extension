@@ -8,6 +8,7 @@ const defaultAlertSettings: AlertSettings = {
    alertMessage: '',
 };
 
+// hook that allows updating severity and alert message with one call
 export default function useAlertSettings() {
    const [alertSettings, setState] =
       useState<AlertSettings>(defaultAlertSettings);

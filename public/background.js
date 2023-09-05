@@ -138,7 +138,7 @@ var TabGroupUtil = (function () {
                                     switch (_b.label) {
                                         case 0:
                                             if (!(Number(groupId) !== -1)) return [3, 2];
-                                            return [4, this.updateOrCreateGroup(Number(groupId), groupInfo.tabs)];
+                                            return [4, this.updateOrSaveNewGroup(Number(groupId), groupInfo.tabs)];
                                         case 1:
                                             _b.sent();
                                             _b.label = 2;
@@ -152,7 +152,7 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.prototype.updateOrCreateGroup = function (groupId, tabs) {
+    TabGroupUtil.prototype.updateOrSaveNewGroup = function (groupId, tabs) {
         return __awaiter(this, void 0, Promise, function () {
             var storageInfo, groupDetails, formattedTabs;
             return __generator(this, function (_a) {

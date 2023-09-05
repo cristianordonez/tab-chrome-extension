@@ -43,13 +43,17 @@ export default function CurrentGroups() {
          if (groupId == -1) {
             const output = await getOutput({ title: 'Group Name' });
             if (output) {
-               console.log('output: ', output);
-               // todo save tab group with given title to storage
-               // todo save tabs connected to tab group to local storage
-               // todo rerender UI
+               const tabIds = tabs.reduce((accumulator, currentValue) => {
+                  if (currentValue.id) {
+                     accumulator.push(currentValue.id);
+                  }
+                  return accumulator;
+               }, [] as number[]);
+               await TabGroupUtil.createTabGroup(output, tabIds);
+               getTabs();
             }
          } else {
-            await tabGroupUtilInstance.updateOrCreateGroup(groupId, tabs);
+            await tabGroupUtilInstance.updateOrSaveNewGroup(groupId, tabs);
             setAlertSettings('success', 'Tab group saved');
          }
       } catch (err) {
@@ -99,7 +103,6 @@ export default function CurrentGroups() {
                }
             />
          ))}
-         {/* <CreateGroupRow handleCreate={handleCreate} /> */}
          <List>
             <Row
                title='Create new group'

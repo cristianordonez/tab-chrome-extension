@@ -51549,34 +51549,43 @@ function CurrentGroups() {
         });
     }); };
     var saveGroup = function (e, groupId, tabs) { return __awaiter(_this, void 0, void 0, function () {
-        var output, err_2;
+        var output, tabIds, err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.stopPropagation();
                     _a.label = 1;
                 case 1:
-                    _a.trys.push([1, 6, , 7]);
-                    if (!(groupId == -1)) return [3, 3];
+                    _a.trys.push([1, 8, , 9]);
+                    if (!(groupId == -1)) return [3, 5];
                     return [4, getOutput({ title: 'Group Name' })];
                 case 2:
                     output = _a.sent();
-                    if (output) {
-                        console.log('output: ', output);
-                    }
-                    return [3, 5];
-                case 3: return [4, tabGroupUtil_1.tabGroupUtilInstance.updateOrCreateGroup(groupId, tabs)];
-                case 4:
+                    if (!output) return [3, 4];
+                    tabIds = tabs.reduce(function (accumulator, currentValue) {
+                        if (currentValue.id) {
+                            accumulator.push(currentValue.id);
+                        }
+                        return accumulator;
+                    }, []);
+                    return [4, tabGroupUtil_1.default.createTabGroup(output, tabIds)];
+                case 3:
+                    _a.sent();
+                    getTabs();
+                    _a.label = 4;
+                case 4: return [3, 7];
+                case 5: return [4, tabGroupUtil_1.tabGroupUtilInstance.updateOrSaveNewGroup(groupId, tabs)];
+                case 6:
                     _a.sent();
                     setAlertSettings('success', 'Tab group saved');
-                    _a.label = 5;
-                case 5: return [3, 7];
-                case 6:
+                    _a.label = 7;
+                case 7: return [3, 9];
+                case 8:
                     err_2 = _a.sent();
                     console.error(err_2);
                     setAlertSettings('error', 'Something went wrong');
-                    return [3, 7];
-                case 7: return [2];
+                    return [3, 9];
+                case 9: return [2];
             }
         });
     }); };
@@ -51926,7 +51935,7 @@ var TabGroupUtil = (function () {
                                     switch (_b.label) {
                                         case 0:
                                             if (!(Number(groupId) !== -1)) return [3, 2];
-                                            return [4, this.updateOrCreateGroup(Number(groupId), groupInfo.tabs)];
+                                            return [4, this.updateOrSaveNewGroup(Number(groupId), groupInfo.tabs)];
                                         case 1:
                                             _b.sent();
                                             _b.label = 2;
@@ -51940,7 +51949,7 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.prototype.updateOrCreateGroup = function (groupId, tabs) {
+    TabGroupUtil.prototype.updateOrSaveNewGroup = function (groupId, tabs) {
         return __awaiter(this, void 0, Promise, function () {
             var storageInfo, groupDetails, formattedTabs;
             return __generator(this, function (_a) {

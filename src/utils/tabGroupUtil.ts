@@ -21,13 +21,13 @@ class TabGroupUtil {
       const allTabs = await TabGroupUtil.getCurrentTabGroups();
       Object.entries(allTabs).forEach(async ([groupId, groupInfo]) => {
          if (Number(groupId) !== -1) {
-            await this.updateOrCreateGroup(Number(groupId), groupInfo.tabs);
+            await this.updateOrSaveNewGroup(Number(groupId), groupInfo.tabs);
          }
       });
    }
 
-   // add group to local storage given groupId
-   async updateOrCreateGroup(
+   // add group to local storage given groupId and associated chrome.tabs.Tab array
+   async updateOrSaveNewGroup(
       groupId: number,
       tabs: chrome.tabs.Tab[]
    ): Promise<void> {

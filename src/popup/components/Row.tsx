@@ -19,6 +19,7 @@ const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
 interface Props {
    PrefixIcon?: React.ReactElement;
    AffixIcon?: React.ReactElement;
+   MiddleIcon?: React.ReactElement;
    setShowChildren?: Dispatch<SetStateAction<boolean>>;
    title: string;
    hasChildren?: boolean;
@@ -31,6 +32,7 @@ interface Props {
 export default function Row({
    PrefixIcon,
    AffixIcon,
+   MiddleIcon,
    setShowChildren,
    handleClick,
    title = '',
@@ -59,7 +61,6 @@ export default function Row({
          ) : (
             <></>
          )}
-
          <ListItemText
             primaryTypographyProps={{ fontSize: isChild ? '14px' : '16px' }}
             secondaryTypographyProps={{ fontSize: '12px' }}
@@ -74,6 +75,11 @@ export default function Row({
             >
                {arrowIcon}
             </IconButton>
+         ) : (
+            <></>
+         )}
+         {MiddleIcon !== undefined && MiddleIcon !== null ? (
+            <IconButton sx={{ marginRight: '4em' }}>{MiddleIcon}</IconButton>
          ) : (
             <></>
          )}

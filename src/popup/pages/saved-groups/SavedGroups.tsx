@@ -1,13 +1,14 @@
 import DeleteIcon from '@mui/icons-material/Delete';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { LocalStorageTabGroups } from '../../../types';
 import TabGroupUtil, {
    tabGroupUtilInstance,
 } from '../../../utils/tabGroupUtil';
-// import CreateGroupRow from '../../components/CreateGroupRow';
+import Circle from '../../components/Circle';
 import CustomAlert from '../../components/CustomAlert';
-import RowGroup from '../../components/RowGroup';
+import RowGroupTabs from '../../components/RowGroupTabs';
 import useAlertSettings from '../../hooks/useAlertSettings';
 
 export default function SavedGroups() {
@@ -48,9 +49,7 @@ export default function SavedGroups() {
       setAlertSettings();
    };
 
-   const handleCreate = async (title: string) => {
-      await TabGroupUtil.createTabGroup(title);
-   };
+   const handleCloseTab = () => {};
 
    // opens new tab when clicking on create new tab row
    const handleCreateTab = async (groupId: number) => {
@@ -60,17 +59,19 @@ export default function SavedGroups() {
    return (
       <div>
          {Object.keys(savedTabs).map((groupId) => (
-            <RowGroup
+            <RowGroupTabs
                key={groupId}
                secondary={`${savedTabs[Number(groupId)].tabs.length} tab${
                   savedTabs[Number(groupId)].tabs.length > 1 ? 's' : ''
                }`}
                title={savedTabs[Number(groupId)].title}
                handleCreateTab={handleCreateTab}
-               color={savedTabs[Number(groupId)].color}
+               ParentPrefixButton={
+                  <Circle color={savedTabs[Number(groupId)].color || 'grey'} />
+               }
                groupId={Number(groupId)}
                tabs={savedTabs[Number(groupId)].tabs}
-               MainRowBtn={
+               ParentAffixButton={
                   <Tooltip title='Delete tab group'>
                      <DeleteIcon
                         onClick={(e) =>
@@ -83,9 +84,16 @@ export default function SavedGroups() {
                      />
                   </Tooltip>
                }
+               ChildAffixButton={
+                  <Tooltip title='Close tab'>
+                     <RemoveCircleIcon
+                        fontSize='small'
+                        onClick={handleCloseTab}
+                     />
+                  </Tooltip>
+               }
             />
          ))}
-         {/* <CreateGroupRow handleCreate={handleCreate} /> */}
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </div>
    );

@@ -120,12 +120,6 @@ class TabGroupUtil {
             });
          });
       });
-      // const newTab = await chrome.tabs.create({ url, active, pinned });
-      // if (newTab !== undefined) {
-      //    return newTab;
-      // } else {
-      //    throw Error(`Unable to create new tab with url ${url}`);
-      // }
    }
 
    // gets all active tabs and groups by groupId into proper data structure
@@ -182,6 +176,23 @@ class TabGroupUtil {
       } else {
          const groupInfo = await chrome.tabGroups.get(groupId);
          return groupInfo;
+      }
+   }
+
+   // close current tab group
+   static async closeTabGroup(groupId: number): Promise<void> {
+      try {
+         const tabGroups = await chrome.tabs.query({ groupId });
+         const tabIds = tabGroups.reduce((accumulator, currentValue) => {
+            if (currentValue.id) {
+               accumulator.push(currentValue.id);
+            }
+            return accumulator;
+         }, [] as number[]);
+         await chrome.tabs.remove(tabIds);
+         console.log('tabGroups: ', tabGroups);
+      } catch (err) {
+         console.error(err);
       }
    }
 

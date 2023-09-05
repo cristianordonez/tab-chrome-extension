@@ -1,15 +1,17 @@
 import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import SaveIcon from '@mui/icons-material/Save';
 import { List, Tooltip } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import { CurrentTabs } from '../../../types';
 import TabGroupUtil, {
    tabGroupUtilInstance,
 } from '../../../utils/tabGroupUtil';
-// import CreateGroupRow from '../../components/CreateGroupRow';
+import Circle from '../../components/Circle';
 import CustomAlert from '../../components/CustomAlert';
 import Row from '../../components/Row';
-import RowGroup from '../../components/RowGroup';
+import RowGroupTabs from '../../components/RowGroupTabs';
 import { useModal } from '../../hooks/ModalProvider';
 import useAlertSettings from '../../hooks/useAlertSettings';
 
@@ -83,12 +85,23 @@ export default function CurrentGroups() {
       getTabs();
    };
 
+   // closes tab and all associated tab groups
+   const handleCloseGroup = async (
+      e: MouseEvent<HTMLElement | SVGSVGElement>,
+      groupId: number
+   ) => {
+      await TabGroupUtil.closeTabGroup(groupId);
+      getTabs();
+   };
+
+   // handles closing current tab
+   const handleCloseTab = async () => {};
+
    return (
       <div>
          {Object.keys(currentTabs).map((groupId) => (
-            <RowGroup
+            <RowGroupTabs
                key={groupId}
-               color={currentTabs[Number(groupId)].color}
                secondary={`${currentTabs[Number(groupId)].tabs.length} tab${
                   currentTabs[Number(groupId)].tabs.length > 1 ? 's' : ''
                }`}
@@ -96,7 +109,12 @@ export default function CurrentGroups() {
                groupId={Number(groupId)}
                tabs={currentTabs[Number(groupId)].tabs}
                handleCreateTab={handleCreateTab}
-               MainRowBtn={
+               ParentPrefixButton={
+                  <Circle
+                     color={currentTabs[Number(groupId)].color || 'grey'}
+                  />
+               }
+               ParentAffixButton={
                   <Tooltip title='Save tab group and associated tabs'>
                      <SaveIcon
                         onClick={(e) =>
@@ -106,6 +124,22 @@ export default function CurrentGroups() {
                               currentTabs[Number(groupId)].tabs
                            )
                         }
+                     />
+                  </Tooltip>
+               }
+               ParentMiddleButton={
+                  <Tooltip title='Close tab group and all associated tabs'>
+                     <CloseIcon
+                        fontSize='small'
+                        onClick={(e) => handleCloseGroup(e, Number(groupId))}
+                     />
+                  </Tooltip>
+               }
+               ChildAffixButton={
+                  <Tooltip title='Close tab'>
+                     <RemoveCircleIcon
+                        fontSize='small'
+                        onClick={handleCloseTab}
                      />
                   </Tooltip>
                }

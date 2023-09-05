@@ -201,7 +201,7 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.createTabGroup = function (title, color, tabIds) {
+    TabGroupUtil.createTabGroup = function (title, tabIds, color) {
         if (title === void 0) { title = ''; }
         return __awaiter(this, void 0, Promise, function () {
             var newGroupTabs, newTab, newGroupId, err_1;
@@ -219,14 +219,9 @@ var TabGroupUtil = (function () {
                     case 2:
                         newGroupTabs = tabIds;
                         _a.label = 3;
-                    case 3:
-                        console.log('newGroupTabs: ', newGroupTabs);
-                        return [4, chrome.tabs.group({ tabIds: newGroupTabs })];
+                    case 3: return [4, chrome.tabs.group({ tabIds: newGroupTabs })];
                     case 4:
                         newGroupId = _a.sent();
-                        console.log('newGroupId: ', newGroupId);
-                        console.log('color: ', color);
-                        console.log('title: ', title);
                         return [4, chrome.tabGroups.update(newGroupId, { color: color, title: title })];
                     case 5:
                         _a.sent();
@@ -240,13 +235,15 @@ var TabGroupUtil = (function () {
             });
         });
     };
-    TabGroupUtil.createTab = function (url, active) {
+    TabGroupUtil.createTab = function (active, url, pinned) {
         if (active === void 0) { active = false; }
+        if (url === void 0) { url = undefined; }
+        if (pinned === void 0) { pinned = false; }
         return __awaiter(this, void 0, Promise, function () {
             var newTab;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, chrome.tabs.create({ url: url, active: active })];
+                    case 0: return [4, chrome.tabs.create({ url: url, active: active, pinned: pinned })];
                     case 1:
                         newTab = _a.sent();
                         if (newTab !== undefined) {

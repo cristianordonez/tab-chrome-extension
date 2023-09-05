@@ -5,7 +5,7 @@ import { LocalStorageTabGroups } from '../../../types';
 import TabGroupUtil, {
    tabGroupUtilInstance,
 } from '../../../utils/tabGroupUtil';
-import CreateGroupRow from '../../components/CreateGroupRow';
+// import CreateGroupRow from '../../components/CreateGroupRow';
 import CustomAlert from '../../components/CustomAlert';
 import RowGroup from '../../components/RowGroup';
 import useAlertSettings from '../../hooks/useAlertSettings';
@@ -48,6 +48,10 @@ export default function SavedGroups() {
       setAlertSettings();
    };
 
+   const handleCreate = async (title: string) => {
+      await TabGroupUtil.createTabGroup(title);
+   };
+
    return (
       <div>
          {Object.keys(savedTabs).map((groupId) => (
@@ -76,7 +80,7 @@ export default function SavedGroups() {
                }
             />
          ))}
-         <CreateGroupRow />
+         {/* <CreateGroupRow handleCreate={handleCreate} /> */}
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </div>
    );

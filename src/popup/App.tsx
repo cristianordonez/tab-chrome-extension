@@ -12,6 +12,7 @@ import { RouteType } from '../types';
 import { tabGroupUtilInstance } from '../utils/tabGroupUtil';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
+import ModalProvider from './hooks/ModalProvider';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
 import CurrentGroups from './pages/current-groups';
 import GroupRules from './pages/group-rules/GroupRules';
@@ -75,22 +76,24 @@ export default function App() {
          <BrowserRouter>
             <ColorModeContext.Provider value={colorMode}>
                <ThemeProvider theme={theme}>
-                  <CssBaseline />
-                  <Center column gap={1}>
-                     <>
-                        <TabHeader routes={routes} />
-                        <Routes>
-                           {routes.map(({ path, element: Component }) => (
-                              <Route path={path} element={<Component />} />
-                           ))}
-                        </Routes>
-                        <OpenInFullIcon
-                           onClick={() =>
-                              chrome.tabs.create({ url: 'popup.html' })
-                           }
-                        />
-                     </>
-                  </Center>
+                  <ModalProvider>
+                     <CssBaseline />
+                     <Center column gap={1}>
+                        <>
+                           <TabHeader routes={routes} />
+                           <Routes>
+                              {routes.map(({ path, element: Component }) => (
+                                 <Route path={path} element={<Component />} />
+                              ))}
+                           </Routes>
+                           <OpenInFullIcon
+                              onClick={() =>
+                                 chrome.tabs.create({ url: 'popup.html' })
+                              }
+                           />
+                        </>
+                     </Center>
+                  </ModalProvider>
                </ThemeProvider>
             </ColorModeContext.Provider>
          </BrowserRouter>

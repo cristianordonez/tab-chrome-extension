@@ -54,10 +54,9 @@ class TabGroupUtil {
    // creates and opens new tab group, returning group id of created group
    static async createTabGroup(
       title: string = '',
-      color?: ColorEnum,
-      tabIds?: number[]
+      tabIds?: number[],
+      color?: ColorEnum
    ): Promise<number | undefined> {
-      // if no tabIds given create new one
       try {
          let newGroupTabs;
          if (!tabIds) {
@@ -77,10 +76,11 @@ class TabGroupUtil {
 
    // creates new tab with given url or new tab page, returning tab id
    static async createTab(
-      url?: string,
-      active: boolean = false
+      active: boolean = false,
+      url: string | undefined = undefined,
+      pinned: boolean = false
    ): Promise<chrome.tabs.Tab> {
-      const newTab = await chrome.tabs.create({ url, active: active });
+      const newTab = await chrome.tabs.create({ url, active, pinned });
       if (newTab !== undefined) {
          return newTab;
       } else {

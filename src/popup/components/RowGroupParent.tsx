@@ -31,9 +31,9 @@ interface Props {
    /**
     *function called when main parent row is clicked
     */
-   hover?: boolean;
+   groupId: number;
    /**
-    *whether or not parent row should include hover
+    *id of current group
     */
 }
 
@@ -45,14 +45,14 @@ export default function RowGroupParent({
    secondary = '',
    children,
    handleParentClick,
-   hover,
+   groupId,
 }: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
 
    return (
       <List>
          <Row
-            hover={hover}
+            id={groupId}
             hasChildren={true}
             PrefixIcon={ParentPrefixButton}
             title={title}

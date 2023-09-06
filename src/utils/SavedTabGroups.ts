@@ -1,4 +1,5 @@
 import {
+   ColorEnum,
    LocalStorageTab,
    LocalStorageTabGroup,
    LocalStorageTabGroups,
@@ -33,12 +34,34 @@ class SavedTabGroups {
       const formattedTabs = SavedTabGroups.formatTabList(tabs);
       if (groupDetails !== null) {
          if (storageInfo !== null) {
-            await this.update(groupDetails, storageInfo, formattedTabs);
+            await this.update(
+               storageInfo,
+               formattedTabs,
+               groupDetails.title || '',
+               groupDetails.color
+            );
          } else {
             await this.create(groupDetails, formattedTabs);
          }
       } else {
          throw new Error('Cannot save group that does not currently exist.');
+      }
+   }
+
+   // adds given tabs to saved tab group, or creates tab if none existed
+   async addTabs(id: number, tabs: chrome.tabs.Tab[]) {
+      const savedGroupInfo = await SavedTabGroups.getInfo(id);
+      if (savedGroupInfo !== null) {
+         const formattedTabs = savedGroupInfo.tabs;
+         formattedTabs.concat(SavedTabGroups.formatTabList(tabs));
+         await this.update(
+            savedGroupInfo,
+            formattedTabs,
+            savedGroupInfo.title,
+            savedGroupInfo.color
+         );
+      } else {
+         throw new Error('No group with given id exists in local storage.');
       }
    }
 
@@ -66,12 +89,11 @@ class SavedTabGroups {
                tabIds.push(tab.id);
             }
          }
-         const updatedGroupId = await CurrentTabGroups.create(
+         await CurrentTabGroups.create(
             groupInfo.title,
             tabIds,
             groupInfo.color
          );
-         console.log('updatedGroupId: ', updatedGroupId);
       } else {
          throw new Error(
             'Group with given id does not exist in saved tab groups.'
@@ -104,7 +126,7 @@ class SavedTabGroups {
       const groupInfo = await SavedTabGroups.getInfo(groupId);
       if (groupInfo !== null) {
          const updatedTabs = groupInfo?.tabs.filter(
-            (tab) => tabIds.includes(tab.tabId) === false
+            (tab) => tabIds.includes(tab.id) === false
          );
          if (updatedTabs.length === 0) {
             await SavedTabGroups.delete(groupInfo.id, groupInfo.title);
@@ -147,29 +169,30 @@ class SavedTabGroups {
          }
       }
       await SavedTabGroups.updateStorageGroupKey(newTabGroup);
-      await SavedTabGroups.saveToSavedTitles(group);
+      await SavedTabGroups.saveToSavedTitles(group.id, group.title || '');
    }
 
    // updates existing tab group on local storage with new values
    private async update(
-      group: chrome.tabGroups.TabGroup,
+      // //group: chrome.tabGroups.TabGroup,
       previousGroup: LocalStorageTabGroup,
-      tabs: LocalStorageTab[]
+      tabs: LocalStorageTab[],
+      title: string,
+      color: ColorEnum
    ): Promise<void> {
       const updatedGroup = {
          id: previousGroup.id,
-         color: group.color,
-         title: group.title || '',
+         color: color,
+         title: title || '',
          tabs: tabs,
          createdAt: previousGroup.createdAt,
       };
-      // if title has updated, delete previous title from savedTitles
-      if (group.title !== previousGroup.title) {
+      if (title !== previousGroup.title) {
          await SavedTabGroups.deleteFromSavedTitles(
             previousGroup.id,
             previousGroup.title
          );
-         await SavedTabGroups.saveToSavedTitles(group);
+         await SavedTabGroups.saveToSavedTitles(previousGroup.id, title || '');
       }
       await SavedTabGroups.updateStorageGroupKey(updatedGroup);
    }
@@ -215,7 +238,7 @@ class SavedTabGroups {
    private static formatTabList(tabs: chrome.tabs.Tab[]): LocalStorageTab[] {
       const storageTabs = tabs.map((tab) => {
          return {
-            tabId: tab.id || Number(Date.now()),
+            id: tab.id || Number(Date.now()),
             url: tab.url || '',
             title: tab.title || '',
          };
@@ -250,16 +273,17 @@ class SavedTabGroups {
 
    // saves group id to saved titles in class and updates local storage
    private static async saveToSavedTitles(
-      group: chrome.tabGroups.TabGroup
+      //// group: chrome.tabGroups.TabGroup
+      id: number,
+      title: string
    ): Promise<void> {
-      const title = group.title !== undefined ? group.title : '';
       const savedTitles = (await SavedTabGroups.getKey(
          'savedTitles'
       )) as LocalStorageTitles;
       if (title in savedTitles) {
-         savedTitles[title].push(group.id);
+         savedTitles[title].push(id);
       } else {
-         savedTitles[title] = [group.id];
+         savedTitles[title] = [id];
       }
       await chrome.storage.local.set({ ['savedTitles']: savedTitles });
    }

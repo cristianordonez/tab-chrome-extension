@@ -47,7 +47,7 @@ class CurrentTabGroups {
    }
 
    // updates existing tab group by adding given tabs to it, and creating new tab if needed
-   static async update(
+   static async addTabs(
       groupId: number,
       tabIds?: number | number[]
    ): Promise<void> {

@@ -84,7 +84,7 @@ export default function CurrentGroup({
 
    // adds new tab to current group
    const handleCreateTab = async () => {
-      await CurrentTabGroups.update(groupId);
+      await CurrentTabGroups.addTabs(groupId);
       updateGroup();
    };
 

@@ -2,7 +2,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AlertColor, Tooltip } from '@mui/material';
 import React, { MouseEvent } from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
-import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import SavedTabGroups from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
@@ -40,11 +39,6 @@ export default function SavedGroup({
       }
    };
 
-   // opens new tab when clicking on create new tab row
-   const handleCreateTab = async () => {
-      await CurrentTabGroups.update(groupId);
-   };
-
    // deletes tab from current saved group
    const handleCloseTab = async (
       e: MouseEvent<HTMLElement | SVGSVGElement>,
@@ -60,7 +54,18 @@ export default function SavedGroup({
       try {
          await SavedTabGroups.open(groupId);
       } catch {
-         console.log('HERE IN CATCH');
+         setAlertSettings('error', 'Something went wrong');
+      }
+   };
+
+   // handles opening tab url on click
+   const handleTabClick = async (
+      e: MouseEvent<SVGSVGElement | HTMLElement>,
+      url: string | undefined
+   ) => {
+      if (url !== undefined) {
+         await chrome.tabs.create({ url, active: false });
+      } else {
          setAlertSettings('error', 'Something went wrong');
       }
    };
@@ -80,8 +85,7 @@ export default function SavedGroup({
             tabs={tabs}
             groupId={groupId}
             handleCloseTab={handleCloseTab}
-            handleCreateTab={handleCreateTab}
-            hover
+            handleTabClick={handleTabClick}
          />
       </>
    );

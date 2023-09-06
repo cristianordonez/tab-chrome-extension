@@ -183,7 +183,7 @@ var CurrentTabGroups = (function () {
             });
         });
     };
-    CurrentTabGroups.update = function (groupId, tabIds) {
+    CurrentTabGroups.addTabs = function (groupId, tabIds) {
         return __awaiter(this, void 0, Promise, function () {
             var groupDetails, newGroupTabs, newTab, err_3;
             return __generator(this, function (_a) {
@@ -374,7 +374,7 @@ var SavedTabGroups = (function () {
                         formattedTabs = SavedTabGroups.formatTabList(tabs);
                         if (!(groupDetails !== null)) return [3, 7];
                         if (!(storageInfo !== null)) return [3, 4];
-                        return [4, this.update(groupDetails, storageInfo, formattedTabs)];
+                        return [4, this.update(storageInfo, formattedTabs, groupDetails.title || '', groupDetails.color)];
                     case 3:
                         _a.sent();
                         return [3, 6];
@@ -385,6 +385,27 @@ var SavedTabGroups = (function () {
                     case 6: return [3, 8];
                     case 7: throw new Error('Cannot save group that does not currently exist.');
                     case 8: return [2];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.addTabs = function (id, tabs) {
+        return __awaiter(this, void 0, void 0, function () {
+            var savedGroupInfo, formattedTabs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, SavedTabGroups.getInfo(id)];
+                    case 1:
+                        savedGroupInfo = _a.sent();
+                        if (!(savedGroupInfo !== null)) return [3, 3];
+                        formattedTabs = savedGroupInfo.tabs;
+                        formattedTabs.concat(SavedTabGroups.formatTabList(tabs));
+                        return [4, this.update(savedGroupInfo, formattedTabs, savedGroupInfo.title, savedGroupInfo.color)];
+                    case 2:
+                        _a.sent();
+                        return [3, 4];
+                    case 3: throw new Error('No group with given id exists in local storage.');
+                    case 4: return [2];
                 }
             });
         });
@@ -414,7 +435,7 @@ var SavedTabGroups = (function () {
     };
     SavedTabGroups.open = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var groupInfo, tabIds, i, tab, updatedGroupId;
+            var groupInfo, tabIds, i, tab;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, SavedTabGroups.getInfo(id)];
@@ -441,8 +462,7 @@ var SavedTabGroups = (function () {
                         return [3, 2];
                     case 5: return [4, CurrentTabGroups_1.default.create(groupInfo.title, tabIds, groupInfo.color)];
                     case 6:
-                        updatedGroupId = _a.sent();
-                        console.log('updatedGroupId: ', updatedGroupId);
+                        _a.sent();
                         return [3, 8];
                     case 7: throw new Error('Group with given id does not exist in saved tab groups.');
                     case 8: return [2];
@@ -491,7 +511,7 @@ var SavedTabGroups = (function () {
                     case 1:
                         groupInfo = _a.sent();
                         if (!(groupInfo !== null)) return [3, 5];
-                        updatedTabs = groupInfo === null || groupInfo === void 0 ? void 0 : groupInfo.tabs.filter(function (tab) { return tabIds.includes(tab.tabId) === false; });
+                        updatedTabs = groupInfo === null || groupInfo === void 0 ? void 0 : groupInfo.tabs.filter(function (tab) { return tabIds.includes(tab.id) === false; });
                         if (!(updatedTabs.length === 0)) return [3, 3];
                         return [4, SavedTabGroups.delete(groupInfo.id, groupInfo.title)];
                     case 2:
@@ -561,7 +581,7 @@ var SavedTabGroups = (function () {
                     case 4: return [4, SavedTabGroups.updateStorageGroupKey(newTabGroup)];
                     case 5:
                         _a.sent();
-                        return [4, SavedTabGroups.saveToSavedTitles(group)];
+                        return [4, SavedTabGroups.saveToSavedTitles(group.id, group.title || '')];
                     case 6:
                         _a.sent();
                         return [2];
@@ -569,7 +589,7 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.prototype.update = function (group, previousGroup, tabs) {
+    SavedTabGroups.prototype.update = function (previousGroup, tabs, title, color) {
         return __awaiter(this, void 0, Promise, function () {
             var updatedGroup;
             return __generator(this, function (_a) {
@@ -577,16 +597,16 @@ var SavedTabGroups = (function () {
                     case 0:
                         updatedGroup = {
                             id: previousGroup.id,
-                            color: group.color,
-                            title: group.title || '',
+                            color: color,
+                            title: title || '',
                             tabs: tabs,
                             createdAt: previousGroup.createdAt,
                         };
-                        if (!(group.title !== previousGroup.title)) return [3, 3];
+                        if (!(title !== previousGroup.title)) return [3, 3];
                         return [4, SavedTabGroups.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
                     case 1:
                         _a.sent();
-                        return [4, SavedTabGroups.saveToSavedTitles(group)];
+                        return [4, SavedTabGroups.saveToSavedTitles(previousGroup.id, title || '')];
                     case 2:
                         _a.sent();
                         _a.label = 3;
@@ -659,7 +679,7 @@ var SavedTabGroups = (function () {
     SavedTabGroups.formatTabList = function (tabs) {
         var storageTabs = tabs.map(function (tab) {
             return {
-                tabId: tab.id || Number(Date.now()),
+                id: tab.id || Number(Date.now()),
                 url: tab.url || '',
                 title: tab.title || '',
             };
@@ -705,22 +725,20 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.saveToSavedTitles = function (group) {
+    SavedTabGroups.saveToSavedTitles = function (id, title) {
         return __awaiter(this, void 0, Promise, function () {
-            var title, savedTitles;
+            var savedTitles;
             var _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0:
-                        title = group.title !== undefined ? group.title : '';
-                        return [4, SavedTabGroups.getKey('savedTitles')];
+                    case 0: return [4, SavedTabGroups.getKey('savedTitles')];
                     case 1:
                         savedTitles = (_b.sent());
                         if (title in savedTitles) {
-                            savedTitles[title].push(group.id);
+                            savedTitles[title].push(id);
                         }
                         else {
-                            savedTitles[title] = [group.id];
+                            savedTitles[title] = [id];
                         }
                         return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = savedTitles, _a))];
                     case 2:

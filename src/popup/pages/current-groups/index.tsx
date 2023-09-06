@@ -54,7 +54,7 @@ export default function CurrentGroups() {
          ))}
          <List>
             <Row
-               hover={true}
+               id={0}
                title='Create new group'
                PrefixIcon={<AddIcon />}
                handleClick={handleCreateGroup}

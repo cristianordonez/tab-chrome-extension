@@ -34,7 +34,7 @@ interface SharedTabGroup {
 
 // single tab in saved tab groups array
 interface LocalStorageTab {
-   tabId: number;
+   id: number;
    url: string;
    title: string;
 }

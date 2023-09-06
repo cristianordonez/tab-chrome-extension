@@ -26,6 +26,7 @@ const StyledListItemButton = styled(ListItemButton, {
 }));
 
 interface Props {
+   id?: number;
    PrefixIcon?: React.ReactElement;
    AffixIcon?: React.ReactElement;
    MiddleIcon?: React.ReactElement;
@@ -36,7 +37,6 @@ interface Props {
    secondary?: string;
    showChildren?: boolean;
    handleClick?: (e: MouseEvent<SVGSVGElement | HTMLElement>) => void;
-   hover?: boolean;
 }
 
 export default function Row({
@@ -50,7 +50,6 @@ export default function Row({
    isChild = false,
    secondary = '',
    showChildren = false,
-   hover,
 }: Props) {
    const arrowIcon = showChildren ? (
       <ExpandMoreIcon fontSize='large' />
@@ -58,7 +57,7 @@ export default function Row({
       <ChevronRightIcon fontSize='large' />
    );
 
-   const handleShowChildren = (e: React.MouseEvent) => {
+   const handleShowChildren = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
       e.stopPropagation();
       if (setShowChildren) {
          setShowChildren(!showChildren);
@@ -67,7 +66,7 @@ export default function Row({
 
    return (
       <StyledListItemButton
-         hover={hover}
+         hover={handleClick !== undefined}
          alignItems='center'
          divider
          onClick={handleClick}

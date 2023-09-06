@@ -48,19 +48,23 @@ interface Props {
    /**
     * deletes or closes tab from current group
     */
-   handleCreateTab: (
+   handleCreateTab?: (
       e: MouseEvent<HTMLElement | SVGSVGElement>
    ) => Promise<void>;
    /**
     * opens or saves new tab to group
     */
-   hover?: boolean;
+   handleTabClick?: (
+      e: MouseEvent<SVGSVGElement | HTMLElement>,
+      url: string | undefined
+   ) => void;
    /**
-    * whether or not parent row should include hover
+    * handles main row child click
     */
 }
 
 export default function TabGroup({
+   groupId,
    ParentPrefixButton,
    ParentMiddleButton,
    ParentAffixButton,
@@ -68,25 +72,30 @@ export default function TabGroup({
    secondary,
    handleParentClick,
    tabs,
-   groupId,
    handleCloseTab,
    handleCreateTab,
-   hover,
+   handleTabClick,
 }: Props) {
    return (
       <RowGroupParent
+         groupId={groupId}
          ParentPrefixButton={ParentPrefixButton}
          ParentMiddleButton={ParentMiddleButton}
          ParentAffixButton={ParentAffixButton}
          title={title}
          secondary={secondary}
          handleParentClick={handleParentClick}
-         hover={hover}
       >
          {tabs.map((tab) => (
             <Row
-               key={groupId}
+               key={tab.id}
+               id={tab.id}
                isChild={true}
+               handleClick={
+                  handleTabClick !== undefined
+                     ? (e) => handleTabClick(e, tab.url)
+                     : undefined
+               }
                PrefixIcon={
                   <Box
                      component='img'
@@ -101,14 +110,8 @@ export default function TabGroup({
                      <RemoveCircleIcon
                         fontSize='small'
                         onClick={(e) => {
-                           let tabId: number | undefined;
-                           if ('tabId' in tab) {
-                              tabId = tab.tabId;
-                           } else {
-                              tabId = tab.id;
-                           }
-                           if (tabId !== undefined) {
-                              handleCloseTab(e, tabId);
+                           if (tab.id) {
+                              handleCloseTab(e, tab.id);
                            }
                         }}
                      />
@@ -116,12 +119,17 @@ export default function TabGroup({
                }
             />
          ))}
-         <Row
-            PrefixIcon={<AddIcon fontSize='small' />}
-            title='Create new tab'
-            isChild={true}
-            handleClick={handleCreateTab}
-         />
+         {handleCreateTab ? (
+            <Row
+               id={groupId}
+               PrefixIcon={<AddIcon fontSize='small' />}
+               title='Create new tab'
+               isChild={true}
+               handleClick={handleCreateTab}
+            />
+         ) : (
+            <></>
+         )}
       </RowGroupParent>
    );
 }

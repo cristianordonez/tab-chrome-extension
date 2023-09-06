@@ -1,4 +1,5 @@
 import { ColorEnum } from '../types';
+import { createTab } from './createTab';
 
 class CurrentTabGroups {
    // close current tab group
@@ -26,7 +27,7 @@ class CurrentTabGroups {
       try {
          let newGroupTabs;
          if (!tabIds) {
-            const newTab = await CurrentTabGroups.createTab();
+            const newTab = await createTab();
             newGroupTabs = newTab.id;
          } else {
             newGroupTabs = tabIds;
@@ -55,7 +56,7 @@ class CurrentTabGroups {
          if (groupDetails !== null) {
             let newGroupTabs;
             if (!tabIds) {
-               const newTab = await CurrentTabGroups.createTab();
+               const newTab = await createTab();
                newGroupTabs = newTab.id;
             } else {
                newGroupTabs = tabIds;
@@ -88,7 +89,9 @@ class CurrentTabGroups {
    }
 
    // given groupId will get all information about given tab group from chrome API
-   static async getInfo(groupId: number): Promise<chrome.tabGroups.TabGroup> {
+   static async getInfo(
+      groupId: number
+   ): Promise<chrome.tabGroups.TabGroup | null> {
       if (groupId == -1) {
          return {
             collapsed: false,
@@ -98,30 +101,14 @@ class CurrentTabGroups {
             windowId: 0,
          };
       } else {
-         const groupInfo = await chrome.tabGroups.get(groupId);
-         return groupInfo;
+         try {
+            const groupInfo = await chrome.tabGroups.get(groupId);
+            return groupInfo;
+         } catch (err) {
+            console.error(err);
+            return null;
+         }
       }
-   }
-
-   // creates new tab with given url or new tab page, returning tab id
-   static async createTab(
-      active: boolean = false,
-      url: string | undefined = undefined,
-      pinned: boolean = false
-   ): Promise<chrome.tabs.Tab> {
-      return new Promise((resolve) => {
-         chrome.tabs.create({ url, active, pinned }, async (tab) => {
-            chrome.tabs.onUpdated.addListener(function listener(
-               tabId: number,
-               info: chrome.tabs.TabChangeInfo
-            ) {
-               if (info.status === 'complete' && tabId === tab.id) {
-                  chrome.tabs.onUpdated.removeListener(listener);
-                  resolve(tab);
-               }
-            });
-         });
-      });
    }
 }
 

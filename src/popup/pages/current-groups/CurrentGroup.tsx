@@ -5,7 +5,7 @@ import React, { MouseEvent, useEffect, useState } from 'react';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
-import RowGroup from '../../components/RowGroup';
+import TabGroup from '../../components/TabGroup';
 import { useModal } from '../../hooks/ModalProvider';
 
 interface Props {
@@ -107,7 +107,7 @@ export default function CurrentGroup({
    } else {
       return (
          <>
-            <RowGroup
+            <TabGroup
                ParentPrefixButton={
                   <Circle
                      color={groupInfo !== null ? groupInfo.color : 'grey'}
@@ -125,7 +125,6 @@ export default function CurrentGroup({
                }
                title={groupInfo.title}
                secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
-               handleParentClick={() => {}}
                tabs={tabs}
                groupId={groupId}
                handleCloseTab={handleCloseTab}

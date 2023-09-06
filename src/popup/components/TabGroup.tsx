@@ -29,7 +29,7 @@ interface Props {
    /**
     *secondary text that will be shown in parent row
     */
-   handleParentClick: () => void;
+   handleParentClick?: () => void;
    /**
     *function called when main parent row is clicked
     */
@@ -60,7 +60,7 @@ interface Props {
     */
 }
 
-export default function RowGroup({
+export default function TabGroup({
    ParentPrefixButton,
    ParentMiddleButton,
    ParentAffixButton,

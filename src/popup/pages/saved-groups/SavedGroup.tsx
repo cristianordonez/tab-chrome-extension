@@ -5,7 +5,7 @@ import { ColorEnum, LocalStorageTab } from '../../../types';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import SavedTabGroups from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
-import RowGroup from '../../components/RowGroup';
+import TabGroup from '../../components/TabGroup';
 
 interface Props {
    groupId: number;
@@ -55,9 +55,19 @@ export default function SavedGroup({
       getSavedGroups();
    };
 
+   // opens saved tab group and all associated tabs in current window
+   const handleParentClick = async () => {
+      try {
+         await SavedTabGroups.open(groupId);
+      } catch {
+         console.log('HERE IN CATCH');
+         setAlertSettings('error', 'Something went wrong');
+      }
+   };
+
    return (
       <>
-         <RowGroup
+         <TabGroup
             ParentPrefixButton={<Circle color={color} />}
             ParentAffixButton={
                <Tooltip title='Delete tab group'>
@@ -66,7 +76,7 @@ export default function SavedGroup({
             }
             title={title}
             secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
-            handleParentClick={() => {}}
+            handleParentClick={handleParentClick}
             tabs={tabs}
             groupId={groupId}
             handleCloseTab={handleCloseTab}

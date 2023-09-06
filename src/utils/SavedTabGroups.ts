@@ -19,20 +19,26 @@ class SavedTabGroups {
    async takeSnapshot() {
       const groupIds = await CurrentTabGroups.get();
       groupIds.forEach(async (groupId) => {
-         const tabs = await chrome.tabs.query({ groupId: groupId });
-         await this.save(Number(groupId), tabs);
+         if (groupId !== -1) {
+            const tabs = await chrome.tabs.query({ groupId: groupId });
+            await this.save(Number(groupId), tabs);
+         }
       });
    }
 
    // add group to local storage given groupId and associated chrome.tabs.Tab array
    async save(groupId: number, tabs: chrome.tabs.Tab[]): Promise<void> {
-      const storageInfo = await SavedTabGroups.getInfo(groupId);
       const groupDetails = await CurrentTabGroups.getInfo(groupId);
+      const storageInfo = await SavedTabGroups.getInfo(groupId);
       const formattedTabs = SavedTabGroups.formatTabList(tabs);
-      if (storageInfo !== null) {
-         await this.update(groupDetails, storageInfo, formattedTabs);
+      if (groupDetails !== null) {
+         if (storageInfo !== null) {
+            await this.update(groupDetails, storageInfo, formattedTabs);
+         } else {
+            await this.create(groupDetails, formattedTabs);
+         }
       } else {
-         await this.create(groupDetails, formattedTabs);
+         throw new Error('Cannot save group that does not currently exist.');
       }
    }
 
@@ -43,6 +49,33 @@ class SavedTabGroups {
          await SavedTabGroups.deleteFromSavedTitles(id, title);
       } catch (e) {
          console.error(e);
+      }
+   }
+
+   // opens saved group and all tabs in current window
+   static async open(id: number) {
+      const groupInfo = await SavedTabGroups.getInfo(id);
+      if (groupInfo !== null) {
+         const tabIds = [];
+         for (let i = 0; i < groupInfo.tabs.length; i++) {
+            const tab = await chrome.tabs.create({
+               active: false,
+               url: groupInfo.tabs[i].url,
+            });
+            if (tab.id) {
+               tabIds.push(tab.id);
+            }
+         }
+         const updatedGroupId = await CurrentTabGroups.create(
+            groupInfo.title,
+            tabIds,
+            groupInfo.color
+         );
+         console.log('updatedGroupId: ', updatedGroupId);
+      } else {
+         throw new Error(
+            'Group with given id does not exist in saved tab groups.'
+         );
       }
    }
 

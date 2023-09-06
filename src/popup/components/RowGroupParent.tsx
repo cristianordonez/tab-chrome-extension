@@ -27,7 +27,7 @@ interface Props {
    /**
     *children of current component, must be a single ReactNode component
     */
-   handleParentClick: () => void;
+   handleParentClick?: () => void;
    /**
     *function called when main parent row is clicked
     */

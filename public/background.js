@@ -398,7 +398,7 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.prototype.delete = function (id, title) {
+    SavedTabGroups.delete = function (id, title) {
         return __awaiter(this, void 0, void 0, function () {
             var e_1;
             return __generator(this, function (_a) {
@@ -453,6 +453,32 @@ var SavedTabGroups = (function () {
             });
         });
     };
+    SavedTabGroups.removeTab = function (groupId, tabIds) {
+        return __awaiter(this, void 0, void 0, function () {
+            var groupInfo, updatedTabs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, SavedTabGroups.getInfo(groupId)];
+                    case 1:
+                        groupInfo = _a.sent();
+                        if (!(groupInfo !== null)) return [3, 5];
+                        updatedTabs = groupInfo === null || groupInfo === void 0 ? void 0 : groupInfo.tabs.filter(function (tab) { return tabIds.includes(tab.tabId) === false; });
+                        if (!(updatedTabs.length === 0)) return [3, 3];
+                        return [4, SavedTabGroups.delete(groupInfo.id, groupInfo.title)];
+                    case 2:
+                        _a.sent();
+                        return [3, 5];
+                    case 3:
+                        groupInfo.tabs = updatedTabs;
+                        return [4, SavedTabGroups.updateStorageGroupKey(groupInfo)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [2];
+                }
+            });
+        });
+    };
     SavedTabGroups.initialize = function () {
         return __awaiter(this, void 0, Promise, function () {
             var groups, savedTitles;
@@ -499,7 +525,7 @@ var SavedTabGroups = (function () {
                     case 2:
                         oldest = _a.sent();
                         if (!(oldest !== null)) return [3, 4];
-                        return [4, this.delete(oldest, newTabGroup.title)];
+                        return [4, SavedTabGroups.delete(oldest, newTabGroup.title)];
                     case 3:
                         _a.sent();
                         _a.label = 4;

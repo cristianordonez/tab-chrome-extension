@@ -3,7 +3,7 @@ import { AlertColor, Tooltip } from '@mui/material';
 import React, { MouseEvent } from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
-import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
+import SavedTabGroups from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
 import RowGroup from '../../components/RowGroup';
 
@@ -31,7 +31,7 @@ export default function SavedGroup({
    const handleDelete = async (e: React.MouseEvent) => {
       e.stopPropagation();
       try {
-         await savedTabGroupsInstance.delete(groupId, title);
+         await SavedTabGroups.delete(groupId, title);
          await getSavedGroups();
          setAlertSettings('success', 'Tab group has been deleted');
       } catch (err) {
@@ -45,14 +45,13 @@ export default function SavedGroup({
       await CurrentTabGroups.update(groupId);
    };
 
-   // todo
    // deletes tab from current saved group
    const handleCloseTab = async (
       e: MouseEvent<HTMLElement | SVGSVGElement>,
       tabId: number
    ) => {
-      console.log('e: ', e);
-      console.log('tabId: ', tabId);
+      await SavedTabGroups.removeTab(groupId, [tabId]);
+      getSavedGroups();
    };
 
    return (

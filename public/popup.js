@@ -51910,7 +51910,7 @@ var Delete_1 = __importDefault(__webpack_require__(1733));
 var material_1 = __webpack_require__(6629);
 var react_1 = __importDefault(__webpack_require__(7294));
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
-var SavedTabGroups_1 = __webpack_require__(761);
+var SavedTabGroups_1 = __importDefault(__webpack_require__(761));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var RowGroup_1 = __importDefault(__webpack_require__(278));
 function SavedGroup(_a) {
@@ -51925,7 +51925,7 @@ function SavedGroup(_a) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 4, , 5]);
-                    return [4, SavedTabGroups_1.savedTabGroupsInstance.delete(groupId, title)];
+                    return [4, SavedTabGroups_1.default.delete(groupId, title)];
                 case 2:
                     _a.sent();
                     return [4, getSavedGroups()];
@@ -51954,9 +51954,13 @@ function SavedGroup(_a) {
     }); };
     var handleCloseTab = function (e, tabId) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            console.log('e: ', e);
-            console.log('tabId: ', tabId);
-            return [2];
+            switch (_a.label) {
+                case 0: return [4, SavedTabGroups_1.default.removeTab(groupId, [tabId])];
+                case 1:
+                    _a.sent();
+                    getSavedGroups();
+                    return [2];
+            }
         });
     }); };
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -52464,7 +52468,7 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.prototype.delete = function (id, title) {
+    SavedTabGroups.delete = function (id, title) {
         return __awaiter(this, void 0, void 0, function () {
             var e_1;
             return __generator(this, function (_a) {
@@ -52519,6 +52523,32 @@ var SavedTabGroups = (function () {
             });
         });
     };
+    SavedTabGroups.removeTab = function (groupId, tabIds) {
+        return __awaiter(this, void 0, void 0, function () {
+            var groupInfo, updatedTabs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, SavedTabGroups.getInfo(groupId)];
+                    case 1:
+                        groupInfo = _a.sent();
+                        if (!(groupInfo !== null)) return [3, 5];
+                        updatedTabs = groupInfo === null || groupInfo === void 0 ? void 0 : groupInfo.tabs.filter(function (tab) { return tabIds.includes(tab.tabId) === false; });
+                        if (!(updatedTabs.length === 0)) return [3, 3];
+                        return [4, SavedTabGroups.delete(groupInfo.id, groupInfo.title)];
+                    case 2:
+                        _a.sent();
+                        return [3, 5];
+                    case 3:
+                        groupInfo.tabs = updatedTabs;
+                        return [4, SavedTabGroups.updateStorageGroupKey(groupInfo)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [2];
+                }
+            });
+        });
+    };
     SavedTabGroups.initialize = function () {
         return __awaiter(this, void 0, Promise, function () {
             var groups, savedTitles;
@@ -52565,7 +52595,7 @@ var SavedTabGroups = (function () {
                     case 2:
                         oldest = _a.sent();
                         if (!(oldest !== null)) return [3, 4];
-                        return [4, this.delete(oldest, newTabGroup.title)];
+                        return [4, SavedTabGroups.delete(oldest, newTabGroup.title)];
                     case 3:
                         _a.sent();
                         _a.label = 4;

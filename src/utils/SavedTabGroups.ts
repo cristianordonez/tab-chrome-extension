@@ -37,7 +37,7 @@ class SavedTabGroups {
    }
 
    // uses tab group id to delete item from local storage
-   async delete(id: number, title: string) {
+   static async delete(id: number, title: string) {
       try {
          await SavedTabGroups.deleteFromGroups(id);
          await SavedTabGroups.deleteFromSavedTitles(id, title);
@@ -63,6 +63,22 @@ class SavedTabGroups {
          return savedGroups[`${id}`];
       } else {
          return null;
+      }
+   }
+
+   // removes given tabs from savved tab group given its group id
+   static async removeTab(groupId: number, tabIds: number[]) {
+      const groupInfo = await SavedTabGroups.getInfo(groupId);
+      if (groupInfo !== null) {
+         const updatedTabs = groupInfo?.tabs.filter(
+            (tab) => tabIds.includes(tab.tabId) === false
+         );
+         if (updatedTabs.length === 0) {
+            await SavedTabGroups.delete(groupInfo.id, groupInfo.title);
+         } else {
+            groupInfo.tabs = updatedTabs;
+            await SavedTabGroups.updateStorageGroupKey(groupInfo);
+         }
       }
    }
 
@@ -94,7 +110,7 @@ class SavedTabGroups {
       if (limitReached) {
          const oldest = await this.findOldestTabGroup(group.title || '');
          if (oldest !== null) {
-            await this.delete(oldest, newTabGroup.title);
+            await SavedTabGroups.delete(oldest, newTabGroup.title);
          }
       }
       await SavedTabGroups.updateStorageGroupKey(newTabGroup);

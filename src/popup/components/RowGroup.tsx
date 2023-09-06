@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Box, Tooltip } from '@mui/material';
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { LocalStorageTab } from '../../types';
 import { faviconURL } from '../../utils/constructFaviconUrl';
 import Row from './Row';
@@ -41,11 +41,16 @@ interface Props {
    /**
     *id of current tab group
     */
-   handleCloseTab: () => void;
+   handleCloseTab: (
+      e: MouseEvent<HTMLElement | SVGSVGElement>,
+      tabId: number
+   ) => Promise<void>;
    /**
     *id of current tab group
     */
-   handleCreateTab: () => void;
+   handleCreateTab: (
+      e: MouseEvent<HTMLElement | SVGSVGElement>
+   ) => Promise<void>;
    /**
     *id of current tab group
     */
@@ -89,7 +94,17 @@ export default function RowGroup({
                   <Tooltip title='Close tab'>
                      <RemoveCircleIcon
                         fontSize='small'
-                        onClick={handleCloseTab}
+                        onClick={(e) => {
+                           let tabId: number | undefined;
+                           if ('tabId' in tab) {
+                              tabId = tab.tabId;
+                           } else {
+                              tabId = tab.id;
+                           }
+                           if (tabId !== undefined) {
+                              handleCloseTab(e, tabId);
+                           }
+                        }}
                      />
                   </Tooltip>
                }

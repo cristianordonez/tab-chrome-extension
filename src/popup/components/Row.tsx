@@ -5,7 +5,7 @@ import ListItemButton, {
    ListItemButtonProps,
 } from '@mui/material/ListItemButton';
 import { styled } from '@mui/system';
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
    ({ theme }) => ({
@@ -26,7 +26,7 @@ interface Props {
    isChild?: boolean;
    secondary?: string;
    showChildren?: boolean;
-   handleClick?: () => void;
+   handleClick?: (e: MouseEvent<SVGSVGElement | HTMLElement>) => void;
 }
 
 export default function Row({

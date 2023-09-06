@@ -1,5 +1,4 @@
 import { ColorEnum } from '../types';
-import { createTab } from './createTab';
 
 class CurrentTabGroups {
    // close current tab group
@@ -27,7 +26,7 @@ class CurrentTabGroups {
       try {
          let newGroupTabs;
          if (!tabIds) {
-            const newTab = await createTab();
+            const newTab = await CurrentTabGroups.createTab();
             newGroupTabs = newTab.id;
          } else {
             newGroupTabs = tabIds;
@@ -41,6 +40,11 @@ class CurrentTabGroups {
       }
    }
 
+   // deletes one or more tabs from group with given group id
+   static async removeTab(tabIds: number[]) {
+      await chrome.tabs.remove(tabIds);
+   }
+
    // updates existing tab group by adding given tabs to it, and creating new tab if needed
    static async update(
       groupId: number,
@@ -51,7 +55,7 @@ class CurrentTabGroups {
          if (groupDetails !== null) {
             let newGroupTabs;
             if (!tabIds) {
-               const newTab = await createTab();
+               const newTab = await CurrentTabGroups.createTab();
                newGroupTabs = newTab.id;
             } else {
                newGroupTabs = tabIds;
@@ -97,6 +101,27 @@ class CurrentTabGroups {
          const groupInfo = await chrome.tabGroups.get(groupId);
          return groupInfo;
       }
+   }
+
+   // creates new tab with given url or new tab page, returning tab id
+   static async createTab(
+      active: boolean = false,
+      url: string | undefined = undefined,
+      pinned: boolean = false
+   ): Promise<chrome.tabs.Tab> {
+      return new Promise((resolve) => {
+         chrome.tabs.create({ url, active, pinned }, async (tab) => {
+            chrome.tabs.onUpdated.addListener(function listener(
+               tabId: number,
+               info: chrome.tabs.TabChangeInfo
+            ) {
+               if (info.status === 'complete' && tabId === tab.id) {
+                  chrome.tabs.onUpdated.removeListener(listener);
+                  resolve(tab);
+               }
+            });
+         });
+      });
    }
 }
 

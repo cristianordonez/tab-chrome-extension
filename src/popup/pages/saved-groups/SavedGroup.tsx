@@ -1,6 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AlertColor, Tooltip } from '@mui/material';
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
@@ -46,7 +46,14 @@ export default function SavedGroup({
    };
 
    // todo
-   const handleCloseTab = () => {};
+   // deletes tab from current saved group
+   const handleCloseTab = async (
+      e: MouseEvent<HTMLElement | SVGSVGElement>,
+      tabId: number
+   ) => {
+      console.log('e: ', e);
+      console.log('tabId: ', tabId);
+   };
 
    return (
       <>

@@ -39,16 +39,6 @@ interface LocalStorageTab {
    title: string;
 }
 
-// CURRENT TAB GROUPS
-// single tab group retrieved from reduced data structure
-interface CurrentTabGroup extends SharedTabGroup {
-   tabs: chrome.tabs.Tab[];
-}
-
-interface CurrentTabs {
-   [key: number]: CurrentTabGroup;
-}
-
 // SAVED TAB GROUPS
 // single tab group saved in local storage
 interface LocalStorageTabGroup extends SharedTabGroup {
@@ -68,7 +58,6 @@ interface AlertSettings {
 export {
    AlertSettings,
    ColorEnum,
-   CurrentTabs,
    LocalStorageTab,
    LocalStorageTabGroup,
    LocalStorageTabGroups,

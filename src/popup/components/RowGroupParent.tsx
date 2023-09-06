@@ -1,6 +1,3 @@
-// use this as parent to row group so that list can be used seperately
-// will have 1 file called RowGroupTabs.tsx and another called RowGroupRules.tsx
-
 import { Collapse, List } from '@mui/material';
 import React, { useState } from 'react';
 import Row from './Row';

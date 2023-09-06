@@ -1,7 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { AlertColor, Tooltip } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
@@ -28,16 +28,19 @@ export default function CurrentGroup({
    );
    const { getOutput } = useModal();
 
+   // gets all tabs for current group using groupId
    const getTabs = async () => {
       const tabs = await chrome.tabs.query({ groupId: groupId });
       setTabs(tabs);
    };
 
+   // retrieves data for group from chrome API
    const getGroupInfo = async () => {
       const info = await CurrentTabGroups.getInfo(groupId);
       setGroupInfo(info);
    };
 
+   // updates current group with new info
    const updateGroup = async () => {
       await getGroupInfo();
       await getTabs();
@@ -79,13 +82,24 @@ export default function CurrentGroup({
       }
    };
 
+   // adds new tab to current group
    const handleCreateTab = async () => {
       await CurrentTabGroups.update(groupId);
       updateGroup();
    };
 
-   // todo handles closing current tab
-   const handleCloseTab = async () => {};
+   // closes tab from current tab group
+   const handleCloseTab = async (
+      e: MouseEvent<HTMLElement | SVGSVGElement>,
+      tabId: number
+   ) => {
+      await CurrentTabGroups.removeTab([tabId]);
+      if (tabs.length <= 1) {
+         getGroups();
+      } else {
+         updateGroup();
+      }
+   };
 
    if (groupInfo === null) {
       return <></>;

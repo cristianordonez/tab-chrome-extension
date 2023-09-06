@@ -83,7 +83,7 @@ export default function ModalProvider({ children }: Props) {
 }
 
 // confirms that context is being used within child component of ModalProvider
-export const useModalContext = () => {
+const useModalContext = () => {
    const context = useContext(ModalContext);
    if (context === undefined) {
       throw new Error(

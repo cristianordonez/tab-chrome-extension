@@ -1,5 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Box } from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { Box, Tooltip } from '@mui/material';
 import React from 'react';
 import { LocalStorageTab } from '../../types';
 import { faviconURL } from '../../utils/constructFaviconUrl';
@@ -17,53 +18,59 @@ interface Props {
     */
    ParentMiddleButton?: React.ReactElement;
    /**
-    *Button element that will be shown in midle of main parent row
-    */
-   ChildAffixButton: React.ReactElement;
-   /**
-    *Button element that will be shown at the end of each child row
-    */
-   tabs?: chrome.tabs.Tab[] | LocalStorageTab[];
-   /**
-    *list of tabs that will be displayed for each group
-    */
-   groupId?: number;
-   /**
-    *groupId of current row group
+    *Button element that will be shown in middle of main parent row
     */
    title?: string;
    /**
     *main text that will shown in parent row
     */
+
    secondary?: string;
    /**
     *secondary text that will be shown in parent row
     */
-   handleCreateTab: (groupId: number) => void;
+   handleParentClick: () => void;
    /**
-    *function used for final row
+    *function called when main parent row is clicked
+    */
+   tabs: LocalStorageTab[] | chrome.tabs.Tab[];
+   /**
+    *list of tabs either from API or from local storage
+    */
+   groupId: number;
+   /**
+    *id of current tab group
+    */
+   handleCloseTab: () => void;
+   /**
+    *id of current tab group
+    */
+   handleCreateTab: () => void;
+   /**
+    *id of current tab group
     */
 }
 
-export default function RowGroupTabs({
-   ParentAffixButton,
+export default function RowGroup({
    ParentPrefixButton,
    ParentMiddleButton,
-   ChildAffixButton,
-   tabs = [],
-   groupId = 0,
-   title = '',
-   secondary = '',
+   ParentAffixButton,
+   title,
+   secondary,
+   handleParentClick,
+   tabs,
+   groupId,
+   handleCloseTab,
    handleCreateTab,
 }: Props) {
    return (
       <RowGroupParent
          ParentPrefixButton={ParentPrefixButton}
-         ParentAffixButton={ParentAffixButton}
          ParentMiddleButton={ParentMiddleButton}
+         ParentAffixButton={ParentAffixButton}
          title={title}
          secondary={secondary}
-         handleParentClick={() => {}}
+         handleParentClick={handleParentClick}
       >
          {tabs.map((tab) => (
             <Row
@@ -78,14 +85,21 @@ export default function RowGroupTabs({
                   />
                }
                title={tab.title || ''}
-               AffixIcon={ChildAffixButton}
+               AffixIcon={
+                  <Tooltip title='Close tab'>
+                     <RemoveCircleIcon
+                        fontSize='small'
+                        onClick={handleCloseTab}
+                     />
+                  </Tooltip>
+               }
             />
          ))}
          <Row
             PrefixIcon={<AddIcon fontSize='small' />}
             title='Create new tab'
             isChild={true}
-            handleClick={() => handleCreateTab(groupId)}
+            handleClick={handleCreateTab}
          />
       </RowGroupParent>
    );

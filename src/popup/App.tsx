@@ -9,14 +9,14 @@ import {
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteType } from '../types';
-import { tabGroupUtilInstance } from '../utils/tabGroupUtil';
+import { savedTabGroupsInstance } from '../utils/SavedTabGroups';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import ModalProvider from './hooks/ModalProvider';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
 import CurrentGroups from './pages/current-groups';
 import GroupRules from './pages/group-rules/GroupRules';
-import SavedGroups from './pages/saved-groups/SavedGroups';
+import SavedGroups from './pages/saved-groups';
 import { getDesignTokens } from './theme';
 
 export const ColorModeContext = React.createContext({
@@ -66,7 +66,7 @@ export default function App() {
 
    useEffect(() => {
       const updateSnapshot = async () => {
-         await tabGroupUtilInstance.takeSnapshot();
+         await savedTabGroupsInstance.takeSnapshot();
       };
       updateSnapshot();
    }, []);
@@ -87,6 +87,7 @@ export default function App() {
                               ))}
                            </Routes>
                            <OpenInFullIcon
+                              sx={{ position: 'absolute', bottom: 0 }}
                               onClick={() =>
                                  chrome.tabs.create({ url: 'popup.html' })
                               }

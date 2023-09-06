@@ -50,6 +50,7 @@ export default function SavedGroup({
       e: MouseEvent<HTMLElement | SVGSVGElement>,
       tabId: number
    ) => {
+      e.stopPropagation();
       await SavedTabGroups.removeTab(groupId, [tabId]);
       getSavedGroups();
    };
@@ -70,6 +71,7 @@ export default function SavedGroup({
             groupId={groupId}
             handleCloseTab={handleCloseTab}
             handleCreateTab={handleCreateTab}
+            hover
          />
       </>
    );

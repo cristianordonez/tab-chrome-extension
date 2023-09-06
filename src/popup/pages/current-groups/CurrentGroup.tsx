@@ -93,6 +93,7 @@ export default function CurrentGroup({
       e: MouseEvent<HTMLElement | SVGSVGElement>,
       tabId: number
    ) => {
+      e.stopPropagation();
       await CurrentTabGroups.removeTab([tabId]);
       if (tabs.length <= 1) {
          getGroups();

@@ -7,14 +7,23 @@ import ListItemButton, {
 import { styled } from '@mui/system';
 import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
-const StyledListItem = styled(ListItemButton)<ListItemButtonProps>(
-   ({ theme }) => ({
-      backgroundColor: theme.palette.background.paper,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      height: '100%',
-   })
-);
+interface ListItemProps extends ListItemButtonProps {
+   hover?: boolean;
+}
+
+const StyledListItemButton = styled(ListItemButton, {
+   shouldForwardProp: (prop) => prop !== 'hover',
+})<ListItemProps>(({ theme, hover }) => ({
+   backgroundColor: theme.palette.background.paper,
+   alignItems: 'center',
+   justifyContent: 'flex-start',
+   height: '100%',
+   '&:hover': {
+      // if hover is true, set the same as background color above
+      backgroundColor: hover ? '' : theme.palette.background.paper,
+      cursor: hover ? 'pointer' : 'default',
+   },
+}));
 
 interface Props {
    PrefixIcon?: React.ReactElement;
@@ -27,6 +36,7 @@ interface Props {
    secondary?: string;
    showChildren?: boolean;
    handleClick?: (e: MouseEvent<SVGSVGElement | HTMLElement>) => void;
+   hover?: boolean;
 }
 
 export default function Row({
@@ -40,6 +50,7 @@ export default function Row({
    isChild = false,
    secondary = '',
    showChildren = false,
+   hover,
 }: Props) {
    const arrowIcon = showChildren ? (
       <ExpandMoreIcon fontSize='large' />
@@ -55,7 +66,12 @@ export default function Row({
    };
 
    return (
-      <StyledListItem alignItems='center' divider onClick={handleClick}>
+      <StyledListItemButton
+         hover={hover}
+         alignItems='center'
+         divider
+         onClick={handleClick}
+      >
          {PrefixIcon !== undefined && PrefixIcon !== null ? (
             <ListItemIcon>{PrefixIcon}</ListItemIcon>
          ) : (
@@ -88,6 +104,6 @@ export default function Row({
          ) : (
             <></>
          )}
-      </StyledListItem>
+      </StyledListItemButton>
    );
 }

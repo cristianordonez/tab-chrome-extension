@@ -46,13 +46,17 @@ interface Props {
       tabId: number
    ) => Promise<void>;
    /**
-    *id of current tab group
+    * deletes or closes tab from current group
     */
    handleCreateTab: (
       e: MouseEvent<HTMLElement | SVGSVGElement>
    ) => Promise<void>;
    /**
-    *id of current tab group
+    * opens or saves new tab to group
+    */
+   hover?: boolean;
+   /**
+    * whether or not parent row should include hover
     */
 }
 
@@ -67,6 +71,7 @@ export default function RowGroup({
    groupId,
    handleCloseTab,
    handleCreateTab,
+   hover,
 }: Props) {
    return (
       <RowGroupParent
@@ -76,6 +81,7 @@ export default function RowGroup({
          title={title}
          secondary={secondary}
          handleParentClick={handleParentClick}
+         hover={hover}
       >
          {tabs.map((tab) => (
             <Row

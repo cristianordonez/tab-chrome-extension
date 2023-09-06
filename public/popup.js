@@ -50990,7 +50990,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 var StyledCenter = (0, styles_1.styled)('div', {
-    shouldForwardProp: function (prop) { return prop !== 'direction'; },
+    shouldForwardProp: function (prop) { return prop !== 'column'; },
 })(function (_a) {
     var column = _a.column, gap = _a.gap;
     return ({
@@ -51117,17 +51117,23 @@ var material_1 = __webpack_require__(6629);
 var ListItemButton_1 = __importDefault(__webpack_require__(1471));
 var system_1 = __webpack_require__(8579);
 var react_1 = __importDefault(__webpack_require__(7294));
-var StyledListItem = (0, system_1.styled)(ListItemButton_1.default)(function (_a) {
-    var theme = _a.theme;
+var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
+    shouldForwardProp: function (prop) { return prop !== 'hover'; },
+})(function (_a) {
+    var theme = _a.theme, hover = _a.hover;
     return ({
         backgroundColor: theme.palette.background.paper,
         alignItems: 'center',
         justifyContent: 'flex-start',
         height: '100%',
+        '&:hover': {
+            backgroundColor: hover ? '' : theme.palette.background.paper,
+            cursor: hover ? 'pointer' : 'default',
+        },
     });
 });
 function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, AffixIcon = _a.AffixIcon, MiddleIcon = _a.MiddleIcon, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f;
+    var PrefixIcon = _a.PrefixIcon, AffixIcon = _a.AffixIcon, MiddleIcon = _a.MiddleIcon, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f, hover = _a.hover;
     var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
     var handleShowChildren = function (e) {
         e.stopPropagation();
@@ -51135,7 +51141,7 @@ function Row(_a) {
             setShowChildren(!showChildren);
         }
     };
-    return (react_1.default.createElement(StyledListItem, { alignItems: 'center', divider: true, onClick: handleClick },
+    return (react_1.default.createElement(StyledListItemButton, { hover: hover, alignItems: 'center', divider: true, onClick: handleClick },
         PrefixIcon !== undefined && PrefixIcon !== null ? (react_1.default.createElement(material_1.ListItemIcon, null, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary }),
         hasChildren ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
@@ -51164,8 +51170,8 @@ var constructFaviconUrl_1 = __webpack_require__(4127);
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 function RowGroup(_a) {
-    var ParentPrefixButton = _a.ParentPrefixButton, ParentMiddleButton = _a.ParentMiddleButton, ParentAffixButton = _a.ParentAffixButton, title = _a.title, secondary = _a.secondary, handleParentClick = _a.handleParentClick, tabs = _a.tabs, groupId = _a.groupId, handleCloseTab = _a.handleCloseTab, handleCreateTab = _a.handleCreateTab;
-    return (react_1.default.createElement(RowGroupParent_1.default, { ParentPrefixButton: ParentPrefixButton, ParentMiddleButton: ParentMiddleButton, ParentAffixButton: ParentAffixButton, title: title, secondary: secondary, handleParentClick: handleParentClick },
+    var ParentPrefixButton = _a.ParentPrefixButton, ParentMiddleButton = _a.ParentMiddleButton, ParentAffixButton = _a.ParentAffixButton, title = _a.title, secondary = _a.secondary, handleParentClick = _a.handleParentClick, tabs = _a.tabs, groupId = _a.groupId, handleCloseTab = _a.handleCloseTab, handleCreateTab = _a.handleCreateTab, hover = _a.hover;
+    return (react_1.default.createElement(RowGroupParent_1.default, { ParentPrefixButton: ParentPrefixButton, ParentMiddleButton: ParentMiddleButton, ParentAffixButton: ParentAffixButton, title: title, secondary: secondary, handleParentClick: handleParentClick, hover: hover },
         tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: groupId, isChild: true, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: (0, constructFaviconUrl_1.faviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
                 react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small', onClick: function (e) {
                         var tabId;
@@ -51222,10 +51228,10 @@ var material_1 = __webpack_require__(6629);
 var react_1 = __importStar(__webpack_require__(7294));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroupParent(_a) {
-    var ParentAffixButton = _a.ParentAffixButton, ParentPrefixButton = _a.ParentPrefixButton, ParentMiddleButton = _a.ParentMiddleButton, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.secondary, secondary = _c === void 0 ? '' : _c, children = _a.children, handleParentClick = _a.handleParentClick;
+    var ParentAffixButton = _a.ParentAffixButton, ParentPrefixButton = _a.ParentPrefixButton, ParentMiddleButton = _a.ParentMiddleButton, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.secondary, secondary = _c === void 0 ? '' : _c, children = _a.children, handleParentClick = _a.handleParentClick, hover = _a.hover;
     var _d = (0, react_1.useState)(false), showTabs = _d[0], setShowTabs = _d[1];
     return (react_1.default.createElement(material_1.List, null,
-        react_1.default.createElement(Row_1.default, { hasChildren: true, PrefixIcon: ParentPrefixButton, title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: ParentAffixButton, handleClick: handleParentClick, MiddleIcon: ParentMiddleButton }),
+        react_1.default.createElement(Row_1.default, { hover: hover, hasChildren: true, PrefixIcon: ParentPrefixButton, title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: ParentAffixButton, handleClick: handleParentClick, MiddleIcon: ParentMiddleButton }),
         react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
             react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, children))));
 }
@@ -51679,7 +51685,9 @@ function CurrentGroup(_a) {
     var handleCloseTab = function (e, tabId) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, CurrentTabGroups_1.default.removeTab([tabId])];
+                case 0:
+                    e.stopPropagation();
+                    return [4, CurrentTabGroups_1.default.removeTab([tabId])];
                 case 1:
                     _a.sent();
                     if (tabs.length <= 1) {
@@ -51835,7 +51843,7 @@ function CurrentGroups() {
     return (react_1.default.createElement("div", null,
         groups.map(function (groupId) { return (react_1.default.createElement(CurrentGroup_1.default, { key: groupId, groupId: groupId, getGroups: getGroups, setAlertSettings: setAlertSettings })); }),
         react_1.default.createElement(material_1.List, null,
-            react_1.default.createElement(Row_1.default, { title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup })),
+            react_1.default.createElement(Row_1.default, { hover: true, title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup })),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = CurrentGroups;
@@ -51955,7 +51963,9 @@ function SavedGroup(_a) {
     var handleCloseTab = function (e, tabId) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, SavedTabGroups_1.default.removeTab(groupId, [tabId])];
+                case 0:
+                    e.stopPropagation();
+                    return [4, SavedTabGroups_1.default.removeTab(groupId, [tabId])];
                 case 1:
                     _a.sent();
                     getSavedGroups();
@@ -51965,7 +51975,7 @@ function SavedGroup(_a) {
     }); };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(RowGroup_1.default, { ParentPrefixButton: react_1.default.createElement(Circle_1.default, { color: color }), ParentAffixButton: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
-                react_1.default.createElement(Delete_1.default, { onClick: handleDelete })), title: title, secondary: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), handleParentClick: function () { }, tabs: tabs, groupId: groupId, handleCloseTab: handleCloseTab, handleCreateTab: handleCreateTab })));
+                react_1.default.createElement(Delete_1.default, { onClick: handleDelete })), title: title, secondary: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), handleParentClick: function () { }, tabs: tabs, groupId: groupId, handleCloseTab: handleCloseTab, handleCreateTab: handleCreateTab, hover: true })));
 }
 exports["default"] = SavedGroup;
 

@@ -24,9 +24,16 @@ interface Props {
     *secondary text that will be shown in parent row
     */
    children: React.ReactNode;
+   /**
+    *children of current component, must be a single ReactNode component
+    */
    handleParentClick: () => void;
    /**
     *function called when main parent row is clicked
+    */
+   hover?: boolean;
+   /**
+    *whether or not parent row should include hover
     */
 }
 
@@ -38,12 +45,14 @@ export default function RowGroupParent({
    secondary = '',
    children,
    handleParentClick,
+   hover,
 }: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
 
    return (
       <List>
          <Row
+            hover={hover}
             hasChildren={true}
             PrefixIcon={ParentPrefixButton}
             title={title}

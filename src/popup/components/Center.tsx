@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 
 const StyledCenter = styled('div', {
-   shouldForwardProp: (prop) => prop !== 'direction',
+   shouldForwardProp: (prop) => prop !== 'column',
 })<{ column?: boolean; gap?: number }>(({ column, gap }) => ({
    display: 'flex',
    flexDirection: column ? 'column' : 'row',

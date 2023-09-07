@@ -1,7 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
 import { AlertColor, Tooltip } from '@mui/material';
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
@@ -57,8 +57,7 @@ export default function CurrentGroup({
    }, [groupId]);
 
    // handles saving tab group and its tabs to storage
-   const saveGroup = async (e: React.MouseEvent) => {
-      e.stopPropagation();
+   const saveGroup = async () => {
       try {
          if (groupId == -1) {
             const output = await getOutput({ title: 'Group Name' });
@@ -89,11 +88,7 @@ export default function CurrentGroup({
    };
 
    // closes tab from current tab group
-   const handleCloseTab = async (
-      e: MouseEvent<HTMLElement | SVGSVGElement>,
-      tabId: number
-   ) => {
-      e.stopPropagation();
+   const handleCloseTab = async (tabId: number) => {
       await CurrentTabGroups.removeTab([tabId]);
       if (tabs.length <= 1) {
          getGroups();
@@ -108,21 +103,23 @@ export default function CurrentGroup({
       return (
          <>
             <TabGroup
-               ParentPrefixButton={
+               ParentPrefixIcon={
                   <Circle
                      color={groupInfo !== null ? groupInfo.color : 'grey'}
                   />
                }
-               ParentMiddleButton={
+               ParentMiddleIcon={
                   <Tooltip title='Close tab group and all associated tabs'>
-                     <CloseIcon fontSize='small' onClick={handleCloseGroup} />
+                     <CloseIcon fontSize='small' />
                   </Tooltip>
                }
-               ParentAffixButton={
+               parentMiddleAction={handleCloseGroup}
+               ParentAffixIcon={
                   <Tooltip title='Save tab group and associated tabs'>
-                     <SaveIcon onClick={saveGroup} />
+                     <SaveIcon />
                   </Tooltip>
                }
+               parentAffixAction={saveGroup}
                title={groupInfo.title}
                secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
                tabs={tabs}

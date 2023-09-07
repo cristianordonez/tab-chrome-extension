@@ -3,18 +3,21 @@ import React, { useState } from 'react';
 import Row from './Row';
 
 interface Props {
-   ParentPrefixButton: React.ReactElement;
+   ParentPrefixIcon: React.ReactElement;
    /**
-    *Button element that will be shown at beginning of main parent row
+    *Icon element that will be shown at beginning of main parent row
     */
-   ParentAffixButton: React.ReactElement;
+   parentPrefixAction?: () => void;
+   ParentMiddleIcon?: React.ReactElement;
    /**
-    *Button element that will be shown at end of main parent row
+    *Icon element that will be shown in middle of main parent row
     */
-   ParentMiddleButton?: React.ReactElement;
+   parentMiddleAction?: () => void;
+   ParentAffixIcon: React.ReactElement;
    /**
-    *Button element that will be shown in middle of main parent row
+    *Icon element that will be shown at end of main parent row
     */
+   parentAffixAction?: () => void;
    title?: string;
    /**
     *main text that will shown in parent row
@@ -38,9 +41,12 @@ interface Props {
 }
 
 export default function RowGroupParent({
-   ParentAffixButton,
-   ParentPrefixButton,
-   ParentMiddleButton,
+   parentPrefixAction,
+   ParentPrefixIcon,
+   ParentMiddleIcon,
+   parentMiddleAction,
+   ParentAffixIcon,
+   parentAffixAction,
    title = '',
    secondary = '',
    children,
@@ -54,14 +60,17 @@ export default function RowGroupParent({
          <Row
             id={groupId}
             hasChildren={true}
-            PrefixIcon={ParentPrefixButton}
+            PrefixIcon={ParentPrefixIcon}
+            prefixAction={parentPrefixAction}
+            middleAction={parentMiddleAction}
+            affixAction={parentAffixAction}
             title={title}
             secondary={secondary}
             showChildren={showTabs}
             setShowChildren={setShowTabs}
-            AffixIcon={ParentAffixButton}
+            AffixIcon={ParentAffixIcon}
             handleClick={handleParentClick}
-            MiddleIcon={ParentMiddleButton}
+            MiddleIcon={ParentMiddleIcon}
          />
          <Collapse in={showTabs} timeout={'auto'} unmountOnExit>
             <List component='div' disablePadding>

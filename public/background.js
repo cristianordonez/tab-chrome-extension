@@ -477,7 +477,6 @@ var SavedTabGroups = (function () {
                         return [4, SavedTabGroups.getInfo(oldestGroupId)];
                     case 2:
                         oldestGroupInfo = _a.sent();
-                        console.log('oldestGroupInfo: ', oldestGroupInfo);
                         if (!oldestGroupInfo) return [3, 4];
                         return [4, SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title)];
                     case 3:
@@ -578,7 +577,7 @@ var SavedTabGroups = (function () {
                     case 1:
                         currentGroups = _a.sent();
                         numGroups = Object.keys(currentGroups).length;
-                        return [2, numGroups > this.maxGroups];
+                        return [2, numGroups >= this.maxGroups];
                 }
             });
         });
@@ -868,7 +867,7 @@ var SavedTabGroups = (function () {
     return SavedTabGroups;
 }());
 exports["default"] = SavedTabGroups;
-var savedTabGroupsInstance = new SavedTabGroups(2, 1);
+var savedTabGroupsInstance = new SavedTabGroups(10, 1);
 exports.savedTabGroupsInstance = savedTabGroupsInstance;
 
 

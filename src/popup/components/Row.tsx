@@ -28,21 +28,27 @@ const StyledListItemButton = styled(ListItemButton, {
 interface Props {
    id?: number;
    PrefixIcon?: React.ReactElement;
+   prefixAction?: () => void;
    AffixIcon?: React.ReactElement;
+   affixAction?: () => void;
    MiddleIcon?: React.ReactElement;
+   middleAction?: () => void;
    setShowChildren?: Dispatch<SetStateAction<boolean>>;
    title: string;
    hasChildren?: boolean;
    isChild?: boolean;
    secondary?: string;
    showChildren?: boolean;
-   handleClick?: (e: MouseEvent<SVGSVGElement | HTMLElement>) => void;
+   handleClick?: () => void;
 }
 
 export default function Row({
    PrefixIcon,
+   prefixAction,
    AffixIcon,
+   affixAction,
    MiddleIcon,
+   middleAction,
    setShowChildren,
    handleClick,
    title = '',
@@ -57,6 +63,34 @@ export default function Row({
       <ChevronRightIcon fontSize='large' />
    );
 
+   const handleMainClick = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
+      e.stopPropagation();
+      if (handleClick) {
+         handleClick();
+      }
+   };
+
+   const handlePrefixAction = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
+      e.stopPropagation();
+      if (prefixAction) {
+         prefixAction();
+      }
+   };
+
+   const handleMiddleAction = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
+      e.stopPropagation();
+      if (middleAction) {
+         middleAction();
+      }
+   };
+
+   const handleAffixAction = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
+      e.stopPropagation();
+      if (affixAction) {
+         affixAction();
+      }
+   };
+
    const handleShowChildren = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
       e.stopPropagation();
       if (setShowChildren) {
@@ -69,10 +103,12 @@ export default function Row({
          hover={handleClick !== undefined}
          alignItems='center'
          divider
-         onClick={handleClick}
+         onClick={handleMainClick}
       >
-         {PrefixIcon !== undefined && PrefixIcon !== null ? (
-            <ListItemIcon>{PrefixIcon}</ListItemIcon>
+         {PrefixIcon ? (
+            <ListItemIcon onClick={handlePrefixAction}>
+               {PrefixIcon}
+            </ListItemIcon>
          ) : (
             <></>
          )}
@@ -94,12 +130,17 @@ export default function Row({
             <></>
          )}
          {MiddleIcon !== undefined && MiddleIcon !== null ? (
-            <IconButton sx={{ marginRight: '4em' }}>{MiddleIcon}</IconButton>
+            <IconButton
+               onClick={handleMiddleAction}
+               sx={{ marginRight: '4em' }}
+            >
+               {MiddleIcon}
+            </IconButton>
          ) : (
             <></>
          )}
          {AffixIcon !== undefined && AffixIcon !== null ? (
-            <IconButton>{AffixIcon}</IconButton>
+            <IconButton onClick={handleAffixAction}>{AffixIcon}</IconButton>
          ) : (
             <></>
          )}

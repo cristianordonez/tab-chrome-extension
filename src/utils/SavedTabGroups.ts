@@ -169,7 +169,7 @@ class SavedTabGroups {
    private async groupLimitReached(): Promise<boolean> {
       const currentGroups = await SavedTabGroups.get();
       const numGroups = Object.keys(currentGroups).length;
-      return numGroups > this.maxGroups;
+      return numGroups >= this.maxGroups;
    }
 
    // checks if saved title duplicate limit has been reached for given group title
@@ -360,5 +360,5 @@ class SavedTabGroups {
    }
 }
 
-const savedTabGroupsInstance = new SavedTabGroups(2, 1);
+const savedTabGroupsInstance = new SavedTabGroups(10, 1);
 export { SavedTabGroups as default, savedTabGroupsInstance };

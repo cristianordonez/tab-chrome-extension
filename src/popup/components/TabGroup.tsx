@@ -1,25 +1,29 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Box, Tooltip } from '@mui/material';
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { LocalStorageTab } from '../../types';
 import { faviconURL } from '../../utils/constructFaviconUrl';
 import Row from './Row';
 import RowGroupParent from './RowGroupParent';
 
 interface Props {
-   ParentPrefixButton: React.ReactElement;
+   ParentPrefixIcon: React.ReactElement;
    /**
     *Button element that will be shown at beginning of main parent row
     */
-   ParentAffixButton: React.ReactElement;
-   /**
-    *Button element that will be shown at end of main parent row
-    */
-   ParentMiddleButton?: React.ReactElement;
+   parentPrefixAction?: () => void;
+   ParentMiddleIcon?: React.ReactElement;
    /**
     *Button element that will be shown in middle of main parent row
     */
+
+   parentMiddleAction?: () => void;
+   ParentAffixIcon: React.ReactElement;
+   /**
+    *Button element that will be shown at end of main parent row
+    */
+   parentAffixAction?: () => void;
    title?: string;
    /**
     *main text that will shown in parent row
@@ -41,23 +45,15 @@ interface Props {
    /**
     *id of current tab group
     */
-   handleCloseTab: (
-      e: MouseEvent<HTMLElement | SVGSVGElement>,
-      tabId: number
-   ) => Promise<void>;
+   handleCloseTab: (tabId: number) => Promise<void>;
    /**
     * deletes or closes tab from current group
     */
-   handleCreateTab?: (
-      e: MouseEvent<HTMLElement | SVGSVGElement>
-   ) => Promise<void>;
+   handleCreateTab?: () => Promise<void>;
    /**
     * opens or saves new tab to group
     */
-   handleTabClick?: (
-      e: MouseEvent<SVGSVGElement | HTMLElement>,
-      url: string | undefined
-   ) => void;
+   handleTabClick?: (url: string | undefined) => void;
    /**
     * handles main row child click
     */
@@ -65,9 +61,12 @@ interface Props {
 
 export default function TabGroup({
    groupId,
-   ParentPrefixButton,
-   ParentMiddleButton,
-   ParentAffixButton,
+   ParentPrefixIcon,
+   parentPrefixAction,
+   ParentMiddleIcon,
+   parentMiddleAction,
+   ParentAffixIcon,
+   parentAffixAction,
    title,
    secondary,
    handleParentClick,
@@ -79,9 +78,12 @@ export default function TabGroup({
    return (
       <RowGroupParent
          groupId={groupId}
-         ParentPrefixButton={ParentPrefixButton}
-         ParentMiddleButton={ParentMiddleButton}
-         ParentAffixButton={ParentAffixButton}
+         ParentPrefixIcon={ParentPrefixIcon}
+         parentPrefixAction={parentPrefixAction}
+         ParentMiddleIcon={ParentMiddleIcon}
+         parentMiddleAction={parentMiddleAction}
+         ParentAffixIcon={ParentAffixIcon}
+         parentAffixAction={parentAffixAction}
          title={title}
          secondary={secondary}
          handleParentClick={handleParentClick}
@@ -93,7 +95,7 @@ export default function TabGroup({
                isChild={true}
                handleClick={
                   handleTabClick !== undefined
-                     ? (e) => handleTabClick(e, tab.url)
+                     ? () => handleTabClick(tab.url)
                      : undefined
                }
                PrefixIcon={
@@ -109,14 +111,20 @@ export default function TabGroup({
                   <Tooltip title='Close tab'>
                      <RemoveCircleIcon
                         fontSize='small'
-                        onClick={(e) => {
-                           if (tab.id) {
-                              handleCloseTab(e, tab.id);
-                           }
-                        }}
+                        // onClick={(e) => {
+                        //    e.stopPropagation();
+                        //    if (tab.id) {
+                        //       handleCloseTab(e, tab.id);
+                        //    }
+                        // }}
                      />
                   </Tooltip>
                }
+               affixAction={() => {
+                  if (tab.id) {
+                     handleCloseTab(tab.id);
+                  }
+               }}
             />
          ))}
          {handleCreateTab ? (

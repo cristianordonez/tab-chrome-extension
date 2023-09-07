@@ -1,6 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AlertColor, Tooltip } from '@mui/material';
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
 import SavedTabGroups from '../../../utils/SavedTabGroups';
 import Circle from '../../components/Circle';
@@ -27,8 +27,7 @@ export default function SavedGroup({
    getSavedGroups,
 }: Props) {
    // deletes tab from saved tab group
-   const handleDelete = async (e: React.MouseEvent) => {
-      e.stopPropagation();
+   const handleDelete = async () => {
       try {
          await SavedTabGroups.delete(groupId, title);
          await getSavedGroups();
@@ -40,11 +39,7 @@ export default function SavedGroup({
    };
 
    // deletes tab from current saved group
-   const handleCloseTab = async (
-      e: MouseEvent<HTMLElement | SVGSVGElement>,
-      tabId: number
-   ) => {
-      e.stopPropagation();
+   const handleCloseTab = async (tabId: number) => {
       await SavedTabGroups.removeTab(groupId, [tabId]);
       getSavedGroups();
    };
@@ -59,10 +54,7 @@ export default function SavedGroup({
    };
 
    // handles opening tab url on click
-   const handleTabClick = async (
-      e: MouseEvent<SVGSVGElement | HTMLElement>,
-      url: string | undefined
-   ) => {
+   const handleTabClick = async (url: string | undefined) => {
       if (url !== undefined) {
          await chrome.tabs.create({ url, active: false });
       } else {
@@ -73,12 +65,13 @@ export default function SavedGroup({
    return (
       <>
          <TabGroup
-            ParentPrefixButton={<Circle color={color} />}
-            ParentAffixButton={
+            ParentPrefixIcon={<Circle color={color} />}
+            ParentAffixIcon={
                <Tooltip title='Delete tab group'>
-                  <DeleteIcon onClick={handleDelete} />
+                  <DeleteIcon />
                </Tooltip>
             }
+            parentAffixAction={handleDelete}
             title={title}
             secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
             handleParentClick={handleParentClick}

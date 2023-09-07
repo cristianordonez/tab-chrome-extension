@@ -9,6 +9,7 @@ export default function SavedGroups() {
    const [savedTabs, setSavedTabs] = useState<LocalStorageTabGroups>({});
    const [alertSettings, setAlertSettings] = useAlertSettings();
 
+   // retrieve all saved groups from local storage
    const getSavedGroups = async () => {
       const groups = await SavedTabGroups.get();
       setSavedTabs(groups);
@@ -23,6 +24,7 @@ export default function SavedGroups() {
       }
    }, []);
 
+   // toggles open/close alert message
    const handleAlert = () => {
       setAlertSettings();
    };

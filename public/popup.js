@@ -52078,6 +52078,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -52089,7 +52098,7 @@ var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var SavedGroup_1 = __importDefault(__webpack_require__(2928));
 function SavedGroups() {
     var _this = this;
-    var _a = (0, react_1.useState)({}), savedTabs = _a[0], setSavedTabs = _a[1];
+    var _a = (0, react_1.useState)({}), savedGroups = _a[0], setSavedGroups = _a[1];
     var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
     var getSavedGroups = function () { return __awaiter(_this, void 0, void 0, function () {
         var groups;
@@ -52098,7 +52107,7 @@ function SavedGroups() {
                 case 0: return [4, SavedTabGroups_1.default.get()];
                 case 1:
                     groups = _a.sent();
-                    setSavedTabs(groups);
+                    setSavedGroups(groups);
                     return [2];
             }
         });
@@ -52115,8 +52124,18 @@ function SavedGroups() {
     var handleAlert = function () {
         setAlertSettings();
     };
+    var sortedGroups = (0, react_1.useMemo)(function () {
+        var groups = Object.entries(savedGroups);
+        var sorted = __spreadArray([], groups, true).sort(function (a, b) {
+            return a[1].createdAt - b[1].createdAt;
+        });
+        return sorted.reduce(function (accumulator, currentValue) {
+            accumulator.push(Number(currentValue[0]));
+            return accumulator;
+        }, []);
+    }, [savedGroups]);
     return (react_1.default.createElement("div", null,
-        Object.keys(savedTabs).map(function (groupId) { return (react_1.default.createElement(SavedGroup_1.default, { key: groupId, groupId: Number(groupId), color: savedTabs[Number(groupId)].color, title: savedTabs[Number(groupId)].title, tabs: savedTabs[Number(groupId)].tabs, setAlertSettings: setAlertSettings, getSavedGroups: getSavedGroups })); }),
+        sortedGroups.map(function (groupId) { return (react_1.default.createElement(SavedGroup_1.default, { groupId: Number(groupId), color: savedGroups[Number(groupId)].color, title: savedGroups[Number(groupId)].title, tabs: savedGroups[Number(groupId)].tabs, setAlertSettings: setAlertSettings, getSavedGroups: getSavedGroups })); }),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = SavedGroups;

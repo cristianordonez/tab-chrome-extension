@@ -8,16 +8,25 @@ interface Props {
     *Icon element that will be shown at beginning of main parent row
     */
    parentPrefixAction?: () => void;
+   /**
+    *Action for prefix icon
+    */
    ParentMiddleIcon?: React.ReactElement;
    /**
     *Icon element that will be shown in middle of main parent row
     */
    parentMiddleAction?: () => void;
+   /**
+    *Action for middle icon
+    */
    ParentAffixIcon: React.ReactElement;
    /**
     *Icon element that will be shown at end of main parent row
     */
    parentAffixAction?: () => void;
+   /**
+    *Action for affix icon
+    */
    title?: string;
    /**
     *main text that will shown in parent row

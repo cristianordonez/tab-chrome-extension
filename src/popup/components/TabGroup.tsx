@@ -13,17 +13,26 @@ interface Props {
     *Button element that will be shown at beginning of main parent row
     */
    parentPrefixAction?: () => void;
+   /**
+    *Action for prefix icon
+    */
    ParentMiddleIcon?: React.ReactElement;
    /**
     *Button element that will be shown in middle of main parent row
     */
 
    parentMiddleAction?: () => void;
+   /**
+    *Action for middle icon
+    */
    ParentAffixIcon: React.ReactElement;
    /**
     *Button element that will be shown at end of main parent row
     */
    parentAffixAction?: () => void;
+   /**
+    *Action for affix icon
+    */
    title?: string;
    /**
     *main text that will shown in parent row
@@ -109,15 +118,7 @@ export default function TabGroup({
                title={tab.title || ''}
                AffixIcon={
                   <Tooltip title='Close tab'>
-                     <RemoveCircleIcon
-                        fontSize='small'
-                        // onClick={(e) => {
-                        //    e.stopPropagation();
-                        //    if (tab.id) {
-                        //       handleCloseTab(e, tab.id);
-                        //    }
-                        // }}
-                     />
+                     <RemoveCircleIcon fontSize='small' />
                   </Tooltip>
                }
                affixAction={() => {

@@ -1,10 +1,13 @@
+import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AlertColor, Tooltip } from '@mui/material';
 import React from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
 import SavedTabGroups from '../../../utils/SavedTabGroups';
+import TabUtil from '../../../utils/TabUtil';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
+import { useModal } from '../../hooks/ModalProvider';
 
 interface Props {
    groupId: number;
@@ -27,6 +30,8 @@ export default function SavedGroup({
    getSavedGroups,
 }: Props) {
    // deletes tab from saved tab group
+   const { getOutput } = useModal();
+
    const handleDelete = async () => {
       try {
          await SavedTabGroups.delete(groupId, title);
@@ -56,22 +61,34 @@ export default function SavedGroup({
    // handles opening tab url on click
    const handleTabClick = async (url: string | undefined) => {
       if (url !== undefined) {
-         await chrome.tabs.create({ url, active: false });
+         await TabUtil.create({ url });
       } else {
          setAlertSettings('error', 'Something went wrong');
       }
+   };
+
+   // handles adding tab to current group
+   const handleAddTab = async () => {
+      const output = await getOutput({ title: 'Add tabs', type: 'tabs' });
+      console.log('output: ', output);
    };
 
    return (
       <>
          <TabGroup
             ParentPrefixIcon={<Circle color={color} />}
+            ParentMiddleIcon={
+               <Tooltip title='Add tab to group'>
+                  <AddIcon />
+               </Tooltip>
+            }
             ParentAffixIcon={
                <Tooltip title='Delete tab group'>
                   <DeleteIcon />
                </Tooltip>
             }
             parentAffixAction={handleDelete}
+            parentMiddleAction={handleAddTab}
             title={title}
             secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
             handleParentClick={handleParentClick}

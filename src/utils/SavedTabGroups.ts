@@ -6,6 +6,7 @@ import {
    LocalStorageTitles,
 } from '../types';
 import CurrentTabGroups from './CurrentTabGroups';
+import TabUtil from './TabUtil';
 
 class SavedTabGroups {
    maxGroups;
@@ -21,7 +22,7 @@ class SavedTabGroups {
       const groupIds = await CurrentTabGroups.get();
       for (let i = 0; i < groupIds.length; i++) {
          if (groupIds[i] !== -1) {
-            const tabs = await chrome.tabs.query({ groupId: groupIds[i] });
+            const tabs = await TabUtil.get(groupIds[i]);
             await this.save(Number(groupIds[i]), tabs);
          }
       }
@@ -208,13 +209,8 @@ class SavedTabGroups {
       if (groupInfo !== null) {
          const tabIds = [];
          for (let i = 0; i < groupInfo.tabs.length; i++) {
-            const tab = await chrome.tabs.create({
-               active: false,
-               url: groupInfo.tabs[i].url,
-            });
-            if (tab.id) {
-               tabIds.push(tab.id);
-            }
+            const tab = await TabUtil.create({ url: groupInfo.tabs[i].url });
+            if (tab.id) tabIds.push(tab.id);
          }
          await CurrentTabGroups.create(
             groupInfo.title,

@@ -51,10 +51,9 @@ export default function SavedGroups() {
 
    return (
       <div>
-         {/* {Object.keys(savedGroups).map((groupId) => ( */}
          {sortedGroups.map((groupId) => (
             <SavedGroup
-               // key={groupId}
+               key={groupId}
                groupId={Number(groupId)}
                color={savedGroups[Number(groupId)].color}
                title={savedGroups[Number(groupId)].title}

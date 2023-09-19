@@ -10,6 +10,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteType } from '../types';
 import { savedTabGroupsInstance } from '../utils/SavedTabGroups';
+import TabUtil from '../utils/TabUtil';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import ModalProvider from './hooks/ModalProvider';
@@ -89,7 +90,7 @@ export default function App() {
                            <OpenInFullIcon
                               sx={{ position: 'absolute', bottom: 0 }}
                               onClick={() =>
-                                 chrome.tabs.create({ url: 'popup.html' })
+                                 TabUtil.create({ url: 'popup.html' })
                               }
                            />
                         </>

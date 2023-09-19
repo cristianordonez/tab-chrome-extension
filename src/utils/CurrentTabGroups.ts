@@ -1,18 +1,18 @@
 import { ColorEnum } from '../types';
-import { createTab } from './createTab';
+import TabUtil from './TabUtil';
 
 class CurrentTabGroups {
    // close current tab group
    static async delete(groupId: number): Promise<void> {
       try {
-         const tabGroups = await chrome.tabs.query({ groupId });
+         const tabGroups = await TabUtil.get(groupId);
          const tabIds = tabGroups.reduce((accumulator, currentValue) => {
             if (currentValue.id) {
                accumulator.push(currentValue.id);
             }
             return accumulator;
          }, [] as number[]);
-         await chrome.tabs.remove(tabIds);
+         await TabUtil.close(tabIds);
       } catch (err) {
          console.error(err);
       }
@@ -27,12 +27,12 @@ class CurrentTabGroups {
       try {
          let newGroupTabs;
          if (!tabIds) {
-            const newTab = await createTab();
+            const newTab = await TabUtil.create({}, true);
             newGroupTabs = newTab.id;
          } else {
             newGroupTabs = tabIds;
          }
-         const newGroupId = await chrome.tabs.group({ tabIds: newGroupTabs });
+         const newGroupId = await TabUtil.group(newGroupTabs);
          await chrome.tabGroups.update(newGroupId, { color, title });
          return newGroupId;
       } catch (err) {
@@ -41,27 +41,23 @@ class CurrentTabGroups {
       }
    }
 
-   // deletes one or more tabs from group with given group id
-   static async removeTab(tabIds: number[]) {
-      await chrome.tabs.remove(tabIds);
-   }
-
    // updates existing tab group by adding given tabs to it, and creating new tab if needed
    static async addTabs(
       groupId: number,
       tabIds?: number | number[]
    ): Promise<void> {
+      console.log('groupId in addTabs: ', groupId);
       try {
          const groupDetails = await CurrentTabGroups.getInfo(groupId);
          if (groupDetails !== null) {
             let newGroupTabs;
             if (!tabIds) {
-               const newTab = await createTab();
+               const newTab = await TabUtil.create({}, true);
                newGroupTabs = newTab.id;
             } else {
                newGroupTabs = tabIds;
             }
-            await chrome.tabs.group({ groupId, tabIds: newGroupTabs });
+            await TabUtil.group(newGroupTabs, groupId);
          } else {
             throw new Error(
                'Given group does not exist. Unable to add tab to it.'
@@ -75,7 +71,7 @@ class CurrentTabGroups {
 
    // gets active tab groups
    static async get(): Promise<number[]> {
-      const allTabs = await chrome.tabs.query({});
+      const allTabs = await TabUtil.getAll();
       const groupIds = allTabs.reduce((accumulator, currentValue) => {
          if (currentValue.groupId) {
             const currentId = currentValue.groupId;

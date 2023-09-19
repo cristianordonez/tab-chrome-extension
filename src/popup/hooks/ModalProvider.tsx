@@ -5,20 +5,23 @@ import React, {
    useContext,
    useState,
 } from 'react';
-import Modal from '../components/Modal';
+import AddTabsModal from '../components/modal/AddTabsModal';
+import InputModal from '../components/modal/InputModal';
 
 interface Props {
    children: ReactNode;
 }
 
 interface DialogConfig {
-   actionCallback?: (confirmed: string | false) => void;
+   actionCallback?: (output: string | null) => void;
    body?: string;
    title: string;
+   type: 'input' | 'confirmation' | 'tabs';
 }
 
 const defaultDialogConfig = {
    title: '',
+   type: 'input' as const,
 };
 
 type ShowModal = ({ actionCallback, title, body }: DialogConfig) => void;
@@ -33,6 +36,7 @@ const defaultContext = {
 
 const ModalContext = createContext<ContextType>(defaultContext);
 
+// todo complete this by using a modalType state that shows different modals based on the type (create entirelty new modal componetns based on this tpye)
 export default function ModalProvider({ children }: Props) {
    const [open, setOpen] = useState<boolean>(false);
    const [inputValue, setInputValue] = useState<string>('');
@@ -40,14 +44,14 @@ export default function ModalProvider({ children }: Props) {
       useState<DialogConfig>(defaultDialogConfig);
 
    // context value returned that updates state and opens modal
-   const showModal = ({ actionCallback, title, body }: DialogConfig) => {
+   const showModal = ({ actionCallback, title, body, type }: DialogConfig) => {
       setInputValue('');
-      setDialogConfig({ actionCallback, title, body });
+      setDialogConfig({ actionCallback, title, body, type });
       setOpen(!open);
    };
 
    // called when user clicks on Okay button
-   const onConfirm = async (e: ChangeEvent<HTMLFormElement>) => {
+   const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
       const action = dialogConfig.actionCallback;
       if (action !== undefined) {
@@ -61,23 +65,43 @@ export default function ModalProvider({ children }: Props) {
       setOpen(!open);
       const action = dialogConfig.actionCallback;
       if (action !== undefined) {
-         action(false);
+         action(null);
       }
+   };
+
+   const handleAddTabs = async (e: ChangeEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log('test: ');
+      console.log('e: ', e);
    };
 
    return (
       <ModalContext.Provider value={{ showModal }}>
          {children}
-         <Modal
-            open={open}
-            handleClose={onClose}
-            title={dialogConfig.title}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            buttonAction={onConfirm}
-            buttonText='Save'
-            body={dialogConfig.body}
-         />
+         {dialogConfig.type == 'input' ? (
+            <InputModal
+               open={open}
+               handleClose={onClose}
+               title={dialogConfig.title}
+               inputValue={inputValue}
+               setInputValue={setInputValue}
+               buttonAction={onSubmit}
+               body={dialogConfig.body}
+            />
+         ) : (
+            <></>
+         )}
+         {dialogConfig.type == 'tabs' ? (
+            <AddTabsModal
+               open={open}
+               handleClose={onClose}
+               title={dialogConfig.title}
+               buttonAction={handleAddTabs}
+               body={dialogConfig.body}
+            />
+         ) : (
+            <></>
+         )}
       </ModalContext.Provider>
    );
 }
@@ -97,10 +121,15 @@ const useModalContext = () => {
 export const useModal = () => {
    const { showModal } = useModalContext();
 
-   const getOutput = ({ title, body }: DialogConfig): Promise<string | false> =>
+   // getOutput will return null when user clicks Cancel button
+   const getOutput = ({
+      title,
+      body,
+      type,
+   }: DialogConfig): Promise<string | null> =>
       new Promise((resolve) => {
          if (showModal !== null) {
-            showModal({ actionCallback: resolve, title, body });
+            showModal({ actionCallback: resolve, title, body, type });
          }
       });
    return { getOutput };

@@ -131,7 +131,7 @@ export default function TabGroup({
          {handleCreateTab ? (
             <Row
                id={groupId}
-               PrefixIcon={<AddIcon fontSize='small' />}
+               PrefixIcon={<AddIcon />}
                title='Create new tab'
                isChild={true}
                handleClick={handleCreateTab}

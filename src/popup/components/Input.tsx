@@ -30,7 +30,7 @@ export default function Input({
          label={label}
          type={type}
          fullWidth
-         variant='standard'
+         // variant='standard'
          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setValue(e.target.value)
          }

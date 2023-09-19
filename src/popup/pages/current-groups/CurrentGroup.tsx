@@ -4,6 +4,7 @@ import { AlertColor, Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
+import TabUtil from '../../../utils/TabUtil';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
 import { useModal } from '../../hooks/ModalProvider';
@@ -28,22 +29,12 @@ export default function CurrentGroup({
    );
    const { getOutput } = useModal();
 
-   // gets all tabs for current group using groupId
-   const getTabs = async () => {
-      const tabs = await chrome.tabs.query({ groupId: groupId });
-      setTabs(tabs);
-   };
-
-   // retrieves data for group from chrome API
-   const getGroupInfo = async () => {
-      const info = await CurrentTabGroups.getInfo(groupId);
-      setGroupInfo(info);
-   };
-
    // updates current group with new info
    const updateGroup = async () => {
-      await getGroupInfo();
-      await getTabs();
+      const info = await CurrentTabGroups.getInfo(groupId);
+      const tabs = await TabUtil.get(groupId);
+      setGroupInfo(info);
+      setTabs(tabs);
    };
 
    // closes tab and all associated tab groups
@@ -60,7 +51,10 @@ export default function CurrentGroup({
    const saveGroup = async () => {
       try {
          if (groupId == -1) {
-            const output = await getOutput({ title: 'Group Name' });
+            const output = await getOutput({
+               title: 'Group Name',
+               type: 'input',
+            });
             if (output) {
                const tabIds = tabs.reduce((accumulator, currentValue) => {
                   if (currentValue.id) {
@@ -89,7 +83,7 @@ export default function CurrentGroup({
 
    // closes tab from current tab group
    const handleCloseTab = async (tabId: number) => {
-      await CurrentTabGroups.removeTab([tabId]);
+      await TabUtil.close([tabId]);
       if (tabs.length <= 1) {
          getGroups();
       } else {

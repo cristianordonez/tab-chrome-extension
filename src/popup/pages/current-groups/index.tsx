@@ -30,7 +30,7 @@ export default function CurrentGroups() {
 
    // called by Modal to create new group with given title
    const handleCreateGroup = async () => {
-      const output = await getOutput({ title: 'Group Name' });
+      const output = await getOutput({ title: 'Group Name', type: 'input' });
       if (output) {
          await CurrentTabGroups.create(output);
          getGroups();

@@ -103,8 +103,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var createTab_1 = __webpack_require__(7895);
+var TabUtil_1 = __importDefault(__webpack_require__(470));
 var CurrentTabGroups = (function () {
     function CurrentTabGroups() {
     }
@@ -115,7 +118,7 @@ var CurrentTabGroups = (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4, chrome.tabs.query({ groupId: groupId })];
+                        return [4, TabUtil_1.default.get(groupId)];
                     case 1:
                         tabGroups = _a.sent();
                         tabIds = tabGroups.reduce(function (accumulator, currentValue) {
@@ -124,7 +127,7 @@ var CurrentTabGroups = (function () {
                             }
                             return accumulator;
                         }, []);
-                        return [4, chrome.tabs.remove(tabIds)];
+                        return [4, TabUtil_1.default.close(tabIds)];
                     case 2:
                         _a.sent();
                         return [3, 4];
@@ -147,7 +150,7 @@ var CurrentTabGroups = (function () {
                         _a.trys.push([0, 6, , 7]);
                         newGroupTabs = void 0;
                         if (!!tabIds) return [3, 2];
-                        return [4, (0, createTab_1.createTab)()];
+                        return [4, TabUtil_1.default.create({}, true)];
                     case 1:
                         newTab = _a.sent();
                         newGroupTabs = newTab.id;
@@ -155,7 +158,7 @@ var CurrentTabGroups = (function () {
                     case 2:
                         newGroupTabs = tabIds;
                         _a.label = 3;
-                    case 3: return [4, chrome.tabs.group({ tabIds: newGroupTabs })];
+                    case 3: return [4, TabUtil_1.default.group(newGroupTabs)];
                     case 4:
                         newGroupId = _a.sent();
                         return [4, chrome.tabGroups.update(newGroupId, { color: color, title: title })];
@@ -171,50 +174,41 @@ var CurrentTabGroups = (function () {
             });
         });
     };
-    CurrentTabGroups.removeTab = function (tabIds) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, chrome.tabs.remove(tabIds)];
-                    case 1:
-                        _a.sent();
-                        return [2];
-                }
-            });
-        });
-    };
     CurrentTabGroups.addTabs = function (groupId, tabIds) {
         return __awaiter(this, void 0, Promise, function () {
             var groupDetails, newGroupTabs, newTab, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 8, , 9]);
-                        return [4, CurrentTabGroups.getInfo(groupId)];
+                        console.log('groupId in addTabs: ', groupId);
+                        _a.label = 1;
                     case 1:
-                        groupDetails = _a.sent();
-                        if (!(groupDetails !== null)) return [3, 6];
-                        newGroupTabs = void 0;
-                        if (!!tabIds) return [3, 3];
-                        return [4, (0, createTab_1.createTab)()];
+                        _a.trys.push([1, 9, , 10]);
+                        return [4, CurrentTabGroups.getInfo(groupId)];
                     case 2:
+                        groupDetails = _a.sent();
+                        if (!(groupDetails !== null)) return [3, 7];
+                        newGroupTabs = void 0;
+                        if (!!tabIds) return [3, 4];
+                        return [4, TabUtil_1.default.create({}, true)];
+                    case 3:
                         newTab = _a.sent();
                         newGroupTabs = newTab.id;
-                        return [3, 4];
-                    case 3:
+                        return [3, 5];
+                    case 4:
                         newGroupTabs = tabIds;
-                        _a.label = 4;
-                    case 4: return [4, chrome.tabs.group({ groupId: groupId, tabIds: newGroupTabs })];
-                    case 5:
+                        _a.label = 5;
+                    case 5: return [4, TabUtil_1.default.group(newGroupTabs, groupId)];
+                    case 6:
                         _a.sent();
-                        return [3, 7];
-                    case 6: throw new Error('Given group does not exist. Unable to add tab to it.');
-                    case 7: return [3, 9];
-                    case 8:
+                        return [3, 8];
+                    case 7: throw new Error('Given group does not exist. Unable to add tab to it.');
+                    case 8: return [3, 10];
+                    case 9:
                         err_3 = _a.sent();
                         console.error(err_3);
                         return [2];
-                    case 9: return [2];
+                    case 10: return [2];
                 }
             });
         });
@@ -224,7 +218,7 @@ var CurrentTabGroups = (function () {
             var allTabs, groupIds;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, chrome.tabs.query({})];
+                    case 0: return [4, TabUtil_1.default.getAll()];
                     case 1:
                         allTabs = _a.sent();
                         groupIds = allTabs.reduce(function (accumulator, currentValue) {
@@ -323,6 +317,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.savedTabGroupsInstance = exports["default"] = void 0;
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
+var TabUtil_1 = __importDefault(__webpack_require__(470));
 var SavedTabGroups = (function () {
     function SavedTabGroups(maxGroups, maxTitleDuplicates) {
         this.maxGroups = maxGroups;
@@ -342,7 +337,7 @@ var SavedTabGroups = (function () {
                     case 2:
                         if (!(i < groupIds.length)) return [3, 6];
                         if (!(groupIds[i] !== -1)) return [3, 5];
-                        return [4, chrome.tabs.query({ groupId: groupIds[i] })];
+                        return [4, TabUtil_1.default.get(groupIds[i])];
                     case 3:
                         tabs = _a.sent();
                         return [4, this.save(Number(groupIds[i]), tabs)];
@@ -640,15 +635,11 @@ var SavedTabGroups = (function () {
                         _a.label = 2;
                     case 2:
                         if (!(i < groupInfo.tabs.length)) return [3, 5];
-                        return [4, chrome.tabs.create({
-                                active: false,
-                                url: groupInfo.tabs[i].url,
-                            })];
+                        return [4, TabUtil_1.default.create({ url: groupInfo.tabs[i].url })];
                     case 3:
                         tab = _a.sent();
-                        if (tab.id) {
+                        if (tab.id)
                             tabIds.push(tab.id);
-                        }
                         _a.label = 4;
                     case 4:
                         i++;
@@ -873,10 +864,21 @@ exports.savedTabGroupsInstance = savedTabGroupsInstance;
 
 /***/ }),
 
-/***/ 7895:
+/***/ 470:
 /***/ (function(__unused_webpack_module, exports) {
 
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -914,26 +916,93 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.createTab = void 0;
-var createTab = function (active, url, pinned) {
-    if (active === void 0) { active = false; }
-    if (url === void 0) { url = undefined; }
-    if (pinned === void 0) { pinned = false; }
-    return new Promise(function (resolve) {
-        chrome.tabs.create({ url: url, active: active, pinned: pinned }, function (tab) { return __awaiter(void 0, void 0, void 0, function () {
+var TabUtil = (function () {
+    function TabUtil() {
+    }
+    TabUtil.create = function (options, blocking) {
+        if (blocking === void 0) { blocking = false; }
+        return __awaiter(this, void 0, Promise, function () {
+            var tab;
+            var _this = this;
             return __generator(this, function (_a) {
-                chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
-                    if (info.status === 'complete' && tabId === tab.id) {
-                        chrome.tabs.onUpdated.removeListener(listener);
-                        resolve(tab);
-                    }
-                });
-                return [2];
+                switch (_a.label) {
+                    case 0:
+                        if (!blocking) return [3, 1];
+                        return [2, new Promise(function (resolve) {
+                                chrome.tabs.create(__assign(__assign({}, options), { active: false }), function (tab) { return __awaiter(_this, void 0, void 0, function () {
+                                    return __generator(this, function (_a) {
+                                        chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                                            if (info.status === 'complete' && tabId === tab.id) {
+                                                chrome.tabs.onUpdated.removeListener(listener);
+                                                resolve(tab);
+                                            }
+                                        });
+                                        return [2];
+                                    });
+                                }); });
+                            })];
+                    case 1: return [4, chrome.tabs.create(__assign(__assign({}, options), { active: false }))];
+                    case 2:
+                        tab = _a.sent();
+                        return [2, tab];
+                }
             });
-        }); });
-    });
-};
-exports.createTab = createTab;
+        });
+    };
+    TabUtil.getAll = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var allTabs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.query({})];
+                    case 1:
+                        allTabs = _a.sent();
+                        return [2, allTabs];
+                }
+            });
+        });
+    };
+    TabUtil.get = function (groupId) {
+        return __awaiter(this, void 0, Promise, function () {
+            var tabInfo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.query({ groupId: groupId })];
+                    case 1:
+                        tabInfo = _a.sent();
+                        return [2, tabInfo];
+                }
+            });
+        });
+    };
+    TabUtil.close = function (tabIds) {
+        return __awaiter(this, void 0, Promise, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.remove(tabIds)];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabUtil.group = function (tabIds, groupId) {
+        return __awaiter(this, void 0, Promise, function () {
+            var newGroupNumber;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.group({ groupId: groupId, tabIds: tabIds })];
+                    case 1:
+                        newGroupNumber = _a.sent();
+                        return [2, newGroupNumber];
+                }
+            });
+        });
+    };
+    return TabUtil;
+}());
+exports["default"] = TabUtil;
 
 
 /***/ })

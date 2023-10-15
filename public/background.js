@@ -403,7 +403,7 @@ var SavedTabGroups = (function () {
     };
     SavedTabGroups.prototype.addTabs = function (id, tabs) {
         return __awaiter(this, void 0, void 0, function () {
-            var savedGroupInfo, formattedTabs;
+            var savedGroupInfo, formattedTabs, newTabs, updatedTabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, SavedTabGroups.getInfo(id)];
@@ -411,8 +411,9 @@ var SavedTabGroups = (function () {
                         savedGroupInfo = _a.sent();
                         if (!(savedGroupInfo !== null)) return [3, 3];
                         formattedTabs = savedGroupInfo.tabs;
-                        formattedTabs.concat(SavedTabGroups.formatTabList(tabs));
-                        return [4, this.update(savedGroupInfo, formattedTabs, savedGroupInfo.title, savedGroupInfo.color)];
+                        newTabs = SavedTabGroups.formatTabList(tabs);
+                        updatedTabs = formattedTabs.concat(newTabs);
+                        return [4, this.update(savedGroupInfo, updatedTabs, savedGroupInfo.title, savedGroupInfo.color)];
                     case 2:
                         _a.sent();
                         return [3, 4];
@@ -470,6 +471,7 @@ var SavedTabGroups = (function () {
                     case 0: return [4, this.findOldestGroupByTitle(title)];
                     case 1:
                         oldest = _a.sent();
+                        console.info("Max title limit reached for ".concat(title, " - Deleting oldest title "));
                         if (!oldest) return [3, 3];
                         return [4, SavedTabGroups.delete(oldest, title)];
                     case 2:
@@ -493,6 +495,7 @@ var SavedTabGroups = (function () {
                     case 2:
                         oldestGroupInfo = _a.sent();
                         if (!oldestGroupInfo) return [3, 4];
+                        console.info("Max number of groups reached - Deleting oldest group ");
                         return [4, SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title)];
                     case 3:
                         _a.sent();
@@ -515,6 +518,7 @@ var SavedTabGroups = (function () {
                             tabs: tabs,
                             createdAt: previousGroup.createdAt,
                         };
+                        console.log('updatedGroup: ', updatedGroup);
                         if (!(title !== previousGroup.title)) return [3, 3];
                         return [4, SavedTabGroups.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
                     case 1:

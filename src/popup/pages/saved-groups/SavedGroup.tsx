@@ -3,7 +3,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AlertColor, Tooltip } from '@mui/material';
 import React from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
-import SavedTabGroups from '../../../utils/SavedTabGroups';
+import SavedTabGroups, {
+   savedTabGroupsInstance,
+} from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
@@ -73,7 +75,12 @@ export default function SavedGroup({
       const output = await getOutput({ title: 'Add tabs', type: 'tabs' });
       if (output) {
          const tabsToSave = JSON.parse(output) as chrome.tabs.Tab[];
-         console.log('tabsToSave: ', tabsToSave);
+         try {
+            await savedTabGroupsInstance.addTabs(groupId, tabsToSave);
+         } catch (err) {
+            console.error(err);
+            setAlertSettings('error', 'Something went wrong');
+         }
       }
    };
 

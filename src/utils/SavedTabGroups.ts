@@ -29,6 +29,7 @@ class SavedTabGroups {
    }
 
    // add group to local storage given groupId and associated chrome.tabs.Tab array
+   // if you need to add tabs to a group, use the addTabs method instead
    async save(groupId: number, tabs: chrome.tabs.Tab[]): Promise<void> {
       const groupDetails = await CurrentTabGroups.getInfo(groupId);
       if (groupDetails) {
@@ -54,10 +55,11 @@ class SavedTabGroups {
       const savedGroupInfo = await SavedTabGroups.getInfo(id);
       if (savedGroupInfo !== null) {
          const formattedTabs = savedGroupInfo.tabs;
-         formattedTabs.concat(SavedTabGroups.formatTabList(tabs));
+         const newTabs = SavedTabGroups.formatTabList(tabs);
+         const updatedTabs = formattedTabs.concat(newTabs);
          await this.update(
             savedGroupInfo,
-            formattedTabs,
+            updatedTabs,
             savedGroupInfo.title,
             savedGroupInfo.color
          );
@@ -95,6 +97,9 @@ class SavedTabGroups {
    // deletes oldest title
    private async deleteOldestTitle(title: string) {
       const oldest = await this.findOldestGroupByTitle(title);
+      console.info(
+         `Max title limit reached for ${title} - Deleting oldest title `
+      );
       if (oldest) {
          await SavedTabGroups.delete(oldest, title);
       }
@@ -106,6 +111,9 @@ class SavedTabGroups {
       if (oldestGroupId) {
          const oldestGroupInfo = await SavedTabGroups.getInfo(oldestGroupId);
          if (oldestGroupInfo) {
+            console.info(
+               `Max number of groups reached - Deleting oldest group `
+            );
             await SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title);
          }
       }
@@ -125,6 +133,7 @@ class SavedTabGroups {
          tabs: tabs,
          createdAt: previousGroup.createdAt,
       };
+      console.log('updatedGroup: ', updatedGroup);
       if (title !== previousGroup.title) {
          await SavedTabGroups.deleteFromSavedTitles(
             previousGroup.id,
@@ -244,7 +253,7 @@ class SavedTabGroups {
       }
    }
 
-   // removes given tabs from savved tab group given its group id
+   // removes given tabs from saved tab group given its group id
    static async removeTab(groupId: number, tabIds: number[]) {
       const groupInfo = await SavedTabGroups.getInfo(groupId);
       if (groupInfo !== null) {

@@ -51985,6 +51985,29 @@ exports["default"] = GroupRules;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -52029,7 +52052,7 @@ var Add_1 = __importDefault(__webpack_require__(6540));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var material_1 = __webpack_require__(6629);
 var react_1 = __importDefault(__webpack_require__(7294));
-var SavedTabGroups_1 = __importDefault(__webpack_require__(761));
+var SavedTabGroups_1 = __importStar(__webpack_require__(761));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var TabGroup_1 = __importDefault(__webpack_require__(8057));
@@ -52107,17 +52130,27 @@ function SavedGroup(_a) {
         });
     }); };
     var handleAddTab = function () { return __awaiter(_this, void 0, void 0, function () {
-        var output, tabsToSave;
+        var output, tabsToSave, err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, getOutput({ title: 'Add tabs', type: 'tabs' })];
                 case 1:
                     output = _a.sent();
-                    if (output) {
-                        tabsToSave = JSON.parse(output);
-                        console.log('tabsToSave: ', tabsToSave);
-                    }
-                    return [2];
+                    if (!output) return [3, 5];
+                    tabsToSave = JSON.parse(output);
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 4, , 5]);
+                    return [4, SavedTabGroups_1.savedTabGroupsInstance.addTabs(groupId, tabsToSave)];
+                case 3:
+                    _a.sent();
+                    return [3, 5];
+                case 4:
+                    err_2 = _a.sent();
+                    console.error(err_2);
+                    setAlertSettings('error', 'Something went wrong');
+                    return [3, 5];
+                case 5: return [2];
             }
         });
     }); };
@@ -52652,7 +52685,7 @@ var SavedTabGroups = (function () {
     };
     SavedTabGroups.prototype.addTabs = function (id, tabs) {
         return __awaiter(this, void 0, void 0, function () {
-            var savedGroupInfo, formattedTabs;
+            var savedGroupInfo, formattedTabs, newTabs, updatedTabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, SavedTabGroups.getInfo(id)];
@@ -52660,8 +52693,9 @@ var SavedTabGroups = (function () {
                         savedGroupInfo = _a.sent();
                         if (!(savedGroupInfo !== null)) return [3, 3];
                         formattedTabs = savedGroupInfo.tabs;
-                        formattedTabs.concat(SavedTabGroups.formatTabList(tabs));
-                        return [4, this.update(savedGroupInfo, formattedTabs, savedGroupInfo.title, savedGroupInfo.color)];
+                        newTabs = SavedTabGroups.formatTabList(tabs);
+                        updatedTabs = formattedTabs.concat(newTabs);
+                        return [4, this.update(savedGroupInfo, updatedTabs, savedGroupInfo.title, savedGroupInfo.color)];
                     case 2:
                         _a.sent();
                         return [3, 4];
@@ -52719,6 +52753,7 @@ var SavedTabGroups = (function () {
                     case 0: return [4, this.findOldestGroupByTitle(title)];
                     case 1:
                         oldest = _a.sent();
+                        console.info("Max title limit reached for ".concat(title, " - Deleting oldest title "));
                         if (!oldest) return [3, 3];
                         return [4, SavedTabGroups.delete(oldest, title)];
                     case 2:
@@ -52742,6 +52777,7 @@ var SavedTabGroups = (function () {
                     case 2:
                         oldestGroupInfo = _a.sent();
                         if (!oldestGroupInfo) return [3, 4];
+                        console.info("Max number of groups reached - Deleting oldest group ");
                         return [4, SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title)];
                     case 3:
                         _a.sent();
@@ -52764,6 +52800,7 @@ var SavedTabGroups = (function () {
                             tabs: tabs,
                             createdAt: previousGroup.createdAt,
                         };
+                        console.log('updatedGroup: ', updatedGroup);
                         if (!(title !== previousGroup.title)) return [3, 3];
                         return [4, SavedTabGroups.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
                     case 1:

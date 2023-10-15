@@ -1,9 +1,26 @@
+import { FormattedTabs } from '../types';
+import FormattedTab from './FormattedTab';
+
 interface TabOptions {
    url?: string | undefined;
    pinned?: boolean;
 }
 
 class TabUtil {
+   // formats array of tabs into tabs with checked configuration
+   static formatTabs(tabs: chrome.tabs.Tab[]) {
+      return tabs.reduce(
+         (accumulator, currentValue) => {
+            const currentTab = new FormattedTab(currentValue);
+            if (currentValue.id) {
+               accumulator[currentValue.id] = currentTab;
+            }
+            return accumulator;
+         },
+         {} as unknown as FormattedTabs
+      );
+   }
+
    // if blocking is true, will await from tab to complete loading
    static async create(
       options: TabOptions,

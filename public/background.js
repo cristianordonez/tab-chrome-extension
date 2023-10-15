@@ -107,7 +107,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var TabUtil_1 = __importDefault(__webpack_require__(470));
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var CurrentTabGroups = (function () {
     function CurrentTabGroups() {
     }
@@ -271,6 +271,26 @@ exports["default"] = CurrentTabGroups;
 
 /***/ }),
 
+/***/ 4325:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var FormattedTab = (function () {
+    function FormattedTab(tab) {
+        this.isChecked = false;
+        this.title = '';
+        this.id = -1;
+        Object.assign(this, tab);
+        this.isChecked = false;
+    }
+    return FormattedTab;
+}());
+exports["default"] = FormattedTab;
+
+
+/***/ }),
+
 /***/ 761:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -317,7 +337,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.savedTabGroupsInstance = exports["default"] = void 0;
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
-var TabUtil_1 = __importDefault(__webpack_require__(470));
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var SavedTabGroups = (function () {
     function SavedTabGroups(maxGroups, maxTitleDuplicates) {
         this.maxGroups = maxGroups;
@@ -864,8 +884,8 @@ exports.savedTabGroupsInstance = savedTabGroupsInstance;
 
 /***/ }),
 
-/***/ 470:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ 4470:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -915,10 +935,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var FormattedTab_1 = __importDefault(__webpack_require__(4325));
 var TabUtil = (function () {
     function TabUtil() {
     }
+    TabUtil.formatTabs = function (tabs) {
+        return tabs.reduce(function (accumulator, currentValue) {
+            var currentTab = new FormattedTab_1.default(currentValue);
+            if (currentValue.id) {
+                accumulator[currentValue.id] = currentTab;
+            }
+            return accumulator;
+        }, {});
+    };
     TabUtil.create = function (options, blocking) {
         if (blocking === void 0) { blocking = false; }
         return __awaiter(this, void 0, Promise, function () {

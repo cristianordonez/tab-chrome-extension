@@ -1,4 +1,5 @@
 import { AlertColor } from '@mui/material';
+import FormattedTab from '../utils/FormattedTab';
 
 // data structure to store route objects
 interface RouteType {
@@ -55,9 +56,14 @@ interface AlertSettings {
    alertMessage: string;
 }
 
+interface FormattedTabs {
+   [key: number]: FormattedTab;
+}
+
 export {
    AlertSettings,
    ColorEnum,
+   FormattedTabs,
    LocalStorageTab,
    LocalStorageTabGroup,
    LocalStorageTabGroups,

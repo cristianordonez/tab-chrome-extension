@@ -29,9 +29,10 @@ export default function SavedGroup({
    setAlertSettings,
    getSavedGroups,
 }: Props) {
-   // deletes tab from saved tab group
+   // hook used to open modal
    const { getOutput } = useModal();
 
+   // deleted tab from saved tab group
    const handleDelete = async () => {
       try {
          await SavedTabGroups.delete(groupId, title);
@@ -70,7 +71,10 @@ export default function SavedGroup({
    // handles adding tab to current group
    const handleAddTab = async () => {
       const output = await getOutput({ title: 'Add tabs', type: 'tabs' });
-      console.log('output: ', output);
+      if (output) {
+         const tabsToSave = JSON.parse(output) as chrome.tabs.Tab[];
+         console.log('tabsToSave: ', tabsToSave);
+      }
    };
 
    return (

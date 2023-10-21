@@ -288,7 +288,7 @@ class SavedTabGroups {
    private static formatTabList(tabs: chrome.tabs.Tab[]): LocalStorageTab[] {
       const storageTabs = tabs.map((tab) => {
          return {
-            id: tab.id || Number(Date.now()),
+            id: Number(Date.now()),
             url: tab.url || '',
             title: tab.title || '',
          };

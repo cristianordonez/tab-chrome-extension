@@ -53049,7 +53049,7 @@ var SavedTabGroups = (function () {
     SavedTabGroups.formatTabList = function (tabs) {
         var storageTabs = tabs.map(function (tab) {
             return {
-                id: tab.id || Number(Date.now()),
+                id: Number(Date.now()),
                 url: tab.url || '',
                 title: tab.title || '',
             };

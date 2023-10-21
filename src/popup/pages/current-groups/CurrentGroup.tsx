@@ -7,7 +7,7 @@ import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
-import { useModal } from '../../hooks/ModalProvider';
+import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
    groupId: number;

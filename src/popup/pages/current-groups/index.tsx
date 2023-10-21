@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import CustomAlert from '../../components/CustomAlert';
 import Row from '../../components/Row';
-import { useModal } from '../../hooks/ModalProvider';
 import useAlertSettings from '../../hooks/useAlertSettings';
+import { useModal } from '../../provider/ModalProvider';
 import CurrentGroup from './CurrentGroup';
 
 export default function CurrentGroups() {

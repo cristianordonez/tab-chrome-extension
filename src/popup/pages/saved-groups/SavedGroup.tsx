@@ -9,7 +9,7 @@ import SavedTabGroups, {
 import TabUtil from '../../../utils/TabUtil';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
-import { useModal } from '../../hooks/ModalProvider';
+import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
    groupId: number;
@@ -77,6 +77,7 @@ export default function SavedGroup({
          const tabsToSave = JSON.parse(output) as chrome.tabs.Tab[];
          try {
             await savedTabGroupsInstance.addTabs(groupId, tabsToSave);
+            await getSavedGroups();
          } catch (err) {
             console.error(err);
             setAlertSettings('error', 'Something went wrong');

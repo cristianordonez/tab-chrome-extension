@@ -101,6 +101,7 @@ export default function Row({
    return (
       <StyledListItemButton
          hover={handleClick !== undefined}
+         disableRipple
          alignItems='center'
          divider
          onClick={handleMainClick}

@@ -18,7 +18,7 @@ class SavedTabGroups {
    }
 
    // saves or updates all current tab groups
-   async takeSnapshot() {
+   public async takeSnapshot() {
       const groupIds = await CurrentTabGroups.get();
       for (let i = 0; i < groupIds.length; i++) {
          if (groupIds[i] !== -1) {
@@ -30,7 +30,7 @@ class SavedTabGroups {
 
    // add group to local storage given groupId and associated chrome.tabs.Tab array
    // if you need to add tabs to a group, use the addTabs method instead
-   async save(groupId: number, tabs: chrome.tabs.Tab[]): Promise<void> {
+   public async save(groupId: number, tabs: chrome.tabs.Tab[]): Promise<void> {
       const groupDetails = await CurrentTabGroups.getInfo(groupId);
       if (groupDetails) {
          const storageInfo = await SavedTabGroups.getInfo(groupId);
@@ -51,7 +51,7 @@ class SavedTabGroups {
    }
 
    // adds given tabs to saved tab group, or creates tab if none existed
-   async addTabs(id: number, tabs: chrome.tabs.Tab[]) {
+   public async addTabs(id: number, tabs: chrome.tabs.Tab[]) {
       const savedGroupInfo = await SavedTabGroups.getInfo(id);
       if (savedGroupInfo !== null) {
          const formattedTabs = savedGroupInfo.tabs;
@@ -65,6 +65,78 @@ class SavedTabGroups {
          );
       } else {
          throw new Error('No group with given id exists in local storage.');
+      }
+   }
+
+   //   STATIC ////////////////
+   ////////////////////////////
+
+   // uses tab group id to delete item from local storage
+   public static async delete(id: number, title: string) {
+      try {
+         await SavedTabGroups.deleteFromGroups(id);
+         await SavedTabGroups.deleteFromSavedTitles(id, title);
+      } catch (e) {
+         console.error(e);
+      }
+   }
+
+   // opens saved group and all tabs in current window
+   public static async open(id: number) {
+      const groupInfo = await SavedTabGroups.getInfo(id);
+      if (groupInfo !== null) {
+         const tabIds = [];
+         for (let i = 0; i < groupInfo.tabs.length; i++) {
+            const tab = await TabUtil.create({ url: groupInfo.tabs[i].url });
+            if (tab.id) tabIds.push(tab.id);
+         }
+         await CurrentTabGroups.create(
+            groupInfo.title,
+            tabIds,
+            groupInfo.color
+         );
+      } else {
+         throw new Error(
+            'Group with given id does not exist in saved tab groups.'
+         );
+      }
+   }
+
+   // gets all currently saved tab groups from local storage
+   public static async get(): Promise<LocalStorageTabGroups> {
+      const saved = (await SavedTabGroups.getKey(
+         'groups'
+      )) as LocalStorageTabGroups;
+      return saved;
+   }
+
+   // retrieves tab group information from local storage given group id
+   public static async getInfo(
+      id: number
+   ): Promise<LocalStorageTabGroup | null> {
+      const savedGroups = (await SavedTabGroups.getKey(
+         'groups'
+      )) as LocalStorageTabGroups;
+      if (`${id}` in savedGroups) {
+         return savedGroups[`${id}`];
+      } else {
+         return null;
+      }
+   }
+
+   // removes given tabs from saved tab group given its group id
+   public static async removeTab(groupId: number, tabIds: number[]) {
+      const groupInfo = await SavedTabGroups.getInfo(groupId);
+      if (groupInfo !== null) {
+         const updatedTabs = groupInfo?.tabs.filter(
+            (tab) => tabIds.includes(tab.id) === false
+         );
+         if (updatedTabs.length === 0) {
+            await SavedTabGroups.delete(groupInfo.id, groupInfo.title);
+         } else {
+            groupInfo.tabs = updatedTabs;
+            await SavedTabGroups.updateStorageGroupKey(groupInfo);
+         }
       }
    }
 
@@ -133,7 +205,6 @@ class SavedTabGroups {
          tabs: tabs,
          createdAt: previousGroup.createdAt,
       };
-      console.log('updatedGroup: ', updatedGroup);
       if (title !== previousGroup.title) {
          await SavedTabGroups.deleteFromSavedTitles(
             previousGroup.id,
@@ -197,76 +268,6 @@ class SavedTabGroups {
          }
       }
       return false;
-   }
-
-   //   STATIC ////////////////
-   ////////////////////////////
-
-   // uses tab group id to delete item from local storage
-   static async delete(id: number, title: string) {
-      try {
-         await SavedTabGroups.deleteFromGroups(id);
-         await SavedTabGroups.deleteFromSavedTitles(id, title);
-      } catch (e) {
-         console.error(e);
-      }
-   }
-
-   // opens saved group and all tabs in current window
-   static async open(id: number) {
-      const groupInfo = await SavedTabGroups.getInfo(id);
-      if (groupInfo !== null) {
-         const tabIds = [];
-         for (let i = 0; i < groupInfo.tabs.length; i++) {
-            const tab = await TabUtil.create({ url: groupInfo.tabs[i].url });
-            if (tab.id) tabIds.push(tab.id);
-         }
-         await CurrentTabGroups.create(
-            groupInfo.title,
-            tabIds,
-            groupInfo.color
-         );
-      } else {
-         throw new Error(
-            'Group with given id does not exist in saved tab groups.'
-         );
-      }
-   }
-
-   // gets all currently saved tab groups from local storage
-   static async get(): Promise<LocalStorageTabGroups> {
-      const saved = (await SavedTabGroups.getKey(
-         'groups'
-      )) as LocalStorageTabGroups;
-      return saved;
-   }
-
-   // retrieves tab group information from local storage given group id
-   static async getInfo(id: number): Promise<LocalStorageTabGroup | null> {
-      const savedGroups = (await SavedTabGroups.getKey(
-         'groups'
-      )) as LocalStorageTabGroups;
-      if (`${id}` in savedGroups) {
-         return savedGroups[`${id}`];
-      } else {
-         return null;
-      }
-   }
-
-   // removes given tabs from saved tab group given its group id
-   static async removeTab(groupId: number, tabIds: number[]) {
-      const groupInfo = await SavedTabGroups.getInfo(groupId);
-      if (groupInfo !== null) {
-         const updatedTabs = groupInfo?.tabs.filter(
-            (tab) => tabIds.includes(tab.id) === false
-         );
-         if (updatedTabs.length === 0) {
-            await SavedTabGroups.delete(groupInfo.id, groupInfo.title);
-         } else {
-            groupInfo.tabs = updatedTabs;
-            await SavedTabGroups.updateStorageGroupKey(groupInfo);
-         }
-      }
    }
 
    //   PRIVATE STATIC ////////////////

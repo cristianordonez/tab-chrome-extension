@@ -17,14 +17,8 @@
       "activeTab",
       "favicon",
       "windows",
-      "commands"
-   ],
-   "host_permissions": ["http://*/*", "https://*/*"],
-   "content_scripts": [
-      {
-         "matches": ["http://*/*", "https://*/*"],
-         "js": ["content.js"]
-      }
+      "commands",
+      "scripting"
    ],
    "web_accessible_resources": [
       {

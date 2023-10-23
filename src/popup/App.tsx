@@ -6,10 +6,9 @@ import {
    responsiveFontSizes,
    styled,
 } from '@mui/material/styles';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteType } from '../types';
-import { savedTabGroupsInstance } from '../utils/SavedTabGroups';
 import TabUtil from '../utils/TabUtil';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
@@ -65,12 +64,13 @@ export default function App() {
    let theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
    theme = responsiveFontSizes(theme);
 
-   useEffect(() => {
-      const updateSnapshot = async () => {
-         await savedTabGroupsInstance.takeSnapshot();
-      };
-      updateSnapshot();
-   }, []);
+   // ! this automatically saves new tab groups when the UI is opened
+   // useEffect(() => {
+   //    const updateSnapshot = async () => {
+   //       await savedTabGroupsInstance.takeSnapshot();
+   //    };
+   //    updateSnapshot();
+   // }, []);
 
    return (
       <GlobalStyles>

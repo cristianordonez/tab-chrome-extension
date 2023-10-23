@@ -12,7 +12,7 @@ module.exports = {
    },
    entry: {
       popup: `${path.join(__dirname, './src')}/index.tsx`,
-      content: `${path.join(
+      contentScript: `${path.join(
          __dirname,
          './src'
       )}/contentScript/contentScript.ts`,

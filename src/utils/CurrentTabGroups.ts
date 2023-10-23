@@ -3,7 +3,7 @@ import TabUtil from './TabUtil';
 
 class CurrentTabGroups {
    // close current tab group
-   static async delete(groupId: number): Promise<void> {
+   public static async delete(groupId: number): Promise<void> {
       try {
          const tabGroups = await TabUtil.get(groupId);
          const tabIds = tabGroups.reduce((accumulator, currentValue) => {
@@ -19,7 +19,7 @@ class CurrentTabGroups {
    }
 
    // creates and opens new tab group, returning group id of created group
-   static async create(
+   public static async create(
       title: string = '',
       tabIds?: number[],
       color?: ColorEnum
@@ -42,7 +42,7 @@ class CurrentTabGroups {
    }
 
    // updates existing tab group by adding given tabs to it, and creating new tab if needed
-   static async addTabs(
+   public static async addTabs(
       groupId: number,
       tabIds?: number | number[]
    ): Promise<void> {
@@ -70,7 +70,7 @@ class CurrentTabGroups {
    }
 
    // gets active tab groups
-   static async get(): Promise<number[]> {
+   public static async get(): Promise<number[]> {
       const allTabs = await TabUtil.getAll();
       const groupIds = allTabs.reduce((accumulator, currentValue) => {
          if (currentValue.groupId) {
@@ -85,7 +85,7 @@ class CurrentTabGroups {
    }
 
    // given groupId will get all information about given tab group from chrome API
-   static async getInfo(
+   public static async getInfo(
       groupId: number
    ): Promise<chrome.tabGroups.TabGroup | null> {
       if (groupId == -1) {

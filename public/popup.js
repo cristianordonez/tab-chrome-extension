@@ -50828,65 +50828,6 @@ root.render(react_1.default.createElement(App_1.default, null));
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -50895,9 +50836,8 @@ exports.ColorModeContext = void 0;
 var OpenInFull_1 = __importDefault(__webpack_require__(9137));
 var material_1 = __webpack_require__(6629);
 var styles_1 = __webpack_require__(123);
-var react_1 = __importStar(__webpack_require__(7294));
+var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
-var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var Center_1 = __importDefault(__webpack_require__(1081));
 var TabHeader_1 = __importDefault(__webpack_require__(2314));
@@ -50905,7 +50845,7 @@ var useLocalStorageState_1 = __webpack_require__(7808);
 var current_groups_1 = __importDefault(__webpack_require__(3137));
 var GroupRules_1 = __importDefault(__webpack_require__(8312));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
-var ModalProvider_1 = __importDefault(__webpack_require__(125));
+var ModalProvider_1 = __importDefault(__webpack_require__(5125));
 var theme_1 = __webpack_require__(5825);
 exports.ColorModeContext = react_1.default.createContext({
     toggleColorMode: function () { },
@@ -50915,7 +50855,6 @@ var GlobalStyles = (0, styles_1.styled)('div')({
     minHeight: '800px',
 });
 function App() {
-    var _this = this;
     var _a = (0, useLocalStorageState_1.useLocalStorageState)('mode', 'dark'), mode = _a[0], setMode = _a[1];
     var routes = [
         {
@@ -50944,19 +50883,6 @@ function App() {
     }); }, []);
     var theme = react_1.default.useMemo(function () { return (0, styles_1.createTheme)((0, theme_1.getDesignTokens)(mode)); }, [mode]);
     theme = (0, styles_1.responsiveFontSizes)(theme);
-    (0, react_1.useEffect)(function () {
-        var updateSnapshot = function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, SavedTabGroups_1.savedTabGroupsInstance.takeSnapshot()];
-                    case 1:
-                        _a.sent();
-                        return [2];
-                }
-            });
-        }); };
-        updateSnapshot();
-    }, []);
     return (react_1.default.createElement(GlobalStyles, null,
         react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
             react_1.default.createElement(exports.ColorModeContext.Provider, { value: colorMode },
@@ -51531,7 +51457,7 @@ var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var TabGroup_1 = __importDefault(__webpack_require__(8057));
-var ModalProvider_1 = __webpack_require__(125);
+var ModalProvider_1 = __webpack_require__(5125);
 function CurrentGroup(_a) {
     var _this = this;
     var groupId = _a.groupId, getGroups = _a.getGroups, setAlertSettings = _a.setAlertSettings;
@@ -51726,7 +51652,7 @@ var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
-var ModalProvider_1 = __webpack_require__(125);
+var ModalProvider_1 = __webpack_require__(5125);
 var CurrentGroup_1 = __importDefault(__webpack_require__(2595));
 function CurrentGroups() {
     var _this = this;
@@ -51881,7 +51807,7 @@ var SavedTabGroups_1 = __importStar(__webpack_require__(761));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var TabGroup_1 = __importDefault(__webpack_require__(8057));
-var ModalProvider_1 = __webpack_require__(125);
+var ModalProvider_1 = __webpack_require__(5125);
 function SavedGroup(_a) {
     var _this = this;
     var groupId = _a.groupId, color = _a.color, title = _a.title, tabs = _a.tabs, setAlertSettings = _a.setAlertSettings, getSavedGroups = _a.getSavedGroups;
@@ -52121,7 +52047,7 @@ exports["default"] = SavedGroups;
 
 /***/ }),
 
-/***/ 125:
+/***/ 5125:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52708,205 +52634,6 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.prototype.create = function (group, tabs) {
-        return __awaiter(this, void 0, Promise, function () {
-            var newTabGroup, titleLimitReached, maxLimitReached;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        newTabGroup = {
-                            id: group.id,
-                            color: group.color,
-                            title: group.title || '',
-                            tabs: tabs,
-                            createdAt: Date.now(),
-                        };
-                        return [4, this.titleLimitReached(group)];
-                    case 1:
-                        titleLimitReached = _a.sent();
-                        if (!titleLimitReached) return [3, 3];
-                        return [4, this.deleteOldestTitle(newTabGroup.title)];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3: return [4, this.groupLimitReached()];
-                    case 4:
-                        maxLimitReached = _a.sent();
-                        if (!maxLimitReached) return [3, 6];
-                        return [4, this.deleteOldestGroup()];
-                    case 5:
-                        _a.sent();
-                        _a.label = 6;
-                    case 6: return [4, SavedTabGroups.updateStorageGroupKey(newTabGroup)];
-                    case 7:
-                        _a.sent();
-                        return [4, SavedTabGroups.saveToSavedTitles(group.id, group.title || '')];
-                    case 8:
-                        _a.sent();
-                        return [2];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.deleteOldestTitle = function (title) {
-        return __awaiter(this, void 0, void 0, function () {
-            var oldest;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, this.findOldestGroupByTitle(title)];
-                    case 1:
-                        oldest = _a.sent();
-                        console.info("Max title limit reached for ".concat(title, " - Deleting oldest title "));
-                        if (!oldest) return [3, 3];
-                        return [4, SavedTabGroups.delete(oldest, title)];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3: return [2];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.deleteOldestGroup = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var oldestGroupId, oldestGroupInfo;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, this.findOldestGroup()];
-                    case 1:
-                        oldestGroupId = _a.sent();
-                        if (!oldestGroupId) return [3, 4];
-                        return [4, SavedTabGroups.getInfo(oldestGroupId)];
-                    case 2:
-                        oldestGroupInfo = _a.sent();
-                        if (!oldestGroupInfo) return [3, 4];
-                        console.info("Max number of groups reached - Deleting oldest group ");
-                        return [4, SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title)];
-                    case 3:
-                        _a.sent();
-                        _a.label = 4;
-                    case 4: return [2];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.update = function (previousGroup, tabs, title, color) {
-        return __awaiter(this, void 0, Promise, function () {
-            var updatedGroup;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        updatedGroup = {
-                            id: previousGroup.id,
-                            color: color,
-                            title: title || '',
-                            tabs: tabs,
-                            createdAt: previousGroup.createdAt,
-                        };
-                        console.log('updatedGroup: ', updatedGroup);
-                        if (!(title !== previousGroup.title)) return [3, 3];
-                        return [4, SavedTabGroups.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
-                    case 1:
-                        _a.sent();
-                        return [4, SavedTabGroups.saveToSavedTitles(previousGroup.id, title || '')];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3: return [4, SavedTabGroups.updateStorageGroupKey(updatedGroup)];
-                    case 4:
-                        _a.sent();
-                        return [2];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.findOldestGroupByTitle = function (title) {
-        return __awaiter(this, void 0, Promise, function () {
-            var oldest, result, allTitles, saved, i, current;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        oldest = Infinity;
-                        result = null;
-                        return [4, SavedTabGroups.getKey('savedTitles')];
-                    case 1:
-                        allTitles = (_a.sent());
-                        saved = allTitles["".concat(title)];
-                        i = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(i < saved.length)) return [3, 5];
-                        return [4, SavedTabGroups.getInfo(saved[i])];
-                    case 3:
-                        current = _a.sent();
-                        if (current !== null && current.createdAt < oldest) {
-                            result = current.id;
-                        }
-                        _a.label = 4;
-                    case 4:
-                        i++;
-                        return [3, 2];
-                    case 5: return [2, result];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.findOldestGroup = function () {
-        return __awaiter(this, void 0, Promise, function () {
-            var currentGroups, oldest, groupId, group;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.get()];
-                    case 1:
-                        currentGroups = _a.sent();
-                        oldest = Infinity;
-                        groupId = null;
-                        for (group in currentGroups) {
-                            if (currentGroups[group].createdAt < oldest) {
-                                groupId = currentGroups[group].id;
-                                oldest = currentGroups[group].createdAt;
-                            }
-                        }
-                        return [2, groupId];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.groupLimitReached = function () {
-        return __awaiter(this, void 0, Promise, function () {
-            var currentGroups, numGroups;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.get()];
-                    case 1:
-                        currentGroups = _a.sent();
-                        numGroups = Object.keys(currentGroups).length;
-                        return [2, numGroups >= this.maxGroups];
-                }
-            });
-        });
-    };
-    SavedTabGroups.prototype.titleLimitReached = function (group) {
-        return __awaiter(this, void 0, Promise, function () {
-            var title, savedTitles, cachedIds;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        title = group.title == undefined ? '' : group.title;
-                        return [4, SavedTabGroups.getKey('savedTitles')];
-                    case 1:
-                        savedTitles = (_a.sent());
-                        if (title in savedTitles) {
-                            cachedIds = savedTitles[title];
-                            if (cachedIds.length >= this.maxTitleDuplicates) {
-                                return [2, true];
-                            }
-                        }
-                        return [2, false];
-                }
-            });
-        });
-    };
     SavedTabGroups.delete = function (id, title) {
         return __awaiter(this, void 0, void 0, function () {
             var e_1;
@@ -53017,6 +52744,204 @@ var SavedTabGroups = (function () {
                         _a.sent();
                         _a.label = 5;
                     case 5: return [2];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.create = function (group, tabs) {
+        return __awaiter(this, void 0, Promise, function () {
+            var newTabGroup, titleLimitReached, maxLimitReached;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        newTabGroup = {
+                            id: group.id,
+                            color: group.color,
+                            title: group.title || '',
+                            tabs: tabs,
+                            createdAt: Date.now(),
+                        };
+                        return [4, this.titleLimitReached(group)];
+                    case 1:
+                        titleLimitReached = _a.sent();
+                        if (!titleLimitReached) return [3, 3];
+                        return [4, this.deleteOldestTitle(newTabGroup.title)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [4, this.groupLimitReached()];
+                    case 4:
+                        maxLimitReached = _a.sent();
+                        if (!maxLimitReached) return [3, 6];
+                        return [4, this.deleteOldestGroup()];
+                    case 5:
+                        _a.sent();
+                        _a.label = 6;
+                    case 6: return [4, SavedTabGroups.updateStorageGroupKey(newTabGroup)];
+                    case 7:
+                        _a.sent();
+                        return [4, SavedTabGroups.saveToSavedTitles(group.id, group.title || '')];
+                    case 8:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.deleteOldestTitle = function (title) {
+        return __awaiter(this, void 0, void 0, function () {
+            var oldest;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.findOldestGroupByTitle(title)];
+                    case 1:
+                        oldest = _a.sent();
+                        console.info("Max title limit reached for ".concat(title, " - Deleting oldest title "));
+                        if (!oldest) return [3, 3];
+                        return [4, SavedTabGroups.delete(oldest, title)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [2];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.deleteOldestGroup = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var oldestGroupId, oldestGroupInfo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.findOldestGroup()];
+                    case 1:
+                        oldestGroupId = _a.sent();
+                        if (!oldestGroupId) return [3, 4];
+                        return [4, SavedTabGroups.getInfo(oldestGroupId)];
+                    case 2:
+                        oldestGroupInfo = _a.sent();
+                        if (!oldestGroupInfo) return [3, 4];
+                        console.info("Max number of groups reached - Deleting oldest group ");
+                        return [4, SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.update = function (previousGroup, tabs, title, color) {
+        return __awaiter(this, void 0, Promise, function () {
+            var updatedGroup;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        updatedGroup = {
+                            id: previousGroup.id,
+                            color: color,
+                            title: title || '',
+                            tabs: tabs,
+                            createdAt: previousGroup.createdAt,
+                        };
+                        if (!(title !== previousGroup.title)) return [3, 3];
+                        return [4, SavedTabGroups.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
+                    case 1:
+                        _a.sent();
+                        return [4, SavedTabGroups.saveToSavedTitles(previousGroup.id, title || '')];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [4, SavedTabGroups.updateStorageGroupKey(updatedGroup)];
+                    case 4:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.findOldestGroupByTitle = function (title) {
+        return __awaiter(this, void 0, Promise, function () {
+            var oldest, result, allTitles, saved, i, current;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        oldest = Infinity;
+                        result = null;
+                        return [4, SavedTabGroups.getKey('savedTitles')];
+                    case 1:
+                        allTitles = (_a.sent());
+                        saved = allTitles["".concat(title)];
+                        i = 0;
+                        _a.label = 2;
+                    case 2:
+                        if (!(i < saved.length)) return [3, 5];
+                        return [4, SavedTabGroups.getInfo(saved[i])];
+                    case 3:
+                        current = _a.sent();
+                        if (current !== null && current.createdAt < oldest) {
+                            result = current.id;
+                        }
+                        _a.label = 4;
+                    case 4:
+                        i++;
+                        return [3, 2];
+                    case 5: return [2, result];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.findOldestGroup = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var currentGroups, oldest, groupId, group;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, SavedTabGroups.get()];
+                    case 1:
+                        currentGroups = _a.sent();
+                        oldest = Infinity;
+                        groupId = null;
+                        for (group in currentGroups) {
+                            if (currentGroups[group].createdAt < oldest) {
+                                groupId = currentGroups[group].id;
+                                oldest = currentGroups[group].createdAt;
+                            }
+                        }
+                        return [2, groupId];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.groupLimitReached = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var currentGroups, numGroups;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, SavedTabGroups.get()];
+                    case 1:
+                        currentGroups = _a.sent();
+                        numGroups = Object.keys(currentGroups).length;
+                        return [2, numGroups >= this.maxGroups];
+                }
+            });
+        });
+    };
+    SavedTabGroups.prototype.titleLimitReached = function (group) {
+        return __awaiter(this, void 0, Promise, function () {
+            var title, savedTitles, cachedIds;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        title = group.title == undefined ? '' : group.title;
+                        return [4, SavedTabGroups.getKey('savedTitles')];
+                    case 1:
+                        savedTitles = (_a.sent());
+                        if (title in savedTitles) {
+                            cachedIds = savedTitles[title];
+                            if (cachedIds.length >= this.maxTitleDuplicates) {
+                                return [2, true];
+                            }
+                        }
+                        return [2, false];
                 }
             });
         });

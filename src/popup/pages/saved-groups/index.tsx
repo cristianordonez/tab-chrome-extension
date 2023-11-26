@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { LocalStorageTabGroup, LocalStorageTabGroups } from '../../../types';
-import SavedTabGroups from '../../../utils/SavedTabGroups';
+import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import CustomAlert from '../../components/CustomAlert';
 import useAlertSettings from '../../hooks/useAlertSettings';
 import SavedGroup from './SavedGroup';
@@ -11,7 +11,7 @@ export default function SavedGroups() {
 
    // retrieve all saved groups from local storage
    const getSavedGroups = async () => {
-      const groups = await SavedTabGroups.get();
+      const groups = await savedTabGroupsInstance.get();
       setSavedGroups(groups);
    };
 

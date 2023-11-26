@@ -1,3 +1,6 @@
+/**
+ * Used for checkbox options for selecting tabs, extends chrome.tabs.Tab
+ */
 class FormattedTab {
    isChecked = false;
    title = '';

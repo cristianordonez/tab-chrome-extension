@@ -3,9 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { AlertColor, Tooltip } from '@mui/material';
 import React from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
-import SavedTabGroups, {
-   savedTabGroupsInstance,
-} from '../../../utils/SavedTabGroups';
+import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
 import Circle from '../../components/Circle';
 import TabGroup from '../../components/TabGroup';
@@ -37,7 +35,7 @@ export default function SavedGroup({
    // deleted tab from saved tab group
    const handleDelete = async () => {
       try {
-         await SavedTabGroups.delete(groupId, title);
+         await savedTabGroupsInstance.delete(groupId, title);
          await getSavedGroups();
          setAlertSettings('success', 'Tab group has been deleted');
       } catch (err) {
@@ -48,14 +46,14 @@ export default function SavedGroup({
 
    // deletes tab from current saved group
    const handleCloseTab = async (tabId: number) => {
-      await SavedTabGroups.removeTab(groupId, [tabId]);
+      await savedTabGroupsInstance.removeTab(groupId, [tabId]);
       getSavedGroups();
    };
 
    // opens saved tab group and all associated tabs in current window
    const handleParentClick = async () => {
       try {
-         await SavedTabGroups.open(groupId);
+         await savedTabGroupsInstance.open(groupId);
       } catch {
          setAlertSettings('error', 'Something went wrong');
       }

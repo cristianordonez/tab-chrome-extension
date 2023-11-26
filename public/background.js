@@ -42,7 +42,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Rule_1 = __importDefault(__webpack_require__(4235));
 var SavedTabGroups_1 = __webpack_require__(761);
 chrome.commands.onCommand.addListener(function (command) {
     return __awaiter(this, void 0, void 0, function () {
@@ -59,38 +63,16 @@ chrome.commands.onCommand.addListener(function (command) {
         });
     });
 });
-function shouldExecuteScript(url) {
-    return __awaiter(this, void 0, Promise, function () {
-        return __generator(this, function (_a) {
-            console.log('url: ', url);
-            if (url === null || url === void 0 ? void 0 : url.includes('example')) {
-                return [2, true];
-            }
-            return [2, false];
-        });
-    });
-}
-function executeScript(tabId) {
-    console.log('tabId: ', tabId);
-    console.log('here');
-}
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                console.log('changeInfo: ', changeInfo);
-                _a = changeInfo.status == 'complete';
-                if (!_a) return [3, 2];
-                return [4, shouldExecuteScript(tab.url)];
+                if (!tab.url) return [3, 2];
+                return [4, Rule_1.default.findMatch(tabId)];
             case 1:
-                _a = (_b.sent());
-                _b.label = 2;
-            case 2:
-                if (_a) {
-                    executeScript(tabId);
-                }
-                return [2];
+                _a.sent();
+                _a.label = 2;
+            case 2: return [2];
         }
     });
 }); });
@@ -326,6 +308,163 @@ exports["default"] = FormattedTab;
 
 /***/ }),
 
+/***/ 4235:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Storage_1 = __importDefault(__webpack_require__(8537));
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
+var UrlUtil_1 = __importDefault(__webpack_require__(9660));
+var Rule = (function () {
+    function Rule(title, action, groupName, groupColor, subRules) {
+        if (subRules === void 0) { subRules = []; }
+        this.title = title;
+        this.action = action;
+        this.groupName = groupName;
+        this.groupColor = groupColor;
+        this.subRules = subRules;
+    }
+    Rule.build = function (ruleData) {
+        return new Rule(ruleData.title, ruleData.action, ruleData.groupName, ruleData.groupColor, ruleData.subRules);
+    };
+    Rule.findMatch = function (tabId) {
+        return __awaiter(this, void 0, Promise, function () {
+            var tab, url, rules, matchFound;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabUtil_1.default.build(tabId)];
+                    case 1:
+                        tab = _a.sent();
+                        url = tab.getUrl();
+                        return [4, this.ruleStorage.get()];
+                    case 2:
+                        rules = _a.sent();
+                        matchFound = false;
+                        Object.values(rules).forEach(function (ruleData) {
+                            var rule = Rule.build(ruleData);
+                            if (rule.isMatch(url)) {
+                                matchFound = true;
+                                rule.run(tabId);
+                            }
+                        });
+                        return [2, matchFound];
+                }
+            });
+        });
+    };
+    Rule.prototype.isMatch = function (url) {
+        var _this = this;
+        var urlUtil = new UrlUtil_1.default(url);
+        var foundMatch = false;
+        this.subRules.forEach(function (subRule) {
+            if (_this.handleSubRule(subRule, urlUtil)) {
+                foundMatch = true;
+            }
+        });
+        return foundMatch;
+    };
+    Rule.prototype.handleSubRule = function (subRule, urlUtil) {
+        var currentUrl = this.extractUrl(subRule, urlUtil);
+        console.log('currentUrl: ', currentUrl);
+        switch (subRule.match) {
+            case 'contains':
+                return currentUrl.includes(subRule.query);
+            case 'starts with':
+                return currentUrl.startsWith(subRule.query);
+            case 'ends with':
+                return currentUrl.endsWith(subRule.query);
+            case 'is equal to':
+                return currentUrl == subRule.query;
+            default:
+                return false;
+        }
+    };
+    Rule.prototype.extractUrl = function (subRule, urlUtil) {
+        switch (subRule.url) {
+            case 'any':
+                return urlUtil.getUrl();
+            case 'hostname':
+                return urlUtil.hostname();
+            case 'path':
+                return urlUtil.path();
+            case 'query':
+                return urlUtil.query();
+            default:
+                return urlUtil.getUrl();
+        }
+    };
+    Rule.prototype.getData = function () {
+        return {
+            title: this.title,
+            action: this.action,
+            groupName: this.groupName,
+            groupColor: this.groupColor,
+            subRules: this.subRules,
+        };
+    };
+    Rule.prototype.save = function () {
+        var value = this.getData();
+        Rule.ruleStorage.add(this.title, value);
+    };
+    Rule.prototype.delete = function () { };
+    Rule.prototype.update = function () { };
+    Rule.prototype.run = function (tabId) {
+        console.log('tabId: ', tabId);
+        console.log('this.action: ', this.action);
+        return;
+    };
+    Rule.prototype.addSubRule = function (subrule) {
+        var _a;
+        (_a = this.subRules) === null || _a === void 0 ? void 0 : _a.push(subrule);
+    };
+    Rule.ruleStorage = new Storage_1.default('rules');
+    return Rule;
+}());
+exports["default"] = Rule;
+
+
+/***/ }),
+
 /***/ 761:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -372,12 +511,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.savedTabGroupsInstance = exports["default"] = void 0;
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
+var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var SavedTabGroups = (function () {
     function SavedTabGroups(maxGroups, maxTitleDuplicates) {
         this.maxGroups = maxGroups;
         this.maxTitleDuplicates = maxTitleDuplicates;
-        SavedTabGroups.initialize();
+        this.titleStorage = new Storage_1.default('savedTitles');
+        this.groupStorage = new Storage_1.default('groups');
     }
     SavedTabGroups.prototype.takeSnapshot = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -416,7 +557,7 @@ var SavedTabGroups = (function () {
                     case 1:
                         groupDetails = _a.sent();
                         if (!groupDetails) return [3, 7];
-                        return [4, SavedTabGroups.getInfo(groupId)];
+                        return [4, this.getInfo(groupId)];
                     case 2:
                         storageInfo = _a.sent();
                         formattedTabs = SavedTabGroups.formatTabList(tabs);
@@ -441,7 +582,7 @@ var SavedTabGroups = (function () {
             var savedGroupInfo, formattedTabs, newTabs, updatedTabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.getInfo(id)];
+                    case 0: return [4, this.getInfo(id)];
                     case 1:
                         savedGroupInfo = _a.sent();
                         if (!(savedGroupInfo !== null)) return [3, 3];
@@ -458,17 +599,17 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.delete = function (id, title) {
+    SavedTabGroups.prototype.delete = function (id, title) {
         return __awaiter(this, void 0, void 0, function () {
             var e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4, SavedTabGroups.deleteFromGroups(id)];
+                        return [4, this.deleteFromGroups(id)];
                     case 1:
                         _a.sent();
-                        return [4, SavedTabGroups.deleteFromSavedTitles(id, title)];
+                        return [4, this.deleteFromSavedTitles(id, title)];
                     case 2:
                         _a.sent();
                         return [3, 4];
@@ -481,12 +622,12 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.open = function (id) {
+    SavedTabGroups.prototype.open = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var groupInfo, tabIds, i, tab;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.getInfo(id)];
+                    case 0: return [4, this.getInfo(id)];
                     case 1:
                         groupInfo = _a.sent();
                         if (!(groupInfo !== null)) return [3, 7];
@@ -514,12 +655,12 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.get = function () {
+    SavedTabGroups.prototype.get = function () {
         return __awaiter(this, void 0, Promise, function () {
             var saved;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.getKey('groups')];
+                    case 0: return [4, this.groupStorage.get()];
                     case 1:
                         saved = (_a.sent());
                         return [2, saved];
@@ -527,12 +668,12 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.getInfo = function (id) {
+    SavedTabGroups.prototype.getInfo = function (id) {
         return __awaiter(this, void 0, Promise, function () {
             var savedGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.getKey('groups')];
+                    case 0: return [4, this.groupStorage.get()];
                     case 1:
                         savedGroups = (_a.sent());
                         if ("".concat(id) in savedGroups) {
@@ -546,24 +687,24 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.removeTab = function (groupId, tabIds) {
+    SavedTabGroups.prototype.removeTab = function (groupId, tabIds) {
         return __awaiter(this, void 0, void 0, function () {
             var groupInfo, updatedTabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.getInfo(groupId)];
+                    case 0: return [4, this.getInfo(groupId)];
                     case 1:
                         groupInfo = _a.sent();
                         if (!(groupInfo !== null)) return [3, 5];
                         updatedTabs = groupInfo === null || groupInfo === void 0 ? void 0 : groupInfo.tabs.filter(function (tab) { return tabIds.includes(tab.id) === false; });
                         if (!(updatedTabs.length === 0)) return [3, 3];
-                        return [4, SavedTabGroups.delete(groupInfo.id, groupInfo.title)];
+                        return [4, this.delete(groupInfo.id, groupInfo.title)];
                     case 2:
                         _a.sent();
                         return [3, 5];
                     case 3:
                         groupInfo.tabs = updatedTabs;
-                        return [4, SavedTabGroups.updateStorageGroupKey(groupInfo)];
+                        return [4, this.updateStorageGroupKey(groupInfo)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
@@ -571,6 +712,16 @@ var SavedTabGroups = (function () {
                 }
             });
         });
+    };
+    SavedTabGroups.formatTabList = function (tabs) {
+        var storageTabs = tabs.map(function (tab) {
+            return {
+                id: Number(Date.now()),
+                url: tab.url || '',
+                title: tab.title || '',
+            };
+        });
+        return storageTabs;
     };
     SavedTabGroups.prototype.create = function (group, tabs) {
         return __awaiter(this, void 0, Promise, function () {
@@ -601,10 +752,10 @@ var SavedTabGroups = (function () {
                     case 5:
                         _a.sent();
                         _a.label = 6;
-                    case 6: return [4, SavedTabGroups.updateStorageGroupKey(newTabGroup)];
+                    case 6: return [4, this.updateStorageGroupKey(newTabGroup)];
                     case 7:
                         _a.sent();
-                        return [4, SavedTabGroups.saveToSavedTitles(group.id, group.title || '')];
+                        return [4, this.saveToSavedTitles(group.id, group.title || '')];
                     case 8:
                         _a.sent();
                         return [2];
@@ -622,7 +773,7 @@ var SavedTabGroups = (function () {
                         oldest = _a.sent();
                         console.info("Max title limit reached for ".concat(title, " - Deleting oldest title "));
                         if (!oldest) return [3, 3];
-                        return [4, SavedTabGroups.delete(oldest, title)];
+                        return [4, this.delete(oldest, title)];
                     case 2:
                         _a.sent();
                         _a.label = 3;
@@ -640,12 +791,12 @@ var SavedTabGroups = (function () {
                     case 1:
                         oldestGroupId = _a.sent();
                         if (!oldestGroupId) return [3, 4];
-                        return [4, SavedTabGroups.getInfo(oldestGroupId)];
+                        return [4, this.getInfo(oldestGroupId)];
                     case 2:
                         oldestGroupInfo = _a.sent();
                         if (!oldestGroupInfo) return [3, 4];
                         console.info("Max number of groups reached - Deleting oldest group ");
-                        return [4, SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title)];
+                        return [4, this.delete(oldestGroupId, oldestGroupInfo.title)];
                     case 3:
                         _a.sent();
                         _a.label = 4;
@@ -668,14 +819,14 @@ var SavedTabGroups = (function () {
                             createdAt: previousGroup.createdAt,
                         };
                         if (!(title !== previousGroup.title)) return [3, 3];
-                        return [4, SavedTabGroups.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
+                        return [4, this.deleteFromSavedTitles(previousGroup.id, previousGroup.title)];
                     case 1:
                         _a.sent();
-                        return [4, SavedTabGroups.saveToSavedTitles(previousGroup.id, title || '')];
+                        return [4, this.saveToSavedTitles(previousGroup.id, title || '')];
                     case 2:
                         _a.sent();
                         _a.label = 3;
-                    case 3: return [4, SavedTabGroups.updateStorageGroupKey(updatedGroup)];
+                    case 3: return [4, this.updateStorageGroupKey(updatedGroup)];
                     case 4:
                         _a.sent();
                         return [2];
@@ -691,7 +842,7 @@ var SavedTabGroups = (function () {
                     case 0:
                         oldest = Infinity;
                         result = null;
-                        return [4, SavedTabGroups.getKey('savedTitles')];
+                        return [4, this.titleStorage.get()];
                     case 1:
                         allTitles = (_a.sent());
                         saved = allTitles["".concat(title)];
@@ -699,7 +850,7 @@ var SavedTabGroups = (function () {
                         _a.label = 2;
                     case 2:
                         if (!(i < saved.length)) return [3, 5];
-                        return [4, SavedTabGroups.getInfo(saved[i])];
+                        return [4, this.getInfo(saved[i])];
                     case 3:
                         current = _a.sent();
                         if (current !== null && current.createdAt < oldest) {
@@ -719,7 +870,7 @@ var SavedTabGroups = (function () {
             var currentGroups, oldest, groupId, group;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.get()];
+                    case 0: return [4, this.get()];
                     case 1:
                         currentGroups = _a.sent();
                         oldest = Infinity;
@@ -740,7 +891,7 @@ var SavedTabGroups = (function () {
             var currentGroups, numGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, SavedTabGroups.get()];
+                    case 0: return [4, this.get()];
                     case 1:
                         currentGroups = _a.sent();
                         numGroups = Object.keys(currentGroups).length;
@@ -756,7 +907,7 @@ var SavedTabGroups = (function () {
                 switch (_a.label) {
                     case 0:
                         title = group.title == undefined ? '' : group.title;
-                        return [4, SavedTabGroups.getKey('savedTitles')];
+                        return [4, this.titleStorage.get()];
                     case 1:
                         savedTitles = (_a.sent());
                         if (title in savedTitles) {
@@ -770,130 +921,70 @@ var SavedTabGroups = (function () {
             });
         });
     };
-    SavedTabGroups.initialize = function () {
-        return __awaiter(this, void 0, Promise, function () {
-            var groups, savedTitles;
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        groups = SavedTabGroups.getKey('groups');
-                        savedTitles = SavedTabGroups.getKey('savedTitles');
-                        if (!(groups == null)) return [3, 2];
-                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = {}, _a))];
-                    case 1:
-                        _c.sent();
-                        _c.label = 2;
-                    case 2:
-                        if (!(savedTitles == null)) return [3, 4];
-                        return [4, chrome.storage.local.set((_b = {}, _b['savedTitles'] = {}, _b))];
-                    case 3:
-                        _c.sent();
-                        _c.label = 4;
-                    case 4: return [2];
-                }
-            });
-        });
-    };
-    SavedTabGroups.formatTabList = function (tabs) {
-        var storageTabs = tabs.map(function (tab) {
-            return {
-                id: Number(Date.now()),
-                url: tab.url || '',
-                title: tab.title || '',
-            };
-        });
-        return storageTabs;
-    };
-    SavedTabGroups.getKey = function (key) {
-        return __awaiter(this, void 0, Promise, function () {
-            var storage, defaultStorage;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4, chrome.storage.local.get([key])];
-                    case 1:
-                        storage = _b.sent();
-                        if (!("".concat(key) in storage)) return [3, 2];
-                        return [2, storage["".concat(key)]];
-                    case 2:
-                        defaultStorage = {};
-                        return [4, chrome.storage.local.set((_a = {}, _a["".concat(key)] = defaultStorage, _a))];
-                    case 3:
-                        _b.sent();
-                        return [2, defaultStorage];
-                }
-            });
-        });
-    };
-    SavedTabGroups.updateStorageGroupKey = function (group) {
+    SavedTabGroups.prototype.updateStorageGroupKey = function (group) {
         return __awaiter(this, void 0, Promise, function () {
             var groups;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4, SavedTabGroups.getKey('groups')];
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.groupStorage.get()];
                     case 1:
-                        groups = (_b.sent());
+                        groups = (_a.sent());
                         groups[group.id] = group;
-                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = groups, _a))];
+                        return [4, this.groupStorage.set(groups)];
                     case 2:
-                        _b.sent();
+                        _a.sent();
                         return [2];
                 }
             });
         });
     };
-    SavedTabGroups.saveToSavedTitles = function (id, title) {
+    SavedTabGroups.prototype.saveToSavedTitles = function (id, title) {
         return __awaiter(this, void 0, Promise, function () {
             var savedTitles;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4, SavedTabGroups.getKey('savedTitles')];
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.titleStorage.get()];
                     case 1:
-                        savedTitles = (_b.sent());
+                        savedTitles = (_a.sent());
                         if (title in savedTitles) {
                             savedTitles[title].push(id);
                         }
                         else {
                             savedTitles[title] = [id];
                         }
-                        return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = savedTitles, _a))];
+                        return [4, this.titleStorage.set(savedTitles)];
                     case 2:
-                        _b.sent();
+                        _a.sent();
                         return [2];
                 }
             });
         });
     };
-    SavedTabGroups.deleteFromGroups = function (id) {
+    SavedTabGroups.prototype.deleteFromGroups = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var groups;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4, SavedTabGroups.getKey('groups')];
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.groupStorage.get()];
                     case 1:
-                        groups = (_b.sent());
+                        groups = (_a.sent());
                         delete groups[id];
-                        return [4, chrome.storage.local.set((_a = {}, _a['groups'] = groups, _a))];
+                        return [4, this.groupStorage.set(groups)];
                     case 2:
-                        _b.sent();
+                        _a.sent();
                         return [2];
                 }
             });
         });
     };
-    SavedTabGroups.deleteFromSavedTitles = function (id, title) {
+    SavedTabGroups.prototype.deleteFromSavedTitles = function (id, title) {
         return __awaiter(this, void 0, void 0, function () {
             var savedTitles, titlesToDeleteFrom, index;
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4, SavedTabGroups.getKey('savedTitles')];
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.titleStorage.get()];
                     case 1:
-                        savedTitles = (_b.sent());
+                        savedTitles = (_a.sent());
                         titlesToDeleteFrom = savedTitles["".concat(title)];
                         if (titlesToDeleteFrom.includes(id)) {
                             if (titlesToDeleteFrom.length == 1) {
@@ -905,9 +996,9 @@ var SavedTabGroups = (function () {
                                 savedTitles["".concat(title)] = titlesToDeleteFrom;
                             }
                         }
-                        return [4, chrome.storage.local.set((_a = {}, _a['savedTitles'] = savedTitles, _a))];
+                        return [4, this.titleStorage.set(savedTitles)];
                     case 2:
-                        _b.sent();
+                        _a.sent();
                         return [2];
                 }
             });
@@ -918,6 +1009,118 @@ var SavedTabGroups = (function () {
 exports["default"] = SavedTabGroups;
 var savedTabGroupsInstance = new SavedTabGroups(10, 1);
 exports.savedTabGroupsInstance = savedTabGroupsInstance;
+
+
+/***/ }),
+
+/***/ 8537:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Storage = (function () {
+    function Storage(key) {
+        this.key = key;
+    }
+    Storage.prototype.set = function (data) {
+        return __awaiter(this, void 0, Promise, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4, chrome.storage.local.set((_a = {}, _a[this.key] = data, _a))];
+                    case 1:
+                        _b.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    Storage.prototype.get = function (itemKey) {
+        return __awaiter(this, void 0, Promise, function () {
+            var storage, result, defaultStorage;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4, chrome.storage.local.get([this.key])];
+                    case 1:
+                        storage = _b.sent();
+                        if (!("".concat(this.key) in storage)) return [3, 2];
+                        result = storage["".concat(this.key)];
+                        if (itemKey !== undefined) {
+                            if ("".concat(itemKey) in result) {
+                                return [2, result["".concat(itemKey)]];
+                            }
+                            else {
+                                throw new Error("".concat(itemKey, " does not exist in ").concat(result));
+                            }
+                        }
+                        return [2, result];
+                    case 2:
+                        defaultStorage = {};
+                        return [4, chrome.storage.local.set((_a = {}, _a["".concat(this.key)] = defaultStorage, _a))];
+                    case 3:
+                        _b.sent();
+                        return [2, defaultStorage];
+                }
+            });
+        });
+    };
+    Storage.prototype.add = function (itemKey, itemValue) {
+        return __awaiter(this, void 0, Promise, function () {
+            var storageData;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.get()];
+                    case 1:
+                        storageData = _a.sent();
+                        storageData[itemKey] = itemValue;
+                        return [4, this.set(storageData)];
+                    case 2:
+                        _a.sent();
+                        return [2, storageData];
+                }
+            });
+        });
+    };
+    return Storage;
+}());
+exports["default"] = Storage;
 
 
 /***/ }),
@@ -979,8 +1182,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var FormattedTab_1 = __importDefault(__webpack_require__(4325));
 var TabUtil = (function () {
-    function TabUtil() {
+    function TabUtil(tab) {
+        this.tab = tab;
     }
+    TabUtil.build = function (tabId) {
+        return __awaiter(this, void 0, Promise, function () {
+            var tab;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.get(tabId)];
+                    case 1:
+                        tab = _a.sent();
+                        return [2, new TabUtil(tab)];
+                }
+            });
+        });
+    };
+    TabUtil.prototype.getUrl = function () {
+        return this.tab.url || '';
+    };
     TabUtil.formatTabs = function (tabs) {
         return tabs.reduce(function (accumulator, currentValue) {
             var currentTab = new FormattedTab_1.default(currentValue);
@@ -1074,6 +1294,44 @@ var TabUtil = (function () {
     return TabUtil;
 }());
 exports["default"] = TabUtil;
+
+
+/***/ }),
+
+/***/ 9660:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var UrlUtil = (function () {
+    function UrlUtil(url) {
+        var _this = this;
+        this.getFaviconURL = function () {
+            var url = new URL(chrome.runtime.getURL('/_favicon/'));
+            url.searchParams.set('pageUrl', _this.url);
+            url.searchParams.set('size', '32');
+            return url.toString();
+        };
+        this.url = url;
+        this.util = new URL(url);
+    }
+    UrlUtil.prototype.hostname = function () {
+        return this.util.hostname;
+    };
+    UrlUtil.prototype.path = function () {
+        return this.util.pathname;
+    };
+    UrlUtil.prototype.query = function () {
+        var splitUrl = this.url.split('?');
+        console.log('splitUrl: ', splitUrl);
+        return '';
+    };
+    UrlUtil.prototype.getUrl = function () {
+        return this.url;
+    };
+    return UrlUtil;
+}());
+exports["default"] = UrlUtil;
 
 
 /***/ })

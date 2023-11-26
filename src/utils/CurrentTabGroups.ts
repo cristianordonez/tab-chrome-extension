@@ -1,6 +1,9 @@
 import { ColorEnum } from '../types';
 import TabUtil from './TabUtil';
 
+/**
+ * utility class for working with currently active tab groups and Chrome tabGroups API
+ */
 class CurrentTabGroups {
    // close current tab group
    public static async delete(groupId: number): Promise<void> {

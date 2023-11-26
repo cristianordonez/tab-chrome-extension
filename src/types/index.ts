@@ -47,7 +47,7 @@ interface LocalStorageTabGroup extends SharedTabGroup {
 }
 
 interface LocalStorageTabGroups {
-   [key: number]: LocalStorageTabGroup;
+   [key: number | string]: LocalStorageTabGroup;
 }
 
 interface AlertSettings {
@@ -57,16 +57,48 @@ interface AlertSettings {
 }
 
 interface FormattedTabs {
-   [key: number]: FormattedTab;
+   [key: number | string]: FormattedTab;
+}
+
+type urlRule = 'any' | 'hostname' | 'path' | 'query';
+type matchRule = 'contains' | 'is equal to' | 'ends with' | 'starts with';
+type actionRule = 0 | 1 | 2;
+
+interface SubRule {
+   url: urlRule;
+   match: matchRule;
+   query: string;
+}
+
+interface RuleType {
+   title: string;
+   action: actionRule;
+   groupName: string | undefined;
+   groupColor: ColorEnum | undefined;
+   subRules: SubRule[];
+}
+
+interface LocalStorageRules {
+   [key: string | number]: RuleType;
+}
+
+interface TabOptions {
+   url?: string | undefined;
+   pinned?: boolean;
 }
 
 export {
    AlertSettings,
    ColorEnum,
    FormattedTabs,
+   LocalStorageRules,
    LocalStorageTab,
    LocalStorageTabGroup,
    LocalStorageTabGroups,
    LocalStorageTitles,
    RouteType,
+   RuleType,
+   SubRule,
+   TabOptions,
+   actionRule,
 };

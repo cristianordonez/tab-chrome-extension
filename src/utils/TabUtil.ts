@@ -1,14 +1,32 @@
-import { FormattedTabs } from '../types';
+import { FormattedTabs, TabOptions } from '../types';
 import FormattedTab from './FormattedTab';
 
-interface TabOptions {
-   url?: string | undefined;
-   pinned?: boolean;
-}
-
+/**
+ * Utility Class for working with current tabs and Chrome tabs API
+ */
 class TabUtil {
+   private tab: chrome.tabs.Tab;
+
+   constructor(tab: chrome.tabs.Tab) {
+      this.tab = tab;
+   }
+
+   /**
+    * Used to instantiate new instances of this class
+    * @param tabId unique id of given tab
+    * @returns new TabUtil class instance
+    */
+   public static async build(tabId: number): Promise<TabUtil> {
+      const tab = await chrome.tabs.get(tabId);
+      return new TabUtil(tab);
+   }
+
+   public getUrl(): string {
+      return this.tab.url || '';
+   }
+
    // formats array of tabs into tabs with checked configuration
-   static formatTabs(tabs: chrome.tabs.Tab[]) {
+   public static formatTabs(tabs: chrome.tabs.Tab[]) {
       return tabs.reduce(
          (accumulator, currentValue) => {
             const currentTab = new FormattedTab(currentValue);
@@ -21,8 +39,13 @@ class TabUtil {
       );
    }
 
-   // if blocking is true, will await from tab to complete loading
-   static async create(
+   /**
+    * Create new tab
+    * @param options TabOptions interface
+    * @param blocking if true, will wait until tab has loaded before continuing, defaults to false
+    * @returns chrome.tabs.Tab instance
+    */
+   public static async create(
       options: TabOptions,
       blocking: boolean = false
    ): Promise<chrome.tabs.Tab> {
@@ -46,21 +69,30 @@ class TabUtil {
       }
    }
 
-   static async getAll(): Promise<chrome.tabs.Tab[]> {
+   /**
+    * Find all current tabs from all windows
+    * @returns list of currently active tabs
+    */
+   public static async getAll(): Promise<chrome.tabs.Tab[]> {
       const allTabs = await chrome.tabs.query({});
       return allTabs;
    }
 
-   static async get(groupId: number): Promise<chrome.tabs.Tab[]> {
+   /**
+    * Get all tabs belonging to specific group
+    * @param groupId unique id from chrome tab group
+    * @returns list of all tabs matching given group id
+    */
+   public static async get(groupId: number): Promise<chrome.tabs.Tab[]> {
       const tabInfo = await chrome.tabs.query({ groupId });
       return tabInfo;
    }
 
-   static async close(tabIds: number[]): Promise<void> {
+   public static async close(tabIds: number[]): Promise<void> {
       await chrome.tabs.remove(tabIds);
    }
 
-   static async group(
+   public static async group(
       tabIds: undefined | number | number[],
       groupId?: number
    ): Promise<number> {

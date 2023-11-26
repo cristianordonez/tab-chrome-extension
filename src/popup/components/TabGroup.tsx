@@ -3,7 +3,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Box, Tooltip } from '@mui/material';
 import React from 'react';
 import { LocalStorageTab } from '../../types';
-import { faviconURL } from '../../utils/constructFaviconUrl';
+import UrlUtil from '../../utils/UrlUtil';
 import Row from './Row';
 import RowGroupParent from './RowGroupParent';
 
@@ -112,7 +112,7 @@ export default function TabGroup({
                      component='img'
                      sx={{ height: '35%', width: '35%' }}
                      alt={`Favicon for ${tab.title}`}
-                     src={faviconURL(tab.url || '')}
+                     src={new UrlUtil(tab.url || '').getFaviconURL()}
                   />
                }
                title={tab.title || ''}

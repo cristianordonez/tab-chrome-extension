@@ -5,6 +5,7 @@
  * and other parts are limited. But the background doesn’t have a UI and can not access DOM.
  */
 
+import Rule from '../utils/Rule';
 import { savedTabGroupsInstance } from '../utils/SavedTabGroups';
 
 /** Listens for hotkeys defined in manifest.json */
@@ -14,29 +15,14 @@ chrome.commands.onCommand.addListener(async function (command) {
    }
 });
 
-async function shouldExecuteScript(url: string | undefined): Promise<boolean> {
-   console.log('url: ', url);
-   if (url?.includes('example')) {
-      return true;
-   }
-   return false;
-}
-
-function executeScript(tabId: number) {
-   console.log('tabId: ', tabId);
-   console.log('here');
-}
-
 /**
- * Executes scripts on urls that match given info
+ * TODO Executes scripts on urls that match given info
  */
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
    // Check if the current URL matches one of the user's selected URLs.
-   console.log('changeInfo: ', changeInfo);
-   if (
-      changeInfo.status == 'complete' &&
-      (await shouldExecuteScript(tab.url))
-   ) {
-      executeScript(tabId);
+   if (tab.url) {
+      // if (changeInfo.status == 'complete') {
+      await Rule.findMatch(tabId);
+      // }
    }
 });

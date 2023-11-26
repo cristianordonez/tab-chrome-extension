@@ -6,15 +6,23 @@ import {
    LocalStorageTitles,
 } from '../types';
 import CurrentTabGroups from './CurrentTabGroups';
+import Storage from './Storage';
 import TabUtil from './TabUtil';
 
+/**
+ * utility class for working with tab groups saved in local storage
+ */
 class SavedTabGroups {
-   maxGroups;
-   maxTitleDuplicates;
+   private maxGroups: number;
+   private maxTitleDuplicates: number;
+   private titleStorage: Storage;
+   private groupStorage: Storage;
+
    constructor(maxGroups: number, maxTitleDuplicates: number) {
       this.maxGroups = maxGroups;
       this.maxTitleDuplicates = maxTitleDuplicates;
-      SavedTabGroups.initialize();
+      this.titleStorage = new Storage('savedTitles');
+      this.groupStorage = new Storage('groups');
    }
 
    // saves or updates all current tab groups
@@ -33,7 +41,7 @@ class SavedTabGroups {
    public async save(groupId: number, tabs: chrome.tabs.Tab[]): Promise<void> {
       const groupDetails = await CurrentTabGroups.getInfo(groupId);
       if (groupDetails) {
-         const storageInfo = await SavedTabGroups.getInfo(groupId);
+         const storageInfo = await this.getInfo(groupId);
          const formattedTabs = SavedTabGroups.formatTabList(tabs);
          if (storageInfo) {
             await this.update(
@@ -52,7 +60,7 @@ class SavedTabGroups {
 
    // adds given tabs to saved tab group, or creates tab if none existed
    public async addTabs(id: number, tabs: chrome.tabs.Tab[]) {
-      const savedGroupInfo = await SavedTabGroups.getInfo(id);
+      const savedGroupInfo = await this.getInfo(id);
       if (savedGroupInfo !== null) {
          const formattedTabs = savedGroupInfo.tabs;
          const newTabs = SavedTabGroups.formatTabList(tabs);
@@ -72,18 +80,18 @@ class SavedTabGroups {
    ////////////////////////////
 
    // uses tab group id to delete item from local storage
-   public static async delete(id: number, title: string) {
+   public async delete(id: number, title: string) {
       try {
-         await SavedTabGroups.deleteFromGroups(id);
-         await SavedTabGroups.deleteFromSavedTitles(id, title);
+         await this.deleteFromGroups(id);
+         await this.deleteFromSavedTitles(id, title);
       } catch (e) {
          console.error(e);
       }
    }
 
    // opens saved group and all tabs in current window
-   public static async open(id: number) {
-      const groupInfo = await SavedTabGroups.getInfo(id);
+   public async open(id: number) {
+      const groupInfo = await this.getInfo(id);
       if (groupInfo !== null) {
          const tabIds = [];
          for (let i = 0; i < groupInfo.tabs.length; i++) {
@@ -103,20 +111,21 @@ class SavedTabGroups {
    }
 
    // gets all currently saved tab groups from local storage
-   public static async get(): Promise<LocalStorageTabGroups> {
-      const saved = (await SavedTabGroups.getKey(
-         'groups'
-      )) as LocalStorageTabGroups;
+   public async get(): Promise<LocalStorageTabGroups> {
+      // const saved = (await SavedTabGroups.getKey(
+      //    'groups'
+      // )) as LocalStorageTabGroups;
+      const saved = (await this.groupStorage.get()) as LocalStorageTabGroups;
       return saved;
    }
 
    // retrieves tab group information from local storage given group id
-   public static async getInfo(
-      id: number
-   ): Promise<LocalStorageTabGroup | null> {
-      const savedGroups = (await SavedTabGroups.getKey(
-         'groups'
-      )) as LocalStorageTabGroups;
+   public async getInfo(id: number): Promise<LocalStorageTabGroup | null> {
+      const savedGroups =
+         (await this.groupStorage.get()) as LocalStorageTabGroups;
+      // const savedGroups = (await SavedTabGroups.getKey(
+      //    'groups'
+      // )) as LocalStorageTabGroups;
       if (`${id}` in savedGroups) {
          return savedGroups[`${id}`];
       } else {
@@ -125,19 +134,34 @@ class SavedTabGroups {
    }
 
    // removes given tabs from saved tab group given its group id
-   public static async removeTab(groupId: number, tabIds: number[]) {
-      const groupInfo = await SavedTabGroups.getInfo(groupId);
+   public async removeTab(groupId: number, tabIds: number[]) {
+      const groupInfo = await this.getInfo(groupId);
+      // const groupInfo = await SavedTabGroups.getInfo(groupId);
       if (groupInfo !== null) {
          const updatedTabs = groupInfo?.tabs.filter(
             (tab) => tabIds.includes(tab.id) === false
          );
          if (updatedTabs.length === 0) {
-            await SavedTabGroups.delete(groupInfo.id, groupInfo.title);
+            await this.delete(groupInfo.id, groupInfo.title);
          } else {
             groupInfo.tabs = updatedTabs;
-            await SavedTabGroups.updateStorageGroupKey(groupInfo);
+            await this.updateStorageGroupKey(groupInfo);
          }
       }
+   }
+
+   // PRIVATE STATIC////////////////////
+   ////////////////////////////
+   // formats list of chrome.tabs.Tab into LocalStorageTab list so that only necessary data is saved
+   private static formatTabList(tabs: chrome.tabs.Tab[]): LocalStorageTab[] {
+      const storageTabs = tabs.map((tab) => {
+         return {
+            id: Number(Date.now()),
+            url: tab.url || '',
+            title: tab.title || '',
+         };
+      });
+      return storageTabs;
    }
 
    // PRIVATE ////////////////////
@@ -162,8 +186,8 @@ class SavedTabGroups {
       if (maxLimitReached) {
          await this.deleteOldestGroup();
       }
-      await SavedTabGroups.updateStorageGroupKey(newTabGroup);
-      await SavedTabGroups.saveToSavedTitles(group.id, group.title || '');
+      await this.updateStorageGroupKey(newTabGroup);
+      await this.saveToSavedTitles(group.id, group.title || '');
    }
 
    // deletes oldest title
@@ -173,7 +197,7 @@ class SavedTabGroups {
          `Max title limit reached for ${title} - Deleting oldest title `
       );
       if (oldest) {
-         await SavedTabGroups.delete(oldest, title);
+         await this.delete(oldest, title);
       }
    }
 
@@ -181,12 +205,13 @@ class SavedTabGroups {
    private async deleteOldestGroup() {
       const oldestGroupId = await this.findOldestGroup();
       if (oldestGroupId) {
-         const oldestGroupInfo = await SavedTabGroups.getInfo(oldestGroupId);
+         const oldestGroupInfo = await this.getInfo(oldestGroupId);
+         // const oldestGroupInfo = await SavedTabGroups.getInfo(oldestGroupId);
          if (oldestGroupInfo) {
             console.info(
                `Max number of groups reached - Deleting oldest group `
             );
-            await SavedTabGroups.delete(oldestGroupId, oldestGroupInfo.title);
+            await this.delete(oldestGroupId, oldestGroupInfo.title);
          }
       }
    }
@@ -206,25 +231,25 @@ class SavedTabGroups {
          createdAt: previousGroup.createdAt,
       };
       if (title !== previousGroup.title) {
-         await SavedTabGroups.deleteFromSavedTitles(
+         await this.deleteFromSavedTitles(
             previousGroup.id,
             previousGroup.title
          );
-         await SavedTabGroups.saveToSavedTitles(previousGroup.id, title || '');
+         await this.saveToSavedTitles(previousGroup.id, title || '');
       }
-      await SavedTabGroups.updateStorageGroupKey(updatedGroup);
+      await this.updateStorageGroupKey(updatedGroup);
    }
 
    // finds group id of oldest tab group with same title
    private async findOldestGroupByTitle(title: string): Promise<number | null> {
       const oldest = Infinity;
       let result = null;
-      const allTitles = (await SavedTabGroups.getKey(
-         'savedTitles'
-      )) as LocalStorageTitles;
+      // const allTitles = (await SavedTabGroups.getKey(
+      const allTitles = (await this.titleStorage.get()) as LocalStorageTitles;
       const saved = allTitles[`${title}`];
       for (let i = 0; i < saved.length; i++) {
-         const current = await SavedTabGroups.getInfo(saved[i]);
+         const current = await this.getInfo(saved[i]);
+         // const current = await SavedTabGroups.getInfo(saved[i]);
          if (current !== null && current.createdAt < oldest) {
             result = current.id;
          }
@@ -234,7 +259,7 @@ class SavedTabGroups {
 
    // finds oldest tab group saved in local storage, or returns null if there are no saved groups
    private async findOldestGroup(): Promise<number | null> {
-      const currentGroups = await SavedTabGroups.get();
+      const currentGroups = await this.get();
       let oldest = Infinity;
       let groupId = null;
       for (const group in currentGroups) {
@@ -248,7 +273,7 @@ class SavedTabGroups {
 
    // checks if total number of saved groups has reached the max limit set
    private async groupLimitReached(): Promise<boolean> {
-      const currentGroups = await SavedTabGroups.get();
+      const currentGroups = await this.get();
       const numGroups = Object.keys(currentGroups).length;
       return numGroups >= this.maxGroups;
    }
@@ -258,9 +283,7 @@ class SavedTabGroups {
       group: chrome.tabGroups.TabGroup
    ): Promise<boolean> {
       const title = group.title == undefined ? '' : group.title;
-      const savedTitles = (await SavedTabGroups.getKey(
-         'savedTitles'
-      )) as LocalStorageTitles;
+      const savedTitles = (await this.titleStorage.get()) as LocalStorageTitles;
       if (title in savedTitles) {
          const cachedIds = savedTitles[title];
          if (cachedIds.length >= this.maxTitleDuplicates) {
@@ -270,88 +293,36 @@ class SavedTabGroups {
       return false;
    }
 
-   //   PRIVATE STATIC ////////////////
-   ////////////////////////////
-
-   // sets default storage values if have not been set
-   private static async initialize(): Promise<void> {
-      const groups = SavedTabGroups.getKey('groups');
-      const savedTitles = SavedTabGroups.getKey('savedTitles');
-      if (groups == null) {
-         await chrome.storage.local.set({ ['groups']: {} });
-      }
-      if (savedTitles == null) {
-         await chrome.storage.local.set({ ['savedTitles']: {} });
-      }
-   }
-
-   // formats list of chrome.tabs.Tab into LocalStorageTab list so that only necessary data is saved
-   private static formatTabList(tabs: chrome.tabs.Tab[]): LocalStorageTab[] {
-      const storageTabs = tabs.map((tab) => {
-         return {
-            id: Number(Date.now()),
-            url: tab.url || '',
-            title: tab.title || '',
-         };
-      });
-      return storageTabs;
-   }
-
-   // gets value of key from local storage
-   private static async getKey(
-      key: string
-   ): Promise<LocalStorageTabGroups | LocalStorageTitles> {
-      const storage = await chrome.storage.local.get([key]);
-      if (`${key}` in storage) {
-         return storage[`${key}`];
-      } else {
-         const defaultStorage = {};
-         await chrome.storage.local.set({ [`${key}`]: defaultStorage });
-         return defaultStorage;
-      }
-   }
-
    // saves tab group to local storage, using group.id as key and group as value
-   private static async updateStorageGroupKey(
+   private async updateStorageGroupKey(
       group: LocalStorageTabGroup
    ): Promise<void> {
-      const groups = (await SavedTabGroups.getKey(
-         'groups'
-      )) as LocalStorageTabGroups;
+      const groups = (await this.groupStorage.get()) as LocalStorageTabGroups;
       groups[group.id] = group;
-      await chrome.storage.local.set({ ['groups']: groups });
+      await this.groupStorage.set(groups);
    }
 
    // saves group id to saved titles in class and updates local storage
-   private static async saveToSavedTitles(
-      id: number,
-      title: string
-   ): Promise<void> {
-      const savedTitles = (await SavedTabGroups.getKey(
-         'savedTitles'
-      )) as LocalStorageTitles;
+   private async saveToSavedTitles(id: number, title: string): Promise<void> {
+      const savedTitles = (await this.titleStorage.get()) as LocalStorageTitles;
       if (title in savedTitles) {
          savedTitles[title].push(id);
       } else {
          savedTitles[title] = [id];
       }
-      await chrome.storage.local.set({ ['savedTitles']: savedTitles });
+      await this.titleStorage.set(savedTitles);
    }
 
    // deletes group using id from groups local storage dictionary
-   private static async deleteFromGroups(id: number) {
-      const groups = (await SavedTabGroups.getKey(
-         'groups'
-      )) as LocalStorageTabGroups;
+   private async deleteFromGroups(id: number) {
+      const groups = (await this.groupStorage.get()) as LocalStorageTabGroups;
       delete groups[id];
-      await chrome.storage.local.set({ ['groups']: groups });
+      await this.groupStorage.set(groups);
    }
 
    // deletes group tab from saved titles local storage dictionary
-   private static async deleteFromSavedTitles(id: number, title: string) {
-      const savedTitles = (await SavedTabGroups.getKey(
-         'savedTitles'
-      )) as LocalStorageTitles;
+   private async deleteFromSavedTitles(id: number, title: string) {
+      const savedTitles = (await this.titleStorage.get()) as LocalStorageTitles;
       const titlesToDeleteFrom = savedTitles[`${title}`];
       if (titlesToDeleteFrom.includes(id)) {
          if (titlesToDeleteFrom.length == 1) {
@@ -362,7 +333,7 @@ class SavedTabGroups {
             savedTitles[`${title}`] = titlesToDeleteFrom;
          }
       }
-      await chrome.storage.local.set({ ['savedTitles']: savedTitles });
+      await this.titleStorage.set(savedTitles);
    }
 }
 

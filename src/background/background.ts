@@ -20,9 +20,9 @@ chrome.commands.onCommand.addListener(async function (command) {
  */
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
    // Check if the current URL matches one of the user's selected URLs.
+   const storage = await chrome.storage.local.get(null);
+   console.log('storage: ', storage);
    if (tab.url) {
-      // if (changeInfo.status == 'complete') {
       await Rule.findMatch(tabId);
-      // }
    }
 });

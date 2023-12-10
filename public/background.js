@@ -64,15 +64,19 @@ chrome.commands.onCommand.addListener(function (command) {
     });
 });
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) { return __awaiter(void 0, void 0, void 0, function () {
+    var storage;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                if (!tab.url) return [3, 2];
-                return [4, Rule_1.default.findMatch(tabId)];
+            case 0: return [4, chrome.storage.local.get(null)];
             case 1:
+                storage = _a.sent();
+                console.log('storage: ', storage);
+                if (!tab.url) return [3, 3];
+                return [4, Rule_1.default.findMatch(tabId)];
+            case 2:
                 _a.sent();
-                _a.label = 2;
-            case 2: return [2];
+                _a.label = 3;
+            case 3: return [2];
         }
     });
 }); });
@@ -356,7 +360,7 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, groupName, groupColor, subRules) {
+    function Rule(title, action, subRules, groupName, groupColor) {
         if (subRules === void 0) { subRules = []; }
         this.title = title;
         this.action = action;
@@ -365,11 +369,11 @@ var Rule = (function () {
         this.subRules = subRules;
     }
     Rule.build = function (ruleData) {
-        return new Rule(ruleData.title, ruleData.action, ruleData.groupName, ruleData.groupColor, ruleData.subRules);
+        return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.groupName, ruleData.groupColor);
     };
     Rule.findMatch = function (tabId) {
         return __awaiter(this, void 0, Promise, function () {
-            var tab, url, rules, matchFound;
+            var tab, url, rules;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, TabUtil_1.default.build(tabId)];
@@ -379,33 +383,32 @@ var Rule = (function () {
                         return [4, this.ruleStorage.get()];
                     case 2:
                         rules = _a.sent();
-                        matchFound = false;
                         Object.values(rules).forEach(function (ruleData) {
                             var rule = Rule.build(ruleData);
                             if (rule.isMatch(url)) {
-                                matchFound = true;
-                                rule.run(tabId);
+                                rule.run(tab);
                             }
                         });
-                        return [2, matchFound];
+                        return [2];
                 }
             });
         });
     };
     Rule.prototype.isMatch = function (url) {
-        var _this = this;
         var urlUtil = new UrlUtil_1.default(url);
         var foundMatch = false;
         this.subRules.forEach(function (subRule) {
-            if (_this.handleSubRule(subRule, urlUtil)) {
+            if (Rule.handleSubRule(subRule, urlUtil)) {
                 foundMatch = true;
             }
         });
         return foundMatch;
     };
-    Rule.prototype.handleSubRule = function (subRule, urlUtil) {
+    Rule.handleSubRule = function (subRule, urlUtil) {
         var currentUrl = this.extractUrl(subRule, urlUtil);
+        console.log('urlUtil.getUrl(): ', urlUtil.getUrl());
         console.log('currentUrl: ', currentUrl);
+        console.log('subRule: ', subRule);
         switch (subRule.match) {
             case 'contains':
                 return currentUrl.includes(subRule.query);
@@ -419,14 +422,14 @@ var Rule = (function () {
                 return false;
         }
     };
-    Rule.prototype.extractUrl = function (subRule, urlUtil) {
+    Rule.extractUrl = function (subRule, urlUtil) {
         switch (subRule.url) {
             case 'any':
                 return urlUtil.getUrl();
             case 'hostname':
                 return urlUtil.hostname();
             case 'path':
-                return urlUtil.path();
+                return urlUtil.pathname();
             case 'query':
                 return urlUtil.query();
             default:
@@ -448,14 +451,13 @@ var Rule = (function () {
     };
     Rule.prototype.delete = function () { };
     Rule.prototype.update = function () { };
-    Rule.prototype.run = function (tabId) {
-        console.log('tabId: ', tabId);
+    Rule.prototype.run = function (tab) {
         console.log('this.action: ', this.action);
+        console.log('tab: ', tab);
         return;
     };
     Rule.prototype.addSubRule = function (subrule) {
-        var _a;
-        (_a = this.subRules) === null || _a === void 0 ? void 0 : _a.push(subrule);
+        this.subRules.push(subrule);
     };
     Rule.ruleStorage = new Storage_1.default('rules');
     return Rule;
@@ -1318,13 +1320,12 @@ var UrlUtil = (function () {
     UrlUtil.prototype.hostname = function () {
         return this.util.hostname;
     };
-    UrlUtil.prototype.path = function () {
+    UrlUtil.prototype.pathname = function () {
         return this.util.pathname;
     };
     UrlUtil.prototype.query = function () {
         var splitUrl = this.url.split('?');
-        console.log('splitUrl: ', splitUrl);
-        return '';
+        return splitUrl[splitUrl.length - 1];
     };
     UrlUtil.prototype.getUrl = function () {
         return this.url;

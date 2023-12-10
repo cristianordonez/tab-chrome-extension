@@ -84,6 +84,10 @@ export default function TabGroup({
    handleCreateTab,
    handleTabClick,
 }: Props) {
+   const geturl = (url: string) => {
+      const util = new UrlUtil(url);
+      return util.getFaviconURL();
+   };
    return (
       <RowGroupParent
          groupId={groupId}
@@ -112,7 +116,7 @@ export default function TabGroup({
                      component='img'
                      sx={{ height: '35%', width: '35%' }}
                      alt={`Favicon for ${tab.title}`}
-                     src={new UrlUtil(tab.url || '').getFaviconURL()}
+                     src={geturl(tab.url || '')}
                   />
                }
                title={tab.title || ''}

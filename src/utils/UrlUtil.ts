@@ -14,14 +14,13 @@ class UrlUtil {
       return this.util.hostname;
    }
 
-   public path(): string {
+   public pathname(): string {
       return this.util.pathname;
    }
 
    public query(): string {
       const splitUrl = this.url.split('?');
-      console.log('splitUrl: ', splitUrl);
-      return '';
+      return splitUrl[splitUrl.length - 1];
    }
 
    public getUrl(): string {

@@ -4,7 +4,7 @@ import TabUtil from './TabUtil';
 import UrlUtil from './UrlUtil';
 
 /**
- * todo User created rule to create tab groups depending on url
+ * TODO user created rule to create tab groups depending on url
  */
 class Rule {
    static ruleStorage: Storage = new Storage('rules');
@@ -17,9 +17,9 @@ class Rule {
    constructor(
       title: string,
       action: actionRule,
+      subRules: SubRule[] = [],
       groupName?: string,
-      groupColor?: ColorEnum,
-      subRules: SubRule[] = []
+      groupColor?: ColorEnum
    ) {
       this.title = title;
       this.action = action;
@@ -28,54 +28,70 @@ class Rule {
       this.subRules = subRules;
    }
 
+   /**
+    * Uses RuleType object to build new class. Used since RuleType objects are stored in storage
+    * @param ruleData Object containing attributes needed to build new Rule instance
+    * @returns new Rule instance
+    */
    public static build(ruleData: RuleType): Rule {
       return new Rule(
          ruleData.title,
          ruleData.action,
+         ruleData.subRules,
          ruleData.groupName,
-         ruleData.groupColor,
-         ruleData.subRules
+         ruleData.groupColor
       );
    }
 
    /**
-    * static method that searches for matches, and runs action for any matches found
+    * Static method that searches for matches for current tab, and running action for matches found
     * @param tabId id of current tab
-    * @returns true if match was found, false otherwise
+    * @returns Rule instance or undefined if no match was found
     */
-   public static async findMatch(tabId: number): Promise<boolean> {
-      // const rule = new Rule('test rule 1', 0, 'stackoverflow', 'red', [
-      //    { url: 'hostname', match: 'contains', query: 'stackoverflow' },
+   public static async findMatch(tabId: number): Promise<void> {
+      // const rule = new Rule('test rule 2', 0, [
+      //    { url: 'query', match: 'contains', query: 'mdn' },
+      //    { url: 'path', match: 'is equal to', query: 'w3schools' },
       // ]);
       // rule.save();
+
       const tab = await TabUtil.build(tabId);
       const url = tab.getUrl();
       const rules = await this.ruleStorage.get();
-      let matchFound = false;
       Object.values(rules).forEach((ruleData: RuleType) => {
          const rule = Rule.build(ruleData);
          if (rule.isMatch(url)) {
-            matchFound = true;
-            rule.run(tabId);
+            rule.run(tab);
          }
       });
-      return matchFound;
    }
 
+   /**
+    * Determines if url is a match for any existing sub rule
+    * @param url full url string
+    * @returns true if url matches any subrule for this rule
+    */
    public isMatch(url: string): boolean {
       const urlUtil = new UrlUtil(url);
       let foundMatch = false;
       this.subRules.forEach((subRule: SubRule) => {
-         if (this.handleSubRule(subRule, urlUtil)) {
+         if (Rule.handleSubRule(subRule, urlUtil)) {
             foundMatch = true;
          }
       });
       return foundMatch;
    }
 
-   private handleSubRule(subRule: SubRule, urlUtil: UrlUtil): boolean {
+   /**
+    * @param subRule SubRule interface
+    * @param urlUtil UrlUtil class instance
+    * @returns true if urlUtil is match for given subrule
+    */
+   private static handleSubRule(subRule: SubRule, urlUtil: UrlUtil): boolean {
       const currentUrl = this.extractUrl(subRule, urlUtil);
+      console.log('urlUtil.getUrl(): ', urlUtil.getUrl());
       console.log('currentUrl: ', currentUrl);
+      console.log('subRule: ', subRule);
       switch (subRule.match) {
          case 'contains':
             return currentUrl.includes(subRule.query);
@@ -95,14 +111,14 @@ class Rule {
     * @param urlUtil UrlUtil class instance
     * @returns corresponding part of url for given subrule
     */
-   private extractUrl(subRule: SubRule, urlUtil: UrlUtil): string {
+   private static extractUrl(subRule: SubRule, urlUtil: UrlUtil): string {
       switch (subRule.url) {
          case 'any':
             return urlUtil.getUrl();
          case 'hostname':
             return urlUtil.hostname();
          case 'path':
-            return urlUtil.path();
+            return urlUtil.pathname();
          case 'query':
             return urlUtil.query();
          default:
@@ -110,6 +126,10 @@ class Rule {
       }
    }
 
+   /**
+    * object with data that is saved into chrome storage
+    * @returns RuleType object that is used to save into local storage
+    */
    private getData(): RuleType {
       return {
          title: this.title,
@@ -146,18 +166,18 @@ class Rule {
     * TODO
     * Runs action saved to given rule
     */
-   public run(tabId: number) {
-      console.log('tabId: ', tabId);
+   public run(tab: TabUtil) {
       console.log('this.action: ', this.action);
+      console.log('tab: ', tab);
       return;
    }
 
    /**
     * Adds new subrule to rules array
-    * @param subrule SubRule with query, match, and url
+    * @param subrule SubRule interface with query, match, and url keys
     */
    public addSubRule(subrule: SubRule) {
-      this.subRules?.push(subrule);
+      this.subRules.push(subrule);
    }
 }
 

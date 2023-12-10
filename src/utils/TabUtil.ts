@@ -3,6 +3,7 @@ import FormattedTab from './FormattedTab';
 
 /**
  * Utility Class for working with current tabs and Chrome tabs API
+ * Create new instances using build method, which takes the tabId as a parameter
  */
 class TabUtil {
    private tab: chrome.tabs.Tab;
@@ -12,7 +13,7 @@ class TabUtil {
    }
 
    /**
-    * Used to instantiate new instances of this class
+    * Used to instantiate new instances of this class given tabId
     * @param tabId unique id of given tab
     * @returns new TabUtil class instance
     */

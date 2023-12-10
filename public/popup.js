@@ -51141,10 +51141,14 @@ var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 function TabGroup(_a) {
     var groupId = _a.groupId, ParentPrefixIcon = _a.ParentPrefixIcon, parentPrefixAction = _a.parentPrefixAction, ParentMiddleIcon = _a.ParentMiddleIcon, parentMiddleAction = _a.parentMiddleAction, ParentAffixIcon = _a.ParentAffixIcon, parentAffixAction = _a.parentAffixAction, title = _a.title, secondary = _a.secondary, handleParentClick = _a.handleParentClick, tabs = _a.tabs, handleCloseTab = _a.handleCloseTab, handleCreateTab = _a.handleCreateTab, handleTabClick = _a.handleTabClick;
+    var geturl = function (url) {
+        var util = new UrlUtil_1.default(url);
+        return util.getFaviconURL();
+    };
     return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: ParentPrefixIcon, parentPrefixAction: parentPrefixAction, ParentMiddleIcon: ParentMiddleIcon, parentMiddleAction: parentMiddleAction, ParentAffixIcon: ParentAffixIcon, parentAffixAction: parentAffixAction, title: title, secondary: secondary, handleParentClick: handleParentClick },
         tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: tab.id, id: tab.id, isChild: true, handleClick: handleTabClick !== undefined
                 ? function () { return handleTabClick(tab.url); }
-                : undefined, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: new UrlUtil_1.default(tab.url || '').getFaviconURL() }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
+                : undefined, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: geturl(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
                 react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small' })), affixAction: function () {
                 if (tab.id) {
                     handleCloseTab(tab.id);
@@ -53335,13 +53339,12 @@ var UrlUtil = (function () {
     UrlUtil.prototype.hostname = function () {
         return this.util.hostname;
     };
-    UrlUtil.prototype.path = function () {
+    UrlUtil.prototype.pathname = function () {
         return this.util.pathname;
     };
     UrlUtil.prototype.query = function () {
         var splitUrl = this.url.split('?');
-        console.log('splitUrl: ', splitUrl);
-        return '';
+        return splitUrl[splitUrl.length - 1];
     };
     UrlUtil.prototype.getUrl = function () {
         return this.url;

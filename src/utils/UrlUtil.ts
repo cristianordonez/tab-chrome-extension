@@ -1,5 +1,5 @@
 /**
- * TODO utility class for working with urls
+ * utility class for working with urls
  */
 class UrlUtil {
    private url: string;

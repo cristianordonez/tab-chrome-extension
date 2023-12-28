@@ -8,7 +8,7 @@ class CurrentTabGroups {
    // close current tab group
    public static async delete(groupId: number): Promise<void> {
       try {
-         const tabGroups = await TabUtil.get(groupId);
+         const tabGroups = await this.getTabs(groupId);
          const tabIds = tabGroups.reduce((accumulator, currentValue) => {
             if (currentValue.id) {
                accumulator.push(currentValue.id);
@@ -35,7 +35,7 @@ class CurrentTabGroups {
          } else {
             newGroupTabs = tabIds;
          }
-         const newGroupId = await TabUtil.group(newGroupTabs);
+         const newGroupId = await this.groupTabs(newGroupTabs);
          await chrome.tabGroups.update(newGroupId, { color, title });
          return newGroupId;
       } catch (err) {
@@ -60,7 +60,7 @@ class CurrentTabGroups {
             } else {
                newGroupTabs = tabIds;
             }
-            await TabUtil.group(newGroupTabs, groupId);
+            await this.groupTabs(newGroupTabs, groupId);
          } else {
             throw new Error(
                'Given group does not exist. Unable to add tab to it.'
@@ -72,8 +72,22 @@ class CurrentTabGroups {
       }
    }
 
+   /**
+    * group together currently active tabs into a group
+    * @param tabIds list of tab ids to group together, or single id, or undefined
+    * @param groupId group id to group tabs to, if doesnt exist will create new group
+    * @returns id of group that was created
+    */
+   private static async groupTabs(
+      tabIds: undefined | number | number[],
+      groupId?: number
+   ): Promise<number> {
+      const newGroupNumber = await chrome.tabs.group({ groupId, tabIds });
+      return newGroupNumber;
+   }
+
    // gets active tab groups
-   public static async get(): Promise<number[]> {
+   public static async getGroups(): Promise<number[]> {
       const allTabs = await TabUtil.getAll();
       const groupIds = allTabs.reduce((accumulator, currentValue) => {
          if (currentValue.groupId) {
@@ -87,7 +101,21 @@ class CurrentTabGroups {
       return groupIds;
    }
 
-   // given groupId will get all information about given tab group from chrome API
+   /**
+    * Get all tabs belonging to specific group
+    * @param groupId unique id from chrome tab group
+    * @returns list of all tabs matching given group id
+    */
+   public static async getTabs(groupId: number): Promise<chrome.tabs.Tab[]> {
+      const tabInfo = await chrome.tabs.query({ groupId });
+      return tabInfo;
+   }
+
+   /**
+    * get info from chrome API for given group
+    * @param groupId id of given group to get info for
+    * @returns instance of chrome.tabGroups.TabGroup or null if given group id does not exist
+    */
    public static async getInfo(
       groupId: number
    ): Promise<chrome.tabGroups.TabGroup | null> {
@@ -108,6 +136,18 @@ class CurrentTabGroups {
             return null;
          }
       }
+   }
+
+   /**
+    * Find all groups matching given title
+    * @param title group title to search for
+    * @returns array of TabGroups
+    */
+   public static async query(
+      title: string
+   ): Promise<chrome.tabGroups.TabGroup[]> {
+      const groups = await chrome.tabGroups.query({ title });
+      return groups;
    }
 }
 

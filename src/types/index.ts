@@ -73,9 +73,10 @@ interface SubRule {
 interface RuleType {
    title: string;
    action: actionRule;
+   subRules: SubRule[];
+   id: string;
    groupName: string | undefined;
    groupColor: ColorEnum | undefined;
-   subRules: SubRule[];
 }
 
 interface LocalStorageRules {

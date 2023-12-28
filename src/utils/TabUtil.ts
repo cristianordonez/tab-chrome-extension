@@ -1,4 +1,5 @@
-import { FormattedTabs, TabOptions } from '../types';
+import { ColorEnum, FormattedTabs, TabOptions } from '../types';
+import CurrentTabGroups from './CurrentTabGroups';
 import FormattedTab from './FormattedTab';
 
 /**
@@ -22,8 +23,62 @@ class TabUtil {
       return new TabUtil(tab);
    }
 
+   /**
+    * Get current tabId
+    * @returns tabId
+    */
+   public getTabId(): number {
+      const result = this.tab.id;
+      return result ? result : -1;
+   }
+
+   /**
+    * Gets the url from current instance
+    * @returns full url string
+    */
    public getUrl(): string {
       return this.tab.url || '';
+   }
+
+   /**
+    *
+    * @param groupName name of group to open tab in
+    * @param groupColor color of group tab will be opened in
+    */
+   public async openInGroup(
+      groupColor: undefined | ColorEnum,
+      groupName: undefined | string
+   ): Promise<void> {
+      if (groupName) {
+         const groups = await CurrentTabGroups.query(groupName);
+         const tabId = this.getTabId();
+         if (groups.length > 0) {
+            const currentGroup = groups[0];
+            await CurrentTabGroups.addTabs(currentGroup.id, tabId);
+         } else {
+            await CurrentTabGroups.create(groupName, [tabId], groupColor);
+         }
+      } else {
+         throw new Error(
+            'Rules with action of 0 must have a groupName defined.'
+         );
+      }
+   }
+
+   /**
+    * pins current tab
+    */
+   public async pin() {
+      const tabId = this.getTabId();
+      await chrome.tabs.update(tabId, { pinned: true });
+   }
+
+   /**
+    * Moves current tab to new chrome window
+    */
+   public async moveToNewWindow() {
+      const tabId = this.getTabId();
+      await chrome.windows.create({ tabId });
    }
 
    // formats array of tabs into tabs with checked configuration
@@ -80,25 +135,11 @@ class TabUtil {
    }
 
    /**
-    * Get all tabs belonging to specific group
-    * @param groupId unique id from chrome tab group
-    * @returns list of all tabs matching given group id
+    * closes a currently open tab
+    * @param tabIds list of tab ids to close
     */
-   public static async get(groupId: number): Promise<chrome.tabs.Tab[]> {
-      const tabInfo = await chrome.tabs.query({ groupId });
-      return tabInfo;
-   }
-
    public static async close(tabIds: number[]): Promise<void> {
       await chrome.tabs.remove(tabIds);
-   }
-
-   public static async group(
-      tabIds: undefined | number | number[],
-      groupId?: number
-   ): Promise<number> {
-      const newGroupNumber = await chrome.tabs.group({ groupId, tabIds });
-      return newGroupNumber;
    }
 }
 

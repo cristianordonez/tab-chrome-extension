@@ -32,7 +32,7 @@ export default function CurrentGroup({
    // updates current group with new info
    const updateGroup = async () => {
       const info = await CurrentTabGroups.getInfo(groupId);
-      const tabs = await TabUtil.get(groupId);
+      const tabs = await CurrentTabGroups.getTabs(groupId);
       setGroupInfo(info);
       setTabs(tabs);
    };

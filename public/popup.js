@@ -51475,7 +51475,7 @@ function CurrentGroup(_a) {
                 case 0: return [4, CurrentTabGroups_1.default.getInfo(groupId)];
                 case 1:
                     info = _a.sent();
-                    return [4, TabUtil_1.default.get(groupId)];
+                    return [4, CurrentTabGroups_1.default.getTabs(groupId)];
                 case 2:
                     tabs = _a.sent();
                     setGroupInfo(info);
@@ -51672,7 +51672,7 @@ function CurrentGroups() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4, CurrentTabGroups_1.default.get()];
+                    return [4, CurrentTabGroups_1.default.getGroups()];
                 case 1:
                     tabGroups = _a.sent();
                     setGroups(tabGroups);
@@ -52308,7 +52308,7 @@ var CurrentTabGroups = (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4, TabUtil_1.default.get(groupId)];
+                        return [4, this.getTabs(groupId)];
                     case 1:
                         tabGroups = _a.sent();
                         tabIds = tabGroups.reduce(function (accumulator, currentValue) {
@@ -52348,7 +52348,7 @@ var CurrentTabGroups = (function () {
                     case 2:
                         newGroupTabs = tabIds;
                         _a.label = 3;
-                    case 3: return [4, TabUtil_1.default.group(newGroupTabs)];
+                    case 3: return [4, this.groupTabs(newGroupTabs)];
                     case 4:
                         newGroupId = _a.sent();
                         return [4, chrome.tabGroups.update(newGroupId, { color: color, title: title })];
@@ -52388,7 +52388,7 @@ var CurrentTabGroups = (function () {
                     case 4:
                         newGroupTabs = tabIds;
                         _a.label = 5;
-                    case 5: return [4, TabUtil_1.default.group(newGroupTabs, groupId)];
+                    case 5: return [4, this.groupTabs(newGroupTabs, groupId)];
                     case 6:
                         _a.sent();
                         return [3, 8];
@@ -52403,7 +52403,20 @@ var CurrentTabGroups = (function () {
             });
         });
     };
-    CurrentTabGroups.get = function () {
+    CurrentTabGroups.groupTabs = function (tabIds, groupId) {
+        return __awaiter(this, void 0, Promise, function () {
+            var newGroupNumber;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.group({ groupId: groupId, tabIds: tabIds })];
+                    case 1:
+                        newGroupNumber = _a.sent();
+                        return [2, newGroupNumber];
+                }
+            });
+        });
+    };
+    CurrentTabGroups.getGroups = function () {
         return __awaiter(this, void 0, Promise, function () {
             var allTabs, groupIds;
             return __generator(this, function (_a) {
@@ -52421,6 +52434,19 @@ var CurrentTabGroups = (function () {
                             return accumulator;
                         }, []);
                         return [2, groupIds];
+                }
+            });
+        });
+    };
+    CurrentTabGroups.getTabs = function (groupId) {
+        return __awaiter(this, void 0, Promise, function () {
+            var tabInfo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.query({ groupId: groupId })];
+                    case 1:
+                        tabInfo = _a.sent();
+                        return [2, tabInfo];
                 }
             });
         });
@@ -52450,6 +52476,19 @@ var CurrentTabGroups = (function () {
                         console.error(err_4);
                         return [2, null];
                     case 4: return [2];
+                }
+            });
+        });
+    };
+    CurrentTabGroups.query = function (title) {
+        return __awaiter(this, void 0, Promise, function () {
+            var groups;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabGroups.query({ title: title })];
+                    case 1:
+                        groups = _a.sent();
+                        return [2, groups];
                 }
             });
         });
@@ -52543,7 +52582,7 @@ var SavedTabGroups = (function () {
             var groupIds, i, tabs;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, CurrentTabGroups_1.default.get()];
+                    case 0: return [4, CurrentTabGroups_1.default.getGroups()];
                     case 1:
                         groupIds = _a.sent();
                         i = 0;
@@ -52551,7 +52590,7 @@ var SavedTabGroups = (function () {
                     case 2:
                         if (!(i < groupIds.length)) return [3, 6];
                         if (!(groupIds[i] !== -1)) return [3, 5];
-                        return [4, TabUtil_1.default.get(groupIds[i])];
+                        return [4, CurrentTabGroups_1.default.getTabs(groupIds[i])];
                     case 3:
                         tabs = _a.sent();
                         return [4, this.save(Number(groupIds[i]), tabs)];
@@ -53200,6 +53239,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var FormattedTab_1 = __importDefault(__webpack_require__(4325));
 var TabUtil = (function () {
     function TabUtil(tab) {
@@ -53218,8 +53258,70 @@ var TabUtil = (function () {
             });
         });
     };
+    TabUtil.prototype.getTabId = function () {
+        var result = this.tab.id;
+        return result ? result : -1;
+    };
     TabUtil.prototype.getUrl = function () {
         return this.tab.url || '';
+    };
+    TabUtil.prototype.openInGroup = function (groupColor, groupName) {
+        return __awaiter(this, void 0, Promise, function () {
+            var groups, tabId, currentGroup;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!groupName) return [3, 6];
+                        return [4, CurrentTabGroups_1.default.query(groupName)];
+                    case 1:
+                        groups = _a.sent();
+                        tabId = this.getTabId();
+                        if (!(groups.length > 0)) return [3, 3];
+                        currentGroup = groups[0];
+                        return [4, CurrentTabGroups_1.default.addTabs(currentGroup.id, tabId)];
+                    case 2:
+                        _a.sent();
+                        return [3, 5];
+                    case 3: return [4, CurrentTabGroups_1.default.create(groupName, [tabId], groupColor)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [3, 7];
+                    case 6: throw new Error('Rules with action of 0 must have a groupName defined.');
+                    case 7: return [2];
+                }
+            });
+        });
+    };
+    TabUtil.prototype.pin = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var tabId;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tabId = this.getTabId();
+                        return [4, chrome.tabs.update(tabId, { pinned: true })];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    TabUtil.prototype.moveToNewWindow = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var tabId;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tabId = this.getTabId();
+                        return [4, chrome.windows.create({ tabId: tabId })];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
     };
     TabUtil.formatTabs = function (tabs) {
         return tabs.reduce(function (accumulator, currentValue) {
@@ -53273,19 +53375,6 @@ var TabUtil = (function () {
             });
         });
     };
-    TabUtil.get = function (groupId) {
-        return __awaiter(this, void 0, Promise, function () {
-            var tabInfo;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, chrome.tabs.query({ groupId: groupId })];
-                    case 1:
-                        tabInfo = _a.sent();
-                        return [2, tabInfo];
-                }
-            });
-        });
-    };
     TabUtil.close = function (tabIds) {
         return __awaiter(this, void 0, Promise, function () {
             return __generator(this, function (_a) {
@@ -53294,19 +53383,6 @@ var TabUtil = (function () {
                     case 1:
                         _a.sent();
                         return [2];
-                }
-            });
-        });
-    };
-    TabUtil.group = function (tabIds, groupId) {
-        return __awaiter(this, void 0, Promise, function () {
-            var newGroupNumber;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, chrome.tabs.group({ groupId: groupId, tabIds: tabIds })];
-                    case 1:
-                        newGroupNumber = _a.sent();
-                        return [2, newGroupNumber];
                 }
             });
         });

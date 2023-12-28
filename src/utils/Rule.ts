@@ -1,31 +1,47 @@
-import { ColorEnum, RuleType, SubRule, actionRule } from '../types';
+import { v4 as uuidv4 } from 'uuid';
+import {
+   ColorEnum,
+   LocalStorageRules,
+   RuleType,
+   SubRule,
+   actionRule,
+} from '../types';
 import Storage from './Storage';
 import TabUtil from './TabUtil';
 import UrlUtil from './UrlUtil';
 
 /**
  * TODO user created rule to create tab groups depending on url
+ * @param title
+ * @param action
+ * @param subRules
+ * @param id
+ * @param groupName
+ * @param groupColor
  */
 class Rule {
    static ruleStorage: Storage = new Storage('rules');
    private title: string;
    private action: actionRule;
+   private subRules: SubRule[];
+   private id: string;
    private groupName?: string;
    private groupColor?: ColorEnum;
-   private subRules: SubRule[];
 
    constructor(
       title: string,
       action: actionRule,
       subRules: SubRule[] = [],
+      id: string = uuidv4(),
       groupName?: string,
       groupColor?: ColorEnum
    ) {
       this.title = title;
       this.action = action;
+      this.subRules = subRules;
+      this.id = id;
       this.groupName = groupName;
       this.groupColor = groupColor;
-      this.subRules = subRules;
    }
 
    /**
@@ -38,6 +54,7 @@ class Rule {
          ruleData.title,
          ruleData.action,
          ruleData.subRules,
+         ruleData.id,
          ruleData.groupName,
          ruleData.groupColor
       );
@@ -46,24 +63,29 @@ class Rule {
    /**
     * Static method that searches for matches for current tab, and running action for matches found
     * @param tabId id of current tab
-    * @returns Rule instance or undefined if no match was found
+    * @returns void
     */
    public static async findMatch(tabId: number): Promise<void> {
-      // const rule = new Rule('test rule 2', 0, [
-      //    { url: 'query', match: 'contains', query: 'mdn' },
-      //    { url: 'path', match: 'is equal to', query: 'w3schools' },
-      // ]);
-      // rule.save();
-
       const tab = await TabUtil.build(tabId);
       const url = tab.getUrl();
-      const rules = await this.ruleStorage.get();
-      Object.values(rules).forEach((ruleData: RuleType) => {
-         const rule = Rule.build(ruleData);
+      const rules = await this.getAll();
+      rules.forEach((rule: Rule) => {
          if (rule.isMatch(url)) {
             rule.run(tab);
          }
       });
+   }
+
+   /**
+    * Get all currently saved rules from local storage as built Rule instances
+    * @returns array of Rule instances
+    */
+   public static async getAll(): Promise<Rule[]> {
+      const allRules = (await Rule.ruleStorage.get()) as LocalStorageRules;
+      const result = Object.values(allRules).map((ruleData: RuleType) => {
+         return Rule.build(ruleData);
+      });
+      return result;
    }
 
    /**
@@ -89,9 +111,6 @@ class Rule {
     */
    private static handleSubRule(subRule: SubRule, urlUtil: UrlUtil): boolean {
       const currentUrl = this.extractUrl(subRule, urlUtil);
-      console.log('urlUtil.getUrl(): ', urlUtil.getUrl());
-      console.log('currentUrl: ', currentUrl);
-      console.log('subRule: ', subRule);
       switch (subRule.match) {
          case 'contains':
             return currentUrl.includes(subRule.query);
@@ -135,40 +154,76 @@ class Rule {
          title: this.title,
          action: this.action,
          groupName: this.groupName,
+         id: this.id,
          groupColor: this.groupColor,
          subRules: this.subRules,
       };
    }
 
    /**
-    * TODO
     * Saves rule to storage
     */
-   public save() {
-      // this.ruleStorage.add(this.title, )
-      const value = this.getData();
-      Rule.ruleStorage.add(this.title, value);
+   public async save() {
+      const data = this.getData();
+      const rules = await Rule.ruleStorage.get();
+      let doesExist = false;
+      Object.values(rules).forEach((ruleData: RuleType) => {
+         if (data.id == ruleData.id) {
+            doesExist = true;
+         } else if (data.title == ruleData.title) {
+            doesExist = true;
+         }
+      });
+      if (doesExist) {
+         throw new Error(
+            `Unable to save rule to storage: given id or title exists.`
+         );
+      } else {
+         Rule.ruleStorage.add(this.id, data);
+      }
    }
 
    /**
-    * TODO
-    * Deletes this rule from storage
+    * Deletes this rule from local storage
     */
-   public delete() {}
+   public async delete(): Promise<void> {
+      const savedRules = await Rule.ruleStorage.get();
+      if (this.id in savedRules) {
+         delete savedRules[this.id];
+         await Rule.ruleStorage.set(savedRules);
+      } else {
+         throw new Error(`Given rule ID does not exist in local storage.`);
+      }
+   }
 
    /**
     * TODO
     * Updates rule in storage with new settings
     */
-   public update() {}
+   public update() {
+      console.log('here in update');
+      //
+   }
 
    /**
-    * TODO
-    * Runs action saved to given rule
+    * run action for current rule
+    * @param tab TabUtil instance
+    * @returns void
     */
    public run(tab: TabUtil) {
-      console.log('this.action: ', this.action);
-      console.log('tab: ', tab);
+      switch (this.action) {
+         case 0:
+            tab.openInGroup(this.groupColor, this.groupName);
+            break;
+         case 1:
+            tab.moveToNewWindow();
+            break;
+         case 2:
+            tab.pin();
+            break;
+         default:
+            return;
+      }
       return;
    }
 

@@ -27,10 +27,10 @@ class SavedTabGroups {
 
    // saves or updates all current tab groups
    public async takeSnapshot() {
-      const groupIds = await CurrentTabGroups.get();
+      const groupIds = await CurrentTabGroups.getGroups();
       for (let i = 0; i < groupIds.length; i++) {
          if (groupIds[i] !== -1) {
-            const tabs = await TabUtil.get(groupIds[i]);
+            const tabs = await CurrentTabGroups.getTabs(groupIds[i]);
             await this.save(Number(groupIds[i]), tabs);
          }
       }
@@ -190,7 +190,10 @@ class SavedTabGroups {
       await this.saveToSavedTitles(group.id, group.title || '');
    }
 
-   // deletes oldest title
+   /**
+    * delete oldest version of given title from storage
+    * @param title name of title to delete from storage
+    */
    private async deleteOldestTitle(title: string) {
       const oldest = await this.findOldestGroupByTitle(title);
       console.info(
@@ -206,7 +209,6 @@ class SavedTabGroups {
       const oldestGroupId = await this.findOldestGroup();
       if (oldestGroupId) {
          const oldestGroupInfo = await this.getInfo(oldestGroupId);
-         // const oldestGroupInfo = await SavedTabGroups.getInfo(oldestGroupId);
          if (oldestGroupInfo) {
             console.info(
                `Max number of groups reached - Deleting oldest group `
@@ -244,12 +246,10 @@ class SavedTabGroups {
    private async findOldestGroupByTitle(title: string): Promise<number | null> {
       const oldest = Infinity;
       let result = null;
-      // const allTitles = (await SavedTabGroups.getKey(
       const allTitles = (await this.titleStorage.get()) as LocalStorageTitles;
       const saved = allTitles[`${title}`];
       for (let i = 0; i < saved.length; i++) {
          const current = await this.getInfo(saved[i]);
-         // const current = await SavedTabGroups.getInfo(saved[i]);
          if (current !== null && current.createdAt < oldest) {
             result = current.id;
          }

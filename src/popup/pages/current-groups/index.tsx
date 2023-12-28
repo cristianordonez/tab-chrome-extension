@@ -20,7 +20,7 @@ export default function CurrentGroups() {
    // gets all current groups
    const getGroups = async () => {
       try {
-         const tabGroups = await CurrentTabGroups.get();
+         const tabGroups = await CurrentTabGroups.getGroups();
          setGroups(tabGroups);
       } catch (err) {
          console.error(err);

@@ -21,8 +21,29 @@ chrome.commands.onCommand.addListener(async function (command) {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
    // Check if the current URL matches one of the user's selected URLs.
    const storage = await chrome.storage.local.get(null);
+   const rules = await Rule.getAll();
+   // const rule = new Rule(
+   //    'TEST RULE 1',
+   //    0,
+   //    [{ url: 'hostname', match: 'contains', query: 'google' }],
+   //    uuidv4(),
+   //    'GOOGLE',
+   //    'blue'
+   // );
+   // rule.save();
+   // const rule2 = new Rule(
+   //    'TEST RULE 3',
+   //    2,
+   //    [{ url: 'hostname', match: 'contains', query: 'lululemon' }],
+   //    uuidv4(),
+   //    'TEST ACTION 2',
+   //    'red'
+   // );
+   // rule2.save();
+   rules[0].update();
    console.log('storage: ', storage);
-   if (tab.url) {
+   console.log('rules: ', rules);
+   if (tab.url && changeInfo.status == 'loading') {
       await Rule.findMatch(tabId);
    }
 });

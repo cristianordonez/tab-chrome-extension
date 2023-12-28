@@ -73,7 +73,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) { return __a
                 return [4, Rule_1.default.getAll()];
             case 2:
                 rules = _a.sent();
-                rules[0].update();
                 console.log('storage: ', storage);
                 console.log('rules: ', rules);
                 if (!(tab.url && changeInfo.status == 'loading')) return [3, 4];
@@ -543,20 +542,56 @@ var Rule = (function () {
                     case 0: return [4, Rule.ruleStorage.get()];
                     case 1:
                         savedRules = _a.sent();
-                        if (!(this.id in savedRules)) return [3, 3];
+                        return [4, this.doesIDExist()];
+                    case 2:
+                        if (!_a.sent()) return [3, 4];
                         delete savedRules[this.id];
                         return [4, Rule.ruleStorage.set(savedRules)];
-                    case 2:
+                    case 3:
                         _a.sent();
-                        return [3, 4];
-                    case 3: throw new Error("Given rule ID does not exist in local storage.");
-                    case 4: return [2];
+                        return [3, 5];
+                    case 4: throw new Error("Given id does not exist in storage: ".concat(this.id));
+                    case 5: return [2];
                 }
             });
         });
     };
-    Rule.prototype.update = function () {
-        console.log('here in update');
+    Rule.prototype.update = function (updateInfo) {
+        return __awaiter(this, void 0, void 0, function () {
+            var savedRules, currentData;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.doesIDExist()];
+                    case 1:
+                        if (!_a.sent()) return [3, 4];
+                        return [4, Rule.ruleStorage.get()];
+                    case 2:
+                        savedRules = _a.sent();
+                        currentData = savedRules[this.id];
+                        Object.assign(currentData, updateInfo);
+                        Object.defineProperty(savedRules, this.id, { value: currentData });
+                        return [4, Rule.ruleStorage.set(savedRules)];
+                    case 3:
+                        _a.sent();
+                        return [3, 5];
+                    case 4: throw new Error("Given id does not exist in storage: ".concat(this.id));
+                    case 5: return [2];
+                }
+            });
+        });
+    };
+    Rule.prototype.doesIDExist = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var savedRules;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, Rule.ruleStorage.get()];
+                    case 1:
+                        savedRules = _a.sent();
+                        return [2, this.id in savedRules];
+                }
+            });
+        });
     };
     Rule.prototype.run = function (tab) {
         switch (this.action) {

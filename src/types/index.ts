@@ -79,8 +79,16 @@ interface RuleType {
    groupColor: ColorEnum | undefined;
 }
 
+interface UpdateRuleType {
+   title?: string;
+   action?: actionRule;
+   subRules?: SubRule[];
+   groupName?: string;
+   groupColor?: ColorEnum;
+}
+
 interface LocalStorageRules {
-   [key: string | number]: RuleType;
+   [key: string]: RuleType;
 }
 
 interface TabOptions {
@@ -101,5 +109,6 @@ export {
    RuleType,
    SubRule,
    TabOptions,
+   UpdateRuleType,
    actionRule,
 };

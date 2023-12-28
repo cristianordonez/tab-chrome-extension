@@ -4,6 +4,7 @@ import {
    LocalStorageRules,
    RuleType,
    SubRule,
+   UpdateRuleType,
    actionRule,
 } from '../types';
 import Storage from './Storage';
@@ -188,21 +189,37 @@ class Rule {
     */
    public async delete(): Promise<void> {
       const savedRules = await Rule.ruleStorage.get();
-      if (this.id in savedRules) {
+      if (await this.doesIDExist()) {
          delete savedRules[this.id];
          await Rule.ruleStorage.set(savedRules);
       } else {
-         throw new Error(`Given rule ID does not exist in local storage.`);
+         throw new Error(`Given id does not exist in storage: ${this.id}`);
       }
    }
 
    /**
-    * TODO
     * Updates rule in storage with new settings
+    * @param updateInfo object containing values to update in storage for given rule ID
     */
-   public update() {
-      console.log('here in update');
-      //
+   public async update(updateInfo: UpdateRuleType) {
+      if (await this.doesIDExist()) {
+         const savedRules = await Rule.ruleStorage.get();
+         const currentData = savedRules[this.id] as RuleType;
+         Object.assign(currentData, updateInfo);
+         Object.defineProperty(savedRules, this.id, { value: currentData });
+         await Rule.ruleStorage.set(savedRules);
+      } else {
+         throw new Error(`Given id does not exist in storage: ${this.id}`);
+      }
+   }
+
+   /**
+    * Check if this.id exists in local storage
+    * @returns true if current ID exists as rule in local storage
+    */
+   private async doesIDExist(): Promise<boolean> {
+      const savedRules = await Rule.ruleStorage.get();
+      return this.id in savedRules;
    }
 
    /**

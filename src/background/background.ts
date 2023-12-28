@@ -40,7 +40,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
    //    'red'
    // );
    // rule2.save();
-   rules[0].update();
+   // rules[0].update({ groupColor: 'red' });
    console.log('storage: ', storage);
    console.log('rules: ', rules);
    if (tab.url && changeInfo.status == 'loading') {

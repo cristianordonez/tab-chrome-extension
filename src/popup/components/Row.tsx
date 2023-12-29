@@ -143,6 +143,15 @@ export default function Row({
       }
    };
 
+   const makeClickHandler = (
+      e: MouseEvent<SVGSVGElement | HTMLElement>,
+      callback: () => void
+   ) => {
+      console.log('e: ', e);
+      console.log('');
+      e.stopPropagation();
+      callback();
+   };
    return (
       <StyledListItemButton
          hover={handleClick !== undefined}
@@ -152,7 +161,14 @@ export default function Row({
          onClick={handleMainClick}
       >
          {PrefixIcon ? (
-            <ListItemIcon onClick={handlePrefixAction}>
+            <ListItemIcon
+               onClick={(e) =>
+                  makeClickHandler(e, () => {
+                     if (prefixAction) prefixAction();
+                  })
+               }
+            >
+               {/* <ListItemIcon onClick={handlePrefixAction}> */}
                {PrefixIcon}
             </ListItemIcon>
          ) : (

@@ -1,5 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Tooltip } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Switch, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import { RuleType, SubRule } from '../../../types';
 import Circle from '../../components/Circle';
@@ -22,11 +23,7 @@ export default function RuleGroup({ data, groupId }: Props) {
       <RowGroupParent
          groupId={groupId}
          ParentPrefixIcon={<Circle color={data.groupColor || 'grey'} />}
-         ParentMiddleIcon={
-            <Tooltip title='Close tab group and all associated tabs'>
-               <CloseIcon fontSize='small' />
-            </Tooltip>
-         }
+         ParentMiddleIcon={<Switch />}
          parentMiddleAction={handleShowChildren}
          ParentAffixIcon={
             <Tooltip title='Close tab group and all associated tabs'>
@@ -44,8 +41,8 @@ export default function RuleGroup({ data, groupId }: Props) {
                isChild={true}
                title={subRule.query}
                AffixIcon={
-                  <Tooltip title='Close tab group and all associated tabs'>
-                     <CloseIcon fontSize='small' />
+                  <Tooltip title='Delete this rule from storage.'>
+                     <DeleteIcon fontSize='small' />
                   </Tooltip>
                }
                affixAction={() => {}}

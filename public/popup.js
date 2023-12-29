@@ -50843,7 +50843,7 @@ var Center_1 = __importDefault(__webpack_require__(1081));
 var TabHeader_1 = __importDefault(__webpack_require__(2314));
 var useLocalStorageState_1 = __webpack_require__(7808);
 var current_groups_1 = __importDefault(__webpack_require__(3137));
-var group_rules_1 = __importDefault(__webpack_require__(934));
+var group_rules_1 = __importDefault(__webpack_require__(5851));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
 var ModalProvider_1 = __importDefault(__webpack_require__(5125));
 var theme_1 = __webpack_require__(5825);
@@ -51063,8 +51063,19 @@ function Row(_a) {
             setShowChildren(!showChildren);
         }
     };
+    var makeClickHandler = function (e, callback) {
+        console.log('e: ', e);
+        console.log('');
+        e.stopPropagation();
+        callback();
+    };
     return (react_1.default.createElement(StyledListItemButton, { hover: handleClick !== undefined, disableRipple: true, alignItems: 'center', divider: true, onClick: handleMainClick },
-        PrefixIcon ? (react_1.default.createElement(material_1.ListItemIcon, { onClick: handlePrefixAction }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        PrefixIcon ? (react_1.default.createElement(material_1.ListItemIcon, { onClick: function (e) {
+                return makeClickHandler(e, function () {
+                    if (prefixAction)
+                        prefixAction();
+                });
+            } }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary }),
         hasChildren ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(material_1.IconButton, { onClick: handleMiddleAction, sx: { marginRight: '4em' } }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
@@ -51423,7 +51434,7 @@ var react_1 = __importStar(__webpack_require__(7294));
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var getFaviconURL_1 = __webpack_require__(198);
+var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
@@ -51690,7 +51701,7 @@ exports["default"] = CurrentGroups;
 
 /***/ }),
 
-/***/ 66:
+/***/ 4066:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51723,6 +51734,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Close_1 = __importDefault(__webpack_require__(3772));
+var Delete_1 = __importDefault(__webpack_require__(1733));
 var material_1 = __webpack_require__(6629);
 var react_1 = __importStar(__webpack_require__(7294));
 var Circle_1 = __importDefault(__webpack_require__(3970));
@@ -51734,17 +51746,16 @@ function RuleGroup(_a) {
     var handleShowChildren = function () {
         setShowChildren(!showChildren);
     };
-    return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: data.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
-            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), parentMiddleAction: handleShowChildren, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
-            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), parentAffixAction: function () { }, title: data.title, secondary: data.title }, data.subRules.map(function (subRule, index) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: index, isChild: true, title: subRule.query, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
-            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: function () { } })); })));
+    return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: data.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, null), parentMiddleAction: handleShowChildren, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
+            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), parentAffixAction: function () { }, title: data.title, secondary: data.title }, data.subRules.map(function (subRule, index) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: index, isChild: true, title: subRule.query, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage.' },
+            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: function () { } })); })));
 }
 exports["default"] = RuleGroup;
 
 
 /***/ }),
 
-/***/ 934:
+/***/ 5851:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51814,7 +51825,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
 var Rule_1 = __importDefault(__webpack_require__(4235));
-var RuleGroup_1 = __importDefault(__webpack_require__(66));
+var RuleGroup_1 = __importDefault(__webpack_require__(4066));
 function GroupRules() {
     var _this = this;
     var _a = (0, react_1.useState)([]), rules = _a[0], setRules = _a[1];
@@ -51892,7 +51903,7 @@ var material_1 = __webpack_require__(6629);
 var react_1 = __importDefault(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var getFaviconURL_1 = __webpack_require__(198);
+var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
@@ -53868,7 +53879,7 @@ exports["default"] = UrlUtil;
 
 /***/ }),
 
-/***/ 198:
+/***/ 2198:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";

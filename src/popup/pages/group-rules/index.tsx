@@ -16,7 +16,7 @@ export default function GroupRules() {
    return (
       <div>
          {rules.map((rule: Rule, index) => (
-            <RuleGroup data={rule.getData()} groupId={index} />
+            <RuleGroup rule={rule} groupId={index} />
          ))}
       </div>
    );

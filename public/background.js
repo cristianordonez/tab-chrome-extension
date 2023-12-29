@@ -486,6 +486,18 @@ var Rule = (function () {
             });
         });
     };
+    Rule.prototype.formatActionText = function () {
+        switch (this.action) {
+            case 0:
+                return "Add tab to group '".concat(this.groupName, "'");
+            case 1:
+                return 'Open tab in new window';
+            case 2:
+                return 'Pin tab';
+            default:
+                throw new Error("Action for rule of ".concat(this.action, " does not exist."));
+        }
+    };
     Rule.getAll = function () {
         return __awaiter(this, void 0, Promise, function () {
             var allRules, result;
@@ -543,6 +555,13 @@ var Rule = (function () {
             default:
                 return urlUtil.getUrl();
         }
+    };
+    Rule.formatSubRuleText = function (subRule) {
+        var urlText = 'URL ';
+        if (subRule.url != 'any')
+            urlText += subRule.url;
+        urlText += " ".concat(subRule.match, " '").concat(subRule.query, "'");
+        return urlText;
     };
     Rule.prototype.getData = function () {
         return {

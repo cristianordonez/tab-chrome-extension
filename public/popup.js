@@ -51780,6 +51780,29 @@ exports["default"] = CurrentGroups;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -51787,15 +51810,26 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Close_1 = __importDefault(__webpack_require__(3772));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var material_1 = __webpack_require__(417);
-var react_1 = __importDefault(__webpack_require__(7294));
+var react_1 = __importStar(__webpack_require__(7294));
+var Rule_1 = __importDefault(__webpack_require__(4235));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 function RuleGroup(_a) {
-    var data = _a.data, groupId = _a.groupId;
-    return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: data.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, null), enableMiddleIconHover: false, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
-            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), parentAffixAction: function () { }, title: data.title, secondary: data.title }, data.subRules.map(function (subRule, index) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: index, isChild: true, title: subRule.query, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage.' },
-            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: function () { } })); })));
+    var rule = _a.rule, groupId = _a.groupId;
+    var _b = (0, react_1.useState)(rule.active), checked = _b[0], setChecked = _b[1];
+    var handleChange = function (event) {
+        setChecked(event.target.checked);
+    };
+    var handleDeleteRule = function () {
+        return;
+    };
+    var handleDeleteSubRule = function () {
+        return;
+    };
+    return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, { checked: checked, onChange: handleChange }), enableMiddleIconHover: false, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage.' },
+            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), parentAffixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() }, rule.subRules.map(function (subRule, index) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: index, isChild: true, title: Rule_1.default.formatSubRuleText(subRule), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule.' },
+            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: handleDeleteSubRule })); })));
 }
 exports["default"] = RuleGroup;
 
@@ -51891,7 +51925,7 @@ function GroupRules() {
         }); };
         updateRules();
     }, []);
-    return (react_1.default.createElement("div", null, rules.map(function (rule, index) { return (react_1.default.createElement(RuleGroup_1.default, { data: rule.getData(), groupId: index })); })));
+    return (react_1.default.createElement("div", null, rules.map(function (rule, index) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, groupId: index })); })));
 }
 exports["default"] = GroupRules;
 
@@ -52830,6 +52864,18 @@ var Rule = (function () {
             });
         });
     };
+    Rule.prototype.formatActionText = function () {
+        switch (this.action) {
+            case 0:
+                return "Add tab to group '".concat(this.groupName, "'");
+            case 1:
+                return 'Open tab in new window';
+            case 2:
+                return 'Pin tab';
+            default:
+                throw new Error("Action for rule of ".concat(this.action, " does not exist."));
+        }
+    };
     Rule.getAll = function () {
         return __awaiter(this, void 0, Promise, function () {
             var allRules, result;
@@ -52887,6 +52933,13 @@ var Rule = (function () {
             default:
                 return urlUtil.getUrl();
         }
+    };
+    Rule.formatSubRuleText = function (subRule) {
+        var urlText = 'URL ';
+        if (subRule.url != 'any')
+            urlText += subRule.url;
+        urlText += " ".concat(subRule.match, " '").concat(subRule.query, "'");
+        return urlText;
     };
     Rule.prototype.getData = function () {
         return {

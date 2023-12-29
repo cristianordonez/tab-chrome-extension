@@ -110,6 +110,24 @@ class Rule {
    }
 
    /**
+    * Formats text to show in UI based on set action
+    */
+   public formatActionText(): string {
+      switch (this.action) {
+         case 0:
+            return `Add tab to group '${this.groupName}'`;
+         case 1:
+            return 'Open tab in new window';
+         case 2:
+            return 'Pin tab';
+         default:
+            throw new Error(
+               `Action for rule of ${this.action} does not exist.`
+            );
+      }
+   }
+
+   /**
     * Get all currently saved rules from local storage as built Rule instances
     * @returns array of Rule instances
     */
@@ -179,6 +197,18 @@ class Rule {
          default:
             return urlUtil.getUrl();
       }
+   }
+
+   /**
+    * Creates formatted string to use in UI for given subrule
+    * @param subRule subrule containing url, match and query keys
+    * @returns formatted string
+    */
+   public static formatSubRuleText(subRule: SubRule): string {
+      let urlText = 'URL ';
+      if (subRule.url != 'any') urlText += subRule.url;
+      urlText += ` ${subRule.match} '${subRule.query}'`;
+      return urlText;
    }
 
    /**

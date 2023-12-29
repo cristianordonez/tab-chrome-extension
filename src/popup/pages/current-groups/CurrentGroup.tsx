@@ -1,12 +1,16 @@
+import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import SaveIcon from '@mui/icons-material/Save';
-import { AlertColor, Tooltip } from '@mui/material';
+import { AlertColor, Box, Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
+import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
-import TabGroup from '../../components/TabGroup';
+import Row from '../../components/Row';
+import RowGroupParent from '../../components/RowGroupParent';
 import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
@@ -96,7 +100,8 @@ export default function CurrentGroup({
    } else {
       return (
          <>
-            <TabGroup
+            <RowGroupParent
+               groupId={groupId}
                ParentPrefixIcon={
                   <Circle
                      color={groupInfo !== null ? groupInfo.color : 'grey'}
@@ -116,11 +121,41 @@ export default function CurrentGroup({
                parentAffixAction={saveGroup}
                title={groupInfo.title}
                secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
-               tabs={tabs}
-               groupId={groupId}
-               handleCloseTab={handleCloseTab}
-               handleCreateTab={handleCreateTab}
-            />
+            >
+               {tabs.map((tab) => (
+                  <Row
+                     key={tab.id}
+                     id={tab.id}
+                     isChild={true}
+                     PrefixIcon={
+                        <Box
+                           component='img'
+                           sx={{ height: '35%', width: '35%' }}
+                           alt={`Favicon for ${tab.title}`}
+                           src={getFaviconURL(tab.url || '')}
+                        />
+                     }
+                     title={tab.title || ''}
+                     AffixIcon={
+                        <Tooltip title='Close tab'>
+                           <RemoveCircleIcon fontSize='small' />
+                        </Tooltip>
+                     }
+                     affixAction={() => {
+                        if (tab.id) {
+                           handleCloseTab(tab.id);
+                        }
+                     }}
+                  />
+               ))}
+               <Row
+                  id={groupId}
+                  PrefixIcon={<AddIcon />}
+                  title='Create new tab'
+                  isChild={true}
+                  handleClick={handleCreateTab}
+               />
+            </RowGroupParent>
          </>
       );
    }

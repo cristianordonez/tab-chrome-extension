@@ -77,6 +77,7 @@ interface RuleType {
    id: string;
    groupName: string | undefined;
    groupColor: ColorEnum | undefined;
+   active: boolean;
 }
 
 interface UpdateRuleType {
@@ -85,6 +86,7 @@ interface UpdateRuleType {
    subRules?: SubRule[];
    groupName?: string;
    groupColor?: ColorEnum;
+   active?: boolean;
 }
 
 interface LocalStorageRules {

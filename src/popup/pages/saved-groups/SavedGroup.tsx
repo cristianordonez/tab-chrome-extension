@@ -1,12 +1,15 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { AlertColor, Tooltip } from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { AlertColor, Box, Tooltip } from '@mui/material';
 import React from 'react';
 import { ColorEnum, LocalStorageTab } from '../../../types';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
+import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
-import TabGroup from '../../components/TabGroup';
+import Row from '../../components/Row';
+import RowGroupParent from '../../components/RowGroupParent';
 import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
@@ -29,10 +32,11 @@ export default function SavedGroup({
    setAlertSettings,
    getSavedGroups,
 }: Props) {
-   // hook used to open modal
    const { getOutput } = useModal();
 
-   // deleted tab from saved tab group
+   /**
+    * Deletes tab from a saved tab group and updates UI
+    */
    const handleDelete = async () => {
       try {
          await savedTabGroupsInstance.delete(groupId, title);
@@ -44,13 +48,18 @@ export default function SavedGroup({
       }
    };
 
-   // deletes tab from current saved group
+   /**
+    * Closes tab with given id from current window and updates UI
+    * @param tabId id of the tab to close
+    */
    const handleCloseTab = async (tabId: number) => {
       await savedTabGroupsInstance.removeTab(groupId, [tabId]);
       getSavedGroups();
    };
 
-   // opens saved tab group and all associated tabs in current window
+   /**
+    * Opens the saved tab group and its tabs in current window
+    */
    const handleParentClick = async () => {
       try {
          await savedTabGroupsInstance.open(groupId);
@@ -59,7 +68,10 @@ export default function SavedGroup({
       }
    };
 
-   // handles opening tab url on click
+   /**
+    * Opens given URL in new tab
+    * @param url full URL to open or undefined
+    */
    const handleTabClick = async (url: string | undefined) => {
       if (url !== undefined) {
          await TabUtil.create({ url });
@@ -68,7 +80,9 @@ export default function SavedGroup({
       }
    };
 
-   // handles adding tab to current group
+   /**
+    * Opens popup window allowing user to select tabs, then adds those selected to current saved group
+    */
    const handleAddTab = async () => {
       const output = await getOutput({ title: 'Add tabs', type: 'tabs' });
       if (output) {
@@ -85,28 +99,57 @@ export default function SavedGroup({
 
    return (
       <>
-         <TabGroup
+         <RowGroupParent
+            groupId={groupId}
             ParentPrefixIcon={<Circle color={color} />}
             ParentMiddleIcon={
                <Tooltip title='Add tab to group'>
                   <AddIcon />
                </Tooltip>
             }
+            parentMiddleAction={handleAddTab}
             ParentAffixIcon={
                <Tooltip title='Delete tab group'>
                   <DeleteIcon />
                </Tooltip>
             }
             parentAffixAction={handleDelete}
-            parentMiddleAction={handleAddTab}
             title={title}
             secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
             handleParentClick={handleParentClick}
-            tabs={tabs}
-            groupId={groupId}
-            handleCloseTab={handleCloseTab}
-            handleTabClick={handleTabClick}
-         />
+         >
+            {tabs.map((tab) => (
+               <Row
+                  key={tab.id}
+                  id={tab.id}
+                  isChild={true}
+                  handleClick={
+                     handleTabClick !== undefined
+                        ? () => handleTabClick(tab.url)
+                        : undefined
+                  }
+                  PrefixIcon={
+                     <Box
+                        component='img'
+                        sx={{ height: '35%', width: '35%' }}
+                        alt={`Favicon for ${tab.title}`}
+                        src={getFaviconURL(tab.url || '')}
+                     />
+                  }
+                  title={tab.title || ''}
+                  AffixIcon={
+                     <Tooltip title='Close tab'>
+                        <RemoveCircleIcon fontSize='small' />
+                     </Tooltip>
+                  }
+                  affixAction={() => {
+                     if (tab.id) {
+                        handleCloseTab(tab.id);
+                     }
+                  }}
+               />
+            ))}
+         </RowGroupParent>
       </>
    );
 }

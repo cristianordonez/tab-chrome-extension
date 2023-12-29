@@ -20,14 +20,16 @@ import UrlUtil from './UrlUtil';
  * @param groupName
  * @param groupColor
  */
+
 class Rule {
    static ruleStorage: Storage = new Storage('rules');
-   private title: string;
-   private action: actionRule;
-   private subRules: SubRule[];
-   private id: string;
-   private groupName?: string;
-   private groupColor?: ColorEnum;
+   private _title: string;
+   private _action: actionRule;
+   private _subRules: SubRule[];
+   private _id: string;
+   private _groupName?: string;
+   private _groupColor?: ColorEnum;
+   private _active: boolean;
 
    constructor(
       title: string,
@@ -35,14 +37,44 @@ class Rule {
       subRules: SubRule[] = [],
       id: string = uuidv4(),
       groupName?: string,
-      groupColor?: ColorEnum
+      groupColor?: ColorEnum,
+      active: boolean = true
    ) {
-      this.title = title;
-      this.action = action;
-      this.subRules = subRules;
-      this.id = id;
-      this.groupName = groupName;
-      this.groupColor = groupColor;
+      this._title = title;
+      this._action = action;
+      this._subRules = subRules;
+      this._id = id;
+      this._groupName = groupName;
+      this._groupColor = groupColor;
+      this._active = active;
+   }
+
+   get title() {
+      return this._title;
+   }
+
+   get subRules() {
+      return this._subRules;
+   }
+
+   get action() {
+      return this._action;
+   }
+
+   get id() {
+      return this._id;
+   }
+
+   get groupName() {
+      return this._groupName;
+   }
+
+   get groupColor() {
+      return this._groupColor;
+   }
+
+   get active() {
+      return this._active;
    }
 
    /**
@@ -95,14 +127,17 @@ class Rule {
     * @returns true if url matches any subrule for this rule
     */
    public isMatch(url: string): boolean {
-      const urlUtil = new UrlUtil(url);
-      let foundMatch = false;
-      this.subRules.forEach((subRule: SubRule) => {
-         if (Rule.handleSubRule(subRule, urlUtil)) {
-            foundMatch = true;
-         }
-      });
-      return foundMatch;
+      if (this.active) {
+         const urlUtil = new UrlUtil(url);
+         let foundMatch = false;
+         this.subRules.forEach((subRule: SubRule) => {
+            if (Rule.handleSubRule(subRule, urlUtil)) {
+               foundMatch = true;
+            }
+         });
+         return foundMatch;
+      }
+      return false;
    }
 
    /**
@@ -150,7 +185,7 @@ class Rule {
     * object with data that is saved into chrome storage
     * @returns RuleType object that is used to save into local storage
     */
-   private getData(): RuleType {
+   public getData(): RuleType {
       return {
          title: this.title,
          action: this.action,
@@ -158,6 +193,7 @@ class Rule {
          id: this.id,
          groupColor: this.groupColor,
          subRules: this.subRules,
+         active: this.active,
       };
    }
 

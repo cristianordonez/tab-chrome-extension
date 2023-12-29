@@ -3,52 +3,55 @@ import React, { useState } from 'react';
 import Row from './Row';
 
 interface Props {
-   ParentPrefixIcon: React.ReactElement;
    /**
     *Icon element that will be shown at beginning of main parent row
     */
-   parentPrefixAction?: () => void;
+   ParentPrefixIcon: React.ReactElement;
    /**
     *Action for prefix icon
     */
-   ParentMiddleIcon?: React.ReactElement;
+   parentPrefixAction?: () => void;
    /**
     *Icon element that will be shown in middle of main parent row
     */
-   parentMiddleAction?: () => void;
+   ParentMiddleIcon?: React.ReactElement;
    /**
     *Action for middle icon
     */
-   ParentAffixIcon: React.ReactElement;
+   parentMiddleAction?: () => void;
    /**
     *Icon element that will be shown at end of main parent row
     */
-   parentAffixAction?: () => void;
+   ParentAffixIcon: React.ReactElement;
    /**
     *Action for affix icon
     */
-   title?: string;
+   parentAffixAction?: () => void;
    /**
     *main text that will shown in parent row
     */
-   secondary?: string;
+   title?: string;
    /**
     *secondary text that will be shown in parent row
     */
-   children: React.ReactNode;
+   secondary?: string;
    /**
     *children of current component, must be a single ReactNode component
     */
-   handleParentClick?: () => void;
+   children: React.ReactNode;
    /**
     *function called when main parent row is clicked
     */
-   groupId: number;
+   handleParentClick?: () => void;
    /**
     *id of current group
     */
+   groupId: number;
 }
 
+/**
+ * Parent row that contains subrows
+ */
 export default function RowGroupParent({
    parentPrefixAction,
    ParentPrefixIcon,

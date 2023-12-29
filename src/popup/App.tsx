@@ -14,7 +14,7 @@ import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
 import CurrentGroups from './pages/current-groups';
-import GroupRules from './pages/group-rules/GroupRules';
+import GroupRules from './pages/group-rules';
 import SavedGroups from './pages/saved-groups';
 import ModalProvider from './provider/ModalProvider';
 import { getDesignTokens } from './theme';
@@ -51,7 +51,6 @@ export default function App() {
    const colorMode = React.useMemo(
       () => ({
          toggleColorMode: () => {
-            // The dark mode switch would invoke this method
             localStorage.setItem('mode', mode === 'light' ? 'dark' : 'light');
             setMode((prevMode: PaletteMode) =>
                prevMode === 'light' ? 'dark' : 'light'

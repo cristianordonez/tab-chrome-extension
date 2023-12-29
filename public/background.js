@@ -64,23 +64,19 @@ chrome.commands.onCommand.addListener(function (command) {
     });
 });
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) { return __awaiter(void 0, void 0, void 0, function () {
-    var storage, rules;
+    var storage;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4, chrome.storage.local.get(null)];
             case 1:
                 storage = _a.sent();
-                return [4, Rule_1.default.getAll()];
-            case 2:
-                rules = _a.sent();
                 console.log('storage: ', storage);
-                console.log('rules: ', rules);
-                if (!(tab.url && changeInfo.status == 'loading')) return [3, 4];
+                if (!(tab.url && changeInfo.status == 'loading')) return [3, 3];
                 return [4, Rule_1.default.findMatch(tabId)];
-            case 3:
+            case 2:
                 _a.sent();
-                _a.label = 4;
-            case 4: return [2];
+                _a.label = 3;
+            case 3: return [2];
         }
     });
 }); });
@@ -404,16 +400,67 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, subRules, id, groupName, groupColor) {
+    function Rule(title, action, subRules, id, groupName, groupColor, active) {
         if (subRules === void 0) { subRules = []; }
         if (id === void 0) { id = (0, uuid_1.v4)(); }
-        this.title = title;
-        this.action = action;
-        this.subRules = subRules;
-        this.id = id;
-        this.groupName = groupName;
-        this.groupColor = groupColor;
+        if (active === void 0) { active = true; }
+        this._title = title;
+        this._action = action;
+        this._subRules = subRules;
+        this._id = id;
+        this._groupName = groupName;
+        this._groupColor = groupColor;
+        this._active = active;
     }
+    Object.defineProperty(Rule.prototype, "title", {
+        get: function () {
+            return this._title;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Rule.prototype, "subRules", {
+        get: function () {
+            return this._subRules;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Rule.prototype, "action", {
+        get: function () {
+            return this._action;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Rule.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Rule.prototype, "groupName", {
+        get: function () {
+            return this._groupName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Rule.prototype, "groupColor", {
+        get: function () {
+            return this._groupColor;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Rule.prototype, "active", {
+        get: function () {
+            return this._active;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Rule.build = function (ruleData) {
         return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.groupName, ruleData.groupColor);
     };
@@ -456,14 +503,17 @@ var Rule = (function () {
         });
     };
     Rule.prototype.isMatch = function (url) {
-        var urlUtil = new UrlUtil_1.default(url);
-        var foundMatch = false;
-        this.subRules.forEach(function (subRule) {
-            if (Rule.handleSubRule(subRule, urlUtil)) {
-                foundMatch = true;
-            }
-        });
-        return foundMatch;
+        if (this.active) {
+            var urlUtil_1 = new UrlUtil_1.default(url);
+            var foundMatch_1 = false;
+            this.subRules.forEach(function (subRule) {
+                if (Rule.handleSubRule(subRule, urlUtil_1)) {
+                    foundMatch_1 = true;
+                }
+            });
+            return foundMatch_1;
+        }
+        return false;
     };
     Rule.handleSubRule = function (subRule, urlUtil) {
         var currentUrl = this.extractUrl(subRule, urlUtil);
@@ -502,6 +552,7 @@ var Rule = (function () {
             id: this.id,
             groupColor: this.groupColor,
             subRules: this.subRules,
+            active: this.active,
         };
     };
     Rule.prototype.save = function () {

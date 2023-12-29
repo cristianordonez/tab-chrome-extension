@@ -3875,6 +3875,207 @@ const touchRippleClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["defaul
 
 /***/ }),
 
+/***/ 799:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3366);
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7462);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(6010);
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4780);
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1796);
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(948);
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1657);
+/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6458);
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8216);
+/* harmony import */ var _iconButtonClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(239);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+'use client';
+
+
+
+const _excluded = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    disabled,
+    color,
+    edge,
+    size
+  } = ownerState;
+  const slots = {
+    root: ['root', disabled && 'disabled', color !== 'default' && `color${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(color)}`, edge && `edge${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(edge)}`, `size${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(size)}`]
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z)(slots, _iconButtonClasses__WEBPACK_IMPORTED_MODULE_4__/* .getIconButtonUtilityClass */ .r, classes);
+};
+const IconButtonRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .ZP)(_ButtonBase__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+  name: 'MuiIconButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, ownerState.color !== 'default' && styles[`color${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(ownerState.color)}`], ownerState.edge && styles[`edge${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(ownerState.edge)}`], styles[`size${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(ownerState.size)}`]];
+  }
+})(({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({
+  textAlign: 'center',
+  flex: '0 0 auto',
+  fontSize: theme.typography.pxToRem(24),
+  padding: 8,
+  borderRadius: '50%',
+  overflow: 'visible',
+  // Explicitly set the default value to solve a bug on IE11.
+  color: (theme.vars || theme).palette.action.active,
+  transition: theme.transitions.create('background-color', {
+    duration: theme.transitions.duration.shortest
+  })
+}, !ownerState.disableRipple && {
+  '&:hover': {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_8__/* .alpha */ .Fq)(theme.palette.action.active, theme.palette.action.hoverOpacity),
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      backgroundColor: 'transparent'
+    }
+  }
+}, ownerState.edge === 'start' && {
+  marginLeft: ownerState.size === 'small' ? -3 : -12
+}, ownerState.edge === 'end' && {
+  marginRight: ownerState.size === 'small' ? -3 : -12
+}), ({
+  theme,
+  ownerState
+}) => {
+  var _palette;
+  const palette = (_palette = (theme.vars || theme).palette) == null ? void 0 : _palette[ownerState.color];
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({}, ownerState.color === 'inherit' && {
+    color: 'inherit'
+  }, ownerState.color !== 'inherit' && ownerState.color !== 'default' && (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({
+    color: palette == null ? void 0 : palette.main
+  }, !ownerState.disableRipple && {
+    '&:hover': (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({}, palette && {
+      backgroundColor: theme.vars ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_8__/* .alpha */ .Fq)(palette.main, theme.palette.action.hoverOpacity)
+    }, {
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent'
+      }
+    })
+  }), ownerState.size === 'small' && {
+    padding: 5,
+    fontSize: theme.typography.pxToRem(18)
+  }, ownerState.size === 'large' && {
+    padding: 12,
+    fontSize: theme.typography.pxToRem(28)
+  }, {
+    [`&.${_iconButtonClasses__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z.disabled}`]: {
+      backgroundColor: 'transparent',
+      color: (theme.vars || theme).palette.action.disabled
+    }
+  });
+});
+
+/**
+ * Refer to the [Icons](/material-ui/icons/) section of the documentation
+ * regarding the available icon options.
+ */
+const IconButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function IconButton(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)({
+    props: inProps,
+    name: 'MuiIconButton'
+  });
+  const {
+      edge = false,
+      children,
+      className,
+      color = 'default',
+      disabled = false,
+      disableFocusRipple = false,
+      size = 'medium'
+    } = props,
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z)(props, _excluded);
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({}, props, {
+    edge,
+    color,
+    disabled,
+    disableFocusRipple,
+    size
+  });
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(IconButtonRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z)(classes.root, className),
+    centerRipple: true,
+    focusRipple: !disableFocusRipple,
+    disabled: disabled,
+    ref: ref,
+    ownerState: ownerState
+  }, other, {
+    children: children
+  }));
+});
+ false ? 0 : void 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IconButton);
+
+/***/ }),
+
+/***/ 239:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   r: () => (/* binding */ getIconButtonUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
+/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
+
+
+function getIconButtonUtilityClass(slot) {
+  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiIconButton', slot);
+}
+const iconButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiIconButton', ['root', 'disabled', 'colorInherit', 'colorPrimary', 'colorSecondary', 'colorError', 'colorInfo', 'colorSuccess', 'colorWarning', 'edgeStart', 'edgeEnd', 'sizeSmall', 'sizeMedium', 'sizeLarge']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (iconButtonClasses);
+
+/***/ }),
+
+/***/ 113:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _IconButton__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   getIconButtonUtilityClass: () => (/* reexport safe */ _iconButtonClasses__WEBPACK_IMPORTED_MODULE_1__.r),
+/* harmony export */   iconButtonClasses: () => (/* reexport safe */ _iconButtonClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
+/* harmony export */ });
+/* harmony import */ var _IconButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(799);
+/* harmony import */ var _iconButtonClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(239);
+'use client';
+
+
+
+
+
+/***/ }),
+
 /***/ 9773:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4483,7 +4684,7 @@ const red = {
 
 /***/ }),
 
-/***/ 6629:
+/***/ 417:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4546,7 +4747,7 @@ __webpack_require__.d(__webpack_exports__, {
   Grow: () => (/* reexport */ Grow_Grow),
   Hidden: () => (/* reexport */ Hidden_Hidden),
   Icon: () => (/* reexport */ Icon_Icon),
-  IconButton: () => (/* reexport */ IconButton_IconButton),
+  IconButton: () => (/* reexport */ IconButton/* default */.Z),
   ImageList: () => (/* reexport */ ImageList_ImageList),
   ImageListItem: () => (/* reexport */ ImageListItem_ImageListItem),
   ImageListItemBar: () => (/* reexport */ ImageListItemBar_ImageListItemBar),
@@ -4752,7 +4953,7 @@ __webpack_require__.d(__webpack_exports__, {
   getFormLabelUtilityClasses: () => (/* reexport */ getFormLabelUtilityClasses),
   getGrid2UtilityClass: () => (/* reexport */ getGrid2UtilityClass),
   getGridUtilityClass: () => (/* reexport */ getGridUtilityClass),
-  getIconButtonUtilityClass: () => (/* reexport */ getIconButtonUtilityClass),
+  getIconButtonUtilityClass: () => (/* reexport */ material_IconButton.getIconButtonUtilityClass),
   getIconUtilityClass: () => (/* reexport */ getIconUtilityClass),
   getImageListItemBarUtilityClass: () => (/* reexport */ getImageListItemBarUtilityClass),
   getImageListItemUtilityClass: () => (/* reexport */ getImageListItemUtilityClass),
@@ -4828,7 +5029,7 @@ __webpack_require__.d(__webpack_exports__, {
   gridClasses: () => (/* reexport */ Grid_gridClasses),
   hexToRgb: () => (/* reexport */ styles.hexToRgb),
   hslToRgb: () => (/* reexport */ styles.hslToRgb),
-  iconButtonClasses: () => (/* reexport */ IconButton_iconButtonClasses),
+  iconButtonClasses: () => (/* reexport */ material_IconButton.iconButtonClasses),
   iconClasses: () => (/* reexport */ Icon_iconClasses),
   imageListClasses: () => (/* reexport */ ImageList_imageListClasses),
   imageListItemBarClasses: () => (/* reexport */ ImageListItemBar_imageListItemBarClasses),
@@ -6658,154 +6859,8 @@ function getAlertUtilityClass(slot) {
 }
 const alertClasses = (0,generateUtilityClasses/* default */.Z)('MuiAlert', ['root', 'action', 'icon', 'message', 'filled', 'filledSuccess', 'filledInfo', 'filledWarning', 'filledError', 'outlined', 'outlinedSuccess', 'outlinedInfo', 'outlinedWarning', 'outlinedError', 'standard', 'standardSuccess', 'standardInfo', 'standardWarning', 'standardError']);
 /* harmony default export */ const Alert_alertClasses = (alertClasses);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/IconButton/iconButtonClasses.js
-
-
-function getIconButtonUtilityClass(slot) {
-  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiIconButton', slot);
-}
-const iconButtonClasses = (0,generateUtilityClasses/* default */.Z)('MuiIconButton', ['root', 'disabled', 'colorInherit', 'colorPrimary', 'colorSecondary', 'colorError', 'colorInfo', 'colorSuccess', 'colorWarning', 'edgeStart', 'edgeEnd', 'sizeSmall', 'sizeMedium', 'sizeLarge']);
-/* harmony default export */ const IconButton_iconButtonClasses = (iconButtonClasses);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/IconButton/IconButton.js
-'use client';
-
-
-
-const IconButton_excluded = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
-
-
-
-
-
-
-
-
-
-
-
-
-const IconButton_useUtilityClasses = ownerState => {
-  const {
-    classes,
-    disabled,
-    color,
-    edge,
-    size
-  } = ownerState;
-  const slots = {
-    root: ['root', disabled && 'disabled', color !== 'default' && `color${(0,capitalize/* default */.Z)(color)}`, edge && `edge${(0,capitalize/* default */.Z)(edge)}`, `size${(0,capitalize/* default */.Z)(size)}`]
-  };
-  return (0,composeClasses/* default */.Z)(slots, getIconButtonUtilityClass, classes);
-};
-const IconButtonRoot = (0,styled/* default */.ZP)(ButtonBase/* default */.Z, {
-  name: 'MuiIconButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [styles.root, ownerState.color !== 'default' && styles[`color${(0,capitalize/* default */.Z)(ownerState.color)}`], ownerState.edge && styles[`edge${(0,capitalize/* default */.Z)(ownerState.edge)}`], styles[`size${(0,capitalize/* default */.Z)(ownerState.size)}`]];
-  }
-})(({
-  theme,
-  ownerState
-}) => (0,esm_extends/* default */.Z)({
-  textAlign: 'center',
-  flex: '0 0 auto',
-  fontSize: theme.typography.pxToRem(24),
-  padding: 8,
-  borderRadius: '50%',
-  overflow: 'visible',
-  // Explicitly set the default value to solve a bug on IE11.
-  color: (theme.vars || theme).palette.action.active,
-  transition: theme.transitions.create('background-color', {
-    duration: theme.transitions.duration.shortest
-  })
-}, !ownerState.disableRipple && {
-  '&:hover': {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.active, theme.palette.action.hoverOpacity),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent'
-    }
-  }
-}, ownerState.edge === 'start' && {
-  marginLeft: ownerState.size === 'small' ? -3 : -12
-}, ownerState.edge === 'end' && {
-  marginRight: ownerState.size === 'small' ? -3 : -12
-}), ({
-  theme,
-  ownerState
-}) => {
-  var _palette;
-  const palette = (_palette = (theme.vars || theme).palette) == null ? void 0 : _palette[ownerState.color];
-  return (0,esm_extends/* default */.Z)({}, ownerState.color === 'inherit' && {
-    color: 'inherit'
-  }, ownerState.color !== 'inherit' && ownerState.color !== 'default' && (0,esm_extends/* default */.Z)({
-    color: palette == null ? void 0 : palette.main
-  }, !ownerState.disableRipple && {
-    '&:hover': (0,esm_extends/* default */.Z)({}, palette && {
-      backgroundColor: theme.vars ? `rgba(${palette.mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,colorManipulator/* alpha */.Fq)(palette.main, theme.palette.action.hoverOpacity)
-    }, {
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent'
-      }
-    })
-  }), ownerState.size === 'small' && {
-    padding: 5,
-    fontSize: theme.typography.pxToRem(18)
-  }, ownerState.size === 'large' && {
-    padding: 12,
-    fontSize: theme.typography.pxToRem(28)
-  }, {
-    [`&.${IconButton_iconButtonClasses.disabled}`]: {
-      backgroundColor: 'transparent',
-      color: (theme.vars || theme).palette.action.disabled
-    }
-  });
-});
-
-/**
- * Refer to the [Icons](/material-ui/icons/) section of the documentation
- * regarding the available icon options.
- */
-const IconButton = /*#__PURE__*/react.forwardRef(function IconButton(inProps, ref) {
-  const props = (0,useThemeProps/* default */.Z)({
-    props: inProps,
-    name: 'MuiIconButton'
-  });
-  const {
-      edge = false,
-      children,
-      className,
-      color = 'default',
-      disabled = false,
-      disableFocusRipple = false,
-      size = 'medium'
-    } = props,
-    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, IconButton_excluded);
-  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
-    edge,
-    color,
-    disabled,
-    disableFocusRipple,
-    size
-  });
-  const classes = IconButton_useUtilityClasses(ownerState);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(IconButtonRoot, (0,esm_extends/* default */.Z)({
-    className: (0,clsx_m/* default */.Z)(classes.root, className),
-    centerRipple: true,
-    focusRipple: !disableFocusRipple,
-    disabled: disabled,
-    ref: ref,
-    ownerState: ownerState
-  }, other, {
-    children: children
-  }));
-});
- false ? 0 : void 0;
-/* harmony default export */ const IconButton_IconButton = (IconButton);
+// EXTERNAL MODULE: ./node_modules/@mui/material/IconButton/IconButton.js
+var IconButton = __webpack_require__(799);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createSvgIcon.js
 var createSvgIcon = __webpack_require__(2066);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/internal/svg-icons/SuccessOutlined.js
@@ -7035,7 +7090,7 @@ const Alert = /*#__PURE__*/react.forwardRef(function Alert(inProps, ref) {
     variant
   });
   const classes = Alert_useUtilityClasses(ownerState);
-  const AlertCloseButton = (_ref = (_slots$closeButton = slots.closeButton) != null ? _slots$closeButton : components.CloseButton) != null ? _ref : IconButton_IconButton;
+  const AlertCloseButton = (_ref = (_slots$closeButton = slots.closeButton) != null ? _slots$closeButton : components.CloseButton) != null ? _ref : IconButton/* default */.Z;
   const AlertCloseIcon = (_ref2 = (_slots$closeIcon = slots.closeIcon) != null ? _slots$closeIcon : components.CloseIcon) != null ? _ref2 : Close;
   const closeButtonProps = (_slotProps$closeButto = slotProps.closeButton) != null ? _slotProps$closeButto : componentsProps.closeButton;
   const closeIconProps = (_slotProps$closeIcon = slotProps.closeIcon) != null ? _slotProps$closeIcon : componentsProps.closeIcon;
@@ -11827,7 +11882,7 @@ const AutocompleteEndAdornment = (0,styled/* default */.ZP)('div', {
   top: 'calc(50% - 14px)' // Center vertically
 });
 
-const AutocompleteClearIndicator = (0,styled/* default */.ZP)(IconButton_IconButton, {
+const AutocompleteClearIndicator = (0,styled/* default */.ZP)(IconButton/* default */.Z, {
   name: 'MuiAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator
@@ -11836,7 +11891,7 @@ const AutocompleteClearIndicator = (0,styled/* default */.ZP)(IconButton_IconBut
   padding: 4,
   visibility: 'hidden'
 });
-const AutocompletePopupIndicator = (0,styled/* default */.ZP)(IconButton_IconButton, {
+const AutocompletePopupIndicator = (0,styled/* default */.ZP)(IconButton/* default */.Z, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: ({
@@ -21102,12 +21157,8 @@ Icon.muiName = 'Icon';
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@mui/material/IconButton/index.js
-'use client';
-
-
-
-
+// EXTERNAL MODULE: ./node_modules/@mui/material/IconButton/index.js
+var material_IconButton = __webpack_require__(113);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ImageList/imageListClasses.js
 
 
@@ -33515,13 +33566,13 @@ const TablePaginationActions = /*#__PURE__*/react.forwardRef(function TablePagin
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", (0,esm_extends/* default */.Z)({
     ref: ref
   }, other, {
-    children: [showFirstButton && /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton_IconButton, {
+    children: [showFirstButton && /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton/* default */.Z, {
       onClick: handleFirstPageButtonClick,
       disabled: page === 0,
       "aria-label": getItemAriaLabel('first', page),
       title: getItemAriaLabel('first', page),
       children: theme.direction === 'rtl' ? _LastPageIcon || (_LastPageIcon = /*#__PURE__*/(0,jsx_runtime.jsx)(LastPage, {})) : _FirstPageIcon || (_FirstPageIcon = /*#__PURE__*/(0,jsx_runtime.jsx)(FirstPage, {}))
-    }), /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton_IconButton, (0,esm_extends/* default */.Z)({
+    }), /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton/* default */.Z, (0,esm_extends/* default */.Z)({
       onClick: handleBackButtonClick,
       disabled: page === 0,
       color: "inherit",
@@ -33529,7 +33580,7 @@ const TablePaginationActions = /*#__PURE__*/react.forwardRef(function TablePagin
       title: getItemAriaLabel('previous', page)
     }, backIconButtonProps, {
       children: theme.direction === 'rtl' ? _KeyboardArrowRight || (_KeyboardArrowRight = /*#__PURE__*/(0,jsx_runtime.jsx)(KeyboardArrowRight, {})) : _KeyboardArrowLeft || (_KeyboardArrowLeft = /*#__PURE__*/(0,jsx_runtime.jsx)(KeyboardArrowLeft, {}))
-    })), /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton_IconButton, (0,esm_extends/* default */.Z)({
+    })), /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton/* default */.Z, (0,esm_extends/* default */.Z)({
       onClick: handleNextButtonClick,
       disabled: count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false,
       color: "inherit",
@@ -33537,7 +33588,7 @@ const TablePaginationActions = /*#__PURE__*/react.forwardRef(function TablePagin
       title: getItemAriaLabel('next', page)
     }, nextIconButtonProps, {
       children: theme.direction === 'rtl' ? _KeyboardArrowLeft2 || (_KeyboardArrowLeft2 = /*#__PURE__*/(0,jsx_runtime.jsx)(KeyboardArrowLeft, {})) : _KeyboardArrowRight2 || (_KeyboardArrowRight2 = /*#__PURE__*/(0,jsx_runtime.jsx)(KeyboardArrowRight, {}))
-    })), showLastButton && /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton_IconButton, {
+    })), showLastButton && /*#__PURE__*/(0,jsx_runtime.jsx)(IconButton/* default */.Z, {
       onClick: handleLastPageButtonClick,
       disabled: page >= Math.ceil(count / rowsPerPage) - 1,
       "aria-label": getItemAriaLabel('last', page),
@@ -50834,7 +50885,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ColorModeContext = void 0;
 var OpenInFull_1 = __importDefault(__webpack_require__(9137));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
@@ -50966,7 +51017,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importDefault(__webpack_require__(7294));
 function CustomAlert(_a) {
     var handleAlert = _a.handleAlert, alertSettings = _a.alertSettings;
@@ -50987,7 +51038,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importDefault(__webpack_require__(7294));
 function Input(_a) {
     var value = _a.value, setValue = _a.setValue, _b = _a.label, label = _b === void 0 ? '' : _b, _c = _a.id, id = _c === void 0 ? '' : _c, _d = _a.type, type = _d === void 0 ? 'text' : _d;
@@ -51011,75 +51062,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
-var material_1 = __webpack_require__(6629);
-var ListItemButton_1 = __importDefault(__webpack_require__(1471));
-var system_1 = __webpack_require__(8579);
+var material_1 = __webpack_require__(417);
 var react_1 = __importDefault(__webpack_require__(7294));
-var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
-    shouldForwardProp: function (prop) { return prop !== 'hover'; },
-})(function (_a) {
-    var theme = _a.theme, hover = _a.hover;
-    return ({
-        backgroundColor: theme.palette.background.paper,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '100%',
-        '&:hover': {
-            backgroundColor: hover ? '' : theme.palette.background.paper,
-            cursor: hover ? 'pointer' : 'default',
-        },
-    });
-});
+var StyledIconButton_1 = __importDefault(__webpack_require__(116));
+var StyledListItemButton_1 = __importDefault(__webpack_require__(610));
 function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f;
+    var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f, _g = _a.enableMiddleIconHover, enableMiddleIconHover = _g === void 0 ? true : _g;
     var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
-    var handleMainClick = function (e) {
-        e.stopPropagation();
-        if (handleClick) {
-            handleClick();
-        }
+    var makeClickHandler = function (callback) {
+        return function (e) {
+            e.stopPropagation();
+            callback();
+        };
     };
-    var handlePrefixAction = function (e) {
-        e.stopPropagation();
-        if (prefixAction) {
-            prefixAction();
-        }
-    };
-    var handleMiddleAction = function (e) {
-        e.stopPropagation();
-        if (middleAction) {
-            middleAction();
-        }
-    };
-    var handleAffixAction = function (e) {
-        e.stopPropagation();
-        if (affixAction) {
-            affixAction();
-        }
-    };
-    var handleShowChildren = function (e) {
-        e.stopPropagation();
-        if (setShowChildren) {
-            setShowChildren(!showChildren);
-        }
-    };
-    var makeClickHandler = function (e, callback) {
-        console.log('e: ', e);
-        console.log('');
-        e.stopPropagation();
-        callback();
-    };
-    return (react_1.default.createElement(StyledListItemButton, { hover: handleClick !== undefined, disableRipple: true, alignItems: 'center', divider: true, onClick: handleMainClick },
-        PrefixIcon ? (react_1.default.createElement(material_1.ListItemIcon, { onClick: function (e) {
-                return makeClickHandler(e, function () {
-                    if (prefixAction)
-                        prefixAction();
-                });
-            } }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+    return (react_1.default.createElement(StyledListItemButton_1.default, { hover: handleClick !== undefined, disableRipple: true, alignItems: 'center', divider: true, onClick: makeClickHandler(function () {
+            if (handleClick)
+                handleClick();
+        }) },
+        PrefixIcon ? (react_1.default.createElement(material_1.ListItemIcon, { onClick: makeClickHandler(function () {
+                if (prefixAction)
+                    prefixAction();
+            }) }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary }),
-        hasChildren ? (react_1.default.createElement(material_1.IconButton, { onClick: handleShowChildren, sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(material_1.IconButton, { onClick: handleMiddleAction, sx: { marginRight: '4em' } }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        AffixIcon !== undefined && AffixIcon !== null ? (react_1.default.createElement(material_1.IconButton, { onClick: handleAffixAction }, AffixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
+        hasChildren ? (react_1.default.createElement(StyledIconButton_1.default, { hover: true, onClick: makeClickHandler(function () {
+                if (setShowChildren)
+                    setShowChildren(!showChildren);
+            }), sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(StyledIconButton_1.default, { hover: enableMiddleIconHover, onClick: makeClickHandler(function () {
+                if (middleAction)
+                    middleAction();
+            }), sx: { marginRight: '4em' } }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        AffixIcon !== undefined && AffixIcon !== null ? (react_1.default.createElement(StyledIconButton_1.default, { hover: true, onClick: makeClickHandler(function () {
+                if (affixAction)
+                    affixAction();
+            }) }, AffixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = Row;
 
@@ -51118,18 +51134,76 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importStar(__webpack_require__(7294));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroupParent(_a) {
-    var parentPrefixAction = _a.parentPrefixAction, ParentPrefixIcon = _a.ParentPrefixIcon, ParentMiddleIcon = _a.ParentMiddleIcon, parentMiddleAction = _a.parentMiddleAction, ParentAffixIcon = _a.ParentAffixIcon, parentAffixAction = _a.parentAffixAction, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.secondary, secondary = _c === void 0 ? '' : _c, children = _a.children, handleParentClick = _a.handleParentClick, groupId = _a.groupId;
-    var _d = (0, react_1.useState)(false), showTabs = _d[0], setShowTabs = _d[1];
+    var parentPrefixAction = _a.parentPrefixAction, ParentPrefixIcon = _a.ParentPrefixIcon, ParentMiddleIcon = _a.ParentMiddleIcon, parentMiddleAction = _a.parentMiddleAction, ParentAffixIcon = _a.ParentAffixIcon, parentAffixAction = _a.parentAffixAction, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.secondary, secondary = _c === void 0 ? '' : _c, children = _a.children, handleParentClick = _a.handleParentClick, groupId = _a.groupId, _d = _a.enableMiddleIconHover, enableMiddleIconHover = _d === void 0 ? true : _d;
+    var _e = (0, react_1.useState)(false), showTabs = _e[0], setShowTabs = _e[1];
     return (react_1.default.createElement(material_1.List, null,
-        react_1.default.createElement(Row_1.default, { id: groupId, hasChildren: true, PrefixIcon: ParentPrefixIcon, prefixAction: parentPrefixAction, middleAction: parentMiddleAction, affixAction: parentAffixAction, title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: ParentAffixIcon, handleClick: handleParentClick, MiddleIcon: ParentMiddleIcon }),
+        react_1.default.createElement(Row_1.default, { id: groupId, hasChildren: true, PrefixIcon: ParentPrefixIcon, prefixAction: parentPrefixAction, middleAction: parentMiddleAction, affixAction: parentAffixAction, title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: ParentAffixIcon, handleClick: handleParentClick, MiddleIcon: ParentMiddleIcon, enableMiddleIconHover: enableMiddleIconHover }),
         react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
             react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, children))));
 }
 exports["default"] = RowGroupParent;
+
+
+/***/ }),
+
+/***/ 116:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var IconButton_1 = __importDefault(__webpack_require__(113));
+var system_1 = __webpack_require__(8579);
+var StyledIconButton = (0, system_1.styled)(IconButton_1.default, {
+    shouldForwardProp: function (prop) { return prop !== 'hover'; },
+})(function (_a) {
+    var theme = _a.theme, hover = _a.hover;
+    return ({
+        '&:hover': {
+            backgroundColor: hover ? '' : theme.palette.background.paper,
+            cursor: hover ? 'pointer' : 'default',
+        },
+    });
+});
+exports["default"] = StyledIconButton;
+
+
+/***/ }),
+
+/***/ 610:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var ListItemButton_1 = __importDefault(__webpack_require__(1471));
+var system_1 = __webpack_require__(8579);
+var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
+    shouldForwardProp: function (prop) { return prop !== 'hover'; },
+})(function (_a) {
+    var theme = _a.theme, hover = _a.hover;
+    return ({
+        backgroundColor: theme.palette.background.paper,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        height: '100%',
+        '&:hover': {
+            backgroundColor: hover ? '' : theme.palette.background.paper,
+            cursor: hover ? 'pointer' : 'default',
+        },
+    });
+});
+exports["default"] = StyledListItemButton;
 
 
 /***/ }),
@@ -51163,7 +51237,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 function TabHeader(_a) {
@@ -51200,7 +51274,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importDefault(__webpack_require__(7294));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
 function AddTabsModal(_a) {
@@ -51239,7 +51313,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importDefault(__webpack_require__(7294));
 var Input_1 = __importDefault(__webpack_require__(9778));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
@@ -51268,7 +51342,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 function ModalContainer(_a) {
@@ -51429,7 +51503,7 @@ var Add_1 = __importDefault(__webpack_require__(6540));
 var Close_1 = __importDefault(__webpack_require__(3772));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
 var Save_1 = __importDefault(__webpack_require__(6818));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importStar(__webpack_require__(7294));
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var SavedTabGroups_1 = __webpack_require__(761);
@@ -51634,7 +51708,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importStar(__webpack_require__(7294));
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
@@ -51706,47 +51780,20 @@ exports["default"] = CurrentGroups;
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Close_1 = __importDefault(__webpack_require__(3772));
 var Delete_1 = __importDefault(__webpack_require__(1733));
-var material_1 = __webpack_require__(6629);
-var react_1 = __importStar(__webpack_require__(7294));
+var material_1 = __webpack_require__(417);
+var react_1 = __importDefault(__webpack_require__(7294));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 function RuleGroup(_a) {
     var data = _a.data, groupId = _a.groupId;
-    var _b = (0, react_1.useState)(false), showChildren = _b[0], setShowChildren = _b[1];
-    var handleShowChildren = function () {
-        setShowChildren(!showChildren);
-    };
-    return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: data.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, null), parentMiddleAction: handleShowChildren, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
+    return (react_1.default.createElement(RowGroupParent_1.default, { groupId: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: data.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, null), enableMiddleIconHover: false, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
             react_1.default.createElement(Close_1.default, { fontSize: 'small' })), parentAffixAction: function () { }, title: data.title, secondary: data.title }, data.subRules.map(function (subRule, index) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: index, isChild: true, title: subRule.query, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage.' },
             react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: function () { } })); })));
 }
@@ -51899,7 +51946,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var material_1 = __webpack_require__(6629);
+var material_1 = __webpack_require__(417);
 var react_1 = __importDefault(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));

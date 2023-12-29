@@ -1,29 +1,9 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { IconButton, ListItemIcon, ListItemText } from '@mui/material';
-import ListItemButton, {
-   ListItemButtonProps,
-} from '@mui/material/ListItemButton';
-import { styled } from '@mui/system';
+import { ListItemIcon, ListItemText } from '@mui/material';
 import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
-
-interface ListItemProps extends ListItemButtonProps {
-   hover?: boolean;
-}
-
-const StyledListItemButton = styled(ListItemButton, {
-   shouldForwardProp: (prop) => prop !== 'hover',
-})<ListItemProps>(({ theme, hover }) => ({
-   backgroundColor: theme.palette.background.paper,
-   alignItems: 'center',
-   justifyContent: 'flex-start',
-   height: '100%',
-   '&:hover': {
-      // if hover is true, set the same as background color above
-      backgroundColor: hover ? '' : theme.palette.background.paper,
-      cursor: hover ? 'pointer' : 'default',
-   },
-}));
+import StyledIconButton from './StyledIconButton';
+import StyledListItemButton from './StyledListItemButton';
 
 interface Props {
    /**
@@ -82,6 +62,10 @@ interface Props {
     * Whether children are currently being shown on UI. Defaults to false.
     */
    showChildren?: boolean;
+   /**
+    * Enable or disable hover effect of middle icon
+    */
+   enableMiddleIconHover?: boolean;
 }
 
 /**
@@ -101,6 +85,7 @@ export default function Row({
    isChild = false,
    secondary = '',
    showChildren = false,
+   enableMiddleIconHover = true,
 }: Props) {
    const arrowIcon = showChildren ? (
       <ExpandMoreIcon fontSize='large' />
@@ -108,67 +93,29 @@ export default function Row({
       <ChevronRightIcon fontSize='large' />
    );
 
-   const handleMainClick = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
-      e.stopPropagation();
-      if (handleClick) {
-         handleClick();
-      }
-   };
+   const makeClickHandler =
+      (callback: () => void) =>
+      (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
+         e.stopPropagation();
+         callback();
+      };
 
-   const handlePrefixAction = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
-      e.stopPropagation();
-      if (prefixAction) {
-         prefixAction();
-      }
-   };
-
-   const handleMiddleAction = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
-      e.stopPropagation();
-      if (middleAction) {
-         middleAction();
-      }
-   };
-
-   const handleAffixAction = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
-      e.stopPropagation();
-      if (affixAction) {
-         affixAction();
-      }
-   };
-
-   const handleShowChildren = (e: MouseEvent<SVGSVGElement | HTMLElement>) => {
-      e.stopPropagation();
-      if (setShowChildren) {
-         setShowChildren(!showChildren);
-      }
-   };
-
-   const makeClickHandler = (
-      e: MouseEvent<SVGSVGElement | HTMLElement>,
-      callback: () => void
-   ) => {
-      console.log('e: ', e);
-      console.log('');
-      e.stopPropagation();
-      callback();
-   };
    return (
       <StyledListItemButton
          hover={handleClick !== undefined}
          disableRipple
          alignItems='center'
          divider
-         onClick={handleMainClick}
+         onClick={makeClickHandler(() => {
+            if (handleClick) handleClick();
+         })}
       >
          {PrefixIcon ? (
             <ListItemIcon
-               onClick={(e) =>
-                  makeClickHandler(e, () => {
-                     if (prefixAction) prefixAction();
-                  })
-               }
+               onClick={makeClickHandler(() => {
+                  if (prefixAction) prefixAction();
+               })}
             >
-               {/* <ListItemIcon onClick={handlePrefixAction}> */}
                {PrefixIcon}
             </ListItemIcon>
          ) : (
@@ -182,27 +129,40 @@ export default function Row({
             secondary={secondary}
          />
          {hasChildren ? (
-            <IconButton
-               onClick={handleShowChildren}
+            <StyledIconButton
+               hover
+               onClick={makeClickHandler(() => {
+                  if (setShowChildren) setShowChildren(!showChildren);
+               })}
                sx={{ marginRight: '4em' }}
             >
                {arrowIcon}
-            </IconButton>
+            </StyledIconButton>
          ) : (
             <></>
          )}
          {MiddleIcon !== undefined && MiddleIcon !== null ? (
-            <IconButton
-               onClick={handleMiddleAction}
+            <StyledIconButton
+               hover={enableMiddleIconHover}
+               onClick={makeClickHandler(() => {
+                  if (middleAction) middleAction();
+               })}
                sx={{ marginRight: '4em' }}
             >
                {MiddleIcon}
-            </IconButton>
+            </StyledIconButton>
          ) : (
             <></>
          )}
          {AffixIcon !== undefined && AffixIcon !== null ? (
-            <IconButton onClick={handleAffixAction}>{AffixIcon}</IconButton>
+            <StyledIconButton
+               hover
+               onClick={makeClickHandler(() => {
+                  if (affixAction) affixAction();
+               })}
+            >
+               {AffixIcon}
+            </StyledIconButton>
          ) : (
             <></>
          )}

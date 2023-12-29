@@ -47,6 +47,10 @@ interface Props {
     *id of current group
     */
    groupId: number;
+   /**
+    * Enable hover effect of middle icon
+    */
+   enableMiddleIconHover?: boolean;
 }
 
 /**
@@ -64,6 +68,7 @@ export default function RowGroupParent({
    children,
    handleParentClick,
    groupId,
+   enableMiddleIconHover = true,
 }: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
 
@@ -83,6 +88,7 @@ export default function RowGroupParent({
             AffixIcon={ParentAffixIcon}
             handleClick={handleParentClick}
             MiddleIcon={ParentMiddleIcon}
+            enableMiddleIconHover={enableMiddleIconHover}
          />
          <Collapse in={showTabs} timeout={'auto'} unmountOnExit>
             <List component='div' disablePadding>

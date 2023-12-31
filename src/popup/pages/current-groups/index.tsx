@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import { List } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import CustomAlert from '../../components/CustomAlert';
 import Row from '../../components/Row';
@@ -54,7 +55,7 @@ export default function CurrentGroups() {
          ))}
          <List>
             <Row
-               id={0}
+               id={uuidv4()}
                title='Create new group'
                PrefixIcon={<AddIcon />}
                handleClick={handleCreateGroup}

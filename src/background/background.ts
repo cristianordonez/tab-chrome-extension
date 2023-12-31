@@ -5,6 +5,7 @@
  * and other parts are limited. But the background doesn’t have a UI and can not access DOM.
  */
 
+// import { v4 as uuidv4 } from 'uuid';
 import Rule from '../utils/Rule';
 import { savedTabGroupsInstance } from '../utils/SavedTabGroups';
 
@@ -26,22 +27,12 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
    // const rule = new Rule(
    //    'TEST RULE 1',
    //    0,
-   //    [{ url: 'hostname', match: 'contains', query: 'google' }],
+   //    [{ url: 'hostname', match: 'contains', query: 'stackoverflow' }],
    //    uuidv4(),
-   //    'GOOGLE',
+   //    'Stackoverflow',
    //    'blue'
    // );
    // rule.save();
-   // const rule2 = new Rule(
-   //    'TEST RULE 3',
-   //    2,
-   //    [{ url: 'hostname', match: 'contains', query: 'lululemon' }],
-   //    uuidv4(),
-   //    'TEST ACTION 2',
-   //    'red'
-   // );
-   // rule2.save();
-   // rules[0].update({ groupColor: 'red' });
    if (tab.url && changeInfo.status == 'loading') {
       await Rule.findMatch(tabId);
    }

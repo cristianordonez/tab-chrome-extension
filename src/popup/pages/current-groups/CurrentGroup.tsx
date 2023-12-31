@@ -4,6 +4,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import SaveIcon from '@mui/icons-material/Save';
 import { AlertColor, Box, Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
@@ -101,7 +102,7 @@ export default function CurrentGroup({
       return (
          <>
             <RowGroupParent
-               groupId={groupId}
+               id={groupId}
                ParentPrefixIcon={
                   <Circle
                      color={groupInfo !== null ? groupInfo.color : 'grey'}
@@ -125,7 +126,7 @@ export default function CurrentGroup({
                {tabs.map((tab) => (
                   <Row
                      key={tab.id}
-                     id={tab.id}
+                     id={tab.id || uuidv4()}
                      isChild={true}
                      PrefixIcon={
                         <Box

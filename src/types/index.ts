@@ -98,6 +98,11 @@ interface TabOptions {
    pinned?: boolean;
 }
 
+type SetAlertSettingsType = (
+   alertSeverity?: AlertColor,
+   alertMessage?: string
+) => void;
+
 export {
    AlertSettings,
    ColorEnum,
@@ -109,6 +114,7 @@ export {
    LocalStorageTitles,
    RouteType,
    RuleType,
+   SetAlertSettingsType,
    SubRule,
    TabOptions,
    UpdateRuleType,

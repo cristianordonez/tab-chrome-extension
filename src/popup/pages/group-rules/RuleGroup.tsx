@@ -1,8 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Switch, Tooltip } from '@mui/material';
-import React, { useState } from 'react';
-import { SubRule } from '../../../types';
+import React from 'react';
+import { SetAlertSettingsType, SubRule } from '../../../types';
 import Rule from '../../../utils/Rule';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
@@ -10,29 +10,37 @@ import RowGroupParent from '../../components/RowGroupParent';
 
 interface Props {
    rule: Rule;
-   groupId: number;
+   updateRules: () => Promise<void>;
+   setAlertSettings: SetAlertSettingsType;
 }
 
-export default function RuleGroup({ rule, groupId }: Props) {
-   const [checked, setChecked] = useState<boolean>(rule.active);
-
-   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setChecked(event.target.checked);
-      // todo update Rule active status when clicked
+export default function RuleGroup({
+   rule,
+   updateRules,
+   setAlertSettings,
+}: Props) {
+   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+      await rule.update({ active: event.target.checked });
+      await updateRules();
    };
 
-   // todo add a unique id to each subrule
-
    /**
-    * todo Deletes rule from storage and triggers rerender
+    * Deletes rule from storage and triggers rerender
     * @returns void
     */
-   const handleDeleteRule = () => {
-      return;
+   const handleDeleteRule = async () => {
+      try {
+         await rule.delete();
+         await updateRules();
+      } catch (err) {
+         console.error(err);
+         setAlertSettings('error', 'Something went wrong.');
+      }
    };
 
    /**
     * todo Deletes a subrule from current rule
+   // todo add a unique id to each subrule
     * @returns void
     */
    const handleDeleteSubRule = () => {
@@ -41,12 +49,14 @@ export default function RuleGroup({ rule, groupId }: Props) {
 
    return (
       <RowGroupParent
-         groupId={groupId}
+         id={rule.id}
          ParentPrefixIcon={<Circle color={rule.groupColor || 'grey'} />}
-         ParentMiddleIcon={<Switch checked={checked} onChange={handleChange} />}
+         ParentMiddleIcon={
+            <Switch checked={rule.active} onChange={handleChange} />
+         }
          enableMiddleIconHover={false}
          ParentAffixIcon={
-            <Tooltip title='Delete this rule from storage.'>
+            <Tooltip title='Delete this rule from storage'>
                <DeleteIcon fontSize='small' />
             </Tooltip>
          }
@@ -61,7 +71,7 @@ export default function RuleGroup({ rule, groupId }: Props) {
                isChild={true}
                title={Rule.formatSubRuleText(subRule)}
                AffixIcon={
-                  <Tooltip title='Remove condition from rule.'>
+                  <Tooltip title='Remove condition from rule'>
                      <CloseIcon fontSize='small' />
                   </Tooltip>
                }

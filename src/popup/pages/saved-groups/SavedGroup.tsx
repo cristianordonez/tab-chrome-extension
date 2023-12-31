@@ -1,9 +1,13 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { AlertColor, Box, Tooltip } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import React from 'react';
-import { ColorEnum, LocalStorageTab } from '../../../types';
+import {
+   ColorEnum,
+   LocalStorageTab,
+   SetAlertSettingsType,
+} from '../../../types';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
 import { getFaviconURL } from '../../../utils/getFaviconURL';
@@ -17,10 +21,7 @@ interface Props {
    color: ColorEnum;
    title: string;
    tabs: LocalStorageTab[];
-   setAlertSettings: (
-      alertSeverity?: AlertColor,
-      alertMessage?: string
-   ) => void;
+   setAlertSettings: SetAlertSettingsType;
    getSavedGroups: () => Promise<void>;
 }
 
@@ -100,7 +101,7 @@ export default function SavedGroup({
    return (
       <>
          <RowGroupParent
-            groupId={groupId}
+            id={groupId}
             ParentPrefixIcon={<Circle color={color} />}
             ParentMiddleIcon={
                <Tooltip title='Add tab to group'>

@@ -12,7 +12,7 @@ import TabUtil from './TabUtil';
 import UrlUtil from './UrlUtil';
 
 /**
- * TODO user created rule to create tab groups depending on url
+ * User created rule to create tab groups depending on url
  * @param title
  * @param action
  * @param subRules
@@ -36,17 +36,17 @@ class Rule {
       action: actionRule,
       subRules: SubRule[] = [],
       id: string = uuidv4(),
+      active: boolean,
       groupName?: string,
-      groupColor?: ColorEnum,
-      active: boolean = true
+      groupColor?: ColorEnum
    ) {
       this._title = title;
       this._action = action;
       this._subRules = subRules;
       this._id = id;
+      this._active = active;
       this._groupName = groupName;
       this._groupColor = groupColor;
-      this._active = active;
    }
 
    get title() {
@@ -77,6 +77,10 @@ class Rule {
       return this._active;
    }
 
+   set active(isActive: boolean) {
+      this._active = isActive;
+   }
+
    /**
     * Uses RuleType object to build new class. Used since RuleType objects are stored in storage
     * @param ruleData Object containing attributes needed to build new Rule instance
@@ -88,6 +92,7 @@ class Rule {
          ruleData.action,
          ruleData.subRules,
          ruleData.id,
+         ruleData.active,
          ruleData.groupName,
          ruleData.groupColor
       );
@@ -134,6 +139,7 @@ class Rule {
    public static async getAll(): Promise<Rule[]> {
       const allRules = (await Rule.ruleStorage.get()) as LocalStorageRules;
       const result = Object.values(allRules).map((ruleData: RuleType) => {
+         console.log('ruleData: ', ruleData);
          return Rule.build(ruleData);
       });
       return result;
@@ -257,6 +263,7 @@ class Rule {
       const savedRules = await Rule.ruleStorage.get();
       if (await this.doesIDExist()) {
          delete savedRules[this.id];
+         console.log('here in rule.delete();');
          await Rule.ruleStorage.set(savedRules);
       } else {
          throw new Error(`Given id does not exist in storage: ${this.id}`);

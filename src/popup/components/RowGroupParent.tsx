@@ -44,9 +44,9 @@ interface Props {
     */
    handleParentClick?: () => void;
    /**
-    *id of current group
+    *Unique id of current row group
     */
-   groupId: number;
+   id: string | number;
    /**
     * Enable hover effect of middle icon
     */
@@ -67,7 +67,7 @@ export default function RowGroupParent({
    secondary = '',
    children,
    handleParentClick,
-   groupId,
+   id,
    enableMiddleIconHover = true,
 }: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
@@ -75,7 +75,7 @@ export default function RowGroupParent({
    return (
       <List>
          <Row
-            id={groupId}
+            id={id}
             hasChildren={true}
             PrefixIcon={ParentPrefixIcon}
             prefixAction={parentPrefixAction}

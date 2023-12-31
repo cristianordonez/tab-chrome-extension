@@ -9,7 +9,7 @@ interface Props {
    /**
     * unique id for given row
     */
-   id?: number;
+   id: string | number;
    /**
     * Optional icon to use at beginning (left) of row
     */

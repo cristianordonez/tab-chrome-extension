@@ -400,17 +400,16 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, subRules, id, groupName, groupColor, active) {
+    function Rule(title, action, subRules, id, active, groupName, groupColor) {
         if (subRules === void 0) { subRules = []; }
         if (id === void 0) { id = (0, uuid_1.v4)(); }
-        if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
         this._subRules = subRules;
         this._id = id;
+        this._active = active;
         this._groupName = groupName;
         this._groupColor = groupColor;
-        this._active = active;
     }
     Object.defineProperty(Rule.prototype, "title", {
         get: function () {
@@ -458,11 +457,14 @@ var Rule = (function () {
         get: function () {
             return this._active;
         },
+        set: function (isActive) {
+            this._active = isActive;
+        },
         enumerable: false,
         configurable: true
     });
     Rule.build = function (ruleData) {
-        return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.groupName, ruleData.groupColor);
+        return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
     Rule.findMatch = function (tabId) {
         return __awaiter(this, void 0, Promise, function () {
@@ -507,6 +509,7 @@ var Rule = (function () {
                     case 1:
                         allRules = (_a.sent());
                         result = Object.values(allRules).map(function (ruleData) {
+                            console.log('ruleData: ', ruleData);
                             return Rule.build(ruleData);
                         });
                         return [2, result];
@@ -616,6 +619,7 @@ var Rule = (function () {
                     case 2:
                         if (!_a.sent()) return [3, 4];
                         delete savedRules[this.id];
+                        console.log('here in rule.delete();');
                         return [4, Rule.ruleStorage.set(savedRules)];
                     case 3:
                         _a.sent();

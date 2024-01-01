@@ -2709,6 +2709,27 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 7957:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+"use client";
+
+var _interopRequireDefault = __webpack_require__(4836);
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
+var _jsxRuntime = __webpack_require__(8521);
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+}), 'Edit');
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ 3508:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -43954,7 +43975,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 6344:
+/***/ 2577:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -50866,7 +50887,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importDefault(__webpack_require__(7294));
 var client_1 = __importDefault(__webpack_require__(745));
-__webpack_require__(6344);
+__webpack_require__(2577);
 var App_1 = __importDefault(__webpack_require__(1364));
 var root = client_1.default.createRoot(document.getElementById('root'));
 root.render(react_1.default.createElement(App_1.default, null));
@@ -50893,6 +50914,7 @@ var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var Center_1 = __importDefault(__webpack_require__(1081));
 var TabHeader_1 = __importDefault(__webpack_require__(2314));
 var useLocalStorageState_1 = __webpack_require__(7808);
+var usePopupWindowState_1 = __webpack_require__(953);
 var current_groups_1 = __importDefault(__webpack_require__(3137));
 var group_rules_1 = __importDefault(__webpack_require__(5851));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
@@ -50904,8 +50926,10 @@ exports.ColorModeContext = react_1.default.createContext({
 var GlobalStyles = (0, styles_1.styled)('div')({
     minWidth: '600px',
     minHeight: '800px',
+    height: '1px',
 });
 function App() {
+    var isPopup = (0, usePopupWindowState_1.usePopupWindowStatus)();
     var _a = (0, useLocalStorageState_1.useLocalStorageState)('mode', 'dark'), mode = _a[0], setMode = _a[1];
     var routes = [
         {
@@ -50914,12 +50938,12 @@ function App() {
             label: 'Current Groups',
         },
         {
-            path: '/saved',
+            path: '/popup.html/saved',
             element: saved_groups_1.default,
             label: 'Saved Groups',
         },
         {
-            path: '/rules',
+            path: '/popup.html/rules',
             element: group_rules_1.default,
             label: 'Rules',
         },
@@ -50942,13 +50966,14 @@ function App() {
                         react_1.default.createElement(material_1.CssBaseline, null),
                         react_1.default.createElement(Center_1.default, { column: true, gap: 1 },
                             react_1.default.createElement(react_1.default.Fragment, null,
+                                isPopup ? react_1.default.createElement(react_1.default.Fragment, null) : react_1.default.createElement("h1", null, "TEST"),
                                 react_1.default.createElement(TabHeader_1.default, { routes: routes }),
                                 react_1.default.createElement(react_router_dom_1.Routes, null, routes.map(function (_a) {
                                     var path = _a.path, Component = _a.element;
                                     return (react_1.default.createElement(react_router_dom_1.Route, { path: path, element: react_1.default.createElement(Component, null) }));
                                 })),
                                 react_1.default.createElement(OpenInFull_1.default, { sx: { position: 'absolute', bottom: 0 }, onClick: function () {
-                                        return TabUtil_1.default.create({ url: 'popup.html' });
+                                        return TabUtil_1.default.create({ url: 'popup.html' }, true, true);
                                     } })))))))));
 }
 exports["default"] = App;
@@ -51150,6 +51175,38 @@ exports["default"] = RowGroupParent;
 
 /***/ }),
 
+/***/ 229:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var styles_1 = __webpack_require__(123);
+var StyledChild = (0, styles_1.styled)('div')({});
+exports["default"] = StyledChild;
+
+
+/***/ }),
+
+/***/ 693:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var styles_1 = __webpack_require__(123);
+var StyledContainer = (0, styles_1.styled)('div')({
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+});
+exports["default"] = StyledContainer;
+
+
+/***/ }),
+
 /***/ 4116:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -51196,7 +51253,7 @@ var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
         backgroundColor: theme.palette.background.paper,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        height: '100%',
+        height: '65px',
         '&:hover': {
             backgroundColor: hover ? '' : theme.palette.background.paper,
             cursor: hover ? 'pointer' : 'default',
@@ -51427,6 +51484,80 @@ function useLocalStorageState(key, defaultVal) {
     return [state, setState];
 }
 exports.useLocalStorageState = useLocalStorageState;
+
+
+/***/ }),
+
+/***/ 953:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.usePopupWindowStatus = void 0;
+var react_1 = __webpack_require__(7294);
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
+function usePopupWindowStatus() {
+    var _this = this;
+    var _a = (0, react_1.useState)(true), isPopup = _a[0], setIsPopup = _a[1];
+    (0, react_1.useEffect)(function () {
+        var updateIsPopup = function () { return __awaiter(_this, void 0, void 0, function () {
+            var current;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabUtil_1.default.getCurrent()];
+                    case 1:
+                        current = _a.sent();
+                        console.log('current in updateIspopup: ', current);
+                        setIsPopup(current == undefined);
+                        return [2];
+                }
+            });
+        }); };
+        updateIsPopup();
+    }, []);
+    return isPopup;
+}
+exports.usePopupWindowStatus = usePopupWindowStatus;
 
 
 /***/ }),
@@ -51709,12 +51840,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
-var material_1 = __webpack_require__(3417);
 var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var Row_1 = __importDefault(__webpack_require__(9416));
+var StyledChild_1 = __importDefault(__webpack_require__(229));
+var StyledContainer_1 = __importDefault(__webpack_require__(693));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var ModalProvider_1 = __webpack_require__(5125);
 var CurrentGroup_1 = __importDefault(__webpack_require__(2595));
@@ -51766,9 +51898,9 @@ function CurrentGroups() {
     var handleAlert = function () {
         setAlertSettings();
     };
-    return (react_1.default.createElement("div", null,
+    return (react_1.default.createElement(StyledContainer_1.default, null,
         groups.map(function (groupId) { return (react_1.default.createElement(CurrentGroup_1.default, { key: groupId, groupId: groupId, getGroups: getGroups, setAlertSettings: setAlertSettings })); }),
-        react_1.default.createElement(material_1.List, null,
+        react_1.default.createElement(StyledChild_1.default, null,
             react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup })),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
@@ -51868,12 +52000,22 @@ function RuleGroup(_a) {
             }
         });
     }); };
-    var handleDeleteSubRule = function () {
-        return;
-    };
+    var handleDeleteSubRule = function (subRuleID) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, rule.deleteSubRule(subRuleID)];
+                case 1:
+                    _a.sent();
+                    return [4, updateRules()];
+                case 2:
+                    _a.sent();
+                    return [2];
+            }
+        });
+    }); };
     return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange }), enableMiddleIconHover: false, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
-            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), parentAffixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() }, rule.subRules.map(function (subRule, index) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: index, isChild: true, title: Rule_1.default.formatSubRuleText(subRule), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
-            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: handleDeleteSubRule })); })));
+            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), parentAffixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() }, rule.subRules.map(function (subRule) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: subRule.id, isChild: true, title: Rule_1.default.formatSubRuleText(subRule), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
+            react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: function () { return handleDeleteSubRule(subRule.id); } })); })));
 }
 exports["default"] = RuleGroup;
 
@@ -51948,9 +52090,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Edit_1 = __importDefault(__webpack_require__(7957));
 var react_1 = __importStar(__webpack_require__(7294));
+var uuid_1 = __webpack_require__(7429);
 var Rule_1 = __importDefault(__webpack_require__(4235));
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
+var Row_1 = __importDefault(__webpack_require__(9416));
+var StyledChild_1 = __importDefault(__webpack_require__(229));
+var StyledContainer_1 = __importDefault(__webpack_require__(693));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var RuleGroup_1 = __importDefault(__webpack_require__(4066));
 function GroupRules() {
@@ -51975,9 +52123,14 @@ function GroupRules() {
     (0, react_1.useEffect)(function () {
         updateRules();
     }, []);
-    console.log('rules: ', rules);
-    return (react_1.default.createElement("div", null,
+    var handleOpenFullPage = function () {
+        TabUtil_1.default.create({ url: '/popup.html#rules' }, true, true);
+        window.close();
+    };
+    return (react_1.default.createElement(StyledContainer_1.default, null,
         rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules, setAlertSettings: setAlertSettings })); }),
+        react_1.default.createElement(StyledChild_1.default, null,
+            react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit Rules', handleClick: handleOpenFullPage })),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = GroupRules;
@@ -52239,6 +52392,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
+var StyledContainer_1 = __importDefault(__webpack_require__(693));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var SavedGroup_1 = __importDefault(__webpack_require__(2928));
 function SavedGroups() {
@@ -52279,7 +52433,7 @@ function SavedGroups() {
             return accumulator;
         }, []);
     }, [savedGroups]);
-    return (react_1.default.createElement("div", null,
+    return (react_1.default.createElement(StyledContainer_1.default, null,
         sortedGroups.map(function (groupId) { return (react_1.default.createElement(SavedGroup_1.default, { key: groupId, groupId: Number(groupId), color: savedGroups[Number(groupId)].color, title: savedGroups[Number(groupId)].title, tabs: savedGroups[Number(groupId)].tabs, setAlertSettings: setAlertSettings, getSavedGroups: getSavedGroups })); }),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
@@ -52853,6 +53007,9 @@ var Rule = (function () {
         get: function () {
             return this._subRules;
         },
+        set: function (subRules) {
+            this._subRules = subRules;
+        },
         enumerable: false,
         configurable: true
     });
@@ -52940,7 +53097,6 @@ var Rule = (function () {
                     case 1:
                         allRules = (_a.sent());
                         result = Object.values(allRules).map(function (ruleData) {
-                            console.log('ruleData: ', ruleData);
                             return Rule.build(ruleData);
                         });
                         return [2, result];
@@ -53116,6 +53272,36 @@ var Rule = (function () {
     };
     Rule.prototype.addSubRule = function (subrule) {
         this.subRules.push(subrule);
+    };
+    Rule.prototype.deleteSubRule = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var updatedRules;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.subRuleExists(id)) return [3, 2];
+                        updatedRules = this.subRules.filter(function (subRule) {
+                            return subRule.id != id;
+                        });
+                        this.subRules = updatedRules;
+                        return [4, this.update({ subRules: updatedRules })];
+                    case 1:
+                        _a.sent();
+                        return [3, 3];
+                    case 2: throw new Error("No subrule exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
+                    case 3: return [2];
+                }
+            });
+        });
+    };
+    Rule.prototype.subRuleExists = function (id) {
+        var doesExist = false;
+        this.subRules.forEach(function (subRule) {
+            if (subRule.id == id) {
+                doesExist = true;
+            }
+        });
+        return doesExist;
     };
     Rule.ruleStorage = new Storage_1.default('rules');
     return Rule;
@@ -53918,6 +54104,7 @@ var TabUtil = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        console.log('HERE IN OPEN NEW WINDOW!!!!!!!!!!!!');
                         tabId = this.getTabId();
                         return [4, chrome.windows.create({ tabId: tabId })];
                     case 1:
@@ -53936,8 +54123,9 @@ var TabUtil = (function () {
             return accumulator;
         }, {});
     };
-    TabUtil.create = function (options, blocking) {
+    TabUtil.create = function (options, blocking, active) {
         if (blocking === void 0) { blocking = false; }
+        if (active === void 0) { active = false; }
         return __awaiter(this, void 0, Promise, function () {
             var tab;
             var _this = this;
@@ -53946,7 +54134,7 @@ var TabUtil = (function () {
                     case 0:
                         if (!blocking) return [3, 1];
                         return [2, new Promise(function (resolve) {
-                                chrome.tabs.create(__assign(__assign({}, options), { active: false }), function (tab) { return __awaiter(_this, void 0, void 0, function () {
+                                chrome.tabs.create(__assign(__assign({}, options), { active: active }), function (tab) { return __awaiter(_this, void 0, void 0, function () {
                                     return __generator(this, function (_a) {
                                         chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
                                             if (info.status === 'complete' && tabId === tab.id) {
@@ -53958,7 +54146,7 @@ var TabUtil = (function () {
                                     });
                                 }); });
                             })];
-                    case 1: return [4, chrome.tabs.create(__assign(__assign({}, options), { active: false }))];
+                    case 1: return [4, chrome.tabs.create(__assign(__assign({}, options), { active: active }))];
                     case 2:
                         tab = _a.sent();
                         return [2, tab];
@@ -53987,6 +54175,19 @@ var TabUtil = (function () {
                     case 1:
                         _a.sent();
                         return [2];
+                }
+            });
+        });
+    };
+    TabUtil.getCurrent = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var current;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.getCurrent()];
+                    case 1:
+                        current = _a.sent();
+                        return [2, current];
                 }
             });
         });

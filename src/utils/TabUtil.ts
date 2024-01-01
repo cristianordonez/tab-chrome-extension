@@ -77,6 +77,7 @@ class TabUtil {
     * Moves current tab to new chrome window
     */
    public async moveToNewWindow() {
+      console.log('HERE IN OPEN NEW WINDOW!!!!!!!!!!!!');
       const tabId = this.getTabId();
       await chrome.windows.create({ tabId });
    }
@@ -99,15 +100,17 @@ class TabUtil {
     * Create new tab
     * @param options TabOptions interface
     * @param blocking if true, will wait until tab has loaded before continuing, defaults to false
+    * @param active whether new tab should be focused when open, defaults to false
     * @returns chrome.tabs.Tab instance
     */
    public static async create(
       options: TabOptions,
-      blocking: boolean = false
+      blocking: boolean = false,
+      active: boolean = false
    ): Promise<chrome.tabs.Tab> {
       if (blocking) {
          return new Promise((resolve) => {
-            chrome.tabs.create({ ...options, active: false }, async (tab) => {
+            chrome.tabs.create({ ...options, active: active }, async (tab) => {
                chrome.tabs.onUpdated.addListener(function listener(
                   tabId: number,
                   info: chrome.tabs.TabChangeInfo
@@ -120,7 +123,7 @@ class TabUtil {
             });
          });
       } else {
-         const tab = await chrome.tabs.create({ ...options, active: false });
+         const tab = await chrome.tabs.create({ ...options, active: active });
          return tab;
       }
    }
@@ -140,6 +143,15 @@ class TabUtil {
     */
    public static async close(tabIds: number[]): Promise<void> {
       await chrome.tabs.remove(tabIds);
+   }
+
+   /**
+    * Get currently active tab
+    * @returns Tab object or undefined if popup window is open
+    */
+   public static async getCurrent(): Promise<chrome.tabs.Tab | undefined> {
+      const current = await chrome.tabs.getCurrent();
+      return current;
    }
 }
 

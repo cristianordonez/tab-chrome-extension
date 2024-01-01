@@ -1,10 +1,11 @@
 import AddIcon from '@mui/icons-material/Add';
-import { List } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
 import CustomAlert from '../../components/CustomAlert';
 import Row from '../../components/Row';
+import StyledChild from '../../components/StyledChild';
+import StyledContainer from '../../components/StyledContainer';
 import useAlertSettings from '../../hooks/useAlertSettings';
 import { useModal } from '../../provider/ModalProvider';
 import CurrentGroup from './CurrentGroup';
@@ -18,7 +19,9 @@ export default function CurrentGroups() {
       getGroups();
    }, []);
 
-   // gets all current groups
+   /**
+    * Gets all current groups
+    */
    const getGroups = async () => {
       try {
          const tabGroups = await CurrentTabGroups.getGroups();
@@ -29,7 +32,9 @@ export default function CurrentGroups() {
       }
    };
 
-   // called by Modal to create new group with given title
+   /**
+    * Called by modal to create new group with given title
+    */
    const handleCreateGroup = async () => {
       const output = await getOutput({ title: 'Group Name', type: 'input' });
       if (output) {
@@ -38,13 +43,15 @@ export default function CurrentGroups() {
       }
    };
 
-   // handles closing alert component
+   /**
+    * Handles closing alert component
+    */
    const handleAlert = () => {
       setAlertSettings();
    };
 
    return (
-      <div>
+      <StyledContainer>
          {groups.map((groupId) => (
             <CurrentGroup
                key={groupId}
@@ -53,15 +60,15 @@ export default function CurrentGroups() {
                setAlertSettings={setAlertSettings}
             />
          ))}
-         <List>
+         <StyledChild>
             <Row
                id={uuidv4()}
                title='Create new group'
                PrefixIcon={<AddIcon />}
                handleClick={handleCreateGroup}
             />
-         </List>
+         </StyledChild>
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
-      </div>
+      </StyledContainer>
    );
 }

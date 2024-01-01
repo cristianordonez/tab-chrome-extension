@@ -57,6 +57,10 @@ class Rule {
       return this._subRules;
    }
 
+   set subRules(subRules: SubRule[]) {
+      this._subRules = subRules;
+   }
+
    get action() {
       return this._action;
    }
@@ -139,7 +143,6 @@ class Rule {
    public static async getAll(): Promise<Rule[]> {
       const allRules = (await Rule.ruleStorage.get()) as LocalStorageRules;
       const result = Object.values(allRules).map((ruleData: RuleType) => {
-         console.log('ruleData: ', ruleData);
          return Rule.build(ruleData);
       });
       return result;
@@ -318,11 +321,44 @@ class Rule {
    }
 
    /**
-    * Adds new subrule to rules array
+    * todo Adds new subrule to rules array
     * @param subrule SubRule interface with query, match, and url keys
     */
    public addSubRule(subrule: SubRule) {
       this.subRules.push(subrule);
+   }
+
+   /**
+    * Deletes subrule from current rule and updates storage
+    * @param id ID of subrule to delete
+    */
+   public async deleteSubRule(id: string) {
+      if (this.subRuleExists(id)) {
+         const updatedRules = this.subRules.filter((subRule: SubRule) => {
+            return subRule.id != id;
+         });
+         this.subRules = updatedRules;
+         await this.update({ subRules: updatedRules });
+      } else {
+         throw new Error(
+            `No subrule exists with id of ${id} in rule with ID of ${this.id}`
+         );
+      }
+   }
+
+   /**
+    * Finds if a subrule exists in this rule with the given id
+    * @param id the ID of the subrule to delete
+    * @returns true if subrule is found, false otherwise
+    */
+   private subRuleExists(id: string): boolean {
+      let doesExist = false;
+      this.subRules.forEach((subRule: SubRule) => {
+         if (subRule.id == id) {
+            doesExist = true;
+         }
+      });
+      return doesExist;
    }
 }
 

@@ -39,12 +39,12 @@ export default function RuleGroup({
    };
 
    /**
-    * todo Deletes a subrule from current rule
-   // todo add a unique id to each subrule
+    * Deletes a subrule from current rule
     * @returns void
     */
-   const handleDeleteSubRule = () => {
-      return;
+   const handleDeleteSubRule = async (subRuleID: string) => {
+      await rule.deleteSubRule(subRuleID);
+      await updateRules();
    };
 
    return (
@@ -64,10 +64,10 @@ export default function RuleGroup({
          title={rule.title}
          secondary={rule.formatActionText()}
       >
-         {rule.subRules.map((subRule: SubRule, index) => (
+         {rule.subRules.map((subRule: SubRule) => (
             <Row
                key={subRule.query}
-               id={index}
+               id={subRule.id}
                isChild={true}
                title={Rule.formatSubRuleText(subRule)}
                AffixIcon={
@@ -75,7 +75,7 @@ export default function RuleGroup({
                      <CloseIcon fontSize='small' />
                   </Tooltip>
                }
-               affixAction={handleDeleteSubRule}
+               affixAction={() => handleDeleteSubRule(subRule.id)}
             />
          ))}
       </RowGroupParent>

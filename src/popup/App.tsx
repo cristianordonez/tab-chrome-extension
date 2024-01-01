@@ -13,6 +13,7 @@ import TabUtil from '../utils/TabUtil';
 import Center from './components/Center';
 import TabHeader from './components/TabHeader';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
+import { usePopupWindowStatus } from './hooks/usePopupWindowState';
 import CurrentGroups from './pages/current-groups';
 import GroupRules from './pages/group-rules';
 import SavedGroups from './pages/saved-groups';
@@ -26,9 +27,11 @@ export const ColorModeContext = React.createContext({
 const GlobalStyles = styled('div')({
    minWidth: '600px',
    minHeight: '800px',
+   height: '1px',
 });
 
 export default function App() {
+   const isPopup = usePopupWindowStatus();
    const [mode, setMode] = useLocalStorageState('mode', 'dark');
    const routes: RouteType[] = [
       {
@@ -37,12 +40,12 @@ export default function App() {
          label: 'Current Groups',
       },
       {
-         path: '/saved',
+         path: '/popup.html/saved',
          element: SavedGroups,
          label: 'Saved Groups',
       },
       {
-         path: '/rules',
+         path: '/popup.html/rules',
          element: GroupRules,
          label: 'Rules',
       },
@@ -63,14 +66,6 @@ export default function App() {
    let theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
    theme = responsiveFontSizes(theme);
 
-   // ! this automatically saves new tab groups when the UI is opened
-   // useEffect(() => {
-   //    const updateSnapshot = async () => {
-   //       await savedTabGroupsInstance.takeSnapshot();
-   //    };
-   //    updateSnapshot();
-   // }, []);
-
    return (
       <GlobalStyles>
          <BrowserRouter>
@@ -80,6 +75,7 @@ export default function App() {
                      <CssBaseline />
                      <Center column gap={1}>
                         <>
+                           {isPopup ? <></> : <h1>TEST</h1>}
                            <TabHeader routes={routes} />
                            <Routes>
                               {routes.map(({ path, element: Component }) => (
@@ -89,7 +85,11 @@ export default function App() {
                            <OpenInFullIcon
                               sx={{ position: 'absolute', bottom: 0 }}
                               onClick={() =>
-                                 TabUtil.create({ url: 'popup.html' })
+                                 TabUtil.create(
+                                    { url: 'popup.html' },
+                                    true,
+                                    true
+                                 )
                               }
                            />
                         </>

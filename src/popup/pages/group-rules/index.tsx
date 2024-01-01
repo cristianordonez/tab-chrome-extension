@@ -1,6 +1,12 @@
+import EditIcon from '@mui/icons-material/Edit';
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Rule from '../../../utils/Rule';
+import TabUtil from '../../../utils/TabUtil';
 import CustomAlert from '../../components/CustomAlert';
+import Row from '../../components/Row';
+import StyledChild from '../../components/StyledChild';
+import StyledContainer from '../../components/StyledContainer';
 import useAlertSettings from '../../hooks/useAlertSettings';
 import RuleGroup from './RuleGroup';
 
@@ -23,10 +29,14 @@ export default function GroupRules() {
    useEffect(() => {
       updateRules();
    }, []);
-   console.log('rules: ', rules);
+
+   const handleOpenFullPage = () => {
+      TabUtil.create({ url: '/popup.html#rules' }, true, true);
+      window.close();
+   };
 
    return (
-      <div>
+      <StyledContainer>
          {rules.map((rule: Rule) => (
             <RuleGroup
                rule={rule}
@@ -34,7 +44,15 @@ export default function GroupRules() {
                setAlertSettings={setAlertSettings}
             />
          ))}
+         <StyledChild>
+            <Row
+               id={uuidv4()}
+               PrefixIcon={<EditIcon />}
+               title='Edit Rules'
+               handleClick={handleOpenFullPage}
+            />
+         </StyledChild>
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
-      </div>
+      </StyledContainer>
    );
 }

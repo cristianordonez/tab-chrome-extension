@@ -13,7 +13,7 @@ const StyledListItemButton = styled(ListItemButton, {
    backgroundColor: theme.palette.background.paper,
    alignItems: 'center',
    justifyContent: 'flex-start',
-   height: '100%',
+   height: '65px',
    '&:hover': {
       // if hover is true, set the same as background color above
       backgroundColor: hover ? '' : theme.palette.background.paper,

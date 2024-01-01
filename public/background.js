@@ -422,6 +422,9 @@ var Rule = (function () {
         get: function () {
             return this._subRules;
         },
+        set: function (subRules) {
+            this._subRules = subRules;
+        },
         enumerable: false,
         configurable: true
     });
@@ -509,7 +512,6 @@ var Rule = (function () {
                     case 1:
                         allRules = (_a.sent());
                         result = Object.values(allRules).map(function (ruleData) {
-                            console.log('ruleData: ', ruleData);
                             return Rule.build(ruleData);
                         });
                         return [2, result];
@@ -685,6 +687,36 @@ var Rule = (function () {
     };
     Rule.prototype.addSubRule = function (subrule) {
         this.subRules.push(subrule);
+    };
+    Rule.prototype.deleteSubRule = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var updatedRules;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.subRuleExists(id)) return [3, 2];
+                        updatedRules = this.subRules.filter(function (subRule) {
+                            return subRule.id != id;
+                        });
+                        this.subRules = updatedRules;
+                        return [4, this.update({ subRules: updatedRules })];
+                    case 1:
+                        _a.sent();
+                        return [3, 3];
+                    case 2: throw new Error("No subrule exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
+                    case 3: return [2];
+                }
+            });
+        });
+    };
+    Rule.prototype.subRuleExists = function (id) {
+        var doesExist = false;
+        this.subRules.forEach(function (subRule) {
+            if (subRule.id == id) {
+                doesExist = true;
+            }
+        });
+        return doesExist;
     };
     Rule.ruleStorage = new Storage_1.default('rules');
     return Rule;
@@ -1484,6 +1516,7 @@ var TabUtil = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        console.log('HERE IN OPEN NEW WINDOW!!!!!!!!!!!!');
                         tabId = this.getTabId();
                         return [4, chrome.windows.create({ tabId: tabId })];
                     case 1:
@@ -1502,8 +1535,9 @@ var TabUtil = (function () {
             return accumulator;
         }, {});
     };
-    TabUtil.create = function (options, blocking) {
+    TabUtil.create = function (options, blocking, active) {
         if (blocking === void 0) { blocking = false; }
+        if (active === void 0) { active = false; }
         return __awaiter(this, void 0, Promise, function () {
             var tab;
             var _this = this;
@@ -1512,7 +1546,7 @@ var TabUtil = (function () {
                     case 0:
                         if (!blocking) return [3, 1];
                         return [2, new Promise(function (resolve) {
-                                chrome.tabs.create(__assign(__assign({}, options), { active: false }), function (tab) { return __awaiter(_this, void 0, void 0, function () {
+                                chrome.tabs.create(__assign(__assign({}, options), { active: active }), function (tab) { return __awaiter(_this, void 0, void 0, function () {
                                     return __generator(this, function (_a) {
                                         chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
                                             if (info.status === 'complete' && tabId === tab.id) {
@@ -1524,7 +1558,7 @@ var TabUtil = (function () {
                                     });
                                 }); });
                             })];
-                    case 1: return [4, chrome.tabs.create(__assign(__assign({}, options), { active: false }))];
+                    case 1: return [4, chrome.tabs.create(__assign(__assign({}, options), { active: active }))];
                     case 2:
                         tab = _a.sent();
                         return [2, tab];
@@ -1553,6 +1587,19 @@ var TabUtil = (function () {
                     case 1:
                         _a.sent();
                         return [2];
+                }
+            });
+        });
+    };
+    TabUtil.getCurrent = function () {
+        return __awaiter(this, void 0, Promise, function () {
+            var current;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, chrome.tabs.getCurrent()];
+                    case 1:
+                        current = _a.sent();
+                        return [2, current];
                 }
             });
         });

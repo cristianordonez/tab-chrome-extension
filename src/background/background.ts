@@ -27,8 +27,16 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
    // const rule = new Rule(
    //    'TEST RULE 1',
    //    0,
-   //    [{ url: 'hostname', match: 'contains', query: 'stackoverflow' }],
+   //    [
+   //       {
+   //          url: 'hostname',
+   //          match: 'contains',
+   //          query: 'stackoverflow',
+   //          id: uuidv4(),
+   //       },
+   //    ],
    //    uuidv4(),
+   //    true,
    //    'Stackoverflow',
    //    'blue'
    // );

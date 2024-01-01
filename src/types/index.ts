@@ -68,6 +68,7 @@ interface SubRule {
    url: urlRule;
    match: matchRule;
    query: string;
+   id: string;
 }
 
 interface RuleType {

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { LocalStorageTabGroup, LocalStorageTabGroups } from '../../../types';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import CustomAlert from '../../components/CustomAlert';
+import StyledContainer from '../../components/StyledContainer';
 import useAlertSettings from '../../hooks/useAlertSettings';
 import SavedGroup from './SavedGroup';
 
@@ -50,7 +51,7 @@ export default function SavedGroups() {
    }, [savedGroups]);
 
    return (
-      <div>
+      <StyledContainer>
          {sortedGroups.map((groupId) => (
             <SavedGroup
                key={groupId}
@@ -63,6 +64,6 @@ export default function SavedGroups() {
             />
          ))}
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
-      </div>
+      </StyledContainer>
    );
 }

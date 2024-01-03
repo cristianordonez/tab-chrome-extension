@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import Rule from '../../../utils/Rule';
 import TabUtil from '../../../utils/TabUtil';
@@ -14,6 +15,7 @@ import RuleGroup from './RuleGroup';
 
 export default function RulesList() {
    const isPopup = usePopupStatus();
+   const navigate = useNavigate();
    const [rules, setRules] = useState<Rule[]>([]);
    const [alertSettings, setAlertSettings] = useAlertSettings();
 
@@ -37,12 +39,15 @@ export default function RulesList() {
     * Opens application in separate tab and closes popup
     */
    const handleOpenFullPage = () => {
-      TabUtil.create({ url: '/popup.html#rules' }, true, true);
+      TabUtil.create({ url: '/popup.html' }, true, true);
       window.close();
    };
 
+   /**
+    * Redirects user to the rule/new form
+    */
    const handleAddRule = () => {
-      console.log('');
+      navigate('new');
    };
 
    return (

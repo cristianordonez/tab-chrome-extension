@@ -50935,7 +50935,7 @@ var Center_1 = __importDefault(__webpack_require__(1081));
 var ColorModeProvider_1 = __importStar(__webpack_require__(1460));
 var ModalProvider_1 = __importDefault(__webpack_require__(5125));
 var PopupStatusProvider_1 = __importDefault(__webpack_require__(5671));
-var routes_1 = __webpack_require__(327);
+var routes_1 = __webpack_require__(301);
 var theme_1 = __webpack_require__(5825);
 var GlobalStyles = (0, styles_1.styled)('div')({
     minWidth: '600px',
@@ -51791,7 +51791,7 @@ var OpenInFull_1 = __importDefault(__webpack_require__(137));
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var routes_1 = __webpack_require__(327);
+var routes_1 = __webpack_require__(301);
 var TabHeader_1 = __importDefault(__webpack_require__(626));
 function RootWrapper() {
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -51847,6 +51847,25 @@ function TabHeader(_a) {
             routes.map(function (route, i) { return (react_1.default.createElement(material_1.Tab, { component: react_router_dom_1.Link, value: i, label: route.label, to: route.path, sx: { fontWeight: '700' } })); }))));
 }
 exports["default"] = TabHeader;
+
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var react_1 = __importDefault(__webpack_require__(7294));
+function AddRuleForm() {
+    console.log('here in addruleform');
+    return react_1.default.createElement("h1", null, "test");
+}
+exports["default"] = AddRuleForm;
 
 
 /***/ }),
@@ -52045,6 +52064,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
 var Edit_1 = __importDefault(__webpack_require__(7957));
 var react_1 = __importStar(__webpack_require__(7294));
+var react_router_dom_1 = __webpack_require__(9818);
 var uuid_1 = __webpack_require__(7429);
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
@@ -52058,6 +52078,7 @@ var RuleGroup_1 = __importDefault(__webpack_require__(2776));
 function RulesList() {
     var _this = this;
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
+    var navigate = (0, react_router_dom_1.useNavigate)();
     var _a = (0, react_1.useState)([]), rules = _a[0], setRules = _a[1];
     var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
     var handleAlert = function () {
@@ -52079,11 +52100,11 @@ function RulesList() {
         updateRules();
     }, []);
     var handleOpenFullPage = function () {
-        TabUtil_1.default.create({ url: '/popup.html#rules' }, true, true);
+        TabUtil_1.default.create({ url: '/popup.html' }, true, true);
         window.close();
     };
     var handleAddRule = function () {
-        console.log('');
+        navigate('new');
     };
     return (react_1.default.createElement(StyledContainer_1.default, null,
         rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules, setAlertSettings: setAlertSettings })); }),
@@ -52091,25 +52112,6 @@ function RulesList() {
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = RulesList;
-
-
-/***/ }),
-
-/***/ 9971:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var react_1 = __importDefault(__webpack_require__(7294));
-var RulesList_1 = __importDefault(__webpack_require__(1763));
-function Rules() {
-    return (react_1.default.createElement(RulesList_1.default, null));
-}
-exports["default"] = Rules;
 
 
 /***/ }),
@@ -52753,7 +52755,7 @@ exports.usePopupStatus = usePopupStatus;
 
 /***/ }),
 
-/***/ 327:
+/***/ 301:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52766,7 +52768,8 @@ exports.routes = void 0;
 var react_1 = __importDefault(__webpack_require__(7294));
 var pages_1 = __importDefault(__webpack_require__(735));
 var current_groups_1 = __importDefault(__webpack_require__(3137));
-var rules_1 = __importDefault(__webpack_require__(9971));
+var AddRuleForm_1 = __importDefault(__webpack_require__(13));
+var RulesList_1 = __importDefault(__webpack_require__(1763));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
 exports.routes = [
     {
@@ -52779,14 +52782,23 @@ exports.routes = [
                 label: 'Current Groups',
             },
             {
-                path: '/popup.html/saved',
+                path: 'saved',
                 element: react_1.default.createElement(saved_groups_1.default, null),
                 label: 'Saved Groups',
             },
             {
-                path: '/popup.html/rules',
-                element: react_1.default.createElement(rules_1.default, null),
+                path: 'rules',
                 label: 'Rules',
+                children: [
+                    {
+                        index: true,
+                        element: react_1.default.createElement(RulesList_1.default, null),
+                    },
+                    {
+                        path: 'new',
+                        element: react_1.default.createElement(AddRuleForm_1.default, null),
+                    },
+                ],
             },
         ],
     },

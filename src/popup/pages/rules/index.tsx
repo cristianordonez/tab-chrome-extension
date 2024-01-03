@@ -1,12 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import RulesList from './RulesList';
 
 export default function Rules() {
    return (
-      <RulesList />
-      // <Routes>
-      //    <Route path={'/popup.html/rules'} element={<RulesList />} />
-      //    <Route path={'/popup.html/rules/new'} element={<AddRuleForm />} />
-      // </Routes>
+      <>
+         <RulesList />
+         <Outlet />
+      </>
    );
 }

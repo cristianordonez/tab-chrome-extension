@@ -47,28 +47,38 @@ export default function ModalProvider({ children }: Props) {
       useState<DialogConfig>(defaultDialogConfig);
    const [tabs, setTabs] = useState<FormattedTabs>({});
 
-   // updates tabs state with object of formatted active tabs (contain isChecked key)
+   /**
+    * Updates tabs state with object of formatted active tabs (contain isChecked key)
+    */
    const findTabs = async () => {
       const tabs = await TabUtil.getAll();
       const formattedTabs = TabUtil.formatTabs(tabs);
       setTabs(formattedTabs);
    };
 
-   // runs findTabs only when dialogConfig.type was set to "tabs"
+   /**
+    * Runs findTabs only when dialogConfig.type was set to "tabs"
+    */
    useEffect(() => {
       if (dialogConfig.type == 'tabs') {
          findTabs();
       }
    }, [dialogConfig]);
 
-   // context value returned that updates state and opens modal
+   /**
+    * Context value returned that updates state and opens modal
+    * @param param0 object containing actionCallback, title, body and type keys
+    */
    const showModal = ({ actionCallback, title, body, type }: DialogConfig) => {
       setInputValue('');
       setDialogConfig({ actionCallback, title, body, type });
       setOpen(!open);
    };
 
-   // called when user clicks on Okay button when dialog is of type 'input'
+   /**
+    * Called when user clicks on Okay button when dialog is of type 'input'
+    * @param e react change event
+    */
    const handleSubmitInput = async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
       const action = dialogConfig.actionCallback;
@@ -78,7 +88,9 @@ export default function ModalProvider({ children }: Props) {
       setOpen(!open);
    };
 
-   // called when user clicks on cancel button
+   /**
+    * Called when user clicks on cancel button
+    */
    const onClose = () => {
       setOpen(!open);
       const action = dialogConfig.actionCallback;
@@ -87,7 +99,9 @@ export default function ModalProvider({ children }: Props) {
       }
    };
 
-   // gets passed down to AddTabsModal as prop and handles when user submits their choices, passing the tabs to getOutput
+   /**
+    * Gets passed down to AddTabsModal as prop and handles when user submits their choices, passing the tabs to getOutput
+    */
    const handleAddTabs = () => {
       const action = dialogConfig.actionCallback;
       const result: FormattedTab[] = [];
@@ -103,7 +117,9 @@ export default function ModalProvider({ children }: Props) {
       setOpen(!open);
    };
 
-   // create useEffect that will be called whenever dialogConfig changes, and only updattes tabs if the dialogConfig.type is set to "tabs"
+   /**
+    * Create useEffect that will be called whenever dialogConfig changes, and only updattes tabs if the dialogConfig.type is set to "tabs"
+    */
    return (
       <ModalContext.Provider value={{ showModal }}>
          {children}
@@ -137,7 +153,10 @@ export default function ModalProvider({ children }: Props) {
    );
 }
 
-// confirms that context is being used within child component of ModalProvider
+/**
+ * Confirms that context is being used within child component of ModalProvider
+ * @returns context
+ */
 const useModalContext = () => {
    const context = useContext(ModalContext);
    if (context === undefined) {
@@ -148,7 +167,10 @@ const useModalContext = () => {
    return context;
 };
 
-// hook that is used to open modal, getting the value of input on close
+/**
+ * Hook that is used to open modal, getting the value of input on close
+ * @returns function use to get output from modal
+ */
 export const useModal = () => {
    const { showModal } = useModalContext();
 

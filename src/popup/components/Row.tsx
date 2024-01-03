@@ -1,72 +1,11 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ListItemIcon, ListItemText } from '@mui/material';
-import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
+import React, { MouseEvent } from 'react';
+import { RowProps } from '../../types';
+import { usePopupStatus } from '../provider/PopupStatusProvider';
 import StyledIconButton from './StyledIconButton';
 import StyledListItemButton from './StyledListItemButton';
-
-interface Props {
-   /**
-    * unique id for given row
-    */
-   id: string | number;
-   /**
-    * Optional icon to use at beginning (left) of row
-    */
-   PrefixIcon?: React.ReactElement;
-   /**
-    * function that will be called on PrefixIcon click
-    */
-   prefixAction?: () => void;
-   /**
-    * Optional icon to use at end (right) of row
-    */
-   AffixIcon?: React.ReactElement;
-   /**
-    * function that will be called on AffixIcon click
-    */
-   affixAction?: () => void;
-   /**
-    * Optional icon to use in middle of row
-    */
-   MiddleIcon?: React.ReactElement;
-   /**
-    * function that will be called on MiddleIcon click
-    */
-   middleAction?: () => void;
-   /**
-    * React dispatch action to change state of whether children should be shown
-    */
-   setShowChildren?: Dispatch<SetStateAction<boolean>>;
-   /**
-    * Main action to perform when entire row is clicked
-    */
-   handleClick?: () => void;
-   /**
-    * Title of row
-    */
-   title: string;
-   /**
-    * true if current row has associated sub rows (is parent row). Defaults to false.
-    */
-   hasChildren?: boolean;
-   /**
-    * true if current row is a child of a parent row. Defaults to false.
-    */
-   isChild?: boolean;
-   /**
-    * Secondary text to show on row.
-    */
-   secondary?: string;
-   /**
-    * Whether children are currently being shown on UI. Defaults to false.
-    */
-   showChildren?: boolean;
-   /**
-    * Enable or disable hover effect of middle icon
-    */
-   enableMiddleIconHover?: boolean;
-}
 
 /**
  * Single row on UI
@@ -78,6 +17,8 @@ export default function Row({
    affixAction,
    MiddleIcon,
    middleAction,
+   FullScreenIcon,
+   fullScreenAction,
    setShowChildren,
    handleClick,
    title = '',
@@ -86,7 +27,9 @@ export default function Row({
    secondary = '',
    showChildren = false,
    enableMiddleIconHover = true,
-}: Props) {
+   enableFullScreenIconHover = true,
+}: RowProps) {
+   const isPopup = usePopupStatus();
    const arrowIcon = showChildren ? (
       <ExpandMoreIcon fontSize='large' />
    ) : (
@@ -137,6 +80,21 @@ export default function Row({
                sx={{ marginRight: '4em' }}
             >
                {arrowIcon}
+            </StyledIconButton>
+         ) : (
+            <></>
+         )}
+         {FullScreenIcon !== undefined &&
+         FullScreenIcon !== null &&
+         !isPopup ? (
+            <StyledIconButton
+               hover={enableFullScreenIconHover}
+               onClick={makeClickHandler(() => {
+                  if (fullScreenAction) fullScreenAction();
+               })}
+               sx={{ marginRight: '4em' }}
+            >
+               {FullScreenIcon}
             </StyledIconButton>
          ) : (
             <></>

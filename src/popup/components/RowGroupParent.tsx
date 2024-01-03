@@ -1,74 +1,34 @@
 import { Collapse, List } from '@mui/material';
 import React, { useState } from 'react';
+import { RowProps } from '../../types';
 import Row from './Row';
 
-interface Props {
-   /**
-    *Icon element that will be shown at beginning of main parent row
-    */
-   ParentPrefixIcon: React.ReactElement;
-   /**
-    *Action for prefix icon
-    */
-   parentPrefixAction?: () => void;
-   /**
-    *Icon element that will be shown in middle of main parent row
-    */
-   ParentMiddleIcon?: React.ReactElement;
-   /**
-    *Action for middle icon
-    */
-   parentMiddleAction?: () => void;
-   /**
-    *Icon element that will be shown at end of main parent row
-    */
-   ParentAffixIcon: React.ReactElement;
-   /**
-    *Action for affix icon
-    */
-   parentAffixAction?: () => void;
-   /**
-    *main text that will shown in parent row
-    */
-   title?: string;
-   /**
-    *secondary text that will be shown in parent row
-    */
-   secondary?: string;
+interface Props extends RowProps {
    /**
     *children of current component, must be a single ReactNode component
     */
    children: React.ReactNode;
-   /**
-    *function called when main parent row is clicked
-    */
-   handleParentClick?: () => void;
-   /**
-    *Unique id of current row group
-    */
-   id: string | number;
-   /**
-    * Enable hover effect of middle icon
-    */
-   enableMiddleIconHover?: boolean;
 }
 
 /**
  * Parent row that contains subrows
  */
 export default function RowGroupParent({
-   parentPrefixAction,
-   ParentPrefixIcon,
-   ParentMiddleIcon,
-   parentMiddleAction,
-   ParentAffixIcon,
-   parentAffixAction,
-   title = '',
-   secondary = '',
+   prefixAction,
+   PrefixIcon,
+   MiddleIcon,
+   middleAction,
+   AffixIcon,
+   affixAction,
+   FullScreenIcon,
+   fullScreenAction,
+   title,
+   secondary,
    children,
-   handleParentClick,
+   handleClick,
    id,
-   enableMiddleIconHover = true,
+   enableMiddleIconHover,
+   enableFullScreenIconHover,
 }: Props) {
    const [showTabs, setShowTabs] = useState<boolean>(false);
 
@@ -77,18 +37,21 @@ export default function RowGroupParent({
          <Row
             id={id}
             hasChildren={true}
-            PrefixIcon={ParentPrefixIcon}
-            prefixAction={parentPrefixAction}
-            middleAction={parentMiddleAction}
-            affixAction={parentAffixAction}
+            PrefixIcon={PrefixIcon}
+            prefixAction={prefixAction}
+            middleAction={middleAction}
+            affixAction={affixAction}
+            FullScreenIcon={FullScreenIcon}
+            fullScreenAction={fullScreenAction}
             title={title}
             secondary={secondary}
             showChildren={showTabs}
             setShowChildren={setShowTabs}
-            AffixIcon={ParentAffixIcon}
-            handleClick={handleParentClick}
-            MiddleIcon={ParentMiddleIcon}
+            AffixIcon={AffixIcon}
+            handleClick={handleClick}
+            MiddleIcon={MiddleIcon}
             enableMiddleIconHover={enableMiddleIconHover}
+            enableFullScreenIconHover={enableFullScreenIconHover}
          />
          <Collapse in={showTabs} timeout={'auto'} unmountOnExit>
             <List component='div' disablePadding>

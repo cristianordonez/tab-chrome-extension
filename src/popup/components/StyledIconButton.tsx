@@ -9,7 +9,7 @@ interface StyledIconButtonProps extends IconButtonProps {
  * Icon button styled to allow for removal of hover effect
  */
 const StyledIconButton = styled(IconButton, {
-   shouldForwardProp: (prop) => prop !== 'hover',
+   shouldForwardProp: (prop) => prop !== 'hover' && prop !== 'marginRight',
 })<StyledIconButtonProps>(({ theme, hover }) => ({
    '&:hover': {
       backgroundColor: hover ? '' : theme.palette.background.paper,

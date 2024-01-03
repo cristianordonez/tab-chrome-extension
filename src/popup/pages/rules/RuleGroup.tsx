@@ -1,12 +1,14 @@
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { Switch, Tooltip } from '@mui/material';
 import React from 'react';
 import { SetAlertSettingsType, SubRule } from '../../../types';
 import Rule from '../../../utils/Rule';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
-import RowGroupParent from '../../components/RowGroupParent';
+import RowGroup from '../../components/RowGroupParent';
+import { usePopupStatus } from '../../provider/PopupStatusProvider';
 
 interface Props {
    rule: Rule;
@@ -19,6 +21,12 @@ export default function RuleGroup({
    updateRules,
    setAlertSettings,
 }: Props) {
+   const isPopup = usePopupStatus();
+
+   /**
+    * Handles toggling active status of rule
+    * @param event React HTML Input element event
+    */
    const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       await rule.update({ active: event.target.checked });
       await updateRules();
@@ -47,20 +55,36 @@ export default function RuleGroup({
       await updateRules();
    };
 
+   const handleEditRule = async () => {
+      console.log('');
+   };
    return (
-      <RowGroupParent
+      <RowGroup
          id={rule.id}
-         ParentPrefixIcon={<Circle color={rule.groupColor || 'grey'} />}
-         ParentMiddleIcon={
-            <Switch checked={rule.active} onChange={handleChange} />
+         PrefixIcon={<Circle color={rule.groupColor || 'grey'} />}
+         MiddleIcon={
+            isPopup ? (
+               <Switch checked={rule.active} onChange={handleChange} />
+            ) : (
+               <Tooltip title='Edit rule'>
+                  <EditIcon />
+               </Tooltip>
+            )
          }
-         enableMiddleIconHover={false}
-         ParentAffixIcon={
+         FullScreenIcon={
+            isPopup ? undefined : (
+               <Switch checked={rule.active} onChange={handleChange} />
+            )
+         }
+         enableFullScreenIconHover={false}
+         enableMiddleIconHover={!isPopup}
+         middleAction={isPopup ? () => {} : handleEditRule}
+         AffixIcon={
             <Tooltip title='Delete this rule from storage'>
                <DeleteIcon fontSize='small' />
             </Tooltip>
          }
-         parentAffixAction={handleDeleteRule}
+         affixAction={handleDeleteRule}
          title={rule.title}
          secondary={rule.formatActionText()}
       >
@@ -78,6 +102,6 @@ export default function RuleGroup({
                affixAction={() => handleDeleteSubRule(subRule.id)}
             />
          ))}
-      </RowGroupParent>
+      </RowGroup>
    );
 }

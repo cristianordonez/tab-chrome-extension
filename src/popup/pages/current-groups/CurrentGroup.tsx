@@ -11,7 +11,7 @@ import TabUtil from '../../../utils/TabUtil';
 import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
-import RowGroupParent from '../../components/RowGroupParent';
+import RowGroup from '../../components/RowGroupParent';
 import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
@@ -101,26 +101,26 @@ export default function CurrentGroup({
    } else {
       return (
          <>
-            <RowGroupParent
+            <RowGroup
                id={groupId}
-               ParentPrefixIcon={
+               PrefixIcon={
                   <Circle
                      color={groupInfo !== null ? groupInfo.color : 'grey'}
                   />
                }
-               ParentMiddleIcon={
+               MiddleIcon={
                   <Tooltip title='Close tab group and all associated tabs'>
                      <CloseIcon fontSize='small' />
                   </Tooltip>
                }
-               parentMiddleAction={handleCloseGroup}
-               ParentAffixIcon={
+               middleAction={handleCloseGroup}
+               AffixIcon={
                   <Tooltip title='Save tab group and associated tabs'>
                      <SaveIcon />
                   </Tooltip>
                }
-               parentAffixAction={saveGroup}
-               title={groupInfo.title}
+               affixAction={saveGroup}
+               title={groupInfo.title || ''}
                secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
             >
                {tabs.map((tab) => (
@@ -156,7 +156,7 @@ export default function CurrentGroup({
                   isChild={true}
                   handleClick={handleCreateTab}
                />
-            </RowGroupParent>
+            </RowGroup>
          </>
       );
    }

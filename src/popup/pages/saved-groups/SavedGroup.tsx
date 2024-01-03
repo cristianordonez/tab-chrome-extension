@@ -13,7 +13,7 @@ import TabUtil from '../../../utils/TabUtil';
 import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
-import RowGroupParent from '../../components/RowGroupParent';
+import RowGroup from '../../components/RowGroupParent';
 import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
@@ -61,7 +61,7 @@ export default function SavedGroup({
    /**
     * Opens the saved tab group and its tabs in current window
     */
-   const handleParentClick = async () => {
+   const handleClick = async () => {
       try {
          await savedTabGroupsInstance.open(groupId);
       } catch {
@@ -100,24 +100,24 @@ export default function SavedGroup({
 
    return (
       <>
-         <RowGroupParent
+         <RowGroup
             id={groupId}
-            ParentPrefixIcon={<Circle color={color} />}
-            ParentMiddleIcon={
+            PrefixIcon={<Circle color={color} />}
+            MiddleIcon={
                <Tooltip title='Add tab to group'>
                   <AddIcon />
                </Tooltip>
             }
-            parentMiddleAction={handleAddTab}
-            ParentAffixIcon={
+            middleAction={handleAddTab}
+            AffixIcon={
                <Tooltip title='Delete tab group'>
                   <DeleteIcon />
                </Tooltip>
             }
-            parentAffixAction={handleDelete}
+            affixAction={handleDelete}
             title={title}
             secondary={`${tabs.length} tab${tabs.length > 1 ? 's' : ''}`}
-            handleParentClick={handleParentClick}
+            handleClick={handleClick}
          >
             {tabs.map((tab) => (
                <Row
@@ -150,7 +150,7 @@ export default function SavedGroup({
                   }}
                />
             ))}
-         </RowGroupParent>
+         </RowGroup>
       </>
    );
 }

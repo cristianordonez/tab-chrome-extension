@@ -1,3 +1,4 @@
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,9 +9,11 @@ import Row from '../../components/Row';
 import StyledChild from '../../components/StyledChild';
 import StyledContainer from '../../components/StyledContainer';
 import useAlertSettings from '../../hooks/useAlertSettings';
+import { usePopupStatus } from '../../provider/PopupStatusProvider';
 import RuleGroup from './RuleGroup';
 
-export default function GroupRules() {
+export default function RulesList() {
+   const isPopup = usePopupStatus();
    const [rules, setRules] = useState<Rule[]>([]);
    const [alertSettings, setAlertSettings] = useAlertSettings();
 
@@ -30,9 +33,16 @@ export default function GroupRules() {
       updateRules();
    }, []);
 
+   /**
+    * Opens application in separate tab and closes popup
+    */
    const handleOpenFullPage = () => {
       TabUtil.create({ url: '/popup.html#rules' }, true, true);
       window.close();
+   };
+
+   const handleAddRule = () => {
+      console.log('');
    };
 
    return (
@@ -45,12 +55,21 @@ export default function GroupRules() {
             />
          ))}
          <StyledChild>
-            <Row
-               id={uuidv4()}
-               PrefixIcon={<EditIcon />}
-               title='Edit Rules'
-               handleClick={handleOpenFullPage}
-            />
+            {isPopup ? (
+               <Row
+                  id={uuidv4()}
+                  PrefixIcon={<EditIcon />}
+                  title='Edit Rules'
+                  handleClick={handleOpenFullPage}
+               />
+            ) : (
+               <Row
+                  id={uuidv4()}
+                  PrefixIcon={<AddIcon />}
+                  title='Add Rule'
+                  handleClick={handleAddRule}
+               />
+            )}
          </StyledChild>
          <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </StyledContainer>

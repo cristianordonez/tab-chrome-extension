@@ -1,12 +1,7 @@
 import { AlertColor } from '@mui/material';
+import { Dispatch, SetStateAction } from 'react';
+import { RouteObject } from 'react-router-dom';
 import FormattedTab from '../utils/FormattedTab';
-
-// data structure to store route objects
-interface RouteType {
-   element: () => React.ReactElement;
-   path: string;
-   label: string;
-}
 
 // color of tab groups
 type ColorEnum =
@@ -104,6 +99,85 @@ type SetAlertSettingsType = (
    alertMessage?: string
 ) => void;
 
+interface RowProps {
+   /**
+    * unique id for given row
+    */
+   id: string | number;
+   /**
+    * Optional icon to use at beginning (left) of row
+    */
+   PrefixIcon?: React.ReactElement;
+   /**
+    * function that will be called on PrefixIcon click
+    */
+   prefixAction?: () => void;
+   /**
+    * Optional icon to use at end (right) of row
+    */
+   AffixIcon?: React.ReactElement;
+   /**
+    * function that will be called on AffixIcon click
+    */
+   affixAction?: () => void;
+   /**
+    * Optional icon to use in middle of row
+    */
+   MiddleIcon?: React.ReactElement;
+   /**
+    * function that will be called on MiddleIcon click
+    */
+   middleAction?: () => void;
+   /**
+    * Optional icon to use only when extension is open in separate tab
+    */
+   FullScreenIcon?: React.ReactElement;
+   /**
+    * function that will be called on FullScreenIcon click
+    */
+   fullScreenAction?: () => void;
+   /**
+    * React dispatch action to change state of whether children should be shown
+    */
+   setShowChildren?: Dispatch<SetStateAction<boolean>>;
+   /**
+    * Main action to perform when entire row is clicked
+    */
+   handleClick?: () => void;
+   /**
+    * Title of row
+    */
+   title: string;
+   /**
+    * true if current row has associated sub rows (is parent row). Defaults to false.
+    */
+   hasChildren?: boolean;
+   /**
+    * true if current row is a child of a parent row. Defaults to false.
+    */
+   isChild?: boolean;
+   /**
+    * Secondary text to show on row.
+    */
+   secondary?: string;
+   /**
+    * Whether children are currently being shown on UI. Defaults to false.
+    */
+   showChildren?: boolean;
+   /**
+    * Enable or disable hover effect of middle icon
+    */
+   enableMiddleIconHover?: boolean;
+   /**
+    * Enable or disable hover effect of full screen icon
+    */
+   enableFullScreenIconHover?: boolean;
+}
+
+type RouteType = RouteObject & {
+   label?: string | undefined;
+};
+
 export {
    AlertSettings,
    ColorEnum,
@@ -114,6 +188,7 @@ export {
    LocalStorageTabGroups,
    LocalStorageTitles,
    RouteType,
+   RowProps,
    RuleType,
    SetAlertSettingsType,
    SubRule,

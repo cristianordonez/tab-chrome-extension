@@ -2617,7 +2617,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
 }), 'Add');
@@ -2638,7 +2638,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
 }), 'ChevronRight');
@@ -2659,7 +2659,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"
 }), 'Circle');
@@ -2680,7 +2680,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
 }), 'Close');
@@ -2701,7 +2701,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
 }), 'Delete');
@@ -2722,7 +2722,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
 }), 'Edit');
@@ -2743,7 +2743,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
 }), 'ExpandMore');
@@ -2751,7 +2751,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 9137:
+/***/ 137:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -2764,7 +2764,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M21 11V3h-8l3.29 3.29-10 10L3 13v8h8l-3.29-3.29 10-10z"
 }), 'OpenInFull');
@@ -2785,7 +2785,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"
 }), 'RemoveCircle');
@@ -2806,7 +2806,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(4938));
-var _jsxRuntime = __webpack_require__(8521);
+var _jsxRuntime = __webpack_require__(5893);
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"
 }), 'Save');
@@ -3154,7 +3154,7 @@ TransitionGroup.defaultProps = defaultProps;
 // EXTERNAL MODULE: ./node_modules/@emotion/react/dist/emotion-react.browser.esm.js
 var emotion_react_browser_esm = __webpack_require__(917);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(8521);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ButtonBase/Ripple.js
 'use client';
 
@@ -3914,7 +3914,7 @@ const touchRippleClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["defaul
 /* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6458);
 /* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8216);
 /* harmony import */ var _iconButtonClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6239);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
 
@@ -4139,7 +4139,7 @@ if (false) {}
 /* harmony import */ var _utils_useForkRef__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1705);
 /* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(9773);
 /* harmony import */ var _listItemButtonClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8686);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
 
@@ -4361,7 +4361,7 @@ const listItemButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["def
 /* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1657);
 /* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(948);
 /* harmony import */ var _svgIconClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2994);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
 
@@ -5949,7 +5949,7 @@ function getCollapseUtilityClass(slot) {
 const collapseClasses = (0,generateUtilityClasses/* default */.Z)('MuiCollapse', ['root', 'horizontal', 'vertical', 'entered', 'hidden', 'wrapper', 'wrapperInner']);
 /* harmony default export */ const Collapse_collapseClasses = (collapseClasses);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(8521);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/Collapse/Collapse.js
 'use client';
 
@@ -25886,7 +25886,7 @@ function RadioButtonIcon(props) {
  false ? 0 : void 0;
 /* harmony default export */ const Radio_RadioButtonIcon = (RadioButtonIcon);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createChainedFunction.js
-var utils_createChainedFunction = __webpack_require__(5893);
+var utils_createChainedFunction = __webpack_require__(7450);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/RadioGroup/RadioGroupContext.js
 
 /**
@@ -37103,7 +37103,7 @@ var react = __webpack_require__(7294);
 // EXTERNAL MODULE: ./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js + 2 modules
 var ThemeProvider = __webpack_require__(5974);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(8521);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/styles/ThemeProvider.js
 'use client';
 
@@ -37645,7 +37645,7 @@ function useThemeProps({
 
 /***/ }),
 
-/***/ 5893:
+/***/ 7450:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37668,7 +37668,7 @@ function useThemeProps({
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7462);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _SvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2373);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
 
@@ -37742,7 +37742,7 @@ var ClassNameGenerator = __webpack_require__(7078);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/capitalize.js
 var capitalize = __webpack_require__(8216);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createChainedFunction.js
-var createChainedFunction = __webpack_require__(5893);
+var createChainedFunction = __webpack_require__(7450);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/createSvgIcon.js
 var createSvgIcon = __webpack_require__(2066);
 // EXTERNAL MODULE: ./node_modules/@mui/material/utils/debounce.js
@@ -38035,7 +38035,7 @@ function useTheme() {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(917);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 
 
 
@@ -38067,7 +38067,7 @@ function GlobalStyles(props) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5260);
 /* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2898);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5893);
 
 
 
@@ -38378,7 +38378,7 @@ const internal_processStyles = (tag, processor) => {
 /* harmony import */ var _useThemeProps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9628);
 /* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3264);
 /* harmony import */ var _createTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(360);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 
 
 const _excluded = ["className", "component", "disableGutters", "fixed", "maxWidth", "classes"];
@@ -38524,7 +38524,7 @@ function createContainer(options = {}) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var _mui_styled_engine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1234);
 /* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6682);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
 
@@ -38569,7 +38569,7 @@ function GlobalStyles({
 /* harmony import */ var _createTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(360);
 /* harmony import */ var _breakpoints__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5408);
 /* harmony import */ var _spacing__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2605);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 
 
 const _excluded = ["component", "direction", "spacing", "divider", "children", "className", "useFlexGap"];
@@ -38756,7 +38756,7 @@ var ThemeContext = __webpack_require__(4819);
 const hasSymbol = typeof Symbol === 'function' && Symbol.for;
 /* harmony default export */ const nested = (hasSymbol ? Symbol.for('mui.nested') : '__THEME_NESTED__');
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(8521);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/private-theming/ThemeProvider/ThemeProvider.js
 
 
@@ -39135,7 +39135,7 @@ const generateDirectionClasses = direction => {
   return [`direction-xs-${String(direction)}`];
 };
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(8521);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/system/esm/Unstable_Grid/createGrid.js
 
 
@@ -39991,7 +39991,7 @@ function compose(...styles) {
 /* harmony import */ var _styleFunctionSx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6523);
 /* harmony import */ var _styleFunctionSx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9707);
 /* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6682);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8521);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
 
@@ -40635,7 +40635,7 @@ var useTheme = __webpack_require__(6760);
 // EXTERNAL MODULE: ./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js + 2 modules
 var ThemeProvider = __webpack_require__(5974);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(8521);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/system/esm/cssVars/getInitColorSchemeScript.js
 
 
@@ -50823,7 +50823,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 8521:
+/***/ 5893:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -50900,81 +50900,62 @@ root.render(react_1.default.createElement(App_1.default, null));
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ColorModeContext = void 0;
-var OpenInFull_1 = __importDefault(__webpack_require__(9137));
 var material_1 = __webpack_require__(3417);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
-var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var Center_1 = __importDefault(__webpack_require__(1081));
-var TabHeader_1 = __importDefault(__webpack_require__(2314));
-var useLocalStorageState_1 = __webpack_require__(7808);
-var usePopupWindowState_1 = __webpack_require__(953);
-var current_groups_1 = __importDefault(__webpack_require__(3137));
-var group_rules_1 = __importDefault(__webpack_require__(5851));
-var saved_groups_1 = __importDefault(__webpack_require__(3822));
+var ColorModeProvider_1 = __importStar(__webpack_require__(1460));
 var ModalProvider_1 = __importDefault(__webpack_require__(5125));
+var PopupStatusProvider_1 = __importDefault(__webpack_require__(5671));
+var routes_1 = __webpack_require__(327);
 var theme_1 = __webpack_require__(5825);
-exports.ColorModeContext = react_1.default.createContext({
-    toggleColorMode: function () { },
-});
 var GlobalStyles = (0, styles_1.styled)('div')({
     minWidth: '600px',
     minHeight: '800px',
     height: '1px',
 });
 function App() {
-    var isPopup = (0, usePopupWindowState_1.usePopupWindowStatus)();
-    var _a = (0, useLocalStorageState_1.useLocalStorageState)('mode', 'dark'), mode = _a[0], setMode = _a[1];
-    var routes = [
-        {
-            path: '/popup.html',
-            element: current_groups_1.default,
-            label: 'Current Groups',
-        },
-        {
-            path: '/popup.html/saved',
-            element: saved_groups_1.default,
-            label: 'Saved Groups',
-        },
-        {
-            path: '/popup.html/rules',
-            element: group_rules_1.default,
-            label: 'Rules',
-        },
-    ];
-    var colorMode = react_1.default.useMemo(function () { return ({
-        toggleColorMode: function () {
-            localStorage.setItem('mode', mode === 'light' ? 'dark' : 'light');
-            setMode(function (prevMode) {
-                return prevMode === 'light' ? 'dark' : 'light';
-            });
-        },
-    }); }, []);
-    var theme = react_1.default.useMemo(function () { return (0, styles_1.createTheme)((0, theme_1.getDesignTokens)(mode)); }, [mode]);
+    var colorMode = (0, ColorModeProvider_1.useColorMode)().colorMode;
+    var theme = react_1.default.useMemo(function () { return (0, styles_1.createTheme)((0, theme_1.getDesignTokens)(colorMode)); }, [colorMode]);
     theme = (0, styles_1.responsiveFontSizes)(theme);
-    return (react_1.default.createElement(GlobalStyles, null,
-        react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
-            react_1.default.createElement(exports.ColorModeContext.Provider, { value: colorMode },
-                react_1.default.createElement(styles_1.ThemeProvider, { theme: theme },
-                    react_1.default.createElement(ModalProvider_1.default, null,
-                        react_1.default.createElement(material_1.CssBaseline, null),
+    var router = (0, react_router_dom_1.createBrowserRouter)(routes_1.routes);
+    return (react_1.default.createElement(ColorModeProvider_1.default, null,
+        react_1.default.createElement(styles_1.ThemeProvider, { theme: theme },
+            react_1.default.createElement(PopupStatusProvider_1.default, null,
+                react_1.default.createElement(ModalProvider_1.default, null,
+                    react_1.default.createElement(material_1.CssBaseline, null),
+                    react_1.default.createElement(GlobalStyles, null,
                         react_1.default.createElement(Center_1.default, { column: true, gap: 1 },
                             react_1.default.createElement(react_1.default.Fragment, null,
-                                isPopup ? react_1.default.createElement(react_1.default.Fragment, null) : react_1.default.createElement("h1", null, "TEST"),
-                                react_1.default.createElement(TabHeader_1.default, { routes: routes }),
-                                react_1.default.createElement(react_router_dom_1.Routes, null, routes.map(function (_a) {
-                                    var path = _a.path, Component = _a.element;
-                                    return (react_1.default.createElement(react_router_dom_1.Route, { path: path, element: react_1.default.createElement(Component, null) }));
-                                })),
-                                react_1.default.createElement(OpenInFull_1.default, { sx: { position: 'absolute', bottom: 0 }, onClick: function () {
-                                        return TabUtil_1.default.create({ url: 'popup.html' }, true, true);
-                                    } })))))))));
+                                react_1.default.createElement(react_router_dom_1.RouterProvider, { router: router })))))))));
 }
 exports["default"] = App;
 
@@ -51089,10 +51070,12 @@ var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
 var material_1 = __webpack_require__(3417);
 var react_1 = __importDefault(__webpack_require__(7294));
+var PopupStatusProvider_1 = __webpack_require__(5671);
 var StyledIconButton_1 = __importDefault(__webpack_require__(4116));
 var StyledListItemButton_1 = __importDefault(__webpack_require__(2610));
 function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f, _g = _a.enableMiddleIconHover, enableMiddleIconHover = _g === void 0 ? true : _g;
+    var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f, _g = _a.enableMiddleIconHover, enableMiddleIconHover = _g === void 0 ? true : _g, _h = _a.enableFullScreenIconHover, enableFullScreenIconHover = _h === void 0 ? true : _h;
+    var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
     var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
     var makeClickHandler = function (callback) {
         return function (e) {
@@ -51113,6 +51096,12 @@ function Row(_a) {
                 if (setShowChildren)
                     setShowChildren(!showChildren);
             }), sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        FullScreenIcon !== undefined &&
+            FullScreenIcon !== null &&
+            !isPopup ? (react_1.default.createElement(StyledIconButton_1.default, { hover: enableFullScreenIconHover, onClick: makeClickHandler(function () {
+                if (fullScreenAction)
+                    fullScreenAction();
+            }), sx: { marginRight: '4em' } }, FullScreenIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(StyledIconButton_1.default, { hover: enableMiddleIconHover, onClick: makeClickHandler(function () {
                 if (middleAction)
                     middleAction();
@@ -51163,10 +51152,10 @@ var material_1 = __webpack_require__(3417);
 var react_1 = __importStar(__webpack_require__(7294));
 var Row_1 = __importDefault(__webpack_require__(9416));
 function RowGroupParent(_a) {
-    var parentPrefixAction = _a.parentPrefixAction, ParentPrefixIcon = _a.ParentPrefixIcon, ParentMiddleIcon = _a.ParentMiddleIcon, parentMiddleAction = _a.parentMiddleAction, ParentAffixIcon = _a.ParentAffixIcon, parentAffixAction = _a.parentAffixAction, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.secondary, secondary = _c === void 0 ? '' : _c, children = _a.children, handleParentClick = _a.handleParentClick, id = _a.id, _d = _a.enableMiddleIconHover, enableMiddleIconHover = _d === void 0 ? true : _d;
-    var _e = (0, react_1.useState)(false), showTabs = _e[0], setShowTabs = _e[1];
+    var prefixAction = _a.prefixAction, PrefixIcon = _a.PrefixIcon, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, title = _a.title, secondary = _a.secondary, children = _a.children, handleClick = _a.handleClick, id = _a.id, enableMiddleIconHover = _a.enableMiddleIconHover, enableFullScreenIconHover = _a.enableFullScreenIconHover;
+    var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
     return (react_1.default.createElement(material_1.List, null,
-        react_1.default.createElement(Row_1.default, { id: id, hasChildren: true, PrefixIcon: ParentPrefixIcon, prefixAction: parentPrefixAction, middleAction: parentMiddleAction, affixAction: parentAffixAction, title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: ParentAffixIcon, handleClick: handleParentClick, MiddleIcon: ParentMiddleIcon, enableMiddleIconHover: enableMiddleIconHover }),
+        react_1.default.createElement(Row_1.default, { id: id, hasChildren: true, PrefixIcon: PrefixIcon, prefixAction: prefixAction, middleAction: middleAction, affixAction: affixAction, FullScreenIcon: FullScreenIcon, fullScreenAction: fullScreenAction, title: title, secondary: secondary, showChildren: showTabs, setShowChildren: setShowTabs, AffixIcon: AffixIcon, handleClick: handleClick, MiddleIcon: MiddleIcon, enableMiddleIconHover: enableMiddleIconHover, enableFullScreenIconHover: enableFullScreenIconHover }),
         react_1.default.createElement(material_1.Collapse, { in: showTabs, timeout: 'auto', unmountOnExit: true },
             react_1.default.createElement(material_1.List, { component: 'div', disablePadding: true }, children))));
 }
@@ -51175,7 +51164,7 @@ exports["default"] = RowGroupParent;
 
 /***/ }),
 
-/***/ 229:
+/***/ 7229:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -51188,7 +51177,7 @@ exports["default"] = StyledChild;
 
 /***/ }),
 
-/***/ 693:
+/***/ 9693:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -51219,7 +51208,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var IconButton_1 = __importDefault(__webpack_require__(4113));
 var system_1 = __webpack_require__(8579);
 var StyledIconButton = (0, system_1.styled)(IconButton_1.default, {
-    shouldForwardProp: function (prop) { return prop !== 'hover'; },
+    shouldForwardProp: function (prop) { return prop !== 'hover' && prop !== 'marginRight'; },
 })(function (_a) {
     var theme = _a.theme, hover = _a.hover;
     return ({
@@ -51261,52 +51250,6 @@ var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
     });
 });
 exports["default"] = StyledListItemButton;
-
-
-/***/ }),
-
-/***/ 2314:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
-var react_1 = __importStar(__webpack_require__(7294));
-var react_router_dom_1 = __webpack_require__(9818);
-function TabHeader(_a) {
-    var routes = _a.routes;
-    var _b = (0, react_1.useState)(0), value = _b[0], setValue = _b[1];
-    var handleChange = function (_e, newValue) {
-        setValue(newValue);
-    };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(material_1.Tabs, { value: value, textColor: 'primary', indicatorColor: 'primary', "aria-label": 'Navigate between sections', onChange: handleChange, centered: true }, routes.map(function (route, i) { return (react_1.default.createElement(material_1.Tab, { component: react_router_dom_1.Link, value: i, label: route.label, to: route.path, sx: { fontWeight: '700' } })); }))));
-}
-exports["default"] = TabHeader;
 
 
 /***/ }),
@@ -51484,80 +51427,6 @@ function useLocalStorageState(key, defaultVal) {
     return [state, setState];
 }
 exports.useLocalStorageState = useLocalStorageState;
-
-
-/***/ }),
-
-/***/ 953:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.usePopupWindowStatus = void 0;
-var react_1 = __webpack_require__(7294);
-var TabUtil_1 = __importDefault(__webpack_require__(4470));
-function usePopupWindowStatus() {
-    var _this = this;
-    var _a = (0, react_1.useState)(true), isPopup = _a[0], setIsPopup = _a[1];
-    (0, react_1.useEffect)(function () {
-        var updateIsPopup = function () { return __awaiter(_this, void 0, void 0, function () {
-            var current;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, TabUtil_1.default.getCurrent()];
-                    case 1:
-                        current = _a.sent();
-                        console.log('current in updateIspopup: ', current);
-                        setIsPopup(current == undefined);
-                        return [2];
-                }
-            });
-        }); };
-        updateIsPopup();
-    }, []);
-    return isPopup;
-}
-exports.usePopupWindowStatus = usePopupWindowStatus;
 
 
 /***/ }),
@@ -51754,9 +51623,9 @@ function CurrentGroup(_a) {
     }
     else {
         return (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(RowGroupParent_1.default, { id: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: groupInfo !== null ? groupInfo.color : 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
-                    react_1.default.createElement(Close_1.default, { fontSize: 'small' })), parentMiddleAction: handleCloseGroup, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
-                    react_1.default.createElement(Save_1.default, null)), parentAffixAction: saveGroup, title: groupInfo.title, secondary: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : '') },
+            react_1.default.createElement(RowGroupParent_1.default, { id: groupId, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: groupInfo !== null ? groupInfo.color : 'grey' }), MiddleIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab group and all associated tabs' },
+                    react_1.default.createElement(Close_1.default, { fontSize: 'small' })), middleAction: handleCloseGroup, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Save tab group and associated tabs' },
+                    react_1.default.createElement(Save_1.default, null)), affixAction: saveGroup, title: groupInfo.title || '', secondary: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : '') },
                 tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: tab.id, id: tab.id || (0, uuid_1.v4)(), isChild: true, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: (0, getFaviconURL_1.getFaviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
                         react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small' })), affixAction: function () {
                         if (tab.id) {
@@ -51845,8 +51714,8 @@ var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var Row_1 = __importDefault(__webpack_require__(9416));
-var StyledChild_1 = __importDefault(__webpack_require__(229));
-var StyledContainer_1 = __importDefault(__webpack_require__(693));
+var StyledChild_1 = __importDefault(__webpack_require__(7229));
+var StyledContainer_1 = __importDefault(__webpack_require__(9693));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var ModalProvider_1 = __webpack_require__(5125);
 var CurrentGroup_1 = __importDefault(__webpack_require__(2595));
@@ -51909,7 +51778,80 @@ exports["default"] = CurrentGroups;
 
 /***/ }),
 
-/***/ 4066:
+/***/ 735:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var OpenInFull_1 = __importDefault(__webpack_require__(137));
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_router_dom_1 = __webpack_require__(9818);
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
+var routes_1 = __webpack_require__(327);
+var TabHeader_1 = __importDefault(__webpack_require__(626));
+function RootWrapper() {
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(TabHeader_1.default, { routes: routes_1.routes[0].children }),
+        react_1.default.createElement(react_router_dom_1.Outlet, null),
+        react_1.default.createElement(OpenInFull_1.default, { sx: { position: 'absolute', bottom: 0 }, onClick: function () { return TabUtil_1.default.create({ url: 'popup.html' }, true, true); } })));
+}
+exports["default"] = RootWrapper;
+
+
+/***/ }),
+
+/***/ 626:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(3417);
+var react_1 = __importStar(__webpack_require__(7294));
+var react_router_dom_1 = __webpack_require__(9818);
+function TabHeader(_a) {
+    var routes = _a.routes;
+    var _b = (0, react_1.useState)(0), value = _b[0], setValue = _b[1];
+    var handleChange = function (_e, newValue) {
+        setValue(newValue);
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(material_1.Tabs, { value: value, textColor: 'primary', indicatorColor: 'primary', "aria-label": 'Navigate between sections', onChange: handleChange, centered: true }, routes &&
+            routes.map(function (route, i) { return (react_1.default.createElement(material_1.Tab, { component: react_router_dom_1.Link, value: i, label: route.label, to: route.path, sx: { fontWeight: '700' } })); }))));
+}
+exports["default"] = TabHeader;
+
+
+/***/ }),
+
+/***/ 2776:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51956,15 +51898,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Close_1 = __importDefault(__webpack_require__(3772));
 var Delete_1 = __importDefault(__webpack_require__(1733));
+var Edit_1 = __importDefault(__webpack_require__(7957));
 var material_1 = __webpack_require__(3417);
 var react_1 = __importDefault(__webpack_require__(7294));
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
+var PopupStatusProvider_1 = __webpack_require__(5671);
 function RuleGroup(_a) {
     var _this = this;
     var rule = _a.rule, updateRules = _a.updateRules, setAlertSettings = _a.setAlertSettings;
+    var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
     var handleChange = function (event) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -52013,8 +51958,15 @@ function RuleGroup(_a) {
             }
         });
     }); };
-    return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), ParentMiddleIcon: react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange }), enableMiddleIconHover: false, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
-            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), parentAffixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() }, rule.subRules.map(function (subRule) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: subRule.id, isChild: true, title: Rule_1.default.formatSubRuleText(subRule), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
+    var handleEditRule = function () { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            console.log('');
+            return [2];
+        });
+    }); };
+    return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), MiddleIcon: isPopup ? (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })) : (react_1.default.createElement(material_1.Tooltip, { title: 'Edit rule' },
+            react_1.default.createElement(Edit_1.default, null))), FullScreenIcon: isPopup ? undefined : (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })), enableFullScreenIconHover: false, enableMiddleIconHover: !isPopup, middleAction: isPopup ? function () { } : handleEditRule, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
+            react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() }, rule.subRules.map(function (subRule) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: subRule.id, isChild: true, title: Rule_1.default.formatSubRuleText(subRule), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
             react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: function () { return handleDeleteSubRule(subRule.id); } })); })));
 }
 exports["default"] = RuleGroup;
@@ -52022,7 +51974,7 @@ exports["default"] = RuleGroup;
 
 /***/ }),
 
-/***/ 5851:
+/***/ 1763:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52090,6 +52042,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Add_1 = __importDefault(__webpack_require__(6540));
 var Edit_1 = __importDefault(__webpack_require__(7957));
 var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
@@ -52097,12 +52050,14 @@ var Rule_1 = __importDefault(__webpack_require__(4235));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var Row_1 = __importDefault(__webpack_require__(9416));
-var StyledChild_1 = __importDefault(__webpack_require__(229));
-var StyledContainer_1 = __importDefault(__webpack_require__(693));
+var StyledChild_1 = __importDefault(__webpack_require__(7229));
+var StyledContainer_1 = __importDefault(__webpack_require__(9693));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
-var RuleGroup_1 = __importDefault(__webpack_require__(4066));
-function GroupRules() {
+var PopupStatusProvider_1 = __webpack_require__(5671);
+var RuleGroup_1 = __importDefault(__webpack_require__(2776));
+function RulesList() {
     var _this = this;
+    var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
     var _a = (0, react_1.useState)([]), rules = _a[0], setRules = _a[1];
     var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
     var handleAlert = function () {
@@ -52127,13 +52082,34 @@ function GroupRules() {
         TabUtil_1.default.create({ url: '/popup.html#rules' }, true, true);
         window.close();
     };
+    var handleAddRule = function () {
+        console.log('');
+    };
     return (react_1.default.createElement(StyledContainer_1.default, null,
         rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules, setAlertSettings: setAlertSettings })); }),
-        react_1.default.createElement(StyledChild_1.default, null,
-            react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit Rules', handleClick: handleOpenFullPage })),
+        react_1.default.createElement(StyledChild_1.default, null, isPopup ? (react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule }))),
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
-exports["default"] = GroupRules;
+exports["default"] = RulesList;
+
+
+/***/ }),
+
+/***/ 9971:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var react_1 = __importDefault(__webpack_require__(7294));
+var RulesList_1 = __importDefault(__webpack_require__(1763));
+function Rules() {
+    return (react_1.default.createElement(RulesList_1.default, null));
+}
+exports["default"] = Rules;
 
 
 /***/ }),
@@ -52233,7 +52209,7 @@ function SavedGroup(_a) {
             }
         });
     }); };
-    var handleParentClick = function () { return __awaiter(_this, void 0, void 0, function () {
+    var handleClick = function () { return __awaiter(_this, void 0, void 0, function () {
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -52296,9 +52272,9 @@ function SavedGroup(_a) {
         });
     }); };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(RowGroupParent_1.default, { id: groupId, ParentPrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), ParentMiddleIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Add tab to group' },
-                react_1.default.createElement(Add_1.default, null)), parentMiddleAction: handleAddTab, ParentAffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
-                react_1.default.createElement(Delete_1.default, null)), parentAffixAction: handleDelete, title: title, secondary: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), handleParentClick: handleParentClick }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: tab.id, id: tab.id, isChild: true, handleClick: handleTabClick !== undefined
+        react_1.default.createElement(RowGroupParent_1.default, { id: groupId, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: color }), MiddleIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Add tab to group' },
+                react_1.default.createElement(Add_1.default, null)), middleAction: handleAddTab, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete tab group' },
+                react_1.default.createElement(Delete_1.default, null)), affixAction: handleDelete, title: title, secondary: "".concat(tabs.length, " tab").concat(tabs.length > 1 ? 's' : ''), handleClick: handleClick }, tabs.map(function (tab) { return (react_1.default.createElement(Row_1.default, { key: tab.id, id: tab.id, isChild: true, handleClick: handleTabClick !== undefined
                 ? function () { return handleTabClick(tab.url); }
                 : undefined, PrefixIcon: react_1.default.createElement(material_1.Box, { component: 'img', sx: { height: '35%', width: '35%' }, alt: "Favicon for ".concat(tab.title), src: (0, getFaviconURL_1.getFaviconURL)(tab.url || '') }), title: tab.title || '', AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Close tab' },
                 react_1.default.createElement(RemoveCircle_1.default, { fontSize: 'small' })), affixAction: function () {
@@ -52392,7 +52368,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
 var CustomAlert_1 = __importDefault(__webpack_require__(6210));
-var StyledContainer_1 = __importDefault(__webpack_require__(693));
+var StyledContainer_1 = __importDefault(__webpack_require__(9693));
 var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var SavedGroup_1 = __importDefault(__webpack_require__(2928));
 function SavedGroups() {
@@ -52438,6 +52414,63 @@ function SavedGroups() {
         react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
 }
 exports["default"] = SavedGroups;
+
+
+/***/ }),
+
+/***/ 1460:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useColorMode = exports.ColorModeContext = void 0;
+var react_1 = __importStar(__webpack_require__(7294));
+var useLocalStorageState_1 = __webpack_require__(7808);
+exports.ColorModeContext = react_1.default.createContext({
+    colorMode: 'dark',
+    toggleColorMode: function () { },
+});
+function ColorModeProvider(_a) {
+    var children = _a.children;
+    var _b = (0, useLocalStorageState_1.useLocalStorageState)('mode', 'dark'), colorMode = _b[0], setColorMode = _b[1];
+    var toggleColorMode = function () {
+        localStorage.setItem('mode', colorMode === 'light' ? 'dark' : 'light');
+        setColorMode(function (prevMode) {
+            return prevMode === 'light' ? 'dark' : 'light';
+        });
+    };
+    return (react_1.default.createElement(exports.ColorModeContext.Provider, { value: { colorMode: colorMode, toggleColorMode: toggleColorMode } }, children));
+}
+exports["default"] = ColorModeProvider;
+var useColorMode = function () {
+    var _a = (0, react_1.useContext)(exports.ColorModeContext), colorMode = _a.colorMode, toggleColorMode = _a.toggleColorMode;
+    return { colorMode: colorMode, toggleColorMode: toggleColorMode };
+};
+exports.useColorMode = useColorMode;
 
 
 /***/ }),
@@ -52613,6 +52646,151 @@ var useModal = function () {
     return { getOutput: getOutput };
 };
 exports.useModal = useModal;
+
+
+/***/ }),
+
+/***/ 5671:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.usePopupStatus = void 0;
+var react_1 = __importStar(__webpack_require__(7294));
+var TabUtil_1 = __importDefault(__webpack_require__(4470));
+var PopupStatusContext = (0, react_1.createContext)(true);
+function PopupStatusProvider(_a) {
+    var _this = this;
+    var children = _a.children;
+    var _b = (0, react_1.useState)(true), isPopup = _b[0], setIsPopup = _b[1];
+    (0, react_1.useEffect)(function () {
+        var updateIsPopup = function () { return __awaiter(_this, void 0, void 0, function () {
+            var current;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, TabUtil_1.default.getCurrent()];
+                    case 1:
+                        current = _a.sent();
+                        setIsPopup(current == undefined);
+                        return [2];
+                }
+            });
+        }); };
+        updateIsPopup();
+    }, []);
+    return (react_1.default.createElement(PopupStatusContext.Provider, { value: isPopup }, children));
+}
+exports["default"] = PopupStatusProvider;
+var usePopupStatus = function () {
+    var isPopup = (0, react_1.useContext)(PopupStatusContext);
+    return isPopup;
+};
+exports.usePopupStatus = usePopupStatus;
+
+
+/***/ }),
+
+/***/ 327:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.routes = void 0;
+var react_1 = __importDefault(__webpack_require__(7294));
+var pages_1 = __importDefault(__webpack_require__(735));
+var current_groups_1 = __importDefault(__webpack_require__(3137));
+var rules_1 = __importDefault(__webpack_require__(9971));
+var saved_groups_1 = __importDefault(__webpack_require__(3822));
+exports.routes = [
+    {
+        path: '/popup.html',
+        element: react_1.default.createElement(pages_1.default, null),
+        children: [
+            {
+                path: '/popup.html',
+                element: react_1.default.createElement(current_groups_1.default, null),
+                label: 'Current Groups',
+            },
+            {
+                path: '/popup.html/saved',
+                element: react_1.default.createElement(saved_groups_1.default, null),
+                label: 'Saved Groups',
+            },
+            {
+                path: '/popup.html/rules',
+                element: react_1.default.createElement(rules_1.default, null),
+                label: 'Rules',
+            },
+        ],
+    },
+];
 
 
 /***/ }),

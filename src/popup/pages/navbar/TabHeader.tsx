@@ -1,10 +1,10 @@
 import { Tab, Tabs } from '@mui/material';
 import React, { SyntheticEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { RouteType } from '../../types';
+import { RouteType } from '../../../types';
 
 interface Props {
-   routes: RouteType[];
+   routes: RouteType[] | undefined;
 }
 
 export default function TabHeader({ routes }: Props) {
@@ -27,15 +27,16 @@ export default function TabHeader({ routes }: Props) {
             onChange={handleChange}
             centered
          >
-            {routes.map((route, i) => (
-               <Tab
-                  component={Link}
-                  value={i}
-                  label={route.label}
-                  to={route.path}
-                  sx={{ fontWeight: '700' }}
-               />
-            ))}
+            {routes &&
+               routes.map((route, i) => (
+                  <Tab
+                     component={Link}
+                     value={i}
+                     label={route.label}
+                     to={route.path as string}
+                     sx={{ fontWeight: '700' }}
+                  />
+               ))}
          </Tabs>
       </>
    );

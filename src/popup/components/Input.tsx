@@ -14,6 +14,12 @@ interface Props {
    setValue: Dispatch<SetStateAction<string>>;
 }
 
+/**
+ * Custom component to be used for simple forms where
+ * react-hook-forms do not need to be used
+ * @param param0 Props object
+ * @returns React component
+ */
 export default function Input({
    value,
    setValue,
@@ -30,7 +36,6 @@ export default function Input({
          label={label}
          type={type}
          fullWidth
-         // variant='standard'
          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setValue(e.target.value)
          }

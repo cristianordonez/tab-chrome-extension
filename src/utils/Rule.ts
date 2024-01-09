@@ -303,7 +303,7 @@ class Rule {
     * @param tab TabUtil instance
     * @returns void
     */
-   public run(tab: TabUtil) {
+   private run(tab: TabUtil) {
       switch (this.action) {
          case 0:
             tab.openInGroup(this.groupColor, this.groupName);

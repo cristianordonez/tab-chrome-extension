@@ -1,3 +1,4 @@
+import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -55,9 +56,20 @@ export default function RuleGroup({
       await updateRules();
    };
 
+   /**
+    * todo Handle edit rule
+    */
    const handleEditRule = async () => {
       console.log('');
    };
+
+   /**
+    * todo Adds condition to current rule
+    */
+   const handleAddCondition = () => {
+      console.log('');
+   };
+
    return (
       <RowGroup
          id={rule.id}
@@ -102,6 +114,11 @@ export default function RuleGroup({
                affixAction={() => handleDeleteSubRule(subRule.id)}
             />
          ))}
+         <Row
+            PrefixIcon={<AddIcon />}
+            title='Add Condition'
+            handleClick={handleAddCondition}
+         />
       </RowGroup>
    );
 }

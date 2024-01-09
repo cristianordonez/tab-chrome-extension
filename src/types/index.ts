@@ -3,17 +3,20 @@ import { Dispatch, SetStateAction } from 'react';
 import { RouteObject } from 'react-router-dom';
 import FormattedTab from '../utils/FormattedTab';
 
+const colors = [
+   'grey',
+   'blue',
+   'red',
+   'yellow',
+   'green',
+   'pink',
+   'purple',
+   'cyan',
+   'orange',
+] as const;
+
 // color of tab groups
-type ColorEnum =
-   | 'grey'
-   | 'blue'
-   | 'red'
-   | 'yellow'
-   | 'green'
-   | 'pink'
-   | 'purple'
-   | 'cyan'
-   | 'orange';
+type ColorEnum = (typeof colors)[number];
 
 // interface for saved titles in local storage
 interface LocalStorageTitles {
@@ -59,10 +62,13 @@ type urlRule = 'any' | 'hostname' | 'path' | 'query';
 type matchRule = 'contains' | 'is equal to' | 'ends with' | 'starts with';
 type actionRule = 0 | 1 | 2;
 
-interface SubRule {
+interface SubRuleValues {
    url: urlRule;
    match: matchRule;
    query: string;
+}
+
+interface SubRule extends SubRuleValues {
    id: string;
 }
 
@@ -70,7 +76,7 @@ interface RuleType {
    title: string;
    action: actionRule;
    subRules: SubRule[];
-   id: string;
+   id?: string;
    groupName: string | undefined;
    groupColor: ColorEnum | undefined;
    active: boolean;
@@ -103,7 +109,7 @@ interface RowProps {
    /**
     * unique id for given row
     */
-   id: string | number;
+   id?: string | number;
    /**
     * Optional icon to use at beginning (left) of row
     */
@@ -147,7 +153,7 @@ interface RowProps {
    /**
     * Title of row
     */
-   title: string;
+   title?: string;
    /**
     * true if current row has associated sub rows (is parent row). Defaults to false.
     */
@@ -178,6 +184,10 @@ type RouteType = RouteObject & {
    label?: string | undefined;
 };
 
+/**
+ * Inputs for form to add new rules
+ */
+
 export {
    AlertSettings,
    ColorEnum,
@@ -192,7 +202,11 @@ export {
    RuleType,
    SetAlertSettingsType,
    SubRule,
+   SubRuleValues,
    TabOptions,
    UpdateRuleType,
    actionRule,
+   colors,
+   matchRule,
+   urlRule,
 };

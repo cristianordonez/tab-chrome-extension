@@ -23,11 +23,9 @@ export const routes: RouteType[] = [
          },
          {
             path: 'rules',
-            // element: <Rules />,
             label: 'Rules',
             children: [
                {
-                  //   path: 'new',
                   index: true,
                   element: <RulesList />,
                },

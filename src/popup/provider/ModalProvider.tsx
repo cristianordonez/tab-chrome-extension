@@ -6,9 +6,10 @@ import React, {
    useEffect,
    useState,
 } from 'react';
-import { FormattedTabs } from '../../types';
+import { FormattedTabs, SubRuleValues } from '../../types';
 import FormattedTab from '../../utils/FormattedTab';
 import TabUtil from '../../utils/TabUtil';
+import AddSubRuleModal from '../components/modal/AddSubRuleModal';
 import AddTabsModal from '../components/modal/AddTabsModal';
 import InputModal from '../components/modal/InputModal';
 
@@ -16,19 +17,22 @@ interface Props {
    children: ReactNode;
 }
 
-interface DialogConfig {
-   actionCallback?: (output: string | null) => void;
+interface ModalInputs {
    body?: string;
    title: string;
-   type: 'input' | 'confirmation' | 'tabs';
+   type: 'input' | 'confirmation' | 'tabs' | 'subrule';
 }
 
-const defaultDialogConfig = {
+interface ModalConfig extends ModalInputs {
+   actionCallback?: (output: string | null) => void;
+}
+
+const defaultModalConfig = {
    title: '',
    type: 'input' as const,
 };
 
-type ShowModal = ({ actionCallback, title, body }: DialogConfig) => void;
+type ShowModal = ({ actionCallback, title, body }: ModalConfig) => void;
 
 interface ContextType {
    showModal: ShowModal | null;
@@ -43,8 +47,13 @@ const ModalContext = createContext<ContextType>(defaultContext);
 export default function ModalProvider({ children }: Props) {
    const [open, setOpen] = useState<boolean>(false);
    const [inputValue, setInputValue] = useState<string>('');
-   const [dialogConfig, setDialogConfig] =
-      useState<DialogConfig>(defaultDialogConfig);
+   const [defaultSubRule, setDefaultSubRule] = useState<SubRuleValues>({
+      url: 'any',
+      match: 'contains',
+      query: '',
+   });
+   const [modalConfig, setModalConfig] =
+      useState<ModalConfig>(defaultModalConfig);
    const [tabs, setTabs] = useState<FormattedTabs>({});
 
    /**
@@ -57,21 +66,21 @@ export default function ModalProvider({ children }: Props) {
    };
 
    /**
-    * Runs findTabs only when dialogConfig.type was set to "tabs"
+    * Runs findTabs only when modalConfig.type was set to "tabs"
     */
    useEffect(() => {
-      if (dialogConfig.type == 'tabs') {
+      if (modalConfig.type == 'tabs') {
          findTabs();
       }
-   }, [dialogConfig]);
+   }, [modalConfig]);
 
    /**
     * Context value returned that updates state and opens modal
     * @param param0 object containing actionCallback, title, body and type keys
     */
-   const showModal = ({ actionCallback, title, body, type }: DialogConfig) => {
+   const showModal = ({ actionCallback, title, body, type }: ModalConfig) => {
       setInputValue('');
-      setDialogConfig({ actionCallback, title, body, type });
+      setModalConfig({ actionCallback, title, body, type });
       setOpen(!open);
    };
 
@@ -81,7 +90,7 @@ export default function ModalProvider({ children }: Props) {
     */
    const handleSubmitInput = async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const action = dialogConfig.actionCallback;
+      const action = modalConfig.actionCallback;
       if (action !== undefined) {
          action(inputValue);
       }
@@ -93,7 +102,7 @@ export default function ModalProvider({ children }: Props) {
     */
    const onClose = () => {
       setOpen(!open);
-      const action = dialogConfig.actionCallback;
+      const action = modalConfig.actionCallback;
       if (action !== undefined) {
          action(null);
       }
@@ -103,7 +112,7 @@ export default function ModalProvider({ children }: Props) {
     * Gets passed down to AddTabsModal as prop and handles when user submits their choices, passing the tabs to getOutput
     */
    const handleAddTabs = () => {
-      const action = dialogConfig.actionCallback;
+      const action = modalConfig.actionCallback;
       const result: FormattedTab[] = [];
       if (action !== undefined) {
          Object.keys(tabs).forEach((tabId) => {
@@ -118,33 +127,49 @@ export default function ModalProvider({ children }: Props) {
    };
 
    /**
-    * Create useEffect that will be called whenever dialogConfig changes, and only updattes tabs if the dialogConfig.type is set to "tabs"
+    * todo
+    * Event triggered when submitting subrule form
+    */
+   const handleAddSubRule = () => {};
+   /**
+    * Create useEffect that will be called whenever modalConfig changes, and only updattes tabs if the modalConfig.type is set to "tabs"
     */
    return (
       <ModalContext.Provider value={{ showModal }}>
          {children}
-         {dialogConfig.type == 'input' ? (
+         {modalConfig.type == 'input' ? (
             <InputModal
                open={open}
                handleClose={onClose}
-               title={dialogConfig.title}
+               title={modalConfig.title}
                inputValue={inputValue}
                setInputValue={setInputValue}
                buttonAction={handleSubmitInput}
-               body={dialogConfig.body}
+               body={modalConfig.body}
             />
          ) : (
             <></>
          )}
-         {dialogConfig.type == 'tabs' ? (
+         {modalConfig.type == 'tabs' ? (
             <AddTabsModal
                open={open}
                handleClose={onClose}
-               title={dialogConfig.title}
+               title={modalConfig.title}
                buttonAction={handleAddTabs}
-               body={dialogConfig.body}
+               body={modalConfig.body}
                setTabs={setTabs}
                tabs={tabs}
+            />
+         ) : (
+            <></>
+         )}
+         {modalConfig.type == 'subrule' ? (
+            <AddSubRuleModal
+               open={open}
+               handleClose={onClose}
+               title={modalConfig.title}
+               handleAddSubRule={handleAddSubRule}
+               body={modalConfig.body}
             />
          ) : (
             <></>
@@ -173,14 +198,14 @@ const useModalContext = () => {
  */
 export const useModal = () => {
    const { showModal } = useModalContext();
-
-   // getOutput will return null when user clicks Cancel button
+   // * getOutput will return null when user clicks Cancel button
    const getOutput = ({
       title,
       body,
       type,
-   }: DialogConfig): Promise<string | null> =>
+   }: ModalInputs): Promise<string | null> =>
       new Promise((resolve) => {
+         // * actionCallback is used to ensure no value is returned until modal is closed
          if (showModal !== null) {
             showModal({ actionCallback: resolve, title, body, type });
          }

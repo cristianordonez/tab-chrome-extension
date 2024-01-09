@@ -2,7 +2,6 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import Rule from '../../../utils/Rule';
 import TabUtil from '../../../utils/TabUtil';
 import CustomAlert from '../../components/CustomAlert';
@@ -62,14 +61,12 @@ export default function RulesList() {
          <StyledChild>
             {isPopup ? (
                <Row
-                  id={uuidv4()}
                   PrefixIcon={<EditIcon />}
                   title='Edit Rules'
                   handleClick={handleOpenFullPage}
                />
             ) : (
                <Row
-                  id={uuidv4()}
                   PrefixIcon={<AddIcon />}
                   title='Add Rule'
                   handleClick={handleAddRule}

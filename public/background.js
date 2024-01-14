@@ -403,6 +403,7 @@ var Rule = (function () {
     function Rule(title, action, subRules, id, active, groupName, groupColor) {
         if (subRules === void 0) { subRules = []; }
         if (id === void 0) { id = (0, uuid_1.v4)(); }
+        if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
         this._subRules = subRules;

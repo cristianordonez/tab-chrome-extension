@@ -51771,7 +51771,6 @@ function AddSubRuleModal(_a) {
     };
     var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control;
     var onSubmit = function (data) {
-        console.log('data in on submit: ', data);
         if ('match' in data) {
             handleAddSubRule(data);
         }
@@ -52360,6 +52359,17 @@ exports["default"] = TabHeader;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -52419,26 +52429,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var yup_1 = __webpack_require__(2433);
 var material_1 = __webpack_require__(3417);
-var react_1 = __importDefault(__webpack_require__(7294));
+var react_1 = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 var react_router_dom_1 = __webpack_require__(9818);
 var yup = __importStar(__webpack_require__(6310));
 var types_1 = __webpack_require__(1230);
+var Rule_1 = __importDefault(__webpack_require__(4235));
 var Center_1 = __importDefault(__webpack_require__(1081));
 var HookFormInput_1 = __importDefault(__webpack_require__(3910));
 var HookFormSelect_1 = __importDefault(__webpack_require__(968));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
+var SubRulesForm_1 = __importDefault(__webpack_require__(4432));
 var formSchema = yup.object().shape({
     title: yup.string().required('Please enter a query'),
     action: yup.mixed().oneOf([0, 1, 2]),
-    subRules: yup.array(),
     groupName: yup.string(),
     groupColor: yup.string(),
     active: yup.bool(),
@@ -52447,12 +52467,24 @@ function AddRuleForm() {
     var _this = this;
     var navigate = (0, react_router_dom_1.useNavigate)();
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
+    var _a = (0, react_1.useState)([]), subRules = _a[0], setSubRules = _a[1];
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
-    var _a = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _a.handleSubmit, control = _a.control, watch = _a.watch;
-    var onSubmit = function (data) { return console.log(data); };
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch;
+    var onSubmit = function (data) {
+        try {
+            var ruleData = __assign(__assign({}, data), { subRules: subRules });
+            var rule = Rule_1.default.build(ruleData);
+            rule.save();
+            setAlertSettings('success', 'Rule has been created!');
+        }
+        catch (err) {
+            console.error(err);
+            setAlertSettings('error', 'Unable to create new rule.');
+        }
+    };
     var menuItems = [
         { value: 0, label: 'Add tab to a tab group' },
         { value: 1, label: 'Pin tab' },
@@ -52464,8 +52496,6 @@ function AddRuleForm() {
     var colorItems = types_1.colors.map(function (color) {
         return { label: color, value: color };
     });
-    var actionWatch = watch('action', 0);
-    var subRuleWatch = watch('subRules', []);
     var handleAddSubRule = function () { return __awaiter(_this, void 0, void 0, function () {
         var output;
         return __generator(this, function (_a) {
@@ -52476,12 +52506,14 @@ function AddRuleForm() {
                     })];
                 case 1:
                     output = _a.sent();
-                    console.log('output: ', output);
-                    setAlertSettings('error', 'test');
+                    if (output) {
+                        setSubRules(__spreadArray(__spreadArray([], subRules, true), [JSON.parse(output)], false));
+                    }
                     return [2];
             }
         });
     }); };
+    var actionWatch = watch('action', 0);
     return (react_1.default.createElement("form", { onSubmit: handleSubmit(onSubmit) },
         react_1.default.createElement(Center_1.default, { column: true },
             react_1.default.createElement(react_1.default.Fragment, null,
@@ -52491,11 +52523,7 @@ function AddRuleForm() {
                 actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
                     react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
-                react_1.default.createElement("div", null,
-                    react_1.default.createElement("h1", null, "Conditions"),
-                    react_1.default.createElement(material_1.List, null,
-                        subRuleWatch.map(function (subRule) { return (react_1.default.createElement("h1", null, subRule.query)); }),
-                        react_1.default.createElement(material_1.ListItemButton, { onClick: handleAddSubRule }, "Add Condition"))),
+                react_1.default.createElement(SubRulesForm_1.default, { subRules: subRules, handleAddSubRule: handleAddSubRule }),
                 react_1.default.createElement("div", null,
                     react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
                     react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
@@ -52632,6 +52660,30 @@ function RuleGroup(_a) {
         react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Condition', handleClick: handleAddCondition })));
 }
 exports["default"] = RuleGroup;
+
+
+/***/ }),
+
+/***/ 4432:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(3417);
+var react_1 = __importDefault(__webpack_require__(7294));
+function SubRulesForm(_a) {
+    var subRules = _a.subRules, handleAddSubRule = _a.handleAddSubRule;
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Conditions"),
+        react_1.default.createElement(material_1.List, null,
+            subRules.map(function (subRule) { return (react_1.default.createElement("h1", null, subRule.query)); }),
+            react_1.default.createElement(material_1.ListItemButton, { onClick: handleAddSubRule }, "Add Condition"))));
+}
+exports["default"] = SubRulesForm;
 
 
 /***/ }),
@@ -53932,6 +53984,7 @@ var Rule = (function () {
     function Rule(title, action, subRules, id, active, groupName, groupColor) {
         if (subRules === void 0) { subRules = []; }
         if (id === void 0) { id = (0, uuid_1.v4)(); }
+        if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
         this._subRules = subRules;

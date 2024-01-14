@@ -36,7 +36,7 @@ class Rule {
       action: actionRule,
       subRules: SubRule[] = [],
       id: string = uuidv4(),
-      active: boolean,
+      active: boolean = true,
       groupName?: string,
       groupColor?: ColorEnum
    ) {

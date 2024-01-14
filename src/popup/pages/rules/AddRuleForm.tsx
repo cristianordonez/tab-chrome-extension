@@ -1,20 +1,27 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, List, ListItemButton, Typography } from '@mui/material';
-import React from 'react';
+import { Button, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import { Resolver, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { RuleType, SubRuleValues, actionRule, colors } from '../../../types';
+import {
+   RuleType,
+   SubRule,
+   SubRuleValues,
+   actionRule,
+   colors,
+} from '../../../types';
+import Rule from '../../../utils/Rule';
 import Center from '../../components/Center';
 import HookFormInput from '../../components/HookFormInput';
 import HookFormSelect from '../../components/HookFormSelect';
 import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
+import SubRulesForm from './SubRulesForm';
 
 const formSchema = yup.object().shape({
    title: yup.string().required('Please enter a query'),
    action: yup.mixed<actionRule>().oneOf([0, 1, 2]),
-   subRules: yup.array(),
    groupName: yup.string(),
    groupColor: yup.string(),
    active: yup.bool(),
@@ -23,15 +30,35 @@ const formSchema = yup.object().shape({
 export default function AddRuleForm() {
    const navigate = useNavigate();
    const { setAlertSettings } = useAlertProvider();
+   const [subRules, setSubRules] = useState<SubRule[]>([]);
    const { getOutput } = useModal();
 
    const formOptions = {
       resolver: yupResolver(formSchema) as Resolver<SubRuleValues | RuleType>,
    };
+
    const { handleSubmit, control, watch } = useForm<RuleType | SubRuleValues>(
       formOptions
    );
-   const onSubmit = (data: RuleType | SubRuleValues) => console.log(data);
+
+   /**
+    * todo Submit form
+    * @param data
+    * @returns
+    */
+   const onSubmit = (data: RuleType | SubRuleValues) => {
+      try {
+         const ruleData = { ...data, subRules } as RuleType;
+         const rule = Rule.build(ruleData);
+         rule.save();
+         setAlertSettings('success', 'Rule has been created!');
+         // todo navigate back to last page once submitted
+      } catch (err) {
+         console.error(err);
+         setAlertSettings('error', 'Unable to create new rule.');
+      }
+   };
+
    const menuItems = [
       { value: 0, label: 'Add tab to a tab group' },
       { value: 1, label: 'Pin tab' },
@@ -49,18 +76,20 @@ export default function AddRuleForm() {
       return { label: color, value: color };
    });
 
-   const actionWatch = watch('action', 0);
-   const subRuleWatch = watch('subRules', []);
-
+   /**
+    * Called when adding new condition button
+    */
    const handleAddSubRule = async () => {
       const output = await getOutput({
          title: 'Add Condition',
          type: 'subrule',
       });
-
-      console.log('output: ', output);
-      setAlertSettings('error', 'test');
+      if (output) {
+         setSubRules([...subRules, JSON.parse(output)]);
+      }
    };
+
+   const actionWatch = watch('action', 0);
 
    return (
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,17 +122,10 @@ export default function AddRuleForm() {
                      />
                   </>
                ) : null}
-               <div>
-                  <h1>Conditions</h1>
-                  <List>
-                     {subRuleWatch.map((subRule) => (
-                        <h1>{subRule.query}</h1>
-                     ))}
-                     <ListItemButton onClick={handleAddSubRule}>
-                        Add Condition
-                     </ListItemButton>
-                  </List>
-               </div>
+               <SubRulesForm
+                  subRules={subRules}
+                  handleAddSubRule={handleAddSubRule}
+               />
                <div>
                   <Button type='submit' variant='contained' color='success'>
                      Submit

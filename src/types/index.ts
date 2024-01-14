@@ -75,7 +75,7 @@ interface SubRule extends SubRuleValues {
 interface RuleType {
    title: string;
    action: actionRule;
-   subRules: SubRule[];
+   subRules?: SubRule[];
    id?: string;
    groupName: string | undefined;
    groupColor: ColorEnum | undefined;

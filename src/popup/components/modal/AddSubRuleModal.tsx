@@ -47,7 +47,6 @@ export default function AddSubRuleModal({
     * @param data Object containing new subrule data
     */
    const onSubmit = (data: SubRuleValues | RuleType) => {
-      console.log('data in on submit: ', data);
       if ('match' in data) {
          handleAddSubRule(data);
       }

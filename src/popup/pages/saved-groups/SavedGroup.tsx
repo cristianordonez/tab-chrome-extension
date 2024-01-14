@@ -3,17 +3,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Box, Tooltip } from '@mui/material';
 import React from 'react';
-import {
-   ColorEnum,
-   LocalStorageTab,
-   SetAlertSettingsType,
-} from '../../../types';
+import { ColorEnum, LocalStorageTab } from '../../../types';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
 import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
 import RowGroup from '../../components/RowGroupParent';
+import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
@@ -21,7 +18,6 @@ interface Props {
    color: ColorEnum;
    title: string;
    tabs: LocalStorageTab[];
-   setAlertSettings: SetAlertSettingsType;
    getSavedGroups: () => Promise<void>;
 }
 
@@ -30,10 +26,10 @@ export default function SavedGroup({
    color,
    title,
    tabs,
-   setAlertSettings,
    getSavedGroups,
 }: Props) {
    const { getOutput } = useModal();
+   const { setAlertSettings } = useAlertProvider();
 
    /**
     * Deletes tab from a saved tab group and updates UI

@@ -4,25 +4,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Switch, Tooltip } from '@mui/material';
 import React from 'react';
-import { SetAlertSettingsType, SubRule } from '../../../types';
+import { SubRule } from '../../../types';
 import Rule from '../../../utils/Rule';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
 import RowGroup from '../../components/RowGroupParent';
+import { useAlertProvider } from '../../provider/AlertProvider';
 import { usePopupStatus } from '../../provider/PopupStatusProvider';
 
 interface Props {
    rule: Rule;
    updateRules: () => Promise<void>;
-   setAlertSettings: SetAlertSettingsType;
 }
 
-export default function RuleGroup({
-   rule,
-   updateRules,
-   setAlertSettings,
-}: Props) {
+export default function RuleGroup({ rule, updateRules }: Props) {
    const isPopup = usePopupStatus();
+   const { setAlertSettings } = useAlertProvider();
 
    /**
     * Handles toggling active status of rule

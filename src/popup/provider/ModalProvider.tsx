@@ -127,12 +127,17 @@ export default function ModalProvider({ children }: Props) {
    };
 
    /**
-    * todo
     * Event triggered when submitting subrule form
     */
-   const handleAddSubRule = () => {};
+   const handleAddSubRule = (data: SubRuleValues) => {
+      const action = modalConfig.actionCallback;
+      if (action !== undefined) {
+         action(JSON.stringify(data));
+      }
+      setOpen(!open);
+   };
    /**
-    * Create useEffect that will be called whenever modalConfig changes, and only updattes tabs if the modalConfig.type is set to "tabs"
+    * todo Create useEffect that will be called whenever modalConfig changes, and only updattes tabs if the modalConfig.type is set to "tabs"
     */
    return (
       <ModalContext.Provider value={{ showModal }}>

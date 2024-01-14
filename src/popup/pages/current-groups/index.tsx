@@ -2,17 +2,17 @@ import AddIcon from '@mui/icons-material/Add';
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
-import CustomAlert from '../../components/CustomAlert';
 import Row from '../../components/Row';
 import StyledChild from '../../components/StyledChild';
 import StyledContainer from '../../components/StyledContainer';
-import useAlertSettings from '../../hooks/useAlertSettings';
+import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
 import CurrentGroup from './CurrentGroup';
 
 export default function CurrentGroups() {
    const [groups, setGroups] = useState<number[]>([]);
-   const [alertSettings, setAlertSettings] = useAlertSettings();
+   // const [alertSettings, setAlertSettings] = useAlertSettings();
+   const { setAlertSettings } = useAlertProvider();
    const { getOutput } = useModal();
 
    useEffect(() => {
@@ -43,13 +43,6 @@ export default function CurrentGroups() {
       }
    };
 
-   /**
-    * Handles closing alert component
-    */
-   const handleAlert = () => {
-      setAlertSettings();
-   };
-
    return (
       <StyledContainer>
          {groups.map((groupId) => (
@@ -57,7 +50,6 @@ export default function CurrentGroups() {
                key={groupId}
                groupId={groupId}
                getGroups={getGroups}
-               setAlertSettings={setAlertSettings}
             />
          ))}
          <StyledChild>
@@ -68,7 +60,6 @@ export default function CurrentGroups() {
                handleClick={handleCreateGroup}
             />
          </StyledChild>
-         <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </StyledContainer>
    );
 }

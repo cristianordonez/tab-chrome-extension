@@ -1,14 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { LocalStorageTabGroup, LocalStorageTabGroups } from '../../../types';
 import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
-import CustomAlert from '../../components/CustomAlert';
 import StyledContainer from '../../components/StyledContainer';
-import useAlertSettings from '../../hooks/useAlertSettings';
+import { useAlertProvider } from '../../provider/AlertProvider';
 import SavedGroup from './SavedGroup';
 
 export default function SavedGroups() {
    const [savedGroups, setSavedGroups] = useState<LocalStorageTabGroups>({});
-   const [alertSettings, setAlertSettings] = useAlertSettings();
+   const { setAlertSettings } = useAlertProvider();
 
    // retrieve all saved groups from local storage
    const getSavedGroups = async () => {
@@ -24,11 +23,6 @@ export default function SavedGroups() {
          setAlertSettings('error', 'Something went wrong');
       }
    }, []);
-
-   // toggles open/close alert message
-   const handleAlert = () => {
-      setAlertSettings();
-   };
 
    // sorts groups based on createdAt
    const sortedGroups = useMemo(() => {
@@ -59,11 +53,9 @@ export default function SavedGroups() {
                color={savedGroups[Number(groupId)].color}
                title={savedGroups[Number(groupId)].title}
                tabs={savedGroups[Number(groupId)].tabs}
-               setAlertSettings={setAlertSettings}
                getSavedGroups={getSavedGroups}
             />
          ))}
-         <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </StyledContainer>
    );
 }

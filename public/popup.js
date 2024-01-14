@@ -2604,7 +2604,7 @@ var insertStyles = function insertStyles(cache, serialized, isStringTag) {
 
 /***/ }),
 
-/***/ 442:
+/***/ 6442:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 var e=__webpack_require__(930),r=function(r,t,i){if(r&&"reportValidity"in r){var s=e.get(i,t);r.setCustomValidity(s&&s.message||""),r.reportValidity()}},t=function(e,t){var i=function(i){var s=t.fields[i];s&&s.ref&&"reportValidity"in s.ref?r(s.ref,i,e):s.refs&&s.refs.forEach(function(t){return r(t,i,e)})};for(var s in t.fields)i(s)},i=function(e,r){return e.some(function(e){return e.startsWith(r+".")})};exports.toNestErrors=function(r,s){s.shouldUseNativeValidation&&t(r,s);var a={};for(var n in r){var o=e.get(s.fields,n),f=Object.assign(r[n]||{},{ref:o&&o.ref});if(i(s.names||Object.keys(r),n)){var u=Object.assign({},e.get(a,n));e.set(u,"root",f),e.set(a,n,u)}else e.set(a,n,f)}return a},exports.validateFieldsNatively=t;
@@ -2613,10 +2613,10 @@ var e=__webpack_require__(930),r=function(r,t,i){if(r&&"reportValidity"in r){var
 
 /***/ }),
 
-/***/ 433:
+/***/ 2433:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-var e=__webpack_require__(442),t=__webpack_require__(930);exports.yupResolver=function(r,o,n){return void 0===o&&(o={}),void 0===n&&(n={}),function(s,a,i){try{return Promise.resolve(function(t,u){try{var c=(o.context&&"development"==="production"&&0,Promise.resolve(r["sync"===n.mode?"validateSync":"validate"](s,Object.assign({abortEarly:!1},o,{context:a}))).then(function(t){return i.shouldUseNativeValidation&&e.validateFieldsNatively({},i),{values:n.raw?s:t,errors:{}}}))}catch(e){return u(e)}return c&&c.then?c.then(void 0,u):c}(0,function(r){if(!r.inner)throw r;return{values:{},errors:e.toNestErrors((o=r,n=!i.shouldUseNativeValidation&&"all"===i.criteriaMode,(o.inner||[]).reduce(function(e,r){if(e[r.path]||(e[r.path]={message:r.message,type:r.type}),n){var o=e[r.path].types,s=o&&o[r.type];e[r.path]=t.appendErrors(r.path,n,e,r.type,s?[].concat(s,r.message):r.message)}return e},{})),i)};var o,n}))}catch(e){return Promise.reject(e)}}};
+var e=__webpack_require__(6442),t=__webpack_require__(930);exports.yupResolver=function(r,o,n){return void 0===o&&(o={}),void 0===n&&(n={}),function(s,a,i){try{return Promise.resolve(function(t,u){try{var c=(o.context&&"development"==="production"&&0,Promise.resolve(r["sync"===n.mode?"validateSync":"validate"](s,Object.assign({abortEarly:!1},o,{context:a}))).then(function(t){return i.shouldUseNativeValidation&&e.validateFieldsNatively({},i),{values:n.raw?s:t,errors:{}}}))}catch(e){return u(e)}return c&&c.then?c.then(void 0,u):c}(0,function(r){if(!r.inner)throw r;return{values:{},errors:e.toNestErrors((o=r,n=!i.shouldUseNativeValidation&&"all"===i.criteriaMode,(o.inner||[]).reduce(function(e,r){if(e[r.path]||(e[r.path]={message:r.message,type:r.type}),n){var o=e[r.path].types,s=o&&o[r.type];e[r.path]=t.appendErrors(r.path,n,e,r.type,s?[].concat(s,r.message):r.message)}return e},{})),i)};var o,n}))}catch(e){return Promise.reject(e)}}};
 //# sourceMappingURL=yup.js.map
 
 
@@ -2685,7 +2685,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 3772:
+/***/ 594:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -44003,7 +44003,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 760:
+/***/ 5760:
 /***/ ((module) => {
 
 "use strict";
@@ -51070,7 +51070,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 885:
+/***/ 9885:
 /***/ ((module) => {
 
 const reWords = /[A-Z\xc0-\xd6\xd8-\xde]?[a-z\xdf-\xf6\xf8-\xff]+(?:['’](?:d|ll|m|re|s|t|ve))?(?=[\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000]|[A-Z\xc0-\xd6\xd8-\xde]|$)|(?:[A-Z\xc0-\xd6\xd8-\xde]|[^\ud800-\udfff\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\d+\u2700-\u27bfa-z\xdf-\xf6\xf8-\xffA-Z\xc0-\xd6\xd8-\xde])+(?:['’](?:D|LL|M|RE|S|T|VE))?(?=[\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000]|[A-Z\xc0-\xd6\xd8-\xde](?:[a-z\xdf-\xf6\xf8-\xff]|[^\ud800-\udfff\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\d+\u2700-\u27bfa-z\xdf-\xf6\xf8-\xffA-Z\xc0-\xd6\xd8-\xde])|$)|[A-Z\xc0-\xd6\xd8-\xde]?(?:[a-z\xdf-\xf6\xf8-\xff]|[^\ud800-\udfff\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\d+\u2700-\u27bfa-z\xdf-\xf6\xf8-\xffA-Z\xc0-\xd6\xd8-\xde])+(?:['’](?:d|ll|m|re|s|t|ve))?|[A-Z\xc0-\xd6\xd8-\xde]+(?:['’](?:D|LL|M|RE|S|T|VE))?|\d*(?:1ST|2ND|3RD|(?![123])\dTH)(?=\b|[a-z_])|\d*(?:1st|2nd|3rd|(?![123])\dth)(?=\b|[A-Z_])|\d+|(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|\ud83c[\udffb-\udfff])?(?:\u200d(?:[^\ud800-\udfff]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|\ud83c[\udffb-\udfff])?)*/g
@@ -51116,7 +51116,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 633:
+/***/ 4633:
 /***/ ((module) => {
 
 
@@ -51277,6 +51277,7 @@ var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Center_1 = __importDefault(__webpack_require__(1081));
+var AlertProvider_1 = __importDefault(__webpack_require__(5648));
 var ColorModeProvider_1 = __importStar(__webpack_require__(1460));
 var ModalProvider_1 = __importDefault(__webpack_require__(5125));
 var PopupStatusProvider_1 = __importDefault(__webpack_require__(5671));
@@ -51294,13 +51295,14 @@ function App() {
     var router = (0, react_router_dom_1.createBrowserRouter)(routes_1.routes);
     return (react_1.default.createElement(ColorModeProvider_1.default, null,
         react_1.default.createElement(styles_1.ThemeProvider, { theme: theme },
-            react_1.default.createElement(PopupStatusProvider_1.default, null,
-                react_1.default.createElement(ModalProvider_1.default, null,
-                    react_1.default.createElement(material_1.CssBaseline, null),
-                    react_1.default.createElement(GlobalStyles, null,
-                        react_1.default.createElement(Center_1.default, { column: true, gap: 1 },
-                            react_1.default.createElement(react_1.default.Fragment, null,
-                                react_1.default.createElement(react_router_dom_1.RouterProvider, { router: router })))))))));
+            react_1.default.createElement(AlertProvider_1.default, null,
+                react_1.default.createElement(PopupStatusProvider_1.default, null,
+                    react_1.default.createElement(ModalProvider_1.default, null,
+                        react_1.default.createElement(material_1.CssBaseline, null),
+                        react_1.default.createElement(GlobalStyles, null,
+                            react_1.default.createElement(Center_1.default, { column: true, gap: 1 },
+                                react_1.default.createElement(react_1.default.Fragment, null,
+                                    react_1.default.createElement(react_router_dom_1.RouterProvider, { router: router }))))))))));
 }
 exports["default"] = App;
 
@@ -51747,12 +51749,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var yup_1 = __webpack_require__(433);
+var yup_1 = __webpack_require__(2433);
 var material_1 = __webpack_require__(3417);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
-var yup = __importStar(__webpack_require__(310));
+var yup = __importStar(__webpack_require__(6310));
 var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
 var formSchema = yup.object().shape({
     query: yup.string().required('Please enter a query'),
@@ -51768,15 +51771,30 @@ function AddSubRuleModal(_a) {
     };
     var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control;
     var onSubmit = function (data) {
+        console.log('data in on submit: ', data);
         if ('match' in data) {
             handleAddSubRule(data);
         }
     };
+    var urlItems = [
+        { value: 'any', label: 'any' },
+        { value: 'hostname', label: 'hostname' },
+        { value: 'path', label: 'path' },
+        { value: 'query', label: 'query' },
+    ];
+    var matchItems = [
+        { value: 'contains', label: 'contains' },
+        { value: 'is equal to', label: 'is equal to' },
+        { value: 'ends with', label: 'ends with' },
+        { value: 'starts with', label: 'starts with' },
+    ];
     return (react_1.default.createElement(ModalContainer_1.default, { open: open, handleClose: handleClose, title: title },
         react_1.default.createElement("form", { onSubmit: handleSubmit(onSubmit) },
             react_1.default.createElement(material_1.DialogContent, null,
                 body !== undefined ? (react_1.default.createElement(material_1.DialogContentText, null, body)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'query' })),
+                react_1.default.createElement(HookFormSelect_1.default, { name: 'url', control: control, menuItems: urlItems, label: 'URL Section' }),
+                react_1.default.createElement(HookFormSelect_1.default, { name: 'match', control: control, menuItems: matchItems, label: 'Match type' }),
+                react_1.default.createElement(HookFormInput_1.default, { label: 'Query', control: control, name: 'query' })),
             react_1.default.createElement(material_1.DialogActions, null,
                 react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleClose }, "Cancel"),
                 react_1.default.createElement(material_1.Button, { variant: 'contained', type: 'submit' }, "OK")))));
@@ -51891,49 +51909,6 @@ exports["default"] = ModalContainer;
 
 /***/ }),
 
-/***/ 594:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var react_1 = __webpack_require__(7294);
-var defaultAlertSettings = {
-    isOpen: false,
-    alertSeverity: 'success',
-    alertMessage: '',
-};
-function useAlertSettings() {
-    var _a = (0, react_1.useState)(defaultAlertSettings), alertSettings = _a[0], setState = _a[1];
-    var updateSettings = function (alertSeverity, alertMessage) {
-        var currentSettings = __assign({}, alertSettings);
-        if (alertSeverity !== undefined) {
-            currentSettings.alertSeverity = alertSeverity;
-        }
-        if (alertMessage !== undefined) {
-            currentSettings.alertMessage = alertMessage;
-        }
-        currentSettings.isOpen = !alertSettings.isOpen;
-        setState(currentSettings);
-    };
-    return [alertSettings, updateSettings];
-}
-exports["default"] = useAlertSettings;
-
-
-/***/ }),
-
 /***/ 7808:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -52032,7 +52007,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
-var Close_1 = __importDefault(__webpack_require__(3772));
+var Close_1 = __importDefault(__webpack_require__(594));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
 var Save_1 = __importDefault(__webpack_require__(6818));
 var material_1 = __webpack_require__(3417);
@@ -52045,10 +52020,12 @@ var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
+var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 function CurrentGroup(_a) {
     var _this = this;
-    var groupId = _a.groupId, getGroups = _a.getGroups, setAlertSettings = _a.setAlertSettings;
+    var groupId = _a.groupId, getGroups = _a.getGroups;
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var _b = (0, react_1.useState)([]), tabs = _b[0], setTabs = _b[1];
     var _c = (0, react_1.useState)(null), groupInfo = _c[0], setGroupInfo = _c[1];
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
@@ -52244,17 +52221,16 @@ var Add_1 = __importDefault(__webpack_require__(6540));
 var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
-var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var StyledChild_1 = __importDefault(__webpack_require__(7229));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
-var useAlertSettings_1 = __importDefault(__webpack_require__(594));
+var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 var CurrentGroup_1 = __importDefault(__webpack_require__(2595));
 function CurrentGroups() {
     var _this = this;
     var _a = (0, react_1.useState)([]), groups = _a[0], setGroups = _a[1];
-    var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     (0, react_1.useEffect)(function () {
         getGroups();
@@ -52296,14 +52272,10 @@ function CurrentGroups() {
             }
         });
     }); };
-    var handleAlert = function () {
-        setAlertSettings();
-    };
     return (react_1.default.createElement(StyledContainer_1.default, null,
-        groups.map(function (groupId) { return (react_1.default.createElement(CurrentGroup_1.default, { key: groupId, groupId: groupId, getGroups: getGroups, setAlertSettings: setAlertSettings })); }),
+        groups.map(function (groupId) { return (react_1.default.createElement(CurrentGroup_1.default, { key: groupId, groupId: groupId, getGroups: getGroups })); }),
         react_1.default.createElement(StyledChild_1.default, null,
-            react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup })),
-        react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
+            react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup }))));
 }
 exports["default"] = CurrentGroups;
 
@@ -52451,16 +52423,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var yup_1 = __webpack_require__(433);
+var yup_1 = __webpack_require__(2433);
 var material_1 = __webpack_require__(3417);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 var react_router_dom_1 = __webpack_require__(9818);
-var yup = __importStar(__webpack_require__(310));
+var yup = __importStar(__webpack_require__(6310));
 var types_1 = __webpack_require__(1230);
 var Center_1 = __importDefault(__webpack_require__(1081));
 var HookFormInput_1 = __importDefault(__webpack_require__(3910));
 var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 var formSchema = yup.object().shape({
     title: yup.string().required('Please enter a query'),
@@ -52473,6 +52446,7 @@ var formSchema = yup.object().shape({
 function AddRuleForm() {
     var _this = this;
     var navigate = (0, react_router_dom_1.useNavigate)();
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
@@ -52497,12 +52471,13 @@ function AddRuleForm() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, getOutput({
-                        title: 'Add tabs',
+                        title: 'Add Condition',
                         type: 'subrule',
                     })];
                 case 1:
                     output = _a.sent();
                     console.log('output: ', output);
+                    setAlertSettings('error', 'test');
                     return [2];
             }
         });
@@ -52576,7 +52551,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
-var Close_1 = __importDefault(__webpack_require__(3772));
+var Close_1 = __importDefault(__webpack_require__(594));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var Edit_1 = __importDefault(__webpack_require__(7957));
 var material_1 = __webpack_require__(3417);
@@ -52585,11 +52560,13 @@ var Rule_1 = __importDefault(__webpack_require__(4235));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
+var AlertProvider_1 = __webpack_require__(5648);
 var PopupStatusProvider_1 = __webpack_require__(5671);
 function RuleGroup(_a) {
     var _this = this;
-    var rule = _a.rule, updateRules = _a.updateRules, setAlertSettings = _a.setAlertSettings;
+    var rule = _a.rule, updateRules = _a.updateRules;
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var handleChange = function (event) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -52659,7 +52636,7 @@ exports["default"] = RuleGroup;
 
 /***/ }),
 
-/***/ 1763:
+/***/ 9971:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52733,22 +52710,16 @@ var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var StyledChild_1 = __importDefault(__webpack_require__(7229));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
-var useAlertSettings_1 = __importDefault(__webpack_require__(594));
 var PopupStatusProvider_1 = __webpack_require__(5671);
 var RuleGroup_1 = __importDefault(__webpack_require__(2776));
-function RulesList() {
+function Rules() {
     var _this = this;
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
     var navigate = (0, react_router_dom_1.useNavigate)();
     var _a = (0, react_1.useState)([]), rules = _a[0], setRules = _a[1];
-    var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
-    var handleAlert = function () {
-        setAlertSettings();
-    };
     var updateRules = function () { return __awaiter(_this, void 0, void 0, function () {
         var currentRules;
         return __generator(this, function (_a) {
@@ -52772,11 +52743,10 @@ function RulesList() {
         navigate('new');
     };
     return (react_1.default.createElement(StyledContainer_1.default, null,
-        rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules, setAlertSettings: setAlertSettings })); }),
-        react_1.default.createElement(StyledChild_1.default, null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule }))),
-        react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
+        rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules })); }),
+        react_1.default.createElement(StyledChild_1.default, null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule })))));
 }
-exports["default"] = RulesList;
+exports["default"] = Rules;
 
 
 /***/ }),
@@ -52837,11 +52807,13 @@ var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
+var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 function SavedGroup(_a) {
     var _this = this;
-    var groupId = _a.groupId, color = _a.color, title = _a.title, tabs = _a.tabs, setAlertSettings = _a.setAlertSettings, getSavedGroups = _a.getSavedGroups;
+    var groupId = _a.groupId, color = _a.color, title = _a.title, tabs = _a.tabs, getSavedGroups = _a.getSavedGroups;
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var handleDelete = function () { return __awaiter(_this, void 0, void 0, function () {
         var err_1;
         return __generator(this, function (_a) {
@@ -53034,14 +53006,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
-var CustomAlert_1 = __importDefault(__webpack_require__(6210));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
-var useAlertSettings_1 = __importDefault(__webpack_require__(594));
+var AlertProvider_1 = __webpack_require__(5648);
 var SavedGroup_1 = __importDefault(__webpack_require__(2928));
 function SavedGroups() {
     var _this = this;
     var _a = (0, react_1.useState)({}), savedGroups = _a[0], setSavedGroups = _a[1];
-    var _b = (0, useAlertSettings_1.default)(), alertSettings = _b[0], setAlertSettings = _b[1];
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var getSavedGroups = function () { return __awaiter(_this, void 0, void 0, function () {
         var groups;
         return __generator(this, function (_a) {
@@ -53063,9 +53034,6 @@ function SavedGroups() {
             setAlertSettings('error', 'Something went wrong');
         }
     }, []);
-    var handleAlert = function () {
-        setAlertSettings();
-    };
     var sortedGroups = (0, react_1.useMemo)(function () {
         var groups = Object.entries(savedGroups);
         var sorted = __spreadArray([], groups, true).sort(function (a, b) {
@@ -53076,11 +53044,95 @@ function SavedGroups() {
             return accumulator;
         }, []);
     }, [savedGroups]);
-    return (react_1.default.createElement(StyledContainer_1.default, null,
-        sortedGroups.map(function (groupId) { return (react_1.default.createElement(SavedGroup_1.default, { key: groupId, groupId: Number(groupId), color: savedGroups[Number(groupId)].color, title: savedGroups[Number(groupId)].title, tabs: savedGroups[Number(groupId)].tabs, setAlertSettings: setAlertSettings, getSavedGroups: getSavedGroups })); }),
-        react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
+    return (react_1.default.createElement(StyledContainer_1.default, null, sortedGroups.map(function (groupId) { return (react_1.default.createElement(SavedGroup_1.default, { key: groupId, groupId: Number(groupId), color: savedGroups[Number(groupId)].color, title: savedGroups[Number(groupId)].title, tabs: savedGroups[Number(groupId)].tabs, getSavedGroups: getSavedGroups })); })));
 }
 exports["default"] = SavedGroups;
+
+
+/***/ }),
+
+/***/ 5648:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useAlertProvider = exports.AlertContext = void 0;
+var react_1 = __importStar(__webpack_require__(7294));
+var CustomAlert_1 = __importDefault(__webpack_require__(6210));
+exports.AlertContext = (0, react_1.createContext)({
+    alertSettings: { isOpen: false, alertSeverity: 'success', alertMessage: '' },
+    setAlertSettings: function () { },
+});
+var defaultAlertSettings = {
+    isOpen: false,
+    alertSeverity: 'success',
+    alertMessage: '',
+};
+function AlertProvider(_a) {
+    var children = _a.children;
+    var _b = (0, react_1.useState)(defaultAlertSettings), alertSettings = _b[0], setState = _b[1];
+    var setAlertSettings = function (alertSeverity, alertMessage) {
+        var currentSettings = __assign({}, alertSettings);
+        if (alertSeverity !== undefined) {
+            currentSettings.alertSeverity = alertSeverity;
+        }
+        if (alertMessage !== undefined) {
+            currentSettings.alertMessage = alertMessage;
+        }
+        currentSettings.isOpen = !alertSettings.isOpen;
+        setState(currentSettings);
+    };
+    var handleAlert = function () {
+        setAlertSettings();
+    };
+    return (react_1.default.createElement(exports.AlertContext.Provider, { value: { alertSettings: alertSettings, setAlertSettings: setAlertSettings } },
+        children,
+        react_1.default.createElement(CustomAlert_1.default, { alertSettings: alertSettings, handleAlert: handleAlert })));
+}
+exports["default"] = AlertProvider;
+var useAlertProvider = function () {
+    var _a = (0, react_1.useContext)(exports.AlertContext), alertSettings = _a.alertSettings, setAlertSettings = _a.setAlertSettings;
+    return { alertSettings: alertSettings, setAlertSettings: setAlertSettings };
+};
+exports.useAlertProvider = useAlertProvider;
 
 
 /***/ }),
@@ -53293,7 +53345,13 @@ function ModalProvider(_a) {
         }
         setOpen(!open);
     };
-    var handleAddSubRule = function () { };
+    var handleAddSubRule = function (data) {
+        var action = modalConfig.actionCallback;
+        if (action !== undefined) {
+            action(JSON.stringify(data));
+        }
+        setOpen(!open);
+    };
     return (react_1.default.createElement(ModalContext.Provider, { value: { showModal: showModal } },
         children,
         modalConfig.type == 'input' ? (react_1.default.createElement(InputModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, inputValue: inputValue, setInputValue: setInputValue, buttonAction: handleSubmitInput, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null)),
@@ -53441,8 +53499,8 @@ exports.routes = void 0;
 var react_1 = __importDefault(__webpack_require__(7294));
 var pages_1 = __importDefault(__webpack_require__(6735));
 var current_groups_1 = __importDefault(__webpack_require__(3137));
+var rules_1 = __importDefault(__webpack_require__(9971));
 var AddRuleForm_1 = __importDefault(__webpack_require__(3013));
-var RulesList_1 = __importDefault(__webpack_require__(1763));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
 exports.routes = [
     {
@@ -53465,7 +53523,7 @@ exports.routes = [
                 children: [
                     {
                         index: true,
-                        element: react_1.default.createElement(RulesList_1.default, null),
+                        element: react_1.default.createElement(rules_1.default, null),
                     },
                     {
                         path: 'new',
@@ -56102,7 +56160,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 310:
+/***/ 6310:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -56137,11 +56195,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   string: () => (/* binding */ create$6),
 /* harmony export */   tuple: () => (/* binding */ create$1)
 /* harmony export */ });
-/* harmony import */ var property_expr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(760);
+/* harmony import */ var property_expr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5760);
 /* harmony import */ var property_expr__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(property_expr__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var tiny_case__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(885);
+/* harmony import */ var tiny_case__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9885);
 /* harmony import */ var tiny_case__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tiny_case__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var toposort__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(633);
+/* harmony import */ var toposort__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4633);
 /* harmony import */ var toposort__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(toposort__WEBPACK_IMPORTED_MODULE_2__);
 
 

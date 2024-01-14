@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Center from './components/Center';
+import AlertProvider from './provider/AlertProvider';
 import ColorModeProvider, { useColorMode } from './provider/ColorModeProvider';
 import ModalProvider from './provider/ModalProvider';
 import PopupStatusProvider from './provider/PopupStatusProvider';
@@ -33,18 +34,20 @@ export default function App() {
    return (
       <ColorModeProvider>
          <ThemeProvider theme={theme}>
-            <PopupStatusProvider>
-               <ModalProvider>
-                  <CssBaseline />
-                  <GlobalStyles>
-                     <Center column gap={1}>
-                        <>
-                           <RouterProvider router={router} />
-                        </>
-                     </Center>
-                  </GlobalStyles>
-               </ModalProvider>
-            </PopupStatusProvider>
+            <AlertProvider>
+               <PopupStatusProvider>
+                  <ModalProvider>
+                     <CssBaseline />
+                     <GlobalStyles>
+                        <Center column gap={1}>
+                           <>
+                              <RouterProvider router={router} />
+                           </>
+                        </Center>
+                     </GlobalStyles>
+                  </ModalProvider>
+               </PopupStatusProvider>
+            </AlertProvider>
          </ThemeProvider>
       </ColorModeProvider>
    );

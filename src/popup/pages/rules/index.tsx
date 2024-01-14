@@ -4,23 +4,16 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Rule from '../../../utils/Rule';
 import TabUtil from '../../../utils/TabUtil';
-import CustomAlert from '../../components/CustomAlert';
 import Row from '../../components/Row';
 import StyledChild from '../../components/StyledChild';
 import StyledContainer from '../../components/StyledContainer';
-import useAlertSettings from '../../hooks/useAlertSettings';
 import { usePopupStatus } from '../../provider/PopupStatusProvider';
 import RuleGroup from './RuleGroup';
 
-export default function RulesList() {
+export default function Rules() {
    const isPopup = usePopupStatus();
    const navigate = useNavigate();
    const [rules, setRules] = useState<Rule[]>([]);
-   const [alertSettings, setAlertSettings] = useAlertSettings();
-
-   const handleAlert = () => {
-      setAlertSettings();
-   };
 
    /**
     * Updates state with current saved rules
@@ -52,11 +45,7 @@ export default function RulesList() {
    return (
       <StyledContainer>
          {rules.map((rule: Rule) => (
-            <RuleGroup
-               rule={rule}
-               updateRules={updateRules}
-               setAlertSettings={setAlertSettings}
-            />
+            <RuleGroup rule={rule} updateRules={updateRules} />
          ))}
          <StyledChild>
             {isPopup ? (
@@ -73,7 +62,6 @@ export default function RulesList() {
                />
             )}
          </StyledChild>
-         <CustomAlert alertSettings={alertSettings} handleAlert={handleAlert} />
       </StyledContainer>
    );
 }

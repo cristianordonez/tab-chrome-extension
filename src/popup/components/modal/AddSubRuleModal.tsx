@@ -10,6 +10,7 @@ import { Resolver, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { RuleType, SubRuleValues, matchRule, urlRule } from '../../../types';
 import HookFormInput from '../../components/HookFormInput';
+import HookFormSelect from '../HookFormSelect';
 import ModalContainer from './ModalContainer';
 
 interface Props {
@@ -41,11 +42,30 @@ export default function AddSubRuleModal({
       formOptions
    );
 
+   /**
+    * Triggered when submitting modal
+    * @param data Object containing new subrule data
+    */
    const onSubmit = (data: SubRuleValues | RuleType) => {
+      console.log('data in on submit: ', data);
       if ('match' in data) {
          handleAddSubRule(data);
       }
    };
+
+   const urlItems = [
+      { value: 'any', label: 'any' },
+      { value: 'hostname', label: 'hostname' },
+      { value: 'path', label: 'path' },
+      { value: 'query', label: 'query' },
+   ];
+
+   const matchItems = [
+      { value: 'contains', label: 'contains' },
+      { value: 'is equal to', label: 'is equal to' },
+      { value: 'ends with', label: 'ends with' },
+      { value: 'starts with', label: 'starts with' },
+   ];
 
    return (
       <ModalContainer open={open} handleClose={handleClose} title={title}>
@@ -57,17 +77,19 @@ export default function AddSubRuleModal({
                   <></>
                )}
 
-               <HookFormInput
-                  label='Enter Rule Title'
+               <HookFormSelect
+                  name='url'
                   control={control}
-                  name='query'
+                  menuItems={urlItems}
+                  label='URL Section'
                />
-               {/* <HookFormSelect
-                  name='action'
+               <HookFormSelect
+                  name='match'
                   control={control}
-                  // menuItems={menuItems}
-                  label='Select Action'
-               /> */}
+                  menuItems={matchItems}
+                  label='Match type'
+               />
+               <HookFormInput label='Query' control={control} name='query' />
             </DialogContent>
             <DialogActions>
                <Button variant='contained' color='error' onClick={handleClose}>

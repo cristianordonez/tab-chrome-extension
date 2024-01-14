@@ -8,6 +8,7 @@ import { RuleType, SubRuleValues, actionRule, colors } from '../../../types';
 import Center from '../../components/Center';
 import HookFormInput from '../../components/HookFormInput';
 import HookFormSelect from '../../components/HookFormSelect';
+import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
 
 const formSchema = yup.object().shape({
@@ -21,6 +22,7 @@ const formSchema = yup.object().shape({
 
 export default function AddRuleForm() {
    const navigate = useNavigate();
+   const { setAlertSettings } = useAlertProvider();
    const { getOutput } = useModal();
 
    const formOptions = {
@@ -52,10 +54,12 @@ export default function AddRuleForm() {
 
    const handleAddSubRule = async () => {
       const output = await getOutput({
-         title: 'Add tabs',
+         title: 'Add Condition',
          type: 'subrule',
       });
+
       console.log('output: ', output);
+      setAlertSettings('error', 'test');
    };
 
    return (

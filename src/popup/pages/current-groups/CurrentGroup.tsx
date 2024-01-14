@@ -2,7 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import SaveIcon from '@mui/icons-material/Save';
-import { AlertColor, Box, Tooltip } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
@@ -12,22 +12,16 @@ import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
 import RowGroup from '../../components/RowGroupParent';
+import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
 
 interface Props {
    groupId: number;
    getGroups: () => Promise<void>;
-   setAlertSettings: (
-      alertSeverity?: AlertColor,
-      alertMessage?: string
-   ) => void;
 }
 
-export default function CurrentGroup({
-   groupId,
-   getGroups,
-   setAlertSettings,
-}: Props) {
+export default function CurrentGroup({ groupId, getGroups }: Props) {
+   const { setAlertSettings } = useAlertProvider();
    const [tabs, setTabs] = useState<chrome.tabs.Tab[]>([]);
    const [groupInfo, setGroupInfo] = useState<chrome.tabGroups.TabGroup | null>(
       null

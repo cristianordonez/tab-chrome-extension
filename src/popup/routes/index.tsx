@@ -2,8 +2,8 @@ import React from 'react';
 import { RouteType } from '../../types';
 import RootWrapper from '../pages/';
 import CurrentGroups from '../pages/current-groups';
+import RulesList from '../pages/rules';
 import AddRuleForm from '../pages/rules/AddRuleForm';
-import RulesList from '../pages/rules/RulesList';
 import SavedGroups from '../pages/saved-groups';
 
 export const routes: RouteType[] = [

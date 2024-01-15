@@ -391,6 +391,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -686,9 +695,6 @@ var Rule = (function () {
         }
         return;
     };
-    Rule.prototype.addSubRule = function (subrule) {
-        this.subRules.push(subrule);
-    };
     Rule.prototype.deleteSubRule = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var updatedRules;
@@ -696,6 +702,7 @@ var Rule = (function () {
                 switch (_a.label) {
                     case 0:
                         if (!this.subRuleExists(id)) return [3, 2];
+                        console.log('id if does exist subrule: ', id);
                         updatedRules = this.subRules.filter(function (subRule) {
                             return subRule.id != id;
                         });
@@ -710,6 +717,23 @@ var Rule = (function () {
             });
         });
     };
+    Rule.prototype.addSubRule = function (subRule) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if ('id' in subRule == false) {
+                            Object.assign(subRule, { id: (0, uuid_1.v4)() });
+                        }
+                        this.subRules = __spreadArray(__spreadArray([], this.subRules, true), [subRule], false);
+                        return [4, this.update({ subRules: this.subRules })];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
     Rule.prototype.subRuleExists = function (id) {
         var doesExist = false;
         this.subRules.forEach(function (subRule) {
@@ -717,6 +741,7 @@ var Rule = (function () {
                 doesExist = true;
             }
         });
+        console.log('doesExist: ', doesExist);
         return doesExist;
     };
     Rule.ruleStorage = new Storage_1.default('rules');

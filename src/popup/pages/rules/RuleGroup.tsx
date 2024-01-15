@@ -10,6 +10,7 @@ import Circle from '../../components/Circle';
 import Row from '../../components/Row';
 import RowGroup from '../../components/RowGroupParent';
 import { useAlertProvider } from '../../provider/AlertProvider';
+import { useModal } from '../../provider/ModalProvider';
 import { usePopupStatus } from '../../provider/PopupStatusProvider';
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
 
 export default function RuleGroup({ rule, updateRules }: Props) {
    const isPopup = usePopupStatus();
+   const { getOutput } = useModal();
    const { setAlertSettings } = useAlertProvider();
 
    /**
@@ -49,6 +51,7 @@ export default function RuleGroup({ rule, updateRules }: Props) {
     * @returns void
     */
    const handleDeleteSubRule = async (subRuleID: string) => {
+      console.log('subRuleId: ', subRuleID);
       await rule.deleteSubRule(subRuleID);
       await updateRules();
    };
@@ -61,10 +64,17 @@ export default function RuleGroup({ rule, updateRules }: Props) {
    };
 
    /**
-    * todo Adds condition to current rule
+    * Opens modal and adds condition to current rule and saves to local storage
     */
-   const handleAddCondition = () => {
-      console.log('');
+   const handleAddCondition = async () => {
+      const output = await getOutput({
+         title: 'Add Condition',
+         type: 'subrule',
+      });
+      if (output) {
+         await rule.addSubRule(JSON.parse(output));
+         await updateRules();
+      }
    };
 
    return (

@@ -51,7 +51,7 @@ export default function Rules() {
             {isPopup ? (
                <Row
                   PrefixIcon={<EditIcon />}
-                  title='Edit Rules'
+                  title='Edit/Add Rules'
                   handleClick={handleOpenFullPage}
                />
             ) : (

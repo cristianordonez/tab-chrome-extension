@@ -38,7 +38,7 @@ export default function AddSubRuleModal({
    const formOptions = {
       resolver: yupResolver(formSchema) as Resolver<SubRuleValues | RuleType>,
    };
-   const { handleSubmit, control } = useForm<SubRuleValues | RuleType>(
+   const { handleSubmit, control, reset } = useForm<SubRuleValues | RuleType>(
       formOptions
    );
 
@@ -49,6 +49,7 @@ export default function AddSubRuleModal({
    const onSubmit = (data: SubRuleValues | RuleType) => {
       if ('match' in data) {
          handleAddSubRule(data);
+         reset();
       }
    };
 

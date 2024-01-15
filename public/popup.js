@@ -51769,10 +51769,11 @@ function AddSubRuleModal(_a) {
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control;
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, reset = _b.reset;
     var onSubmit = function (data) {
         if ('match' in data) {
             handleAddSubRule(data);
+            reset();
         }
     };
     var urlItems = [
@@ -52472,13 +52473,15 @@ function AddRuleForm() {
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch;
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
     var onSubmit = function (data) {
         try {
             var ruleData = __assign(__assign({}, data), { subRules: subRules });
             var rule = Rule_1.default.build(ruleData);
             rule.save();
             setAlertSettings('success', 'Rule has been created!');
+            reset();
+            navigate(-1);
         }
         catch (err) {
             console.error(err);
@@ -52589,11 +52592,13 @@ var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 var AlertProvider_1 = __webpack_require__(5648);
+var ModalProvider_1 = __webpack_require__(5125);
 var PopupStatusProvider_1 = __webpack_require__(5671);
 function RuleGroup(_a) {
     var _this = this;
     var rule = _a.rule, updateRules = _a.updateRules;
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
+    var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var handleChange = function (event) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -52633,7 +52638,9 @@ function RuleGroup(_a) {
     var handleDeleteSubRule = function (subRuleID) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, rule.deleteSubRule(subRuleID)];
+                case 0:
+                    console.log('subRuleId: ', subRuleID);
+                    return [4, rule.deleteSubRule(subRuleID)];
                 case 1:
                     _a.sent();
                     return [4, updateRules()];
@@ -52649,9 +52656,28 @@ function RuleGroup(_a) {
             return [2];
         });
     }); };
-    var handleAddCondition = function () {
-        console.log('');
-    };
+    var handleAddCondition = function () { return __awaiter(_this, void 0, void 0, function () {
+        var output;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, getOutput({
+                        title: 'Add Condition',
+                        type: 'subrule',
+                    })];
+                case 1:
+                    output = _a.sent();
+                    if (!output) return [3, 4];
+                    return [4, rule.addSubRule(JSON.parse(output))];
+                case 2:
+                    _a.sent();
+                    return [4, updateRules()];
+                case 3:
+                    _a.sent();
+                    _a.label = 4;
+                case 4: return [2];
+            }
+        });
+    }); };
     return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), MiddleIcon: isPopup ? (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })) : (react_1.default.createElement(material_1.Tooltip, { title: 'Edit rule' },
             react_1.default.createElement(Edit_1.default, null))), FullScreenIcon: isPopup ? undefined : (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })), enableFullScreenIconHover: false, enableMiddleIconHover: !isPopup, middleAction: isPopup ? function () { } : handleEditRule, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
             react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() },
@@ -52796,7 +52822,7 @@ function Rules() {
     };
     return (react_1.default.createElement(StyledContainer_1.default, null,
         rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules })); }),
-        react_1.default.createElement(StyledChild_1.default, null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule })))));
+        react_1.default.createElement(StyledChild_1.default, null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit/Add Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule })))));
 }
 exports["default"] = Rules;
 
@@ -53972,6 +53998,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -54267,9 +54302,6 @@ var Rule = (function () {
         }
         return;
     };
-    Rule.prototype.addSubRule = function (subrule) {
-        this.subRules.push(subrule);
-    };
     Rule.prototype.deleteSubRule = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var updatedRules;
@@ -54277,6 +54309,7 @@ var Rule = (function () {
                 switch (_a.label) {
                     case 0:
                         if (!this.subRuleExists(id)) return [3, 2];
+                        console.log('id if does exist subrule: ', id);
                         updatedRules = this.subRules.filter(function (subRule) {
                             return subRule.id != id;
                         });
@@ -54291,6 +54324,23 @@ var Rule = (function () {
             });
         });
     };
+    Rule.prototype.addSubRule = function (subRule) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if ('id' in subRule == false) {
+                            Object.assign(subRule, { id: (0, uuid_1.v4)() });
+                        }
+                        this.subRules = __spreadArray(__spreadArray([], this.subRules, true), [subRule], false);
+                        return [4, this.update({ subRules: this.subRules })];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
     Rule.prototype.subRuleExists = function (id) {
         var doesExist = false;
         this.subRules.forEach(function (subRule) {
@@ -54298,6 +54348,7 @@ var Rule = (function () {
                 doesExist = true;
             }
         });
+        console.log('doesExist: ', doesExist);
         return doesExist;
     };
     Rule.ruleStorage = new Storage_1.default('rules');

@@ -321,19 +321,12 @@ class Rule {
    }
 
    /**
-    * todo Adds new subrule to rules array
-    * @param subrule SubRule interface with query, match, and url keys
-    */
-   public addSubRule(subrule: SubRule) {
-      this.subRules.push(subrule);
-   }
-
-   /**
     * Deletes subrule from current rule and updates storage
     * @param id ID of subrule to delete
     */
    public async deleteSubRule(id: string) {
       if (this.subRuleExists(id)) {
+         console.log('id if does exist subrule: ', id);
          const updatedRules = this.subRules.filter((subRule: SubRule) => {
             return subRule.id != id;
          });
@@ -344,6 +337,14 @@ class Rule {
             `No subrule exists with id of ${id} in rule with ID of ${this.id}`
          );
       }
+   }
+
+   public async addSubRule(subRule: SubRule) {
+      if ('id' in subRule == false) {
+         Object.assign(subRule, { id: uuidv4() });
+      }
+      this.subRules = [...this.subRules, subRule];
+      await this.update({ subRules: this.subRules });
    }
 
    /**
@@ -358,6 +359,7 @@ class Rule {
             doesExist = true;
          }
       });
+      console.log('doesExist: ', doesExist);
       return doesExist;
    }
 }

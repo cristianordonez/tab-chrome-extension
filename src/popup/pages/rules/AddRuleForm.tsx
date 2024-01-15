@@ -37,14 +37,14 @@ export default function AddRuleForm() {
       resolver: yupResolver(formSchema) as Resolver<SubRuleValues | RuleType>,
    };
 
-   const { handleSubmit, control, watch } = useForm<RuleType | SubRuleValues>(
-      formOptions
-   );
+   const { handleSubmit, control, watch, reset } = useForm<
+      RuleType | SubRuleValues
+   >(formOptions);
 
    /**
-    * todo Submit form
+    * Submits form
     * @param data
-    * @returns
+    * @returns void
     */
    const onSubmit = (data: RuleType | SubRuleValues) => {
       try {
@@ -52,7 +52,9 @@ export default function AddRuleForm() {
          const rule = Rule.build(ruleData);
          rule.save();
          setAlertSettings('success', 'Rule has been created!');
-         // todo navigate back to last page once submitted
+         // todo navigate back to last page once submitted and reset form if needed
+         reset();
+         navigate(-1);
       } catch (err) {
          console.error(err);
          setAlertSettings('error', 'Unable to create new rule.');

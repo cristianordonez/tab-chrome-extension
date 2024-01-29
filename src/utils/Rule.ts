@@ -86,6 +86,16 @@ class Rule {
    }
 
    /**
+    * Search for rule in storage by rule ID
+    * @param id rule id to search for
+    * @returns Rule or undefined if no rules with given id exist
+    */
+   public static async getById(id: string): Promise<Rule | undefined> {
+      const allRules = await this.getAll();
+      const result = allRules.find((rule) => rule.id == id);
+      return result;
+   }
+   /**
     * Uses RuleType object to build new class. Used since RuleType objects are stored in storage
     * @param ruleData Object containing attributes needed to build new Rule instance
     * @returns new Rule instance
@@ -359,7 +369,6 @@ class Rule {
             doesExist = true;
          }
       });
-      console.log('doesExist: ', doesExist);
       return doesExist;
    }
 }

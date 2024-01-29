@@ -1,8 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Resolver, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import {
    RuleType,
@@ -29,6 +29,7 @@ const formSchema = yup.object().shape({
 
 export default function AddRuleForm() {
    const navigate = useNavigate();
+   const { state } = useLocation();
    const { setAlertSettings } = useAlertProvider();
    const [subRules, setSubRules] = useState<SubRule[]>([]);
    const { getOutput } = useModal();
@@ -36,6 +37,25 @@ export default function AddRuleForm() {
    const formOptions = {
       resolver: yupResolver(formSchema) as Resolver<SubRuleValues | RuleType>,
    };
+
+   /**
+    * todo
+    */
+   const updateDefaults = async () => {
+      if (state) {
+         const { ruleId } = state;
+         const rule = await Rule.getById(ruleId);
+         const data = rule?.getData();
+         console.log('data: ', data);
+         // get value of rule from state
+         // use these values as default values in the form
+      }
+   };
+
+   console.log('state: ', state);
+   useEffect(() => {
+      updateDefaults();
+   }, []);
 
    const { handleSubmit, control, watch, reset } = useForm<
       RuleType | SubRuleValues
@@ -52,7 +72,6 @@ export default function AddRuleForm() {
          const rule = Rule.build(ruleData);
          rule.save();
          setAlertSettings('success', 'Rule has been created!');
-         // todo navigate back to last page once submitted and reset form if needed
          reset();
          navigate(-1);
       } catch (err) {
@@ -61,6 +80,9 @@ export default function AddRuleForm() {
       }
    };
 
+   /**
+    * Items used for select action element
+    */
    const menuItems = [
       { value: 0, label: 'Add tab to a tab group' },
       { value: 1, label: 'Pin tab' },
@@ -74,6 +96,9 @@ export default function AddRuleForm() {
       navigate(-1);
    };
 
+   /**
+    * Items used for select group color element
+    */
    const colorItems = colors.map((color) => {
       return { label: color, value: color };
    });
@@ -91,6 +116,9 @@ export default function AddRuleForm() {
       }
    };
 
+   /**
+    * Watches action value to remove group color select if needed
+    */
    const actionWatch = watch('action', 0);
 
    return (

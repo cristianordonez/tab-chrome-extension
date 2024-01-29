@@ -476,6 +476,20 @@ var Rule = (function () {
         enumerable: false,
         configurable: true
     });
+    Rule.getById = function (id) {
+        return __awaiter(this, void 0, Promise, function () {
+            var allRules, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.getAll()];
+                    case 1:
+                        allRules = _a.sent();
+                        result = allRules.find(function (rule) { return rule.id == id; });
+                        return [2, result];
+                }
+            });
+        });
+    };
     Rule.build = function (ruleData) {
         return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
@@ -741,7 +755,6 @@ var Rule = (function () {
                 doesExist = true;
             }
         });
-        console.log('doesExist: ', doesExist);
         return doesExist;
     };
     Rule.ruleStorage = new Storage_1.default('rules');

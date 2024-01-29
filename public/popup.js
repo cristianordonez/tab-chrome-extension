@@ -51426,11 +51426,12 @@ var material_1 = __webpack_require__(3417);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormInput(_a) {
-    var control = _a.control, label = _a.label, name = _a.name;
+    var control = _a.control, label = _a.label, name = _a.name, defaultValue = _a.defaultValue;
     var field = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
         rules: { required: true },
+        defaultValue: defaultValue,
     }).field;
     return (React.createElement(React.Fragment, null,
         React.createElement(material_1.TextField, __assign({}, field, { placeholder: name, label: label }))));
@@ -52467,12 +52468,34 @@ var formSchema = yup.object().shape({
 function AddRuleForm() {
     var _this = this;
     var navigate = (0, react_router_dom_1.useNavigate)();
+    var state = (0, react_router_dom_1.useLocation)().state;
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var _a = (0, react_1.useState)([]), subRules = _a[0], setSubRules = _a[1];
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
+    var updateDefaults = function () { return __awaiter(_this, void 0, void 0, function () {
+        var ruleId, rule, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!state) return [3, 2];
+                    ruleId = state.ruleId;
+                    return [4, Rule_1.default.getById(ruleId)];
+                case 1:
+                    rule = _a.sent();
+                    data = rule === null || rule === void 0 ? void 0 : rule.getData();
+                    console.log('data: ', data);
+                    _a.label = 2;
+                case 2: return [2];
+            }
+        });
+    }); };
+    console.log('state: ', state);
+    (0, react_1.useEffect)(function () {
+        updateDefaults();
+    }, []);
     var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
     var onSubmit = function (data) {
         try {
@@ -52587,6 +52610,7 @@ var Delete_1 = __importDefault(__webpack_require__(1733));
 var Edit_1 = __importDefault(__webpack_require__(7957));
 var material_1 = __webpack_require__(3417);
 var react_1 = __importDefault(__webpack_require__(7294));
+var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var Row_1 = __importDefault(__webpack_require__(9416));
@@ -52597,6 +52621,7 @@ var PopupStatusProvider_1 = __webpack_require__(5671);
 function RuleGroup(_a) {
     var _this = this;
     var rule = _a.rule, updateRules = _a.updateRules;
+    var navigate = (0, react_router_dom_1.useNavigate)();
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
     var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
@@ -52638,9 +52663,7 @@ function RuleGroup(_a) {
     var handleDeleteSubRule = function (subRuleID) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log('subRuleId: ', subRuleID);
-                    return [4, rule.deleteSubRule(subRuleID)];
+                case 0: return [4, rule.deleteSubRule(subRuleID)];
                 case 1:
                     _a.sent();
                     return [4, updateRules()];
@@ -52652,7 +52675,7 @@ function RuleGroup(_a) {
     }); };
     var handleEditRule = function () { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            console.log('');
+            navigate('new', { state: { ruleId: rule.id } });
             return [2];
         });
     }); };
@@ -54083,6 +54106,20 @@ var Rule = (function () {
         enumerable: false,
         configurable: true
     });
+    Rule.getById = function (id) {
+        return __awaiter(this, void 0, Promise, function () {
+            var allRules, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.getAll()];
+                    case 1:
+                        allRules = _a.sent();
+                        result = allRules.find(function (rule) { return rule.id == id; });
+                        return [2, result];
+                }
+            });
+        });
+    };
     Rule.build = function (ruleData) {
         return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
@@ -54348,7 +54385,6 @@ var Rule = (function () {
                 doesExist = true;
             }
         });
-        console.log('doesExist: ', doesExist);
         return doesExist;
     };
     Rule.ruleStorage = new Storage_1.default('rules');

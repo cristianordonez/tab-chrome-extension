@@ -14,13 +14,20 @@ interface Props {
       | 'groupName'
       | 'groupColor'
       | 'action';
+   defaultValue?: string;
 }
 
-export default function HookFormInput({ control, label, name }: Props) {
+export default function HookFormInput({
+   control,
+   label,
+   name,
+   defaultValue,
+}: Props) {
    const { field } = useController({
       name,
       control,
       rules: { required: true },
+      defaultValue,
    });
    return (
       <>

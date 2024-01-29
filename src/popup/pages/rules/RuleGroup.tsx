@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Switch, Tooltip } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SubRule } from '../../../types';
 import Rule from '../../../utils/Rule';
 import Circle from '../../components/Circle';
@@ -19,6 +20,7 @@ interface Props {
 }
 
 export default function RuleGroup({ rule, updateRules }: Props) {
+   const navigate = useNavigate();
    const isPopup = usePopupStatus();
    const { getOutput } = useModal();
    const { setAlertSettings } = useAlertProvider();
@@ -51,7 +53,6 @@ export default function RuleGroup({ rule, updateRules }: Props) {
     * @returns void
     */
    const handleDeleteSubRule = async (subRuleID: string) => {
-      console.log('subRuleId: ', subRuleID);
       await rule.deleteSubRule(subRuleID);
       await updateRules();
    };
@@ -60,7 +61,7 @@ export default function RuleGroup({ rule, updateRules }: Props) {
     * todo Handle edit rule
     */
    const handleEditRule = async () => {
-      console.log('');
+      navigate('new', { state: { ruleId: rule.id } });
    };
 
    /**

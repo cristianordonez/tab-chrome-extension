@@ -51382,6 +51382,129 @@ exports["default"] = CustomAlert;
 
 /***/ }),
 
+/***/ 448:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(3417);
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var react_router_dom_1 = __webpack_require__(9818);
+var types_1 = __webpack_require__(1230);
+var ConditionsForm_1 = __importDefault(__webpack_require__(747));
+var ModalProvider_1 = __webpack_require__(5125);
+var Center_1 = __importDefault(__webpack_require__(1081));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+function FormBody(_a) {
+    var _this = this;
+    var conditions = _a.conditions, setConditions = _a.setConditions, onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
+    var getOutput = (0, ModalProvider_1.useModal)().getOutput;
+    var navigate = (0, react_router_dom_1.useNavigate)();
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
+    var menuItems = [
+        { value: 0, label: 'Add tab to a tab group' },
+        { value: 1, label: 'Pin tab' },
+        { value: 2, label: 'Open tab in new window' },
+    ];
+    var handleCancel = function () {
+        navigate(-1);
+    };
+    var handleAddConditions = function () { return __awaiter(_this, void 0, void 0, function () {
+        var output;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, getOutput({
+                        title: 'Add Condition',
+                        type: 'condition',
+                    })];
+                case 1:
+                    output = _a.sent();
+                    if (output) {
+                        setConditions(__spreadArray(__spreadArray([], conditions, true), [JSON.parse(output)], false));
+                    }
+                    return [2];
+            }
+        });
+    }); };
+    var colorItems = types_1.colors.map(function (color) {
+        return { label: color, value: color };
+    });
+    var actionWatch = watch('action', 0);
+    var submit = function (data) {
+        onSubmit(data);
+        reset();
+        navigate(-1);
+    };
+    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
+        react_1.default.createElement(Center_1.default, { column: true },
+            react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
+                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
+                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
+                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
+                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
+                react_1.default.createElement(ConditionsForm_1.default, { conditions: conditions, handleAddConditions: handleAddConditions }),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
+                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
+}
+exports["default"] = FormBody;
+
+
+/***/ }),
+
 /***/ 3910:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -51718,7 +51841,7 @@ exports["default"] = StyledListItemButton;
 
 /***/ }),
 
-/***/ 651:
+/***/ 7040:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51765,15 +51888,15 @@ var formSchema = yup.object().shape({
         .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
     url: yup.mixed().oneOf(['any', 'hostname', 'path', 'query']),
 });
-function AddSubRuleModal(_a) {
-    var open = _a.open, title = _a.title, body = _a.body, handleClose = _a.handleClose, handleAddSubRule = _a.handleAddSubRule;
+function AddConditionModal(_a) {
+    var open = _a.open, title = _a.title, body = _a.body, handleClose = _a.handleClose, handleAddCondition = _a.handleAddCondition;
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
     var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, reset = _b.reset;
     var onSubmit = function (data) {
         if ('match' in data) {
-            handleAddSubRule(data);
+            handleAddCondition(data);
             reset();
         }
     };
@@ -51800,7 +51923,7 @@ function AddSubRuleModal(_a) {
                 react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleClose }, "Cancel"),
                 react_1.default.createElement(material_1.Button, { variant: 'contained', type: 'submit' }, "OK")))));
 }
-exports["default"] = AddSubRuleModal;
+exports["default"] = AddConditionModal;
 
 
 /***/ }),
@@ -52403,8 +52526,8 @@ var yup_1 = __webpack_require__(2433);
 var react_1 = __importStar(__webpack_require__(7294));
 var yup = __importStar(__webpack_require__(6310));
 var Rule_1 = __importDefault(__webpack_require__(4235));
+var FormBody_1 = __importDefault(__webpack_require__(448));
 var AlertProvider_1 = __webpack_require__(5648);
-var FormBody_1 = __importDefault(__webpack_require__(5951));
 var formSchema = yup.object().shape({
     title: yup.string().required('Please enter a query'),
     action: yup.mixed().oneOf([0, 1, 2]),
@@ -52414,13 +52537,13 @@ var formSchema = yup.object().shape({
 });
 function AddRuleForm() {
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
-    var _a = (0, react_1.useState)([]), subRules = _a[0], setSubRules = _a[1];
+    var _a = (0, react_1.useState)([]), conditions = _a[0], setConditions = _a[1];
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
     var onSubmit = function (data) {
         try {
-            var ruleData = __assign(__assign({}, data), { subRules: subRules });
+            var ruleData = __assign(__assign({}, data), { conditions: conditions });
             var rule = Rule_1.default.build(ruleData);
             rule.save();
             setAlertSettings('success', 'Rule has been created!');
@@ -52430,14 +52553,38 @@ function AddRuleForm() {
             setAlertSettings('error', 'Unable to create new rule.');
         }
     };
-    return (react_1.default.createElement(FormBody_1.default, { subRules: subRules, setSubRules: setSubRules, onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
+    return (react_1.default.createElement(FormBody_1.default, { conditions: conditions, setConditions: setConditions, onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
 }
 exports["default"] = AddRuleForm;
 
 
 /***/ }),
 
-/***/ 45:
+/***/ 747:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(3417);
+var react_1 = __importDefault(__webpack_require__(7294));
+function ConditionsForm(_a) {
+    var conditions = _a.conditions, handleAddConditions = _a.handleAddConditions;
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Conditions"),
+        react_1.default.createElement(material_1.List, null,
+            conditions.map(function (condition) { return (react_1.default.createElement("h1", null, condition.query)); }),
+            react_1.default.createElement(material_1.ListItemButton, { onClick: handleAddConditions }, "Add Condition"))));
+}
+exports["default"] = ConditionsForm;
+
+
+/***/ }),
+
+/***/ 8045:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52519,12 +52666,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
+var FormBody_1 = __importDefault(__webpack_require__(448));
 var AlertProvider_1 = __webpack_require__(5648);
-var FormBody_1 = __importDefault(__webpack_require__(5951));
 function AddRuleForm() {
     var _this = this;
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
-    var _a = (0, react_1.useState)([]), subRules = _a[0], setSubRules = _a[1];
+    var _a = (0, react_1.useState)([]), conditions = _a[0], setConditions = _a[1];
     var state = (0, react_router_dom_1.useLocation)().state;
     var _b = (0, react_1.useState)({}), formOptions = _b[0], setFormOptions = _b[1];
     (0, react_1.useEffect)(function () {
@@ -52541,6 +52688,7 @@ function AddRuleForm() {
                 case 1:
                     rule = _a.sent();
                     data = rule === null || rule === void 0 ? void 0 : rule.getData();
+                    console.log('data: ', data);
                     if (data) {
                         title = data.title, action = data.action, groupName = data.groupName, groupColor = data.groupColor, active = data.active;
                         setFormOptions({
@@ -52558,7 +52706,7 @@ function AddRuleForm() {
     }); };
     var onSubmit = function (data) {
         try {
-            var ruleData = __assign(__assign({}, data), { subRules: subRules });
+            var ruleData = __assign(__assign({}, data), { conditions: conditions });
             var rule = Rule_1.default.build(ruleData);
             rule.save();
             setAlertSettings('success', 'Rule has been created!');
@@ -52568,132 +52716,9 @@ function AddRuleForm() {
             setAlertSettings('error', 'Unable to create new rule.');
         }
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { subRules: subRules, setSubRules: setSubRules, onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { conditions: conditions, setConditions: setConditions, onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = AddRuleForm;
-
-
-/***/ }),
-
-/***/ 5951:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
-var react_1 = __importDefault(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var react_router_dom_1 = __webpack_require__(9818);
-var types_1 = __webpack_require__(1230);
-var Center_1 = __importDefault(__webpack_require__(1081));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-var ModalProvider_1 = __webpack_require__(5125);
-var SubRulesForm_1 = __importDefault(__webpack_require__(4432));
-function FormBody(_a) {
-    var _this = this;
-    var subRules = _a.subRules, setSubRules = _a.setSubRules, onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
-    var getOutput = (0, ModalProvider_1.useModal)().getOutput;
-    var navigate = (0, react_router_dom_1.useNavigate)();
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
-    var menuItems = [
-        { value: 0, label: 'Add tab to a tab group' },
-        { value: 1, label: 'Pin tab' },
-        { value: 2, label: 'Open tab in new window' },
-    ];
-    var handleCancel = function () {
-        navigate(-1);
-    };
-    var handleAddSubRule = function () { return __awaiter(_this, void 0, void 0, function () {
-        var output;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4, getOutput({
-                        title: 'Add Condition',
-                        type: 'subrule',
-                    })];
-                case 1:
-                    output = _a.sent();
-                    if (output) {
-                        setSubRules(__spreadArray(__spreadArray([], subRules, true), [JSON.parse(output)], false));
-                    }
-                    return [2];
-            }
-        });
-    }); };
-    var colorItems = types_1.colors.map(function (color) {
-        return { label: color, value: color };
-    });
-    var actionWatch = watch('action', 0);
-    var submit = function (data) {
-        onSubmit(data);
-        reset();
-        navigate(-1);
-    };
-    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
-        react_1.default.createElement(Center_1.default, { column: true },
-            react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
-                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
-                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
-                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
-                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
-                react_1.default.createElement(SubRulesForm_1.default, { subRules: subRules, handleAddSubRule: handleAddSubRule }),
-                react_1.default.createElement("div", null,
-                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
-                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
-}
-exports["default"] = FormBody;
 
 
 /***/ }),
@@ -52799,10 +52824,10 @@ function RuleGroup(_a) {
             }
         });
     }); };
-    var handleDeleteSubRule = function (subRuleID) { return __awaiter(_this, void 0, void 0, function () {
+    var handleDeleteCondition = function (conditionID) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, rule.deleteSubRule(subRuleID)];
+                case 0: return [4, rule.deleteCondition(conditionID)];
                 case 1:
                     _a.sent();
                     return [4, updateRules()];
@@ -52824,12 +52849,12 @@ function RuleGroup(_a) {
             switch (_a.label) {
                 case 0: return [4, getOutput({
                         title: 'Add Condition',
-                        type: 'subrule',
+                        type: 'condition',
                     })];
                 case 1:
                     output = _a.sent();
                     if (!output) return [3, 4];
-                    return [4, rule.addSubRule(JSON.parse(output))];
+                    return [4, rule.addCondition(JSON.parse(output))];
                 case 2:
                     _a.sent();
                     return [4, updateRules()];
@@ -52843,35 +52868,11 @@ function RuleGroup(_a) {
     return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), MiddleIcon: isPopup ? (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })) : (react_1.default.createElement(material_1.Tooltip, { title: 'Edit rule' },
             react_1.default.createElement(Edit_1.default, null))), FullScreenIcon: isPopup ? undefined : (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })), enableFullScreenIconHover: false, enableMiddleIconHover: !isPopup, middleAction: isPopup ? function () { } : handleEditRule, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
             react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() },
-        rule.subRules.map(function (subRule) { return (react_1.default.createElement(Row_1.default, { key: subRule.query, id: subRule.id, isChild: true, title: Rule_1.default.formatSubRuleText(subRule), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
-                react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: function () { return handleDeleteSubRule(subRule.id); } })); }),
+        rule.conditions.map(function (condition) { return (react_1.default.createElement(Row_1.default, { key: condition.query, id: condition.id, isChild: true, title: Rule_1.default.formatConditionText(condition), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
+                react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: function () { return handleDeleteCondition(condition.id); } })); }),
         react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Condition', handleClick: handleAddCondition })));
 }
 exports["default"] = RuleGroup;
-
-
-/***/ }),
-
-/***/ 4432:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
-var react_1 = __importDefault(__webpack_require__(7294));
-function SubRulesForm(_a) {
-    var subRules = _a.subRules, handleAddSubRule = _a.handleAddSubRule;
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "Conditions"),
-        react_1.default.createElement(material_1.List, null,
-            subRules.map(function (subRule) { return (react_1.default.createElement("h1", null, subRule.query)); }),
-            react_1.default.createElement(material_1.ListItemButton, { onClick: handleAddSubRule }, "Add Condition"))));
-}
-exports["default"] = SubRulesForm;
 
 
 /***/ }),
@@ -53505,7 +53506,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useModal = void 0;
 var react_1 = __importStar(__webpack_require__(7294));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var AddSubRuleModal_1 = __importDefault(__webpack_require__(651));
+var AddConditionModal_1 = __importDefault(__webpack_require__(7040));
 var AddTabsModal_1 = __importDefault(__webpack_require__(294));
 var InputModal_1 = __importDefault(__webpack_require__(3771));
 var defaultModalConfig = {
@@ -53525,7 +53526,7 @@ function ModalProvider(_a) {
         url: 'any',
         match: 'contains',
         query: '',
-    }), defaultSubRule = _d[0], setDefaultSubRule = _d[1];
+    }), defaultCondition = _d[0], setDefaultConditions = _d[1];
     var _e = (0, react_1.useState)(defaultModalConfig), modalConfig = _e[0], setModalConfig = _e[1];
     var _f = (0, react_1.useState)({}), tabs = _f[0], setTabs = _f[1];
     var findTabs = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -53585,7 +53586,7 @@ function ModalProvider(_a) {
         }
         setOpen(!open);
     };
-    var handleAddSubRule = function (data) {
+    var handleAddCondition = function (data) {
         var action = modalConfig.actionCallback;
         if (action !== undefined) {
             action(JSON.stringify(data));
@@ -53596,7 +53597,7 @@ function ModalProvider(_a) {
         children,
         modalConfig.type == 'input' ? (react_1.default.createElement(InputModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, inputValue: inputValue, setInputValue: setInputValue, buttonAction: handleSubmitInput, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null)),
         modalConfig.type == 'tabs' ? (react_1.default.createElement(AddTabsModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, buttonAction: handleAddTabs, body: modalConfig.body, setTabs: setTabs, tabs: tabs })) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        modalConfig.type == 'subrule' ? (react_1.default.createElement(AddSubRuleModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, handleAddSubRule: handleAddSubRule, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+        modalConfig.type == 'condition' ? (react_1.default.createElement(AddConditionModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, handleAddCondition: handleAddCondition, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = ModalProvider;
 var useModalContext = function () {
@@ -53741,7 +53742,7 @@ var pages_1 = __importDefault(__webpack_require__(6735));
 var current_groups_1 = __importDefault(__webpack_require__(3137));
 var rules_1 = __importDefault(__webpack_require__(9971));
 var AddRuleForm_1 = __importDefault(__webpack_require__(3013));
-var EditRuleForm_1 = __importDefault(__webpack_require__(45));
+var EditRuleForm_1 = __importDefault(__webpack_require__(8045));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
 exports.routes = [
     {
@@ -54183,13 +54184,13 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, subRules, id, active, groupName, groupColor) {
-        if (subRules === void 0) { subRules = []; }
+    function Rule(title, action, conditions, id, active, groupName, groupColor) {
+        if (conditions === void 0) { conditions = []; }
         if (id === void 0) { id = (0, uuid_1.v4)(); }
         if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
-        this._subRules = subRules;
+        this._conditions = conditions;
         this._id = id;
         this._active = active;
         this._groupName = groupName;
@@ -54202,12 +54203,12 @@ var Rule = (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Rule.prototype, "subRules", {
+    Object.defineProperty(Rule.prototype, "conditions", {
         get: function () {
-            return this._subRules;
+            return this._conditions;
         },
-        set: function (subRules) {
-            this._subRules = subRules;
+        set: function (conditions) {
+            this._conditions = conditions;
         },
         enumerable: false,
         configurable: true
@@ -54265,7 +54266,7 @@ var Rule = (function () {
         });
     };
     Rule.build = function (ruleData) {
-        return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
+        return new Rule(ruleData.title, ruleData.action, ruleData.conditions, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
     Rule.findMatch = function (tabId) {
         return __awaiter(this, void 0, Promise, function () {
@@ -54321,8 +54322,8 @@ var Rule = (function () {
         if (this.active) {
             var urlUtil_1 = new UrlUtil_1.default(url);
             var foundMatch_1 = false;
-            this.subRules.forEach(function (subRule) {
-                if (Rule.handleSubRule(subRule, urlUtil_1)) {
+            this.conditions.forEach(function (condition) {
+                if (Rule.handleCondition(condition, urlUtil_1)) {
                     foundMatch_1 = true;
                 }
             });
@@ -54330,23 +54331,23 @@ var Rule = (function () {
         }
         return false;
     };
-    Rule.handleSubRule = function (subRule, urlUtil) {
-        var currentUrl = this.extractUrl(subRule, urlUtil);
-        switch (subRule.match) {
+    Rule.handleCondition = function (condition, urlUtil) {
+        var currentUrl = this.extractUrl(condition, urlUtil);
+        switch (condition.match) {
             case 'contains':
-                return currentUrl.includes(subRule.query);
+                return currentUrl.includes(condition.query);
             case 'starts with':
-                return currentUrl.startsWith(subRule.query);
+                return currentUrl.startsWith(condition.query);
             case 'ends with':
-                return currentUrl.endsWith(subRule.query);
+                return currentUrl.endsWith(condition.query);
             case 'is equal to':
-                return currentUrl == subRule.query;
+                return currentUrl == condition.query;
             default:
                 return false;
         }
     };
-    Rule.extractUrl = function (subRule, urlUtil) {
-        switch (subRule.url) {
+    Rule.extractUrl = function (condition, urlUtil) {
+        switch (condition.url) {
             case 'any':
                 return urlUtil.getUrl();
             case 'hostname':
@@ -54359,11 +54360,11 @@ var Rule = (function () {
                 return urlUtil.getUrl();
         }
     };
-    Rule.formatSubRuleText = function (subRule) {
+    Rule.formatConditionText = function (condition) {
         var urlText = 'URL ';
-        if (subRule.url != 'any')
-            urlText += subRule.url;
-        urlText += " ".concat(subRule.match, " '").concat(subRule.query, "'");
+        if (condition.url != 'any')
+            urlText += condition.url;
+        urlText += " ".concat(condition.match, " '").concat(condition.query, "'");
         return urlText;
     };
     Rule.prototype.getData = function () {
@@ -54373,7 +54374,7 @@ var Rule = (function () {
             groupName: this.groupName,
             id: this.id,
             groupColor: this.groupColor,
-            subRules: this.subRules,
+            conditions: this.conditions,
             active: this.active,
         };
     };
@@ -54483,38 +54484,37 @@ var Rule = (function () {
         }
         return;
     };
-    Rule.prototype.deleteSubRule = function (id) {
+    Rule.prototype.deleteCondition = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var updatedRules;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!this.subRuleExists(id)) return [3, 2];
-                        console.log('id if does exist subrule: ', id);
-                        updatedRules = this.subRules.filter(function (subRule) {
-                            return subRule.id != id;
+                        if (!this.conditionExists(id)) return [3, 2];
+                        updatedRules = this.conditions.filter(function (condition) {
+                            return condition.id != id;
                         });
-                        this.subRules = updatedRules;
-                        return [4, this.update({ subRules: updatedRules })];
+                        this.conditions = updatedRules;
+                        return [4, this.update({ conditions: updatedRules })];
                     case 1:
                         _a.sent();
                         return [3, 3];
-                    case 2: throw new Error("No subrule exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
+                    case 2: throw new Error("No condition exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
                     case 3: return [2];
                 }
             });
         });
     };
-    Rule.prototype.addSubRule = function (subRule) {
+    Rule.prototype.addCondition = function (condition) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ('id' in subRule == false) {
-                            Object.assign(subRule, { id: (0, uuid_1.v4)() });
+                        if ('id' in condition == false) {
+                            Object.assign(condition, { id: (0, uuid_1.v4)() });
                         }
-                        this.subRules = __spreadArray(__spreadArray([], this.subRules, true), [subRule], false);
-                        return [4, this.update({ subRules: this.subRules })];
+                        this.conditions = __spreadArray(__spreadArray([], this.conditions, true), [condition], false);
+                        return [4, this.update({ conditions: this.conditions })];
                     case 1:
                         _a.sent();
                         return [2];
@@ -54522,10 +54522,10 @@ var Rule = (function () {
             });
         });
     };
-    Rule.prototype.subRuleExists = function (id) {
+    Rule.prototype.conditionExists = function (id) {
         var doesExist = false;
-        this.subRules.forEach(function (subRule) {
-            if (subRule.id == id) {
+        this.conditions.forEach(function (condition) {
+            if (condition.id == id) {
                 doesExist = true;
             }
         });

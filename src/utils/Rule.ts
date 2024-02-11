@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
    ColorEnum,
+   Condition,
    LocalStorageRules,
    RuleType,
-   SubRule,
    UpdateRuleType,
    actionRule,
 } from '../types';
@@ -15,7 +15,7 @@ import UrlUtil from './UrlUtil';
  * User created rule to create tab groups depending on url
  * @param title
  * @param action
- * @param subRules
+ * @param conditions
  * @param id
  * @param groupName
  * @param groupColor
@@ -25,7 +25,7 @@ class Rule {
    static ruleStorage: Storage = new Storage('rules');
    private _title: string;
    private _action: actionRule;
-   private _subRules: SubRule[];
+   private _conditions: Condition[];
    private _id: string;
    private _groupName?: string;
    private _groupColor?: ColorEnum;
@@ -34,7 +34,7 @@ class Rule {
    constructor(
       title: string,
       action: actionRule,
-      subRules: SubRule[] = [],
+      conditions: Condition[] = [],
       id: string = uuidv4(),
       active: boolean = true,
       groupName?: string,
@@ -42,7 +42,7 @@ class Rule {
    ) {
       this._title = title;
       this._action = action;
-      this._subRules = subRules;
+      this._conditions = conditions;
       this._id = id;
       this._active = active;
       this._groupName = groupName;
@@ -53,12 +53,12 @@ class Rule {
       return this._title;
    }
 
-   get subRules() {
-      return this._subRules;
+   get conditions() {
+      return this._conditions;
    }
 
-   set subRules(subRules: SubRule[]) {
-      this._subRules = subRules;
+   set conditions(conditions: Condition[]) {
+      this._conditions = conditions;
    }
 
    get action() {
@@ -104,7 +104,7 @@ class Rule {
       return new Rule(
          ruleData.title,
          ruleData.action,
-         ruleData.subRules,
+         ruleData.conditions,
          ruleData.id,
          ruleData.active,
          ruleData.groupName,
@@ -161,14 +161,14 @@ class Rule {
    /**
     * Determines if url is a match for any existing sub rule
     * @param url full url string
-    * @returns true if url matches any subrule for this rule
+    * @returns true if url matches any condition for this rule
     */
    public isMatch(url: string): boolean {
       if (this.active) {
          const urlUtil = new UrlUtil(url);
          let foundMatch = false;
-         this.subRules.forEach((subRule: SubRule) => {
-            if (Rule.handleSubRule(subRule, urlUtil)) {
+         this.conditions.forEach((condition: Condition) => {
+            if (Rule.handleCondition(condition, urlUtil)) {
                foundMatch = true;
             }
          });
@@ -178,33 +178,36 @@ class Rule {
    }
 
    /**
-    * @param subRule SubRule interface
+    * @param condition Condition interface
     * @param urlUtil UrlUtil class instance
-    * @returns true if urlUtil is match for given subrule
+    * @returns true if urlUtil is match for given condition
     */
-   private static handleSubRule(subRule: SubRule, urlUtil: UrlUtil): boolean {
-      const currentUrl = this.extractUrl(subRule, urlUtil);
-      switch (subRule.match) {
+   private static handleCondition(
+      condition: Condition,
+      urlUtil: UrlUtil
+   ): boolean {
+      const currentUrl = this.extractUrl(condition, urlUtil);
+      switch (condition.match) {
          case 'contains':
-            return currentUrl.includes(subRule.query);
+            return currentUrl.includes(condition.query);
          case 'starts with':
-            return currentUrl.startsWith(subRule.query);
+            return currentUrl.startsWith(condition.query);
          case 'ends with':
-            return currentUrl.endsWith(subRule.query);
+            return currentUrl.endsWith(condition.query);
          case 'is equal to':
-            return currentUrl == subRule.query;
+            return currentUrl == condition.query;
          default:
             return false;
       }
    }
 
    /**
-    * @param subRule object containing url, match, and query keys
+    * @param condition object containing url, match, and query keys
     * @param urlUtil UrlUtil class instance
-    * @returns corresponding part of url for given subrule
+    * @returns corresponding part of url for given condition
     */
-   private static extractUrl(subRule: SubRule, urlUtil: UrlUtil): string {
-      switch (subRule.url) {
+   private static extractUrl(condition: Condition, urlUtil: UrlUtil): string {
+      switch (condition.url) {
          case 'any':
             return urlUtil.getUrl();
          case 'hostname':
@@ -219,14 +222,14 @@ class Rule {
    }
 
    /**
-    * Creates formatted string to use in UI for given subrule
-    * @param subRule subrule containing url, match and query keys
+    * Creates formatted string to use in UI for given condition
+    * @param condition condition containing url, match and query keys
     * @returns formatted string
     */
-   public static formatSubRuleText(subRule: SubRule): string {
+   public static formatConditionText(condition: Condition): string {
       let urlText = 'URL ';
-      if (subRule.url != 'any') urlText += subRule.url;
-      urlText += ` ${subRule.match} '${subRule.query}'`;
+      if (condition.url != 'any') urlText += condition.url;
+      urlText += ` ${condition.match} '${condition.query}'`;
       return urlText;
    }
 
@@ -241,7 +244,7 @@ class Rule {
          groupName: this.groupName,
          id: this.id,
          groupColor: this.groupColor,
-         subRules: this.subRules,
+         conditions: this.conditions,
          active: this.active,
       };
    }
@@ -331,41 +334,40 @@ class Rule {
    }
 
    /**
-    * Deletes subrule from current rule and updates storage
-    * @param id ID of subrule to delete
+    * Deletes condition from current rule and updates storage
+    * @param id ID of condition to delete
     */
-   public async deleteSubRule(id: string) {
-      if (this.subRuleExists(id)) {
-         console.log('id if does exist subrule: ', id);
-         const updatedRules = this.subRules.filter((subRule: SubRule) => {
-            return subRule.id != id;
+   public async deleteCondition(id: string) {
+      if (this.conditionExists(id)) {
+         const updatedRules = this.conditions.filter((condition: Condition) => {
+            return condition.id != id;
          });
-         this.subRules = updatedRules;
-         await this.update({ subRules: updatedRules });
+         this.conditions = updatedRules;
+         await this.update({ conditions: updatedRules });
       } else {
          throw new Error(
-            `No subrule exists with id of ${id} in rule with ID of ${this.id}`
+            `No condition exists with id of ${id} in rule with ID of ${this.id}`
          );
       }
    }
 
-   public async addSubRule(subRule: SubRule) {
-      if ('id' in subRule == false) {
-         Object.assign(subRule, { id: uuidv4() });
+   public async addCondition(condition: Condition) {
+      if ('id' in condition == false) {
+         Object.assign(condition, { id: uuidv4() });
       }
-      this.subRules = [...this.subRules, subRule];
-      await this.update({ subRules: this.subRules });
+      this.conditions = [...this.conditions, condition];
+      await this.update({ conditions: this.conditions });
    }
 
    /**
-    * Finds if a subrule exists in this rule with the given id
-    * @param id the ID of the subrule to delete
-    * @returns true if subrule is found, false otherwise
+    * Finds if a condition exists in this rule with the given id
+    * @param id the ID of the condition to delete
+    * @returns true if condition is found, false otherwise
     */
-   private subRuleExists(id: string): boolean {
+   private conditionExists(id: string): boolean {
       let doesExist = false;
-      this.subRules.forEach((subRule: SubRule) => {
-         if (subRule.id == id) {
+      this.conditions.forEach((condition: Condition) => {
+         if (condition.id == id) {
             doesExist = true;
          }
       });

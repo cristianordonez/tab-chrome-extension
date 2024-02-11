@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Switch, Tooltip } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SubRule } from '../../../types';
+import { Condition } from '../../../types';
 import Rule from '../../../utils/Rule';
 import Circle from '../../components/Circle';
 import Row from '../../components/Row';
@@ -49,11 +49,11 @@ export default function RuleGroup({ rule, updateRules }: Props) {
    };
 
    /**
-    * Deletes a subrule from current rule
+    * Deletes a condition from current rule
     * @returns void
     */
-   const handleDeleteSubRule = async (subRuleID: string) => {
-      await rule.deleteSubRule(subRuleID);
+   const handleDeleteCondition = async (conditionID: string) => {
+      await rule.deleteCondition(conditionID);
       await updateRules();
    };
 
@@ -70,10 +70,10 @@ export default function RuleGroup({ rule, updateRules }: Props) {
    const handleAddCondition = async () => {
       const output = await getOutput({
          title: 'Add Condition',
-         type: 'subrule',
+         type: 'condition',
       });
       if (output) {
-         await rule.addSubRule(JSON.parse(output));
+         await rule.addCondition(JSON.parse(output));
          await updateRules();
       }
    };
@@ -108,18 +108,18 @@ export default function RuleGroup({ rule, updateRules }: Props) {
          title={rule.title}
          secondary={rule.formatActionText()}
       >
-         {rule.subRules.map((subRule: SubRule) => (
+         {rule.conditions.map((condition: Condition) => (
             <Row
-               key={subRule.query}
-               id={subRule.id}
+               key={condition.query}
+               id={condition.id}
                isChild={true}
-               title={Rule.formatSubRuleText(subRule)}
+               title={Rule.formatConditionText(condition)}
                AffixIcon={
                   <Tooltip title='Remove condition from rule'>
                      <CloseIcon fontSize='small' />
                   </Tooltip>
                }
-               affixAction={() => handleDeleteSubRule(subRule.id)}
+               affixAction={() => handleDeleteCondition(condition.id)}
             />
          ))}
          <Row

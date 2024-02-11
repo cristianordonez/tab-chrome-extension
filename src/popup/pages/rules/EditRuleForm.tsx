@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { UseFormArgs } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import { RuleType, SubRule, SubRuleValues } from '../../../types';
+import { Condition, ConditionValues, RuleType } from '../../../types';
 import Rule from '../../../utils/Rule';
+import FormBody from '../../components/FormBody';
 import { useAlertProvider } from '../../provider/AlertProvider';
-import FormBody from './FormBody';
-
-// const formSchema = yup.object().shape({
-//    title: yup.string().required('Please enter a query'),
-//    action: yup.mixed<actionRule>().oneOf([0, 1, 2]),
-//    groupName: yup.string(),
-//    groupColor: yup.string(),
-//    active: yup.bool(),
-// });
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   const [subRules, setSubRules] = useState<SubRule[]>([]);
+   const [conditions, setConditions] = useState<Condition[]>([]);
    const { state } = useLocation();
    const [formOptions, setFormOptions] = useState<UseFormArgs>({});
 
@@ -32,11 +24,13 @@ export default function AddRuleForm() {
          const { ruleId } = state;
          const rule = await Rule.getById(ruleId);
          const data = rule?.getData();
+         console.log('data: ', data);
          if (data) {
             const { title, action, groupName, groupColor, active } = data;
             setFormOptions({
                defaultValues: { title, action, groupName, groupColor, active },
             });
+            // setConditions(conditions);
          } else {
             console.error(
                `Unable to find data regarding rule with id ${ruleId}`
@@ -45,14 +39,15 @@ export default function AddRuleForm() {
          }
       }
    };
+
    /**
     * Submits form
     * @param data
     * @returns void
     */
-   const onSubmit = (data: RuleType | SubRuleValues) => {
+   const onSubmit = (data: RuleType | ConditionValues) => {
       try {
-         const ruleData = { ...data, subRules } as RuleType;
+         const ruleData = { ...data, conditions } as RuleType;
          const rule = Rule.build(ruleData);
          rule.save();
          setAlertSettings('success', 'Rule has been created!');
@@ -66,8 +61,8 @@ export default function AddRuleForm() {
       <>
          {Object.keys(formOptions).length ? (
             <FormBody
-               subRules={subRules}
-               setSubRules={setSubRules}
+               conditions={conditions}
+               setConditions={setConditions}
                onSubmit={onSubmit}
                title={'Edit Rule'}
                formOptions={formOptions}

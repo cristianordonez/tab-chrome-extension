@@ -1,10 +1,10 @@
 import { TextField } from '@mui/material';
 import * as React from 'react';
 import { Control, useController } from 'react-hook-form';
-import { RuleType, SubRuleValues } from '../../types';
+import { ConditionValues, RuleType } from '../../types';
 
 interface Props {
-   control: Control<SubRuleValues | RuleType, unknown>;
+   control: Control<ConditionValues | RuleType, unknown>;
    label: string;
    name:
       | 'match'

@@ -8,8 +8,8 @@ import {
 import React from 'react';
 import { Resolver, useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { RuleType, SubRuleValues, matchRule, urlRule } from '../../../types';
-import HookFormInput from '../../components/HookFormInput';
+import { ConditionValues, RuleType, matchRule, urlRule } from '../../../types';
+import HookFormInput from '../HookFormInput';
 import HookFormSelect from '../HookFormSelect';
 import ModalContainer from './ModalContainer';
 
@@ -18,7 +18,7 @@ interface Props {
    title?: string;
    body?: string;
    handleClose: () => void;
-   handleAddSubRule: (defaultValues: SubRuleValues) => void;
+   handleAddCondition: (defaultValues: ConditionValues) => void;
 }
 const formSchema = yup.object().shape({
    query: yup.string().required('Please enter a query'),
@@ -28,27 +28,27 @@ const formSchema = yup.object().shape({
    url: yup.mixed<urlRule>().oneOf(['any', 'hostname', 'path', 'query']),
 });
 
-export default function AddSubRuleModal({
+export default function AddConditionModal({
    open,
    title,
    body,
    handleClose,
-   handleAddSubRule,
+   handleAddCondition,
 }: Props) {
    const formOptions = {
-      resolver: yupResolver(formSchema) as Resolver<SubRuleValues | RuleType>,
+      resolver: yupResolver(formSchema) as Resolver<ConditionValues | RuleType>,
    };
-   const { handleSubmit, control, reset } = useForm<SubRuleValues | RuleType>(
+   const { handleSubmit, control, reset } = useForm<ConditionValues | RuleType>(
       formOptions
    );
 
    /**
     * Triggered when submitting modal
-    * @param data Object containing new subrule data
+    * @param data Object containing new condition data
     */
-   const onSubmit = (data: SubRuleValues | RuleType) => {
+   const onSubmit = (data: ConditionValues | RuleType) => {
       if ('match' in data) {
-         handleAddSubRule(data);
+         handleAddCondition(data);
          reset();
       }
    };

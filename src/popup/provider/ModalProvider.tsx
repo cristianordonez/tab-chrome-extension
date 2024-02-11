@@ -6,10 +6,10 @@ import React, {
    useEffect,
    useState,
 } from 'react';
-import { FormattedTabs, SubRuleValues } from '../../types';
+import { ConditionValues, FormattedTabs } from '../../types';
 import FormattedTab from '../../utils/FormattedTab';
 import TabUtil from '../../utils/TabUtil';
-import AddSubRuleModal from '../components/modal/AddSubRuleModal';
+import AddConditionModal from '../components/modal/AddConditionModal';
 import AddTabsModal from '../components/modal/AddTabsModal';
 import InputModal from '../components/modal/InputModal';
 
@@ -20,7 +20,7 @@ interface Props {
 interface ModalInputs {
    body?: string;
    title: string;
-   type: 'input' | 'confirmation' | 'tabs' | 'subrule';
+   type: 'input' | 'confirmation' | 'tabs' | 'condition';
 }
 
 interface ModalConfig extends ModalInputs {
@@ -47,7 +47,7 @@ const ModalContext = createContext<ContextType>(defaultContext);
 export default function ModalProvider({ children }: Props) {
    const [open, setOpen] = useState<boolean>(false);
    const [inputValue, setInputValue] = useState<string>('');
-   const [defaultSubRule, setDefaultSubRule] = useState<SubRuleValues>({
+   const [defaultCondition, setDefaultConditions] = useState<ConditionValues>({
       url: 'any',
       match: 'contains',
       query: '',
@@ -127,9 +127,9 @@ export default function ModalProvider({ children }: Props) {
    };
 
    /**
-    * Event triggered when submitting subrule form
+    * Event triggered when submitting condition form
     */
-   const handleAddSubRule = (data: SubRuleValues) => {
+   const handleAddCondition = (data: ConditionValues) => {
       const action = modalConfig.actionCallback;
       if (action !== undefined) {
          action(JSON.stringify(data));
@@ -168,12 +168,12 @@ export default function ModalProvider({ children }: Props) {
          ) : (
             <></>
          )}
-         {modalConfig.type == 'subrule' ? (
-            <AddSubRuleModal
+         {modalConfig.type == 'condition' ? (
+            <AddConditionModal
                open={open}
                handleClose={onClose}
                title={modalConfig.title}
-               handleAddSubRule={handleAddSubRule}
+               handleAddCondition={handleAddCondition}
                body={modalConfig.body}
             />
          ) : (

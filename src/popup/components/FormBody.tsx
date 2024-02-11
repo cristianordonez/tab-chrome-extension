@@ -2,24 +2,24 @@ import { Button, Typography } from '@mui/material';
 import React, { Dispatch, SetStateAction } from 'react';
 import { UseFormArgs, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { RuleType, SubRule, SubRuleValues, colors } from '../../../types';
-import Center from '../../components/Center';
-import HookFormInput from '../../components/HookFormInput';
-import HookFormSelect from '../../components/HookFormSelect';
-import { useModal } from '../../provider/ModalProvider';
-import SubRulesForm from './SubRulesForm';
+import { Condition, ConditionValues, RuleType, colors } from '../../types';
+import ConditionForm from '../pages/rules/ConditionsForm';
+import { useModal } from '../provider/ModalProvider';
+import Center from './Center';
+import HookFormInput from './HookFormInput';
+import HookFormSelect from './HookFormSelect';
 
 interface Props {
-   subRules: SubRule[];
-   setSubRules: Dispatch<SetStateAction<SubRule[]>>;
-   onSubmit: (data: RuleType | SubRuleValues) => void;
+   conditions: Condition[];
+   setConditions: Dispatch<SetStateAction<Condition[]>>;
+   onSubmit: (data: RuleType | ConditionValues) => void;
    title: string;
    formOptions: UseFormArgs;
 }
 
 export default function FormBody({
-   subRules,
-   setSubRules,
+   conditions,
+   setConditions,
    onSubmit,
    title,
    formOptions,
@@ -28,7 +28,7 @@ export default function FormBody({
    const navigate = useNavigate();
 
    const { handleSubmit, control, watch, reset } = useForm<
-      RuleType | SubRuleValues
+      RuleType | ConditionValues
    >(formOptions);
 
    /**
@@ -50,13 +50,13 @@ export default function FormBody({
    /**
     * Called when adding new condition button
     */
-   const handleAddSubRule = async () => {
+   const handleAddConditions = async () => {
       const output = await getOutput({
          title: 'Add Condition',
-         type: 'subrule',
+         type: 'condition',
       });
       if (output) {
-         setSubRules([...subRules, JSON.parse(output)]);
+         setConditions([...conditions, JSON.parse(output)]);
       }
    };
 
@@ -69,7 +69,7 @@ export default function FormBody({
 
    const actionWatch = watch('action', 0);
 
-   const submit = (data: RuleType | SubRuleValues) => {
+   const submit = (data: RuleType | ConditionValues) => {
       onSubmit(data);
       reset();
       navigate(-1);
@@ -106,9 +106,9 @@ export default function FormBody({
                      />
                   </>
                ) : null}
-               <SubRulesForm
-                  subRules={subRules}
-                  handleAddSubRule={handleAddSubRule}
+               <ConditionForm
+                  conditions={conditions}
+                  handleAddConditions={handleAddConditions}
                />
                <div>
                   <Button type='submit' variant='contained' color='success'>

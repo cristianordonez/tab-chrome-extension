@@ -62,20 +62,20 @@ type urlRule = 'any' | 'hostname' | 'path' | 'query';
 type matchRule = 'contains' | 'is equal to' | 'ends with' | 'starts with';
 type actionRule = 0 | 1 | 2;
 
-interface SubRuleValues {
+interface ConditionValues {
    url: urlRule;
    match: matchRule;
    query: string;
 }
 
-interface SubRule extends SubRuleValues {
+interface Condition extends ConditionValues {
    id: string;
 }
 
 interface RuleType {
    title: string;
    action: actionRule;
-   subRules?: SubRule[];
+   conditions?: Condition[];
    id?: string;
    groupName: string | undefined;
    groupColor: ColorEnum | undefined;
@@ -85,7 +85,7 @@ interface RuleType {
 interface UpdateRuleType {
    title?: string;
    action?: actionRule;
-   subRules?: SubRule[];
+   conditions?: Condition[];
    groupName?: string;
    groupColor?: ColorEnum;
    active?: boolean;
@@ -191,6 +191,8 @@ type RouteType = RouteObject & {
 export {
    AlertSettings,
    ColorEnum,
+   Condition,
+   ConditionValues,
    FormattedTabs,
    LocalStorageRules,
    LocalStorageTab,
@@ -201,8 +203,6 @@ export {
    RowProps,
    RuleType,
    SetAlertSettingsType,
-   SubRule,
-   SubRuleValues,
    TabOptions,
    UpdateRuleType,
    actionRule,

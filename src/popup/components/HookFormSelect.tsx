@@ -1,7 +1,7 @@
 import { MenuItem, Select } from '@mui/material';
 import * as React from 'react';
 import { Control, useController } from 'react-hook-form';
-import { RuleType, SubRuleValues } from '../../types';
+import { ConditionValues, RuleType } from '../../types';
 
 type MenuItemType = {
    value: number | string;
@@ -9,7 +9,7 @@ type MenuItemType = {
 };
 
 interface Props {
-   control: Control<SubRuleValues | RuleType, unknown>;
+   control: Control<ConditionValues | RuleType, unknown>;
    menuItems: MenuItemType[];
    label: string;
    name:

@@ -409,13 +409,13 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, subRules, id, active, groupName, groupColor) {
-        if (subRules === void 0) { subRules = []; }
+    function Rule(title, action, conditions, id, active, groupName, groupColor) {
+        if (conditions === void 0) { conditions = []; }
         if (id === void 0) { id = (0, uuid_1.v4)(); }
         if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
-        this._subRules = subRules;
+        this._conditions = conditions;
         this._id = id;
         this._active = active;
         this._groupName = groupName;
@@ -428,12 +428,12 @@ var Rule = (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Rule.prototype, "subRules", {
+    Object.defineProperty(Rule.prototype, "conditions", {
         get: function () {
-            return this._subRules;
+            return this._conditions;
         },
-        set: function (subRules) {
-            this._subRules = subRules;
+        set: function (conditions) {
+            this._conditions = conditions;
         },
         enumerable: false,
         configurable: true
@@ -491,7 +491,7 @@ var Rule = (function () {
         });
     };
     Rule.build = function (ruleData) {
-        return new Rule(ruleData.title, ruleData.action, ruleData.subRules, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
+        return new Rule(ruleData.title, ruleData.action, ruleData.conditions, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
     Rule.findMatch = function (tabId) {
         return __awaiter(this, void 0, Promise, function () {
@@ -547,8 +547,8 @@ var Rule = (function () {
         if (this.active) {
             var urlUtil_1 = new UrlUtil_1.default(url);
             var foundMatch_1 = false;
-            this.subRules.forEach(function (subRule) {
-                if (Rule.handleSubRule(subRule, urlUtil_1)) {
+            this.conditions.forEach(function (condition) {
+                if (Rule.handleCondition(condition, urlUtil_1)) {
                     foundMatch_1 = true;
                 }
             });
@@ -556,23 +556,23 @@ var Rule = (function () {
         }
         return false;
     };
-    Rule.handleSubRule = function (subRule, urlUtil) {
-        var currentUrl = this.extractUrl(subRule, urlUtil);
-        switch (subRule.match) {
+    Rule.handleCondition = function (condition, urlUtil) {
+        var currentUrl = this.extractUrl(condition, urlUtil);
+        switch (condition.match) {
             case 'contains':
-                return currentUrl.includes(subRule.query);
+                return currentUrl.includes(condition.query);
             case 'starts with':
-                return currentUrl.startsWith(subRule.query);
+                return currentUrl.startsWith(condition.query);
             case 'ends with':
-                return currentUrl.endsWith(subRule.query);
+                return currentUrl.endsWith(condition.query);
             case 'is equal to':
-                return currentUrl == subRule.query;
+                return currentUrl == condition.query;
             default:
                 return false;
         }
     };
-    Rule.extractUrl = function (subRule, urlUtil) {
-        switch (subRule.url) {
+    Rule.extractUrl = function (condition, urlUtil) {
+        switch (condition.url) {
             case 'any':
                 return urlUtil.getUrl();
             case 'hostname':
@@ -585,11 +585,11 @@ var Rule = (function () {
                 return urlUtil.getUrl();
         }
     };
-    Rule.formatSubRuleText = function (subRule) {
+    Rule.formatConditionText = function (condition) {
         var urlText = 'URL ';
-        if (subRule.url != 'any')
-            urlText += subRule.url;
-        urlText += " ".concat(subRule.match, " '").concat(subRule.query, "'");
+        if (condition.url != 'any')
+            urlText += condition.url;
+        urlText += " ".concat(condition.match, " '").concat(condition.query, "'");
         return urlText;
     };
     Rule.prototype.getData = function () {
@@ -599,7 +599,7 @@ var Rule = (function () {
             groupName: this.groupName,
             id: this.id,
             groupColor: this.groupColor,
-            subRules: this.subRules,
+            conditions: this.conditions,
             active: this.active,
         };
     };
@@ -709,38 +709,37 @@ var Rule = (function () {
         }
         return;
     };
-    Rule.prototype.deleteSubRule = function (id) {
+    Rule.prototype.deleteCondition = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var updatedRules;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!this.subRuleExists(id)) return [3, 2];
-                        console.log('id if does exist subrule: ', id);
-                        updatedRules = this.subRules.filter(function (subRule) {
-                            return subRule.id != id;
+                        if (!this.conditionExists(id)) return [3, 2];
+                        updatedRules = this.conditions.filter(function (condition) {
+                            return condition.id != id;
                         });
-                        this.subRules = updatedRules;
-                        return [4, this.update({ subRules: updatedRules })];
+                        this.conditions = updatedRules;
+                        return [4, this.update({ conditions: updatedRules })];
                     case 1:
                         _a.sent();
                         return [3, 3];
-                    case 2: throw new Error("No subrule exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
+                    case 2: throw new Error("No condition exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
                     case 3: return [2];
                 }
             });
         });
     };
-    Rule.prototype.addSubRule = function (subRule) {
+    Rule.prototype.addCondition = function (condition) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ('id' in subRule == false) {
-                            Object.assign(subRule, { id: (0, uuid_1.v4)() });
+                        if ('id' in condition == false) {
+                            Object.assign(condition, { id: (0, uuid_1.v4)() });
                         }
-                        this.subRules = __spreadArray(__spreadArray([], this.subRules, true), [subRule], false);
-                        return [4, this.update({ subRules: this.subRules })];
+                        this.conditions = __spreadArray(__spreadArray([], this.conditions, true), [condition], false);
+                        return [4, this.update({ conditions: this.conditions })];
                     case 1:
                         _a.sent();
                         return [2];
@@ -748,10 +747,10 @@ var Rule = (function () {
             });
         });
     };
-    Rule.prototype.subRuleExists = function (id) {
+    Rule.prototype.conditionExists = function (id) {
         var doesExist = false;
-        this.subRules.forEach(function (subRule) {
-            if (subRule.id == id) {
+        this.conditions.forEach(function (condition) {
+            if (condition.id == id) {
                 doesExist = true;
             }
         });

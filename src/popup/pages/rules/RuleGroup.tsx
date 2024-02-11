@@ -58,10 +58,10 @@ export default function RuleGroup({ rule, updateRules }: Props) {
    };
 
    /**
-    * todo Handle edit rule
+    * Handle edit rule. Navigates to /edit route with rule ID in state
     */
    const handleEditRule = async () => {
-      navigate('new', { state: { ruleId: rule.id } });
+      navigate('edit', { state: { ruleId: rule.id } });
    };
 
    /**

@@ -4,6 +4,7 @@ import RootWrapper from '../pages/';
 import CurrentGroups from '../pages/current-groups';
 import RulesList from '../pages/rules';
 import AddRuleForm from '../pages/rules/AddRuleForm';
+import EditRuleForm from '../pages/rules/EditRuleForm';
 import SavedGroups from '../pages/saved-groups';
 
 export const routes: RouteType[] = [
@@ -32,6 +33,10 @@ export const routes: RouteType[] = [
                {
                   path: 'new',
                   element: <AddRuleForm />,
+               },
+               {
+                  path: 'edit',
+                  element: <EditRuleForm />,
                },
             ],
          },

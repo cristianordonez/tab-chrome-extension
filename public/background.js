@@ -1659,10 +1659,16 @@ var UrlUtil = (function () {
     function UrlUtil(url) {
         var _this = this;
         this.getFaviconURL = function () {
-            var url = new URL(chrome.runtime.getURL('/_favicon/'));
-            url.searchParams.set('pageUrl', _this.url);
-            url.searchParams.set('size', '32');
-            return url.toString();
+            try {
+                var url = new URL(chrome.runtime.getURL('/_favicon/'));
+                url.searchParams.set('pageUrl', _this.url);
+                url.searchParams.set('size', '32');
+                return url.toString();
+            }
+            catch (err) {
+                console.error(err);
+                return '';
+            }
         };
         this.url = url;
         this.util = new URL(url);

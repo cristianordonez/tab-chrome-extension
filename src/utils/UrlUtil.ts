@@ -32,10 +32,15 @@ class UrlUtil {
     * @returns url to use for favicon for given tab
     */
    public getFaviconURL = (): string => {
-      const url = new URL(chrome.runtime.getURL('/_favicon/'));
-      url.searchParams.set('pageUrl', this.url);
-      url.searchParams.set('size', '32');
-      return url.toString();
+      try {
+         const url = new URL(chrome.runtime.getURL('/_favicon/'));
+         url.searchParams.set('pageUrl', this.url);
+         url.searchParams.set('size', '32');
+         return url.toString();
+      } catch (err) {
+         console.error(err);
+         return '';
+      }
    };
 }
 

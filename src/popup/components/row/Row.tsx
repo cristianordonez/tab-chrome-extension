@@ -1,10 +1,10 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ListItemIcon, ListItemText } from '@mui/material';
+import { ListItemText } from '@mui/material';
 import React, { MouseEvent } from 'react';
-import { RowProps } from '../../types';
-import { usePopupStatus } from '../provider/PopupStatusProvider';
-import StyledIconButton from './StyledIconButton';
+import { RowProps } from '../../../types';
+import { usePopupStatus } from '../../provider/PopupStatusProvider';
+import RowItemWrapper from './RowItemWrapper';
 import StyledListItemButton from './StyledListItemButton';
 
 /**
@@ -21,12 +21,13 @@ export default function Row({
    fullScreenAction,
    setShowChildren,
    handleClick,
-   title = '',
+   title,
    hasChildren = false,
    isChild = false,
    secondary = '',
    showChildren = false,
    enableMiddleIconHover = true,
+   enableAffixIconHover = true,
    enableFullScreenIconHover = true,
 }: RowProps) {
    const isPopup = usePopupStatus();
@@ -47,80 +48,98 @@ export default function Row({
       <StyledListItemButton
          hover={handleClick !== undefined}
          disableRipple
-         alignItems='center'
          divider
          onClick={makeClickHandler(() => {
             if (handleClick) handleClick();
          })}
       >
          {PrefixIcon ? (
-            <ListItemIcon
-               onClick={makeClickHandler(() => {
-                  if (prefixAction) prefixAction();
-               })}
+            <RowItemWrapper
+               hover={false}
+               handleClick={
+                  prefixAction
+                     ? makeClickHandler(() => prefixAction())
+                     : undefined
+               }
             >
                {PrefixIcon}
-            </ListItemIcon>
+            </RowItemWrapper>
          ) : (
             <></>
          )}
-         <ListItemText
-            primaryTypographyProps={{ fontSize: isChild ? '14px' : '16px' }}
-            secondaryTypographyProps={{ fontSize: '12px' }}
-            inset={isChild}
-            primary={title}
-            secondary={secondary}
-         />
+         {title ? (
+            <ListItemText
+               primaryTypographyProps={{ fontSize: isChild ? '14px' : '16px' }}
+               secondaryTypographyProps={{ fontSize: '12px' }}
+               inset={isChild}
+               primary={title}
+               secondary={secondary}
+            />
+         ) : (
+            <></>
+         )}
          {hasChildren ? (
-            <StyledIconButton
+            <RowItemWrapper
                hover
-               onClick={makeClickHandler(() => {
-                  if (setShowChildren) setShowChildren(!showChildren);
-               })}
-               sx={{ marginRight: '4em' }}
+               handleClick={
+                  setShowChildren
+                     ? makeClickHandler(() => setShowChildren(!showChildren))
+                     : undefined
+               }
+               marginRight
             >
                {arrowIcon}
-            </StyledIconButton>
+            </RowItemWrapper>
          ) : (
             <></>
          )}
          {FullScreenIcon !== undefined &&
          FullScreenIcon !== null &&
          !isPopup ? (
-            <StyledIconButton
+            <RowItemWrapper
                hover={enableFullScreenIconHover}
-               onClick={makeClickHandler(() => {
-                  if (fullScreenAction) fullScreenAction();
-               })}
-               sx={{ marginRight: '4em' }}
+               handleClick={
+                  fullScreenAction
+                     ? makeClickHandler(() => fullScreenAction())
+                     : undefined
+               }
+               marginRight
             >
                {FullScreenIcon}
-            </StyledIconButton>
+            </RowItemWrapper>
          ) : (
             <></>
          )}
          {MiddleIcon !== undefined && MiddleIcon !== null ? (
-            <StyledIconButton
+            <RowItemWrapper
                hover={enableMiddleIconHover}
-               onClick={makeClickHandler(() => {
-                  if (middleAction) middleAction();
-               })}
-               sx={{ marginRight: '4em' }}
+               handleClick={
+                  middleAction
+                     ? makeClickHandler(() => {
+                          middleAction();
+                       })
+                     : undefined
+               }
+               marginRight
             >
                {MiddleIcon}
-            </StyledIconButton>
+            </RowItemWrapper>
          ) : (
             <></>
          )}
          {AffixIcon !== undefined && AffixIcon !== null ? (
-            <StyledIconButton
-               hover
-               onClick={makeClickHandler(() => {
-                  if (affixAction) affixAction();
-               })}
+            <RowItemWrapper
+               hover={enableAffixIconHover}
+               handleClick={
+                  affixAction
+                     ? makeClickHandler(() => {
+                          affixAction();
+                       })
+                     : undefined
+               }
             >
                {AffixIcon}
-            </StyledIconButton>
+            </RowItemWrapper>
          ) : (
             <></>
          )}

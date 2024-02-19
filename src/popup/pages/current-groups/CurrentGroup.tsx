@@ -10,8 +10,8 @@ import { savedTabGroupsInstance } from '../../../utils/SavedTabGroups';
 import TabUtil from '../../../utils/TabUtil';
 import { getFaviconURL } from '../../../utils/getFaviconURL';
 import Circle from '../../components/Circle';
-import Row from '../../components/Row';
 import RowGroup from '../../components/RowGroupParent';
+import Row from '../../components/row/Row';
 import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
 

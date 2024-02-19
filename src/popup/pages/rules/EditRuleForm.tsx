@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { UseFormArgs } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import { Condition, ConditionValues, RuleType } from '../../../types';
+import {
+   AllConditionGroupsType,
+   ConditionValues,
+   RuleType,
+} from '../../../types';
 import Rule from '../../../utils/Rule';
-import FormBody from '../../components/FormBody';
 import { useAlertProvider } from '../../provider/AlertProvider';
+import FormBody from './FormBody';
+
+const defaultConditionGroups = {
+   all_required: false,
+   groups: [],
+};
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   const [conditions, setConditions] = useState<Condition[]>([]);
+   const [ruleConditions, setRuleConditions] = useState<AllConditionGroupsType>(
+      defaultConditionGroups
+   );
    const { state } = useLocation();
    const [formOptions, setFormOptions] = useState<UseFormArgs>({});
 
@@ -17,7 +28,7 @@ export default function AddRuleForm() {
    }, []);
 
    /**
-    * Get default values from rule using rule ID
+    * Gets info about rule from rule id in state and updates default values
     */
    const updateDefaults = async () => {
       if (state) {
@@ -26,11 +37,23 @@ export default function AddRuleForm() {
          const data = rule?.getData();
          console.log('data: ', data);
          if (data) {
-            const { title, action, groupName, groupColor, active } = data;
+            const {
+               conditionGroups,
+               title,
+               action,
+               groupName,
+               groupColor,
+               active,
+            } = data;
             setFormOptions({
                defaultValues: { title, action, groupName, groupColor, active },
             });
-            // setConditions(conditions);
+            if (conditionGroups == undefined) {
+               throw new Error(
+                  `Could not get conditions from current rule with id of ${ruleId}`
+               );
+            }
+            setRuleConditions(conditionGroups);
          } else {
             console.error(
                `Unable to find data regarding rule with id ${ruleId}`
@@ -41,16 +64,20 @@ export default function AddRuleForm() {
    };
 
    /**
-    * Submits form
+    * todo Submits form
     * @param data
     * @returns void
     */
    const onSubmit = (data: RuleType | ConditionValues) => {
       try {
-         const ruleData = { ...data, conditions } as RuleType;
-         const rule = Rule.build(ruleData);
-         rule.save();
-         setAlertSettings('success', 'Rule has been created!');
+         const ruleData = {
+            ...data,
+            conditionGroups: ruleConditions,
+         } as RuleType;
+         // const rule = Rule.build(ruleData);
+         // rule.save();
+         console.log('ruleData: ', ruleData);
+         // setAlertSettings('success', 'Rule has been created!');
       } catch (err) {
          console.error(err);
          setAlertSettings('error', 'Unable to create new rule.');
@@ -61,8 +88,8 @@ export default function AddRuleForm() {
       <>
          {Object.keys(formOptions).length ? (
             <FormBody
-               conditions={conditions}
-               setConditions={setConditions}
+               conditionGroups={ruleConditions}
+               setConditionGroups={setRuleConditions}
                onSubmit={onSubmit}
                title={'Edit Rule'}
                formOptions={formOptions}

@@ -1,7 +1,7 @@
 import { Collapse, List } from '@mui/material';
 import React, { useState } from 'react';
 import { RowProps } from '../../types';
-import Row from './Row';
+import Row from './row/Row';
 
 interface Props extends RowProps {
    /**

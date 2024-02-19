@@ -3,6 +3,7 @@ import { styled } from '@mui/system';
 
 interface StyledIconButtonProps extends IconButtonProps {
    hover?: boolean;
+   marginRight?: boolean;
 }
 
 /**
@@ -10,11 +11,12 @@ interface StyledIconButtonProps extends IconButtonProps {
  */
 const StyledIconButton = styled(IconButton, {
    shouldForwardProp: (prop) => prop !== 'hover' && prop !== 'marginRight',
-})<StyledIconButtonProps>(({ theme, hover }) => ({
+})<StyledIconButtonProps>(({ theme, hover, marginRight }) => ({
    '&:hover': {
       backgroundColor: hover ? '' : theme.palette.background.paper,
       cursor: hover ? 'pointer' : 'default',
    },
+   marginRight: marginRight ? '4em' : '0',
 }));
 
 export default StyledIconButton;

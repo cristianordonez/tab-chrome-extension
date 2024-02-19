@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Rule from '../../../utils/Rule';
 import TabUtil from '../../../utils/TabUtil';
-import Row from '../../components/Row';
-import StyledChild from '../../components/StyledChild';
 import StyledContainer from '../../components/StyledContainer';
+import Row from '../../components/row/Row';
 import { usePopupStatus } from '../../provider/PopupStatusProvider';
 import RuleGroup from './RuleGroup';
 
@@ -47,7 +46,7 @@ export default function Rules() {
          {rules.map((rule: Rule) => (
             <RuleGroup rule={rule} updateRules={updateRules} />
          ))}
-         <StyledChild>
+         <div>
             {isPopup ? (
                <Row
                   PrefixIcon={<EditIcon />}
@@ -61,7 +60,7 @@ export default function Rules() {
                   handleClick={handleAddRule}
                />
             )}
-         </StyledChild>
+         </div>
       </StyledContainer>
    );
 }

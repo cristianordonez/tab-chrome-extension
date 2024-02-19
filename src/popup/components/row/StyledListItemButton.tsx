@@ -12,7 +12,7 @@ const StyledListItemButton = styled(ListItemButton, {
 })<StyledListItemButtonProps>(({ theme, hover }) => ({
    backgroundColor: theme.palette.background.paper,
    alignItems: 'center',
-   justifyContent: 'flex-start',
+   justifyContent: 'space-evenly',
    height: '65px',
    '&:hover': {
       // if hover is true, set the same as background color above

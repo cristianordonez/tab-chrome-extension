@@ -7,8 +7,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
          ...(mode === 'dark'
             ? {
                  main: '#AE71EA',
+                 contrastText: '#000',
               }
-            : { main: '#336E7B' }),
+            : { main: '#336E7B', contrastText: '#fff' }),
       },
       secondary: {
          ...(mode === 'dark'

@@ -2,9 +2,8 @@ import AddIcon from '@mui/icons-material/Add';
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CurrentTabGroups from '../../../utils/CurrentTabGroups';
-import Row from '../../components/Row';
-import StyledChild from '../../components/StyledChild';
 import StyledContainer from '../../components/StyledContainer';
+import Row from '../../components/row/Row';
 import { useAlertProvider } from '../../provider/AlertProvider';
 import { useModal } from '../../provider/ModalProvider';
 import CurrentGroup from './CurrentGroup';
@@ -52,14 +51,14 @@ export default function CurrentGroups() {
                getGroups={getGroups}
             />
          ))}
-         <StyledChild>
+         <div>
             <Row
                id={uuidv4()}
                title='Create new group'
                PrefixIcon={<AddIcon />}
                handleClick={handleCreateGroup}
             />
-         </StyledChild>
+         </div>
       </StyledContainer>
    );
 }

@@ -3914,6 +3914,496 @@ const touchRippleClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["defaul
 
 /***/ }),
 
+/***/ 723:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  Z: () => (/* binding */ Chip_Chip)
+});
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+var objectWithoutPropertiesLoose = __webpack_require__(3366);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
+var esm_extends = __webpack_require__(7462);
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(7294);
+// EXTERNAL MODULE: ./node_modules/clsx/dist/clsx.m.js
+var clsx_m = __webpack_require__(6010);
+// EXTERNAL MODULE: ./node_modules/@mui/utils/esm/composeClasses/composeClasses.js
+var composeClasses = __webpack_require__(4780);
+// EXTERNAL MODULE: ./node_modules/@mui/system/esm/colorManipulator.js
+var colorManipulator = __webpack_require__(1796);
+// EXTERNAL MODULE: ./node_modules/@mui/material/utils/createSvgIcon.js
+var createSvgIcon = __webpack_require__(2066);
+// EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
+var jsx_runtime = __webpack_require__(5893);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/internal/svg-icons/Cancel.js
+'use client';
+
+
+
+
+/**
+ * @ignore - internal component.
+ */
+
+/* harmony default export */ const Cancel = ((0,createSvgIcon/* default */.Z)( /*#__PURE__*/(0,jsx_runtime.jsx)("path", {
+  d: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+}), 'Cancel'));
+// EXTERNAL MODULE: ./node_modules/@mui/material/utils/useForkRef.js
+var useForkRef = __webpack_require__(1705);
+// EXTERNAL MODULE: ./node_modules/@mui/material/utils/capitalize.js
+var capitalize = __webpack_require__(8216);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ButtonBase/ButtonBase.js + 5 modules
+var ButtonBase = __webpack_require__(6458);
+// EXTERNAL MODULE: ./node_modules/@mui/material/styles/useThemeProps.js
+var useThemeProps = __webpack_require__(1657);
+// EXTERNAL MODULE: ./node_modules/@mui/material/styles/styled.js
+var styled = __webpack_require__(948);
+// EXTERNAL MODULE: ./node_modules/@mui/material/Chip/chipClasses.js
+var chipClasses = __webpack_require__(72);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/Chip/Chip.js
+'use client';
+
+
+
+const _excluded = ["avatar", "className", "clickable", "color", "component", "deleteIcon", "disabled", "icon", "label", "onClick", "onDelete", "onKeyDown", "onKeyUp", "size", "variant", "tabIndex", "skipFocusWhenDisabled"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    disabled,
+    size,
+    color,
+    iconColor,
+    onDelete,
+    clickable,
+    variant
+  } = ownerState;
+  const slots = {
+    root: ['root', variant, disabled && 'disabled', `size${(0,capitalize/* default */.Z)(size)}`, `color${(0,capitalize/* default */.Z)(color)}`, clickable && 'clickable', clickable && `clickableColor${(0,capitalize/* default */.Z)(color)}`, onDelete && 'deletable', onDelete && `deletableColor${(0,capitalize/* default */.Z)(color)}`, `${variant}${(0,capitalize/* default */.Z)(color)}`],
+    label: ['label', `label${(0,capitalize/* default */.Z)(size)}`],
+    avatar: ['avatar', `avatar${(0,capitalize/* default */.Z)(size)}`, `avatarColor${(0,capitalize/* default */.Z)(color)}`],
+    icon: ['icon', `icon${(0,capitalize/* default */.Z)(size)}`, `iconColor${(0,capitalize/* default */.Z)(iconColor)}`],
+    deleteIcon: ['deleteIcon', `deleteIcon${(0,capitalize/* default */.Z)(size)}`, `deleteIconColor${(0,capitalize/* default */.Z)(color)}`, `deleteIcon${(0,capitalize/* default */.Z)(variant)}Color${(0,capitalize/* default */.Z)(color)}`]
+  };
+  return (0,composeClasses/* default */.Z)(slots, chipClasses/* getChipUtilityClass */.z, classes);
+};
+const ChipRoot = (0,styled/* default */.ZP)('div', {
+  name: 'MuiChip',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    const {
+      color,
+      iconColor,
+      clickable,
+      onDelete,
+      size,
+      variant
+    } = ownerState;
+    return [{
+      [`& .${chipClasses/* default */.Z.avatar}`]: styles.avatar
+    }, {
+      [`& .${chipClasses/* default */.Z.avatar}`]: styles[`avatar${(0,capitalize/* default */.Z)(size)}`]
+    }, {
+      [`& .${chipClasses/* default */.Z.avatar}`]: styles[`avatarColor${(0,capitalize/* default */.Z)(color)}`]
+    }, {
+      [`& .${chipClasses/* default */.Z.icon}`]: styles.icon
+    }, {
+      [`& .${chipClasses/* default */.Z.icon}`]: styles[`icon${(0,capitalize/* default */.Z)(size)}`]
+    }, {
+      [`& .${chipClasses/* default */.Z.icon}`]: styles[`iconColor${(0,capitalize/* default */.Z)(iconColor)}`]
+    }, {
+      [`& .${chipClasses/* default */.Z.deleteIcon}`]: styles.deleteIcon
+    }, {
+      [`& .${chipClasses/* default */.Z.deleteIcon}`]: styles[`deleteIcon${(0,capitalize/* default */.Z)(size)}`]
+    }, {
+      [`& .${chipClasses/* default */.Z.deleteIcon}`]: styles[`deleteIconColor${(0,capitalize/* default */.Z)(color)}`]
+    }, {
+      [`& .${chipClasses/* default */.Z.deleteIcon}`]: styles[`deleteIcon${(0,capitalize/* default */.Z)(variant)}Color${(0,capitalize/* default */.Z)(color)}`]
+    }, styles.root, styles[`size${(0,capitalize/* default */.Z)(size)}`], styles[`color${(0,capitalize/* default */.Z)(color)}`], clickable && styles.clickable, clickable && color !== 'default' && styles[`clickableColor${(0,capitalize/* default */.Z)(color)})`], onDelete && styles.deletable, onDelete && color !== 'default' && styles[`deletableColor${(0,capitalize/* default */.Z)(color)}`], styles[variant], styles[`${variant}${(0,capitalize/* default */.Z)(color)}`]];
+  }
+})(({
+  theme,
+  ownerState
+}) => {
+  const textColor = theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
+  return (0,esm_extends/* default */.Z)({
+    maxWidth: '100%',
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(13),
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 32,
+    color: (theme.vars || theme).palette.text.primary,
+    backgroundColor: (theme.vars || theme).palette.action.selected,
+    borderRadius: 32 / 2,
+    whiteSpace: 'nowrap',
+    transition: theme.transitions.create(['background-color', 'box-shadow']),
+    // label will inherit this from root, then `clickable` class overrides this for both
+    cursor: 'default',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    textDecoration: 'none',
+    border: 0,
+    // Remove `button` border
+    padding: 0,
+    // Remove `button` padding
+    verticalAlign: 'middle',
+    boxSizing: 'border-box',
+    [`&.${chipClasses/* default */.Z.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+      pointerEvents: 'none'
+    },
+    [`& .${chipClasses/* default */.Z.avatar}`]: {
+      marginLeft: 5,
+      marginRight: -6,
+      width: 24,
+      height: 24,
+      color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
+      fontSize: theme.typography.pxToRem(12)
+    },
+    [`& .${chipClasses/* default */.Z.avatarColorPrimary}`]: {
+      color: (theme.vars || theme).palette.primary.contrastText,
+      backgroundColor: (theme.vars || theme).palette.primary.dark
+    },
+    [`& .${chipClasses/* default */.Z.avatarColorSecondary}`]: {
+      color: (theme.vars || theme).palette.secondary.contrastText,
+      backgroundColor: (theme.vars || theme).palette.secondary.dark
+    },
+    [`& .${chipClasses/* default */.Z.avatarSmall}`]: {
+      marginLeft: 4,
+      marginRight: -4,
+      width: 18,
+      height: 18,
+      fontSize: theme.typography.pxToRem(10)
+    },
+    [`& .${chipClasses/* default */.Z.icon}`]: (0,esm_extends/* default */.Z)({
+      marginLeft: 5,
+      marginRight: -6
+    }, ownerState.size === 'small' && {
+      fontSize: 18,
+      marginLeft: 4,
+      marginRight: -4
+    }, ownerState.iconColor === ownerState.color && (0,esm_extends/* default */.Z)({
+      color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor
+    }, ownerState.color !== 'default' && {
+      color: 'inherit'
+    })),
+    [`& .${chipClasses/* default */.Z.deleteIcon}`]: (0,esm_extends/* default */.Z)({
+      WebkitTapHighlightColor: 'transparent',
+      color: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)` : (0,colorManipulator/* alpha */.Fq)(theme.palette.text.primary, 0.26),
+      fontSize: 22,
+      cursor: 'pointer',
+      margin: '0 5px 0 -6px',
+      '&:hover': {
+        color: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)` : (0,colorManipulator/* alpha */.Fq)(theme.palette.text.primary, 0.4)
+      }
+    }, ownerState.size === 'small' && {
+      fontSize: 16,
+      marginRight: 4,
+      marginLeft: -4
+    }, ownerState.color !== 'default' && {
+      color: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].contrastText, 0.7),
+      '&:hover, &:active': {
+        color: (theme.vars || theme).palette[ownerState.color].contrastText
+      }
+    })
+  }, ownerState.size === 'small' && {
+    height: 24
+  }, ownerState.color !== 'default' && {
+    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].contrastText
+  }, ownerState.onDelete && {
+    [`&.${chipClasses/* default */.Z.focusVisible}`]: {
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+    }
+  }, ownerState.onDelete && ownerState.color !== 'default' && {
+    [`&.${chipClasses/* default */.Z.focusVisible}`]: {
+      backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
+    }
+  });
+}, ({
+  theme,
+  ownerState
+}) => (0,esm_extends/* default */.Z)({}, ownerState.clickable && {
+  userSelect: 'none',
+  WebkitTapHighlightColor: 'transparent',
+  cursor: 'pointer',
+  '&:hover': {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity)
+  },
+  [`&.${chipClasses/* default */.Z.focusVisible}`]: {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
+  },
+  '&:active': {
+    boxShadow: (theme.vars || theme).shadows[1]
+  }
+}, ownerState.clickable && ownerState.color !== 'default' && {
+  [`&:hover, &.${chipClasses/* default */.Z.focusVisible}`]: {
+    backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
+  }
+}), ({
+  theme,
+  ownerState
+}) => (0,esm_extends/* default */.Z)({}, ownerState.variant === 'outlined' && {
+  backgroundColor: 'transparent',
+  border: theme.vars ? `1px solid ${theme.vars.palette.Chip.defaultBorder}` : `1px solid ${theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]}`,
+  [`&.${chipClasses/* default */.Z.clickable}:hover`]: {
+    backgroundColor: (theme.vars || theme).palette.action.hover
+  },
+  [`&.${chipClasses/* default */.Z.focusVisible}`]: {
+    backgroundColor: (theme.vars || theme).palette.action.focus
+  },
+  [`& .${chipClasses/* default */.Z.avatar}`]: {
+    marginLeft: 4
+  },
+  [`& .${chipClasses/* default */.Z.avatarSmall}`]: {
+    marginLeft: 2
+  },
+  [`& .${chipClasses/* default */.Z.icon}`]: {
+    marginLeft: 4
+  },
+  [`& .${chipClasses/* default */.Z.iconSmall}`]: {
+    marginLeft: 2
+  },
+  [`& .${chipClasses/* default */.Z.deleteIcon}`]: {
+    marginRight: 5
+  },
+  [`& .${chipClasses/* default */.Z.deleteIconSmall}`]: {
+    marginRight: 3
+  }
+}, ownerState.variant === 'outlined' && ownerState.color !== 'default' && {
+  color: (theme.vars || theme).palette[ownerState.color].main,
+  border: `1px solid ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, 0.7)}`,
+  [`&.${chipClasses/* default */.Z.clickable}:hover`]: {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity)
+  },
+  [`&.${chipClasses/* default */.Z.focusVisible}`]: {
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.focusOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity)
+  },
+  [`& .${chipClasses/* default */.Z.deleteIcon}`]: {
+    color: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, 0.7),
+    '&:hover, &:active': {
+      color: (theme.vars || theme).palette[ownerState.color].main
+    }
+  }
+}));
+const ChipLabel = (0,styled/* default */.ZP)('span', {
+  name: 'MuiChip',
+  slot: 'Label',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    const {
+      size
+    } = ownerState;
+    return [styles.label, styles[`label${(0,capitalize/* default */.Z)(size)}`]];
+  }
+})(({
+  ownerState
+}) => (0,esm_extends/* default */.Z)({
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  paddingLeft: 12,
+  paddingRight: 12,
+  whiteSpace: 'nowrap'
+}, ownerState.size === 'small' && {
+  paddingLeft: 8,
+  paddingRight: 8
+}));
+function isDeleteKeyboardEvent(keyboardEvent) {
+  return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
+}
+
+/**
+ * Chips represent complex entities in small blocks, such as a contact.
+ */
+const Chip = /*#__PURE__*/react.forwardRef(function Chip(inProps, ref) {
+  const props = (0,useThemeProps/* default */.Z)({
+    props: inProps,
+    name: 'MuiChip'
+  });
+  const {
+      avatar: avatarProp,
+      className,
+      clickable: clickableProp,
+      color = 'default',
+      component: ComponentProp,
+      deleteIcon: deleteIconProp,
+      disabled = false,
+      icon: iconProp,
+      label,
+      onClick,
+      onDelete,
+      onKeyDown,
+      onKeyUp,
+      size = 'medium',
+      variant = 'filled',
+      tabIndex,
+      skipFocusWhenDisabled = false // TODO v6: Rename to `focusableWhenDisabled`.
+    } = props,
+    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, _excluded);
+  const chipRef = react.useRef(null);
+  const handleRef = (0,useForkRef/* default */.Z)(chipRef, ref);
+  const handleDeleteIconClick = event => {
+    // Stop the event from bubbling up to the `Chip`
+    event.stopPropagation();
+    if (onDelete) {
+      onDelete(event);
+    }
+  };
+  const handleKeyDown = event => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget === event.target && isDeleteKeyboardEvent(event)) {
+      // Will be handled in keyUp, otherwise some browsers
+      // might init navigation
+      event.preventDefault();
+    }
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  };
+  const handleKeyUp = event => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget === event.target) {
+      if (onDelete && isDeleteKeyboardEvent(event)) {
+        onDelete(event);
+      } else if (event.key === 'Escape' && chipRef.current) {
+        chipRef.current.blur();
+      }
+    }
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
+  };
+  const clickable = clickableProp !== false && onClick ? true : clickableProp;
+  const component = clickable || onDelete ? ButtonBase/* default */.Z : ComponentProp || 'div';
+  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
+    component,
+    disabled,
+    size,
+    color,
+    iconColor: /*#__PURE__*/react.isValidElement(iconProp) ? iconProp.props.color || color : color,
+    onDelete: !!onDelete,
+    clickable,
+    variant
+  });
+  const classes = useUtilityClasses(ownerState);
+  const moreProps = component === ButtonBase/* default */.Z ? (0,esm_extends/* default */.Z)({
+    component: ComponentProp || 'div',
+    focusVisibleClassName: classes.focusVisible
+  }, onDelete && {
+    disableRipple: true
+  }) : {};
+  let deleteIcon = null;
+  if (onDelete) {
+    deleteIcon = deleteIconProp && /*#__PURE__*/react.isValidElement(deleteIconProp) ? /*#__PURE__*/react.cloneElement(deleteIconProp, {
+      className: (0,clsx_m/* default */.Z)(deleteIconProp.props.className, classes.deleteIcon),
+      onClick: handleDeleteIconClick
+    }) : /*#__PURE__*/(0,jsx_runtime.jsx)(Cancel, {
+      className: (0,clsx_m/* default */.Z)(classes.deleteIcon),
+      onClick: handleDeleteIconClick
+    });
+  }
+  let avatar = null;
+  if (avatarProp && /*#__PURE__*/react.isValidElement(avatarProp)) {
+    avatar = /*#__PURE__*/react.cloneElement(avatarProp, {
+      className: (0,clsx_m/* default */.Z)(classes.avatar, avatarProp.props.className)
+    });
+  }
+  let icon = null;
+  if (iconProp && /*#__PURE__*/react.isValidElement(iconProp)) {
+    icon = /*#__PURE__*/react.cloneElement(iconProp, {
+      className: (0,clsx_m/* default */.Z)(classes.icon, iconProp.props.className)
+    });
+  }
+  if (false) {}
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)(ChipRoot, (0,esm_extends/* default */.Z)({
+    as: component,
+    className: (0,clsx_m/* default */.Z)(classes.root, className),
+    disabled: clickable && disabled ? true : undefined,
+    onClick: onClick,
+    onKeyDown: handleKeyDown,
+    onKeyUp: handleKeyUp,
+    ref: handleRef,
+    tabIndex: skipFocusWhenDisabled && disabled ? -1 : tabIndex,
+    ownerState: ownerState
+  }, moreProps, other, {
+    children: [avatar || icon, /*#__PURE__*/(0,jsx_runtime.jsx)(ChipLabel, {
+      className: (0,clsx_m/* default */.Z)(classes.label),
+      ownerState: ownerState,
+      children: label
+    }), deleteIcon]
+  }));
+});
+ false ? 0 : void 0;
+/* harmony default export */ const Chip_Chip = (Chip);
+
+/***/ }),
+
+/***/ 72:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   z: () => (/* binding */ getChipUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
+/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
+
+
+function getChipUtilityClass(slot) {
+  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiChip', slot);
+}
+const chipClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiChip', ['root', 'sizeSmall', 'sizeMedium', 'colorError', 'colorInfo', 'colorPrimary', 'colorSecondary', 'colorSuccess', 'colorWarning', 'disabled', 'clickable', 'clickableColorPrimary', 'clickableColorSecondary', 'deletable', 'deletableColorPrimary', 'deletableColorSecondary', 'outlined', 'filled', 'outlinedPrimary', 'outlinedSecondary', 'filledPrimary', 'filledSecondary', 'avatar', 'avatarSmall', 'avatarMedium', 'avatarColorPrimary', 'avatarColorSecondary', 'icon', 'iconSmall', 'iconMedium', 'iconColorPrimary', 'iconColorSecondary', 'label', 'labelSmall', 'labelMedium', 'deleteIcon', 'deleteIconSmall', 'deleteIconMedium', 'deleteIconColorPrimary', 'deleteIconColorSecondary', 'deleteIconOutlinedColorPrimary', 'deleteIconOutlinedColorSecondary', 'deleteIconFilledColorPrimary', 'deleteIconFilledColorSecondary', 'focusVisible']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chipClasses);
+
+/***/ }),
+
+/***/ 570:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   chipClasses: () => (/* reexport safe */ _chipClasses__WEBPACK_IMPORTED_MODULE_1__.Z),
+/* harmony export */   "default": () => (/* reexport safe */ _Chip__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   getChipUtilityClass: () => (/* reexport safe */ _chipClasses__WEBPACK_IMPORTED_MODULE_1__.z)
+/* harmony export */ });
+/* harmony import */ var _Chip__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(723);
+/* harmony import */ var _chipClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
+'use client';
+
+
+
+
+
+/***/ }),
+
 /***/ 4799:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4363,6 +4853,136 @@ const listItemButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["def
 
 /***/ }),
 
+/***/ 885:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3366);
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7462);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6010);
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4780);
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(948);
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1657);
+/* harmony import */ var _listItemIconClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(592);
+/* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9773);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+'use client';
+
+
+
+const _excluded = ["className"];
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    alignItems,
+    classes
+  } = ownerState;
+  const slots = {
+    root: ['root', alignItems === 'flex-start' && 'alignItemsFlexStart']
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(slots, _listItemIconClasses__WEBPACK_IMPORTED_MODULE_3__/* .getListItemIconUtilityClass */ .f, classes);
+};
+const ListItemIconRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .ZP)('div', {
+  name: 'MuiListItemIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
+  }
+})(({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
+  minWidth: 56,
+  color: (theme.vars || theme).palette.action.active,
+  flexShrink: 0,
+  display: 'inline-flex'
+}, ownerState.alignItems === 'flex-start' && {
+  marginTop: 8
+}));
+
+/**
+ * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
+ */
+const ListItemIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ListItemIcon(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)({
+    props: inProps,
+    name: 'MuiListItemIcon'
+  });
+  const {
+      className
+    } = props,
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)(props, _excluded);
+  const context = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_List_ListContext__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z);
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({}, props, {
+    alignItems: context.alignItems
+  });
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ListItemIconRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)(classes.root, className),
+    ownerState: ownerState,
+    ref: ref
+  }, other));
+});
+ false ? 0 : void 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListItemIcon);
+
+/***/ }),
+
+/***/ 330:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _ListItemIcon__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   getListItemIconUtilityClass: () => (/* reexport safe */ _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__.f),
+/* harmony export */   listItemIconClasses: () => (/* reexport safe */ _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
+/* harmony export */ });
+/* harmony import */ var _ListItemIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(885);
+/* harmony import */ var _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(592);
+'use client';
+
+
+
+
+
+/***/ }),
+
+/***/ 592:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   f: () => (/* binding */ getListItemIconUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
+/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
+
+
+function getListItemIconUtilityClass(slot) {
+  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiListItemIcon', slot);
+}
+const listItemIconClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiListItemIcon', ['root', 'alignItemsFlexStart']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (listItemIconClasses);
+
+/***/ }),
+
 /***/ 2373:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4516,6 +5136,454 @@ function getSvgIconUtilityClass(slot) {
 }
 const svgIconClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiSvgIcon', ['root', 'colorPrimary', 'colorSecondary', 'colorAction', 'colorError', 'colorDisabled', 'fontSizeInherit', 'fontSizeSmall', 'fontSizeMedium', 'fontSizeLarge']);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (svgIconClasses);
+
+/***/ }),
+
+/***/ 290:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(3366);
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7462);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(6010);
+/* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4780);
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1796);
+/* harmony import */ var _ButtonBase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6458);
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8216);
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1657);
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(948);
+/* harmony import */ var _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(138);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
+'use client';
+
+// @inheritedComponent ButtonBase
+
+
+const _excluded = ["children", "className", "color", "disabled", "disableFocusRipple", "fullWidth", "onChange", "onClick", "selected", "size", "value"];
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    fullWidth,
+    selected,
+    disabled,
+    size,
+    color
+  } = ownerState;
+  const slots = {
+    root: ['root', selected && 'selected', disabled && 'disabled', fullWidth && 'fullWidth', `size${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(size)}`, color]
+  };
+  return (0,_mui_base__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z)(slots, _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_4__/* .getToggleButtonUtilityClass */ .a, classes);
+};
+const ToggleButtonRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .ZP)(_ButtonBase__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+  name: 'MuiToggleButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[`size${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(ownerState.size)}`]];
+  }
+})(({
+  theme,
+  ownerState
+}) => {
+  let selectedColor = ownerState.color === 'standard' ? theme.palette.text.primary : theme.palette[ownerState.color].main;
+  let selectedColorChannel;
+  if (theme.vars) {
+    selectedColor = ownerState.color === 'standard' ? theme.vars.palette.text.primary : theme.vars.palette[ownerState.color].main;
+    selectedColorChannel = ownerState.color === 'standard' ? theme.vars.palette.text.primaryChannel : theme.vars.palette[ownerState.color].mainChannel;
+  }
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({}, theme.typography.button, {
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    padding: 11,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    color: (theme.vars || theme).palette.action.active
+  }, ownerState.fullWidth && {
+    width: '100%'
+  }, {
+    [`&.${_toggleButtonClasses__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
+      border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`
+    },
+    '&:hover': {
+      textDecoration: 'none',
+      // Reset on mouse devices
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,_styles__WEBPACK_IMPORTED_MODULE_8__/* .alpha */ .Fq)(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      '@media (hover: none)': {
+        backgroundColor: 'transparent'
+      }
+    },
+    [`&.${_toggleButtonClasses__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z.selected}`]: {
+      color: selectedColor,
+      backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_styles__WEBPACK_IMPORTED_MODULE_8__/* .alpha */ .Fq)(selectedColor, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,_styles__WEBPACK_IMPORTED_MODULE_8__/* .alpha */ .Fq)(selectedColor, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_styles__WEBPACK_IMPORTED_MODULE_8__/* .alpha */ .Fq)(selectedColor, theme.palette.action.selectedOpacity)
+        }
+      }
+    }
+  }, ownerState.size === 'small' && {
+    padding: 7,
+    fontSize: theme.typography.pxToRem(13)
+  }, ownerState.size === 'large' && {
+    padding: 15,
+    fontSize: theme.typography.pxToRem(15)
+  });
+});
+const ToggleButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ToggleButton(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z)({
+    props: inProps,
+    name: 'MuiToggleButton'
+  });
+  const {
+      children,
+      className,
+      color = 'standard',
+      disabled = false,
+      disableFocusRipple = false,
+      fullWidth = false,
+      onChange,
+      onClick,
+      selected,
+      size = 'medium',
+      value
+    } = props,
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z)(props, _excluded);
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({}, props, {
+    color,
+    disabled,
+    disableFocusRipple,
+    fullWidth,
+    size
+  });
+  const classes = useUtilityClasses(ownerState);
+  const handleChange = event => {
+    if (onClick) {
+      onClick(event, value);
+      if (event.defaultPrevented) {
+        return;
+      }
+    }
+    if (onChange) {
+      onChange(event, value);
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ToggleButtonRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z)(classes.root, className),
+    disabled: disabled,
+    focusRipple: !disableFocusRipple,
+    ref: ref,
+    onClick: handleChange,
+    onChange: onChange,
+    value: value,
+    ownerState: ownerState,
+    "aria-pressed": selected
+  }, other, {
+    children: children
+  }));
+});
+ false ? 0 : void 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToggleButton);
+
+/***/ }),
+
+/***/ 376:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _ToggleButton__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   getToggleButtonUtilityClass: () => (/* reexport safe */ _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__.a),
+/* harmony export */   toggleButtonClasses: () => (/* reexport safe */ _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
+/* harmony export */ });
+/* harmony import */ var _ToggleButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(290);
+/* harmony import */ var _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(138);
+'use client';
+
+
+
+
+
+/***/ }),
+
+/***/ 138:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   a: () => (/* binding */ getToggleButtonUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
+/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
+
+
+function getToggleButtonUtilityClass(slot) {
+  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiToggleButton', slot);
+}
+const toggleButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiToggleButton', ['root', 'disabled', 'selected', 'standard', 'primary', 'secondary', 'sizeSmall', 'sizeMedium', 'sizeLarge']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toggleButtonClasses);
+
+/***/ }),
+
+/***/ 864:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  Z: () => (/* binding */ ToggleButtonGroup_ToggleButtonGroup)
+});
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+var objectWithoutPropertiesLoose = __webpack_require__(3366);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
+var esm_extends = __webpack_require__(7462);
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(7294);
+// EXTERNAL MODULE: ./node_modules/@mui/material/node_modules/react-is/index.js
+var react_is = __webpack_require__(6607);
+// EXTERNAL MODULE: ./node_modules/clsx/dist/clsx.m.js
+var clsx_m = __webpack_require__(6010);
+// EXTERNAL MODULE: ./node_modules/@mui/utils/esm/composeClasses/composeClasses.js
+var composeClasses = __webpack_require__(4780);
+// EXTERNAL MODULE: ./node_modules/@mui/material/styles/styled.js
+var styled = __webpack_require__(948);
+// EXTERNAL MODULE: ./node_modules/@mui/material/styles/useThemeProps.js
+var useThemeProps = __webpack_require__(1657);
+// EXTERNAL MODULE: ./node_modules/@mui/material/utils/capitalize.js
+var capitalize = __webpack_require__(8216);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/isValueSelected.js
+// Determine if the toggle button value matches, or is contained in, the
+// candidate group value.
+function isValueSelected(value, candidate) {
+  if (candidate === undefined || value === undefined) {
+    return false;
+  }
+  if (Array.isArray(candidate)) {
+    return candidate.indexOf(value) >= 0;
+  }
+  return value === candidate;
+}
+// EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButtonGroup/toggleButtonGroupClasses.js
+var toggleButtonGroupClasses = __webpack_require__(640);
+// EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
+var jsx_runtime = __webpack_require__(5893);
+;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js
+'use client';
+
+
+
+const _excluded = ["children", "className", "color", "disabled", "exclusive", "fullWidth", "onChange", "orientation", "size", "value"];
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    orientation,
+    fullWidth,
+    disabled
+  } = ownerState;
+  const slots = {
+    root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
+    grouped: ['grouped', `grouped${(0,capitalize/* default */.Z)(orientation)}`, disabled && 'disabled']
+  };
+  return (0,composeClasses/* default */.Z)(slots, toggleButtonGroupClasses/* getToggleButtonGroupUtilityClass */.H, classes);
+};
+const ToggleButtonGroupRoot = (0,styled/* default */.ZP)('div', {
+  name: 'MuiToggleButtonGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [{
+      [`& .${toggleButtonGroupClasses/* default */.Z.grouped}`]: styles.grouped
+    }, {
+      [`& .${toggleButtonGroupClasses/* default */.Z.grouped}`]: styles[`grouped${(0,capitalize/* default */.Z)(ownerState.orientation)}`]
+    }, styles.root, ownerState.orientation === 'vertical' && styles.vertical, ownerState.fullWidth && styles.fullWidth];
+  }
+})(({
+  ownerState,
+  theme
+}) => (0,esm_extends/* default */.Z)({
+  display: 'inline-flex',
+  borderRadius: (theme.vars || theme).shape.borderRadius
+}, ownerState.orientation === 'vertical' && {
+  flexDirection: 'column'
+}, ownerState.fullWidth && {
+  width: '100%'
+}, {
+  [`& .${toggleButtonGroupClasses/* default */.Z.grouped}`]: (0,esm_extends/* default */.Z)({}, ownerState.orientation === 'horizontal' ? {
+    '&:not(:first-of-type)': {
+      marginLeft: -1,
+      borderLeft: '1px solid transparent',
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0
+    },
+    '&:not(:last-of-type)': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0
+    },
+    [`&.${toggleButtonGroupClasses/* default */.Z.selected} + .${toggleButtonGroupClasses/* default */.Z.grouped}.${toggleButtonGroupClasses/* default */.Z.selected}`]: {
+      borderLeft: 0,
+      marginLeft: 0
+    }
+  } : {
+    '&:not(:first-of-type)': {
+      marginTop: -1,
+      borderTop: '1px solid transparent',
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0
+    },
+    '&:not(:last-of-type)': {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0
+    },
+    [`&.${toggleButtonGroupClasses/* default */.Z.selected} + .${toggleButtonGroupClasses/* default */.Z.grouped}.${toggleButtonGroupClasses/* default */.Z.selected}`]: {
+      borderTop: 0,
+      marginTop: 0
+    }
+  })
+}));
+const ToggleButtonGroup = /*#__PURE__*/react.forwardRef(function ToggleButtonGroup(inProps, ref) {
+  const props = (0,useThemeProps/* default */.Z)({
+    props: inProps,
+    name: 'MuiToggleButtonGroup'
+  });
+  const {
+      children,
+      className,
+      color = 'standard',
+      disabled = false,
+      exclusive = false,
+      fullWidth = false,
+      onChange,
+      orientation = 'horizontal',
+      size = 'medium',
+      value
+    } = props,
+    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, _excluded);
+  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
+    disabled,
+    fullWidth,
+    orientation,
+    size
+  });
+  const classes = useUtilityClasses(ownerState);
+  const handleChange = (event, buttonValue) => {
+    if (!onChange) {
+      return;
+    }
+    const index = value && value.indexOf(buttonValue);
+    let newValue;
+    if (value && index >= 0) {
+      newValue = value.slice();
+      newValue.splice(index, 1);
+    } else {
+      newValue = value ? value.concat(buttonValue) : [buttonValue];
+    }
+    onChange(event, newValue);
+  };
+  const handleExclusiveChange = (event, buttonValue) => {
+    if (!onChange) {
+      return;
+    }
+    onChange(event, value === buttonValue ? null : buttonValue);
+  };
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(ToggleButtonGroupRoot, (0,esm_extends/* default */.Z)({
+    role: "group",
+    className: (0,clsx_m/* default */.Z)(classes.root, className),
+    ref: ref,
+    ownerState: ownerState
+  }, other, {
+    children: react.Children.map(children, child => {
+      if (! /*#__PURE__*/react.isValidElement(child)) {
+        return null;
+      }
+      if (false) {}
+      return /*#__PURE__*/react.cloneElement(child, {
+        className: (0,clsx_m/* default */.Z)(classes.grouped, child.props.className),
+        onChange: exclusive ? handleExclusiveChange : handleChange,
+        selected: child.props.selected === undefined ? isValueSelected(child.props.value, value) : child.props.selected,
+        size: child.props.size || size,
+        fullWidth,
+        color: child.props.color || color,
+        disabled: child.props.disabled || disabled
+      });
+    })
+  }));
+});
+ false ? 0 : void 0;
+/* harmony default export */ const ToggleButtonGroup_ToggleButtonGroup = (ToggleButtonGroup);
+
+/***/ }),
+
+/***/ 811:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _ToggleButtonGroup__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   getToggleButtonGroupUtilityClass: () => (/* reexport safe */ _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__.H),
+/* harmony export */   toggleButtonGroupClasses: () => (/* reexport safe */ _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
+/* harmony export */ });
+/* harmony import */ var _ToggleButtonGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(864);
+/* harmony import */ var _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(640);
+'use client';
+
+
+
+
+
+/***/ }),
+
+/***/ 640:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   H: () => (/* binding */ getToggleButtonGroupUtilityClass),
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1588);
+/* harmony import */ var _generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4867);
+
+
+function getToggleButtonGroupUtilityClass(slot) {
+  return (0,_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)('MuiToggleButtonGroup', slot);
+}
+const toggleButtonGroupClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)('MuiToggleButtonGroup', ['root', 'selected', 'vertical', 'disabled', 'grouped', 'groupedHorizontal', 'groupedVertical']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toggleButtonGroupClasses);
 
 /***/ }),
 
@@ -4723,7 +5791,7 @@ const red = {
 
 /***/ }),
 
-/***/ 3417:
+/***/ 350:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4758,7 +5826,7 @@ __webpack_require__.d(__webpack_exports__, {
   CardHeader: () => (/* reexport */ CardHeader_CardHeader),
   CardMedia: () => (/* reexport */ CardMedia_CardMedia),
   Checkbox: () => (/* reexport */ Checkbox_Checkbox),
-  Chip: () => (/* reexport */ Chip_Chip),
+  Chip: () => (/* reexport */ Chip/* default */.Z),
   CircularProgress: () => (/* reexport */ CircularProgress_CircularProgress),
   ClickAwayListener: () => (/* reexport */ ClickAwayListener_ClickAwayListener),
   Collapse: () => (/* reexport */ Collapse_Collapse),
@@ -4800,7 +5868,7 @@ __webpack_require__.d(__webpack_exports__, {
   ListItem: () => (/* reexport */ ListItem_ListItem),
   ListItemAvatar: () => (/* reexport */ ListItemAvatar_ListItemAvatar),
   ListItemButton: () => (/* reexport */ ListItemButton/* default */.Z),
-  ListItemIcon: () => (/* reexport */ ListItemIcon_ListItemIcon),
+  ListItemIcon: () => (/* reexport */ ListItemIcon/* default */.Z),
   ListItemSecondaryAction: () => (/* reexport */ ListItemSecondaryAction_ListItemSecondaryAction),
   ListItemText: () => (/* reexport */ ListItemText_ListItemText),
   ListSubheader: () => (/* reexport */ ListSubheader_ListSubheader),
@@ -4871,8 +5939,8 @@ __webpack_require__.d(__webpack_exports__, {
   TextField: () => (/* reexport */ TextField_TextField),
   TextareaAutosize: () => (/* reexport */ TextareaAutosize_TextareaAutosize),
   ThemeProvider: () => (/* reexport */ styles.ThemeProvider),
-  ToggleButton: () => (/* reexport */ ToggleButton_ToggleButton),
-  ToggleButtonGroup: () => (/* reexport */ ToggleButtonGroup_ToggleButtonGroup),
+  ToggleButton: () => (/* reexport */ ToggleButton/* default */.Z),
+  ToggleButtonGroup: () => (/* reexport */ ToggleButtonGroup/* default */.Z),
   Toolbar: () => (/* reexport */ Toolbar_Toolbar),
   Tooltip: () => (/* reexport */ Tooltip_Tooltip),
   Typography: () => (/* reexport */ Typography_Typography),
@@ -4907,7 +5975,7 @@ __webpack_require__.d(__webpack_exports__, {
   cardHeaderClasses: () => (/* reexport */ CardHeader_cardHeaderClasses),
   cardMediaClasses: () => (/* reexport */ CardMedia_cardMediaClasses),
   checkboxClasses: () => (/* reexport */ Checkbox_checkboxClasses),
-  chipClasses: () => (/* reexport */ Chip_chipClasses),
+  chipClasses: () => (/* reexport */ material_Chip.chipClasses),
   circularProgressClasses: () => (/* reexport */ CircularProgress_circularProgressClasses),
   collapseClasses: () => (/* reexport */ Collapse_collapseClasses),
   colors: () => (/* reexport */ colors_namespaceObject),
@@ -4971,7 +6039,7 @@ __webpack_require__.d(__webpack_exports__, {
   getCardMediaUtilityClass: () => (/* reexport */ getCardMediaUtilityClass),
   getCardUtilityClass: () => (/* reexport */ getCardUtilityClass),
   getCheckboxUtilityClass: () => (/* reexport */ getCheckboxUtilityClass),
-  getChipUtilityClass: () => (/* reexport */ getChipUtilityClass),
+  getChipUtilityClass: () => (/* reexport */ material_Chip.getChipUtilityClass),
   getCircularProgressUtilityClass: () => (/* reexport */ getCircularProgressUtilityClass),
   getCollapseUtilityClass: () => (/* reexport */ getCollapseUtilityClass),
   getContainerUtilityClass: () => (/* reexport */ getContainerUtilityClass),
@@ -5006,7 +6074,7 @@ __webpack_require__.d(__webpack_exports__, {
   getLinkUtilityClass: () => (/* reexport */ getLinkUtilityClass),
   getListItemAvatarUtilityClass: () => (/* reexport */ getListItemAvatarUtilityClass),
   getListItemButtonUtilityClass: () => (/* reexport */ material_ListItemButton.getListItemButtonUtilityClass),
-  getListItemIconUtilityClass: () => (/* reexport */ getListItemIconUtilityClass),
+  getListItemIconUtilityClass: () => (/* reexport */ material_ListItemIcon.getListItemIconUtilityClass),
   getListItemSecondaryActionClassesUtilityClass: () => (/* reexport */ getListItemSecondaryActionClassesUtilityClass),
   getListItemTextUtilityClass: () => (/* reexport */ getListItemTextUtilityClass),
   getListItemUtilityClass: () => (/* reexport */ getListItemUtilityClass),
@@ -5058,8 +6126,8 @@ __webpack_require__.d(__webpack_exports__, {
   getTableUtilityClass: () => (/* reexport */ getTableUtilityClass),
   getTabsUtilityClass: () => (/* reexport */ getTabsUtilityClass),
   getTextFieldUtilityClass: () => (/* reexport */ getTextFieldUtilityClass),
-  getToggleButtonGroupUtilityClass: () => (/* reexport */ getToggleButtonGroupUtilityClass),
-  getToggleButtonUtilityClass: () => (/* reexport */ getToggleButtonUtilityClass),
+  getToggleButtonGroupUtilityClass: () => (/* reexport */ material_ToggleButtonGroup.getToggleButtonGroupUtilityClass),
+  getToggleButtonUtilityClass: () => (/* reexport */ material_ToggleButton.getToggleButtonUtilityClass),
   getToolbarUtilityClass: () => (/* reexport */ getToolbarUtilityClass),
   getTooltipUtilityClass: () => (/* reexport */ getTooltipUtilityClass),
   getTouchRippleUtilityClass: () => (/* reexport */ touchRippleClasses/* getTouchRippleUtilityClass */.H),
@@ -5086,7 +6154,7 @@ __webpack_require__.d(__webpack_exports__, {
   listItemAvatarClasses: () => (/* reexport */ ListItemAvatar_listItemAvatarClasses),
   listItemButtonClasses: () => (/* reexport */ material_ListItemButton.listItemButtonClasses),
   listItemClasses: () => (/* reexport */ ListItem_listItemClasses),
-  listItemIconClasses: () => (/* reexport */ ListItemIcon_listItemIconClasses),
+  listItemIconClasses: () => (/* reexport */ material_ListItemIcon.listItemIconClasses),
   listItemSecondaryActionClasses: () => (/* reexport */ ListItemSecondaryAction_listItemSecondaryActionClasses),
   listItemTextClasses: () => (/* reexport */ ListItemText_listItemTextClasses),
   listSubheaderClasses: () => (/* reexport */ ListSubheader_listSubheaderClasses),
@@ -5146,8 +6214,8 @@ __webpack_require__.d(__webpack_exports__, {
   tableSortLabelClasses: () => (/* reexport */ TableSortLabel_tableSortLabelClasses),
   tabsClasses: () => (/* reexport */ Tabs_tabsClasses),
   textFieldClasses: () => (/* reexport */ TextField_textFieldClasses),
-  toggleButtonClasses: () => (/* reexport */ ToggleButton_toggleButtonClasses),
-  toggleButtonGroupClasses: () => (/* reexport */ ToggleButtonGroup_toggleButtonGroupClasses),
+  toggleButtonClasses: () => (/* reexport */ material_ToggleButton.toggleButtonClasses),
+  toggleButtonGroupClasses: () => (/* reexport */ material_ToggleButtonGroup.toggleButtonGroupClasses),
   toolbarClasses: () => (/* reexport */ Toolbar_toolbarClasses),
   tooltipClasses: () => (/* reexport */ Tooltip_tooltipClasses),
   touchRippleClasses: () => (/* reexport */ touchRippleClasses/* default */.Z),
@@ -11226,423 +12294,8 @@ const ListSubheader = /*#__PURE__*/react.forwardRef(function ListSubheader(inPro
 ListSubheader.muiSkipListHighlight = true;
  false ? 0 : void 0;
 /* harmony default export */ const ListSubheader_ListSubheader = (ListSubheader);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/internal/svg-icons/Cancel.js
-'use client';
-
-
-
-
-/**
- * @ignore - internal component.
- */
-
-/* harmony default export */ const Cancel = ((0,createSvgIcon/* default */.Z)( /*#__PURE__*/(0,jsx_runtime.jsx)("path", {
-  d: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
-}), 'Cancel'));
-;// CONCATENATED MODULE: ./node_modules/@mui/material/Chip/chipClasses.js
-
-
-function getChipUtilityClass(slot) {
-  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiChip', slot);
-}
-const chipClasses = (0,generateUtilityClasses/* default */.Z)('MuiChip', ['root', 'sizeSmall', 'sizeMedium', 'colorError', 'colorInfo', 'colorPrimary', 'colorSecondary', 'colorSuccess', 'colorWarning', 'disabled', 'clickable', 'clickableColorPrimary', 'clickableColorSecondary', 'deletable', 'deletableColorPrimary', 'deletableColorSecondary', 'outlined', 'filled', 'outlinedPrimary', 'outlinedSecondary', 'filledPrimary', 'filledSecondary', 'avatar', 'avatarSmall', 'avatarMedium', 'avatarColorPrimary', 'avatarColorSecondary', 'icon', 'iconSmall', 'iconMedium', 'iconColorPrimary', 'iconColorSecondary', 'label', 'labelSmall', 'labelMedium', 'deleteIcon', 'deleteIconSmall', 'deleteIconMedium', 'deleteIconColorPrimary', 'deleteIconColorSecondary', 'deleteIconOutlinedColorPrimary', 'deleteIconOutlinedColorSecondary', 'deleteIconFilledColorPrimary', 'deleteIconFilledColorSecondary', 'focusVisible']);
-/* harmony default export */ const Chip_chipClasses = (chipClasses);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/Chip/Chip.js
-'use client';
-
-
-
-const Chip_excluded = ["avatar", "className", "clickable", "color", "component", "deleteIcon", "disabled", "icon", "label", "onClick", "onDelete", "onKeyDown", "onKeyUp", "size", "variant", "tabIndex", "skipFocusWhenDisabled"];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const Chip_useUtilityClasses = ownerState => {
-  const {
-    classes,
-    disabled,
-    size,
-    color,
-    iconColor,
-    onDelete,
-    clickable,
-    variant
-  } = ownerState;
-  const slots = {
-    root: ['root', variant, disabled && 'disabled', `size${(0,capitalize/* default */.Z)(size)}`, `color${(0,capitalize/* default */.Z)(color)}`, clickable && 'clickable', clickable && `clickableColor${(0,capitalize/* default */.Z)(color)}`, onDelete && 'deletable', onDelete && `deletableColor${(0,capitalize/* default */.Z)(color)}`, `${variant}${(0,capitalize/* default */.Z)(color)}`],
-    label: ['label', `label${(0,capitalize/* default */.Z)(size)}`],
-    avatar: ['avatar', `avatar${(0,capitalize/* default */.Z)(size)}`, `avatarColor${(0,capitalize/* default */.Z)(color)}`],
-    icon: ['icon', `icon${(0,capitalize/* default */.Z)(size)}`, `iconColor${(0,capitalize/* default */.Z)(iconColor)}`],
-    deleteIcon: ['deleteIcon', `deleteIcon${(0,capitalize/* default */.Z)(size)}`, `deleteIconColor${(0,capitalize/* default */.Z)(color)}`, `deleteIcon${(0,capitalize/* default */.Z)(variant)}Color${(0,capitalize/* default */.Z)(color)}`]
-  };
-  return (0,composeClasses/* default */.Z)(slots, getChipUtilityClass, classes);
-};
-const ChipRoot = (0,styled/* default */.ZP)('div', {
-  name: 'MuiChip',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    const {
-      color,
-      iconColor,
-      clickable,
-      onDelete,
-      size,
-      variant
-    } = ownerState;
-    return [{
-      [`& .${Chip_chipClasses.avatar}`]: styles.avatar
-    }, {
-      [`& .${Chip_chipClasses.avatar}`]: styles[`avatar${(0,capitalize/* default */.Z)(size)}`]
-    }, {
-      [`& .${Chip_chipClasses.avatar}`]: styles[`avatarColor${(0,capitalize/* default */.Z)(color)}`]
-    }, {
-      [`& .${Chip_chipClasses.icon}`]: styles.icon
-    }, {
-      [`& .${Chip_chipClasses.icon}`]: styles[`icon${(0,capitalize/* default */.Z)(size)}`]
-    }, {
-      [`& .${Chip_chipClasses.icon}`]: styles[`iconColor${(0,capitalize/* default */.Z)(iconColor)}`]
-    }, {
-      [`& .${Chip_chipClasses.deleteIcon}`]: styles.deleteIcon
-    }, {
-      [`& .${Chip_chipClasses.deleteIcon}`]: styles[`deleteIcon${(0,capitalize/* default */.Z)(size)}`]
-    }, {
-      [`& .${Chip_chipClasses.deleteIcon}`]: styles[`deleteIconColor${(0,capitalize/* default */.Z)(color)}`]
-    }, {
-      [`& .${Chip_chipClasses.deleteIcon}`]: styles[`deleteIcon${(0,capitalize/* default */.Z)(variant)}Color${(0,capitalize/* default */.Z)(color)}`]
-    }, styles.root, styles[`size${(0,capitalize/* default */.Z)(size)}`], styles[`color${(0,capitalize/* default */.Z)(color)}`], clickable && styles.clickable, clickable && color !== 'default' && styles[`clickableColor${(0,capitalize/* default */.Z)(color)})`], onDelete && styles.deletable, onDelete && color !== 'default' && styles[`deletableColor${(0,capitalize/* default */.Z)(color)}`], styles[variant], styles[`${variant}${(0,capitalize/* default */.Z)(color)}`]];
-  }
-})(({
-  theme,
-  ownerState
-}) => {
-  const textColor = theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
-  return (0,esm_extends/* default */.Z)({
-    maxWidth: '100%',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(13),
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 32,
-    color: (theme.vars || theme).palette.text.primary,
-    backgroundColor: (theme.vars || theme).palette.action.selected,
-    borderRadius: 32 / 2,
-    whiteSpace: 'nowrap',
-    transition: theme.transitions.create(['background-color', 'box-shadow']),
-    // label will inherit this from root, then `clickable` class overrides this for both
-    cursor: 'default',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    textDecoration: 'none',
-    border: 0,
-    // Remove `button` border
-    padding: 0,
-    // Remove `button` padding
-    verticalAlign: 'middle',
-    boxSizing: 'border-box',
-    [`&.${Chip_chipClasses.disabled}`]: {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-      pointerEvents: 'none'
-    },
-    [`& .${Chip_chipClasses.avatar}`]: {
-      marginLeft: 5,
-      marginRight: -6,
-      width: 24,
-      height: 24,
-      color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
-      fontSize: theme.typography.pxToRem(12)
-    },
-    [`& .${Chip_chipClasses.avatarColorPrimary}`]: {
-      color: (theme.vars || theme).palette.primary.contrastText,
-      backgroundColor: (theme.vars || theme).palette.primary.dark
-    },
-    [`& .${Chip_chipClasses.avatarColorSecondary}`]: {
-      color: (theme.vars || theme).palette.secondary.contrastText,
-      backgroundColor: (theme.vars || theme).palette.secondary.dark
-    },
-    [`& .${Chip_chipClasses.avatarSmall}`]: {
-      marginLeft: 4,
-      marginRight: -4,
-      width: 18,
-      height: 18,
-      fontSize: theme.typography.pxToRem(10)
-    },
-    [`& .${Chip_chipClasses.icon}`]: (0,esm_extends/* default */.Z)({
-      marginLeft: 5,
-      marginRight: -6
-    }, ownerState.size === 'small' && {
-      fontSize: 18,
-      marginLeft: 4,
-      marginRight: -4
-    }, ownerState.iconColor === ownerState.color && (0,esm_extends/* default */.Z)({
-      color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor
-    }, ownerState.color !== 'default' && {
-      color: 'inherit'
-    })),
-    [`& .${Chip_chipClasses.deleteIcon}`]: (0,esm_extends/* default */.Z)({
-      WebkitTapHighlightColor: 'transparent',
-      color: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)` : (0,colorManipulator/* alpha */.Fq)(theme.palette.text.primary, 0.26),
-      fontSize: 22,
-      cursor: 'pointer',
-      margin: '0 5px 0 -6px',
-      '&:hover': {
-        color: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)` : (0,colorManipulator/* alpha */.Fq)(theme.palette.text.primary, 0.4)
-      }
-    }, ownerState.size === 'small' && {
-      fontSize: 16,
-      marginRight: 4,
-      marginLeft: -4
-    }, ownerState.color !== 'default' && {
-      color: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].contrastText, 0.7),
-      '&:hover, &:active': {
-        color: (theme.vars || theme).palette[ownerState.color].contrastText
-      }
-    })
-  }, ownerState.size === 'small' && {
-    height: 24
-  }, ownerState.color !== 'default' && {
-    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-    color: (theme.vars || theme).palette[ownerState.color].contrastText
-  }, ownerState.onDelete && {
-    [`&.${Chip_chipClasses.focusVisible}`]: {
-      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
-    }
-  }, ownerState.onDelete && ownerState.color !== 'default' && {
-    [`&.${Chip_chipClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
-    }
-  });
-}, ({
-  theme,
-  ownerState
-}) => (0,esm_extends/* default */.Z)({}, ownerState.clickable && {
-  userSelect: 'none',
-  WebkitTapHighlightColor: 'transparent',
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity)
-  },
-  [`&.${Chip_chipClasses.focusVisible}`]: {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))` : (0,colorManipulator/* alpha */.Fq)(theme.palette.action.selected, theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity)
-  },
-  '&:active': {
-    boxShadow: (theme.vars || theme).shadows[1]
-  }
-}, ownerState.clickable && ownerState.color !== 'default' && {
-  [`&:hover, &.${Chip_chipClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette[ownerState.color].dark
-  }
-}), ({
-  theme,
-  ownerState
-}) => (0,esm_extends/* default */.Z)({}, ownerState.variant === 'outlined' && {
-  backgroundColor: 'transparent',
-  border: theme.vars ? `1px solid ${theme.vars.palette.Chip.defaultBorder}` : `1px solid ${theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]}`,
-  [`&.${Chip_chipClasses.clickable}:hover`]: {
-    backgroundColor: (theme.vars || theme).palette.action.hover
-  },
-  [`&.${Chip_chipClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus
-  },
-  [`& .${Chip_chipClasses.avatar}`]: {
-    marginLeft: 4
-  },
-  [`& .${Chip_chipClasses.avatarSmall}`]: {
-    marginLeft: 2
-  },
-  [`& .${Chip_chipClasses.icon}`]: {
-    marginLeft: 4
-  },
-  [`& .${Chip_chipClasses.iconSmall}`]: {
-    marginLeft: 2
-  },
-  [`& .${Chip_chipClasses.deleteIcon}`]: {
-    marginRight: 5
-  },
-  [`& .${Chip_chipClasses.deleteIconSmall}`]: {
-    marginRight: 3
-  }
-}, ownerState.variant === 'outlined' && ownerState.color !== 'default' && {
-  color: (theme.vars || theme).palette[ownerState.color].main,
-  border: `1px solid ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, 0.7)}`,
-  [`&.${Chip_chipClasses.clickable}:hover`]: {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity)
-  },
-  [`&.${Chip_chipClasses.focusVisible}`]: {
-    backgroundColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${theme.vars.palette.action.focusOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity)
-  },
-  [`& .${Chip_chipClasses.deleteIcon}`]: {
-    color: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.7)` : (0,colorManipulator/* alpha */.Fq)(theme.palette[ownerState.color].main, 0.7),
-    '&:hover, &:active': {
-      color: (theme.vars || theme).palette[ownerState.color].main
-    }
-  }
-}));
-const ChipLabel = (0,styled/* default */.ZP)('span', {
-  name: 'MuiChip',
-  slot: 'Label',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    const {
-      size
-    } = ownerState;
-    return [styles.label, styles[`label${(0,capitalize/* default */.Z)(size)}`]];
-  }
-})(({
-  ownerState
-}) => (0,esm_extends/* default */.Z)({
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  paddingLeft: 12,
-  paddingRight: 12,
-  whiteSpace: 'nowrap'
-}, ownerState.size === 'small' && {
-  paddingLeft: 8,
-  paddingRight: 8
-}));
-function isDeleteKeyboardEvent(keyboardEvent) {
-  return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
-}
-
-/**
- * Chips represent complex entities in small blocks, such as a contact.
- */
-const Chip = /*#__PURE__*/react.forwardRef(function Chip(inProps, ref) {
-  const props = (0,useThemeProps/* default */.Z)({
-    props: inProps,
-    name: 'MuiChip'
-  });
-  const {
-      avatar: avatarProp,
-      className,
-      clickable: clickableProp,
-      color = 'default',
-      component: ComponentProp,
-      deleteIcon: deleteIconProp,
-      disabled = false,
-      icon: iconProp,
-      label,
-      onClick,
-      onDelete,
-      onKeyDown,
-      onKeyUp,
-      size = 'medium',
-      variant = 'filled',
-      tabIndex,
-      skipFocusWhenDisabled = false // TODO v6: Rename to `focusableWhenDisabled`.
-    } = props,
-    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, Chip_excluded);
-  const chipRef = react.useRef(null);
-  const handleRef = (0,useForkRef/* default */.Z)(chipRef, ref);
-  const handleDeleteIconClick = event => {
-    // Stop the event from bubbling up to the `Chip`
-    event.stopPropagation();
-    if (onDelete) {
-      onDelete(event);
-    }
-  };
-  const handleKeyDown = event => {
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget === event.target && isDeleteKeyboardEvent(event)) {
-      // Will be handled in keyUp, otherwise some browsers
-      // might init navigation
-      event.preventDefault();
-    }
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-  };
-  const handleKeyUp = event => {
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget === event.target) {
-      if (onDelete && isDeleteKeyboardEvent(event)) {
-        onDelete(event);
-      } else if (event.key === 'Escape' && chipRef.current) {
-        chipRef.current.blur();
-      }
-    }
-    if (onKeyUp) {
-      onKeyUp(event);
-    }
-  };
-  const clickable = clickableProp !== false && onClick ? true : clickableProp;
-  const component = clickable || onDelete ? ButtonBase/* default */.Z : ComponentProp || 'div';
-  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
-    component,
-    disabled,
-    size,
-    color,
-    iconColor: /*#__PURE__*/react.isValidElement(iconProp) ? iconProp.props.color || color : color,
-    onDelete: !!onDelete,
-    clickable,
-    variant
-  });
-  const classes = Chip_useUtilityClasses(ownerState);
-  const moreProps = component === ButtonBase/* default */.Z ? (0,esm_extends/* default */.Z)({
-    component: ComponentProp || 'div',
-    focusVisibleClassName: classes.focusVisible
-  }, onDelete && {
-    disableRipple: true
-  }) : {};
-  let deleteIcon = null;
-  if (onDelete) {
-    deleteIcon = deleteIconProp && /*#__PURE__*/react.isValidElement(deleteIconProp) ? /*#__PURE__*/react.cloneElement(deleteIconProp, {
-      className: (0,clsx_m/* default */.Z)(deleteIconProp.props.className, classes.deleteIcon),
-      onClick: handleDeleteIconClick
-    }) : /*#__PURE__*/(0,jsx_runtime.jsx)(Cancel, {
-      className: (0,clsx_m/* default */.Z)(classes.deleteIcon),
-      onClick: handleDeleteIconClick
-    });
-  }
-  let avatar = null;
-  if (avatarProp && /*#__PURE__*/react.isValidElement(avatarProp)) {
-    avatar = /*#__PURE__*/react.cloneElement(avatarProp, {
-      className: (0,clsx_m/* default */.Z)(classes.avatar, avatarProp.props.className)
-    });
-  }
-  let icon = null;
-  if (iconProp && /*#__PURE__*/react.isValidElement(iconProp)) {
-    icon = /*#__PURE__*/react.cloneElement(iconProp, {
-      className: (0,clsx_m/* default */.Z)(classes.icon, iconProp.props.className)
-    });
-  }
-  if (false) {}
-  return /*#__PURE__*/(0,jsx_runtime.jsxs)(ChipRoot, (0,esm_extends/* default */.Z)({
-    as: component,
-    className: (0,clsx_m/* default */.Z)(classes.root, className),
-    disabled: clickable && disabled ? true : undefined,
-    onClick: onClick,
-    onKeyDown: handleKeyDown,
-    onKeyUp: handleKeyUp,
-    ref: handleRef,
-    tabIndex: skipFocusWhenDisabled && disabled ? -1 : tabIndex,
-    ownerState: ownerState
-  }, moreProps, other, {
-    children: [avatar || icon, /*#__PURE__*/(0,jsx_runtime.jsx)(ChipLabel, {
-      className: (0,clsx_m/* default */.Z)(classes.label),
-      ownerState: ownerState,
-      children: label
-    }), deleteIcon]
-  }));
-});
- false ? 0 : void 0;
-/* harmony default export */ const Chip_Chip = (Chip);
+// EXTERNAL MODULE: ./node_modules/@mui/material/Chip/Chip.js + 1 modules
+var Chip = __webpack_require__(723);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/InputBase/inputBaseClasses.js
 
 
@@ -12197,7 +12850,7 @@ const Autocomplete = /*#__PURE__*/react.forwardRef(function Autocomplete(inProps
     if (renderTags) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
-      startAdornment = value.map((option, index) => /*#__PURE__*/(0,jsx_runtime.jsx)(Chip_Chip, (0,esm_extends/* default */.Z)({
+      startAdornment = value.map((option, index) => /*#__PURE__*/(0,jsx_runtime.jsx)(Chip/* default */.Z, (0,esm_extends/* default */.Z)({
         label: getOptionLabel(option),
         size: size
       }, getCustomizedTagProps({
@@ -15261,12 +15914,8 @@ const Checkbox = /*#__PURE__*/react.forwardRef(function Checkbox(inProps, ref) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@mui/material/Chip/index.js
-'use client';
-
-
-
-
+// EXTERNAL MODULE: ./node_modules/@mui/material/Chip/index.js
+var material_Chip = __webpack_require__(570);
 // EXTERNAL MODULE: ./node_modules/@emotion/react/dist/emotion-react.browser.esm.js
 var emotion_react_browser_esm = __webpack_require__(917);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/CircularProgress/circularProgressClasses.js
@@ -23200,91 +23849,10 @@ const ListItemAvatar = /*#__PURE__*/react.forwardRef(function ListItemAvatar(inP
 var ListItemButton = __webpack_require__(8619);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/index.js
 var material_ListItemButton = __webpack_require__(1471);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemIcon/listItemIconClasses.js
-
-
-function getListItemIconUtilityClass(slot) {
-  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiListItemIcon', slot);
-}
-const listItemIconClasses = (0,generateUtilityClasses/* default */.Z)('MuiListItemIcon', ['root', 'alignItemsFlexStart']);
-/* harmony default export */ const ListItemIcon_listItemIconClasses = (listItemIconClasses);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemIcon/ListItemIcon.js
-'use client';
-
-
-
-const ListItemIcon_excluded = ["className"];
-
-
-
-
-
-
-
-
-
-const ListItemIcon_useUtilityClasses = ownerState => {
-  const {
-    alignItems,
-    classes
-  } = ownerState;
-  const slots = {
-    root: ['root', alignItems === 'flex-start' && 'alignItemsFlexStart']
-  };
-  return (0,composeClasses/* default */.Z)(slots, getListItemIconUtilityClass, classes);
-};
-const ListItemIconRoot = (0,styled/* default */.ZP)('div', {
-  name: 'MuiListItemIcon',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
-  }
-})(({
-  theme,
-  ownerState
-}) => (0,esm_extends/* default */.Z)({
-  minWidth: 56,
-  color: (theme.vars || theme).palette.action.active,
-  flexShrink: 0,
-  display: 'inline-flex'
-}, ownerState.alignItems === 'flex-start' && {
-  marginTop: 8
-}));
-
-/**
- * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
- */
-const ListItemIcon = /*#__PURE__*/react.forwardRef(function ListItemIcon(inProps, ref) {
-  const props = (0,useThemeProps/* default */.Z)({
-    props: inProps,
-    name: 'MuiListItemIcon'
-  });
-  const {
-      className
-    } = props,
-    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, ListItemIcon_excluded);
-  const context = react.useContext(ListContext/* default */.Z);
-  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
-    alignItems: context.alignItems
-  });
-  const classes = ListItemIcon_useUtilityClasses(ownerState);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(ListItemIconRoot, (0,esm_extends/* default */.Z)({
-    className: (0,clsx_m/* default */.Z)(classes.root, className),
-    ownerState: ownerState,
-    ref: ref
-  }, other));
-});
- false ? 0 : void 0;
-/* harmony default export */ const ListItemIcon_ListItemIcon = (ListItemIcon);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemIcon/index.js
-'use client';
-
-
-
-
+// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemIcon/ListItemIcon.js
+var ListItemIcon = __webpack_require__(885);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemIcon/index.js
+var material_ListItemIcon = __webpack_require__(330);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/index.js
 'use client';
 
@@ -24207,6 +24775,8 @@ const Menu = /*#__PURE__*/react.forwardRef(function Menu(inProps, ref) {
 
 
 
+// EXTERNAL MODULE: ./node_modules/@mui/material/ListItemIcon/listItemIconClasses.js
+var listItemIconClasses = __webpack_require__(592);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/MenuItem/menuItemClasses.js
 
 
@@ -24325,7 +24895,7 @@ const MenuItemRoot = (0,styled/* default */.ZP)(ButtonBase/* default */.Z, {
   [`& .${ListItemText_listItemTextClasses.inset}`]: {
     paddingLeft: 36
   },
-  [`& .${ListItemIcon_listItemIconClasses.root}`]: {
+  [`& .${listItemIconClasses/* default */.Z.root}`]: {
     minWidth: 36
   }
 }, !ownerState.dense && {
@@ -24338,7 +24908,7 @@ const MenuItemRoot = (0,styled/* default */.ZP)(ButtonBase/* default */.Z, {
   paddingTop: 4,
   paddingBottom: 4
 }, theme.typography.body2, {
-  [`& .${ListItemIcon_listItemIconClasses.root} svg`]: {
+  [`& .${listItemIconClasses/* default */.Z.root} svg`]: {
     fontSize: '1.25rem'
   }
 })));
@@ -35340,346 +35910,14 @@ const TextField = /*#__PURE__*/react.forwardRef(function TextField(inProps, ref)
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButton/toggleButtonClasses.js
-
-
-function getToggleButtonUtilityClass(slot) {
-  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiToggleButton', slot);
-}
-const toggleButtonClasses = (0,generateUtilityClasses/* default */.Z)('MuiToggleButton', ['root', 'disabled', 'selected', 'standard', 'primary', 'secondary', 'sizeSmall', 'sizeMedium', 'sizeLarge']);
-/* harmony default export */ const ToggleButton_toggleButtonClasses = (toggleButtonClasses);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButton/ToggleButton.js
-'use client';
-
-// @inheritedComponent ButtonBase
-
-
-const ToggleButton_excluded = ["children", "className", "color", "disabled", "disableFocusRipple", "fullWidth", "onChange", "onClick", "selected", "size", "value"];
-
-
-
-
-
-
-
-
-
-
-
-const ToggleButton_useUtilityClasses = ownerState => {
-  const {
-    classes,
-    fullWidth,
-    selected,
-    disabled,
-    size,
-    color
-  } = ownerState;
-  const slots = {
-    root: ['root', selected && 'selected', disabled && 'disabled', fullWidth && 'fullWidth', `size${(0,capitalize/* default */.Z)(size)}`, color]
-  };
-  return (0,composeClasses/* default */.Z)(slots, getToggleButtonUtilityClass, classes);
-};
-const ToggleButtonRoot = (0,styled/* default */.ZP)(ButtonBase/* default */.Z, {
-  name: 'MuiToggleButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [styles.root, styles[`size${(0,capitalize/* default */.Z)(ownerState.size)}`]];
-  }
-})(({
-  theme,
-  ownerState
-}) => {
-  let selectedColor = ownerState.color === 'standard' ? theme.palette.text.primary : theme.palette[ownerState.color].main;
-  let selectedColorChannel;
-  if (theme.vars) {
-    selectedColor = ownerState.color === 'standard' ? theme.vars.palette.text.primary : theme.vars.palette[ownerState.color].main;
-    selectedColorChannel = ownerState.color === 'standard' ? theme.vars.palette.text.primaryChannel : theme.vars.palette[ownerState.color].mainChannel;
-  }
-  return (0,esm_extends/* default */.Z)({}, theme.typography.button, {
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    padding: 11,
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    color: (theme.vars || theme).palette.action.active
-  }, ownerState.fullWidth && {
-    width: '100%'
-  }, {
-    [`&.${ToggleButton_toggleButtonClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-      border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`
-    },
-    '&:hover': {
-      textDecoration: 'none',
-      // Reset on mouse devices
-      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,colorManipulator/* alpha */.Fq)(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-      '@media (hover: none)': {
-        backgroundColor: 'transparent'
-      }
-    },
-    [`&.${ToggleButton_toggleButtonClasses.selected}`]: {
-      color: selectedColor,
-      backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,colorManipulator/* alpha */.Fq)(selectedColor, theme.palette.action.selectedOpacity),
-      '&:hover': {
-        backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,colorManipulator/* alpha */.Fq)(selectedColor, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.vars ? `rgba(${selectedColorChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,colorManipulator/* alpha */.Fq)(selectedColor, theme.palette.action.selectedOpacity)
-        }
-      }
-    }
-  }, ownerState.size === 'small' && {
-    padding: 7,
-    fontSize: theme.typography.pxToRem(13)
-  }, ownerState.size === 'large' && {
-    padding: 15,
-    fontSize: theme.typography.pxToRem(15)
-  });
-});
-const ToggleButton = /*#__PURE__*/react.forwardRef(function ToggleButton(inProps, ref) {
-  const props = (0,useThemeProps/* default */.Z)({
-    props: inProps,
-    name: 'MuiToggleButton'
-  });
-  const {
-      children,
-      className,
-      color = 'standard',
-      disabled = false,
-      disableFocusRipple = false,
-      fullWidth = false,
-      onChange,
-      onClick,
-      selected,
-      size = 'medium',
-      value
-    } = props,
-    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, ToggleButton_excluded);
-  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
-    color,
-    disabled,
-    disableFocusRipple,
-    fullWidth,
-    size
-  });
-  const classes = ToggleButton_useUtilityClasses(ownerState);
-  const handleChange = event => {
-    if (onClick) {
-      onClick(event, value);
-      if (event.defaultPrevented) {
-        return;
-      }
-    }
-    if (onChange) {
-      onChange(event, value);
-    }
-  };
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(ToggleButtonRoot, (0,esm_extends/* default */.Z)({
-    className: (0,clsx_m/* default */.Z)(classes.root, className),
-    disabled: disabled,
-    focusRipple: !disableFocusRipple,
-    ref: ref,
-    onClick: handleChange,
-    onChange: onChange,
-    value: value,
-    ownerState: ownerState,
-    "aria-pressed": selected
-  }, other, {
-    children: children
-  }));
-});
- false ? 0 : void 0;
-/* harmony default export */ const ToggleButton_ToggleButton = (ToggleButton);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButton/index.js
-'use client';
-
-
-
-
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/isValueSelected.js
-// Determine if the toggle button value matches, or is contained in, the
-// candidate group value.
-function isValueSelected(value, candidate) {
-  if (candidate === undefined || value === undefined) {
-    return false;
-  }
-  if (Array.isArray(candidate)) {
-    return candidate.indexOf(value) >= 0;
-  }
-  return value === candidate;
-}
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/toggleButtonGroupClasses.js
-
-
-function getToggleButtonGroupUtilityClass(slot) {
-  return (0,generateUtilityClass_generateUtilityClass/* default */.Z)('MuiToggleButtonGroup', slot);
-}
-const toggleButtonGroupClasses = (0,generateUtilityClasses/* default */.Z)('MuiToggleButtonGroup', ['root', 'selected', 'vertical', 'disabled', 'grouped', 'groupedHorizontal', 'groupedVertical']);
-/* harmony default export */ const ToggleButtonGroup_toggleButtonGroupClasses = (toggleButtonGroupClasses);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js
-'use client';
-
-
-
-const ToggleButtonGroup_excluded = ["children", "className", "color", "disabled", "exclusive", "fullWidth", "onChange", "orientation", "size", "value"];
-
-
-
-
-
-
-
-
-
-
-
-const ToggleButtonGroup_useUtilityClasses = ownerState => {
-  const {
-    classes,
-    orientation,
-    fullWidth,
-    disabled
-  } = ownerState;
-  const slots = {
-    root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
-    grouped: ['grouped', `grouped${(0,capitalize/* default */.Z)(orientation)}`, disabled && 'disabled']
-  };
-  return (0,composeClasses/* default */.Z)(slots, getToggleButtonGroupUtilityClass, classes);
-};
-const ToggleButtonGroupRoot = (0,styled/* default */.ZP)('div', {
-  name: 'MuiToggleButtonGroup',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [{
-      [`& .${ToggleButtonGroup_toggleButtonGroupClasses.grouped}`]: styles.grouped
-    }, {
-      [`& .${ToggleButtonGroup_toggleButtonGroupClasses.grouped}`]: styles[`grouped${(0,capitalize/* default */.Z)(ownerState.orientation)}`]
-    }, styles.root, ownerState.orientation === 'vertical' && styles.vertical, ownerState.fullWidth && styles.fullWidth];
-  }
-})(({
-  ownerState,
-  theme
-}) => (0,esm_extends/* default */.Z)({
-  display: 'inline-flex',
-  borderRadius: (theme.vars || theme).shape.borderRadius
-}, ownerState.orientation === 'vertical' && {
-  flexDirection: 'column'
-}, ownerState.fullWidth && {
-  width: '100%'
-}, {
-  [`& .${ToggleButtonGroup_toggleButtonGroupClasses.grouped}`]: (0,esm_extends/* default */.Z)({}, ownerState.orientation === 'horizontal' ? {
-    '&:not(:first-of-type)': {
-      marginLeft: -1,
-      borderLeft: '1px solid transparent',
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0
-    },
-    '&:not(:last-of-type)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0
-    },
-    [`&.${ToggleButtonGroup_toggleButtonGroupClasses.selected} + .${ToggleButtonGroup_toggleButtonGroupClasses.grouped}.${ToggleButtonGroup_toggleButtonGroupClasses.selected}`]: {
-      borderLeft: 0,
-      marginLeft: 0
-    }
-  } : {
-    '&:not(:first-of-type)': {
-      marginTop: -1,
-      borderTop: '1px solid transparent',
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0
-    },
-    '&:not(:last-of-type)': {
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0
-    },
-    [`&.${ToggleButtonGroup_toggleButtonGroupClasses.selected} + .${ToggleButtonGroup_toggleButtonGroupClasses.grouped}.${ToggleButtonGroup_toggleButtonGroupClasses.selected}`]: {
-      borderTop: 0,
-      marginTop: 0
-    }
-  })
-}));
-const ToggleButtonGroup = /*#__PURE__*/react.forwardRef(function ToggleButtonGroup(inProps, ref) {
-  const props = (0,useThemeProps/* default */.Z)({
-    props: inProps,
-    name: 'MuiToggleButtonGroup'
-  });
-  const {
-      children,
-      className,
-      color = 'standard',
-      disabled = false,
-      exclusive = false,
-      fullWidth = false,
-      onChange,
-      orientation = 'horizontal',
-      size = 'medium',
-      value
-    } = props,
-    other = (0,objectWithoutPropertiesLoose/* default */.Z)(props, ToggleButtonGroup_excluded);
-  const ownerState = (0,esm_extends/* default */.Z)({}, props, {
-    disabled,
-    fullWidth,
-    orientation,
-    size
-  });
-  const classes = ToggleButtonGroup_useUtilityClasses(ownerState);
-  const handleChange = (event, buttonValue) => {
-    if (!onChange) {
-      return;
-    }
-    const index = value && value.indexOf(buttonValue);
-    let newValue;
-    if (value && index >= 0) {
-      newValue = value.slice();
-      newValue.splice(index, 1);
-    } else {
-      newValue = value ? value.concat(buttonValue) : [buttonValue];
-    }
-    onChange(event, newValue);
-  };
-  const handleExclusiveChange = (event, buttonValue) => {
-    if (!onChange) {
-      return;
-    }
-    onChange(event, value === buttonValue ? null : buttonValue);
-  };
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(ToggleButtonGroupRoot, (0,esm_extends/* default */.Z)({
-    role: "group",
-    className: (0,clsx_m/* default */.Z)(classes.root, className),
-    ref: ref,
-    ownerState: ownerState
-  }, other, {
-    children: react.Children.map(children, child => {
-      if (! /*#__PURE__*/react.isValidElement(child)) {
-        return null;
-      }
-      if (false) {}
-      return /*#__PURE__*/react.cloneElement(child, {
-        className: (0,clsx_m/* default */.Z)(classes.grouped, child.props.className),
-        onChange: exclusive ? handleExclusiveChange : handleChange,
-        selected: child.props.selected === undefined ? isValueSelected(child.props.value, value) : child.props.selected,
-        size: child.props.size || size,
-        fullWidth,
-        color: child.props.color || color,
-        disabled: child.props.disabled || disabled
-      });
-    })
-  }));
-});
- false ? 0 : void 0;
-/* harmony default export */ const ToggleButtonGroup_ToggleButtonGroup = (ToggleButtonGroup);
-;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/index.js
-'use client';
-
-
-
-
+// EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButton/ToggleButton.js
+var ToggleButton = __webpack_require__(290);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButton/index.js
+var material_ToggleButton = __webpack_require__(376);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js + 1 modules
+var ToggleButtonGroup = __webpack_require__(864);
+// EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButtonGroup/index.js
+var material_ToggleButtonGroup = __webpack_require__(811);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/Toolbar/index.js
 'use client';
 
@@ -51272,7 +51510,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
@@ -51370,7 +51608,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importDefault(__webpack_require__(7294));
 function CustomAlert(_a) {
     var handleAlert = _a.handleAlert, alertSettings = _a.alertSettings;
@@ -51378,129 +51616,6 @@ function CustomAlert(_a) {
         react_1.default.createElement(material_1.Alert, { onClose: handleAlert, severity: alertSettings.alertSeverity }, alertSettings.alertMessage)));
 }
 exports["default"] = CustomAlert;
-
-
-/***/ }),
-
-/***/ 448:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
-var react_1 = __importDefault(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var react_router_dom_1 = __webpack_require__(9818);
-var types_1 = __webpack_require__(1230);
-var ConditionsForm_1 = __importDefault(__webpack_require__(747));
-var ModalProvider_1 = __webpack_require__(5125);
-var Center_1 = __importDefault(__webpack_require__(1081));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-function FormBody(_a) {
-    var _this = this;
-    var conditions = _a.conditions, setConditions = _a.setConditions, onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
-    var getOutput = (0, ModalProvider_1.useModal)().getOutput;
-    var navigate = (0, react_router_dom_1.useNavigate)();
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
-    var menuItems = [
-        { value: 0, label: 'Add tab to a tab group' },
-        { value: 1, label: 'Pin tab' },
-        { value: 2, label: 'Open tab in new window' },
-    ];
-    var handleCancel = function () {
-        navigate(-1);
-    };
-    var handleAddConditions = function () { return __awaiter(_this, void 0, void 0, function () {
-        var output;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4, getOutput({
-                        title: 'Add Condition',
-                        type: 'condition',
-                    })];
-                case 1:
-                    output = _a.sent();
-                    if (output) {
-                        setConditions(__spreadArray(__spreadArray([], conditions, true), [JSON.parse(output)], false));
-                    }
-                    return [2];
-            }
-        });
-    }); };
-    var colorItems = types_1.colors.map(function (color) {
-        return { label: color, value: color };
-    });
-    var actionWatch = watch('action', 0);
-    var submit = function (data) {
-        onSubmit(data);
-        reset();
-        navigate(-1);
-    };
-    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
-        react_1.default.createElement(Center_1.default, { column: true },
-            react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
-                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
-                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
-                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
-                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
-                react_1.default.createElement(ConditionsForm_1.default, { conditions: conditions, handleAddConditions: handleAddConditions }),
-                react_1.default.createElement("div", null,
-                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
-                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
-}
-exports["default"] = FormBody;
 
 
 /***/ }),
@@ -51545,7 +51660,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormInput(_a) {
@@ -51604,7 +51719,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormSelect(_a) {
@@ -51614,8 +51729,8 @@ function HookFormSelect(_a) {
         control: control,
         rules: { required: true },
     }).field;
-    return (React.createElement(React.Fragment, null,
-        React.createElement(material_1.Select, __assign({}, field, { placeholder: name, label: label }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); }))));
+    return (React.createElement(material_1.FormControl, { sx: { minWidth: 120 } },
+        React.createElement(material_1.Select, __assign({}, field, { inputProps: { 'aria-label': label } }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); }))));
 }
 exports["default"] = HookFormSelect;
 
@@ -51631,7 +51746,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importDefault(__webpack_require__(7294));
 function Input(_a) {
     var value = _a.value, setValue = _a.setValue, _b = _a.label, label = _b === void 0 ? '' : _b, _c = _a.id, id = _c === void 0 ? '' : _c, _d = _a.type, type = _d === void 0 ? 'text' : _d;
@@ -51640,65 +51755,6 @@ function Input(_a) {
         } }));
 }
 exports["default"] = Input;
-
-
-/***/ }),
-
-/***/ 9416:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var ChevronRight_1 = __importDefault(__webpack_require__(6215));
-var ExpandMore_1 = __importDefault(__webpack_require__(3508));
-var material_1 = __webpack_require__(3417);
-var react_1 = __importDefault(__webpack_require__(7294));
-var PopupStatusProvider_1 = __webpack_require__(5671);
-var StyledIconButton_1 = __importDefault(__webpack_require__(4116));
-var StyledListItemButton_1 = __importDefault(__webpack_require__(2610));
-function Row(_a) {
-    var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, _b = _a.title, title = _b === void 0 ? '' : _b, _c = _a.hasChildren, hasChildren = _c === void 0 ? false : _c, _d = _a.isChild, isChild = _d === void 0 ? false : _d, _e = _a.secondary, secondary = _e === void 0 ? '' : _e, _f = _a.showChildren, showChildren = _f === void 0 ? false : _f, _g = _a.enableMiddleIconHover, enableMiddleIconHover = _g === void 0 ? true : _g, _h = _a.enableFullScreenIconHover, enableFullScreenIconHover = _h === void 0 ? true : _h;
-    var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
-    var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
-    var makeClickHandler = function (callback) {
-        return function (e) {
-            e.stopPropagation();
-            callback();
-        };
-    };
-    return (react_1.default.createElement(StyledListItemButton_1.default, { hover: handleClick !== undefined, disableRipple: true, alignItems: 'center', divider: true, onClick: makeClickHandler(function () {
-            if (handleClick)
-                handleClick();
-        }) },
-        PrefixIcon ? (react_1.default.createElement(material_1.ListItemIcon, { onClick: makeClickHandler(function () {
-                if (prefixAction)
-                    prefixAction();
-            }) }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary }),
-        hasChildren ? (react_1.default.createElement(StyledIconButton_1.default, { hover: true, onClick: makeClickHandler(function () {
-                if (setShowChildren)
-                    setShowChildren(!showChildren);
-            }), sx: { marginRight: '4em' } }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        FullScreenIcon !== undefined &&
-            FullScreenIcon !== null &&
-            !isPopup ? (react_1.default.createElement(StyledIconButton_1.default, { hover: enableFullScreenIconHover, onClick: makeClickHandler(function () {
-                if (fullScreenAction)
-                    fullScreenAction();
-            }), sx: { marginRight: '4em' } }, FullScreenIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(StyledIconButton_1.default, { hover: enableMiddleIconHover, onClick: makeClickHandler(function () {
-                if (middleAction)
-                    middleAction();
-            }), sx: { marginRight: '4em' } }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        AffixIcon !== undefined && AffixIcon !== null ? (react_1.default.createElement(StyledIconButton_1.default, { hover: true, onClick: makeClickHandler(function () {
-                if (affixAction)
-                    affixAction();
-            }) }, AffixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
-}
-exports["default"] = Row;
 
 
 /***/ }),
@@ -51735,9 +51791,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importStar(__webpack_require__(7294));
-var Row_1 = __importDefault(__webpack_require__(9416));
+var Row_1 = __importDefault(__webpack_require__(304));
 function RowGroupParent(_a) {
     var prefixAction = _a.prefixAction, PrefixIcon = _a.PrefixIcon, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, title = _a.title, secondary = _a.secondary, children = _a.children, handleClick = _a.handleClick, id = _a.id, enableMiddleIconHover = _a.enableMiddleIconHover, enableFullScreenIconHover = _a.enableFullScreenIconHover;
     var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
@@ -51751,15 +51807,28 @@ exports["default"] = RowGroupParent;
 
 /***/ }),
 
-/***/ 7229:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ 912:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var styles_1 = __webpack_require__(123);
-var StyledChild = (0, styles_1.styled)('div')({});
-exports["default"] = StyledChild;
+var Chip_1 = __importDefault(__webpack_require__(570));
+var system_1 = __webpack_require__(8579);
+var StyledChip = (0, system_1.styled)(Chip_1.default)(function (_a) {
+    var isSmall = _a.isSmall;
+    return ({
+        size: isSmall ? 'small' : 'medium',
+        width: '10%',
+        maxWidth: isSmall ? '75px' : '100px',
+        fontWeight: isSmall ? 'bold' : 'bolder',
+        fontSize: isSmall ? '16px' : '18px',
+    });
+});
+exports["default"] = StyledChip;
 
 
 /***/ }),
@@ -51783,7 +51852,7 @@ exports["default"] = StyledContainer;
 
 /***/ }),
 
-/***/ 4116:
+/***/ 556:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51792,138 +51861,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var IconButton_1 = __importDefault(__webpack_require__(4113));
-var system_1 = __webpack_require__(8579);
-var StyledIconButton = (0, system_1.styled)(IconButton_1.default, {
-    shouldForwardProp: function (prop) { return prop !== 'hover' && prop !== 'marginRight'; },
-})(function (_a) {
-    var theme = _a.theme, hover = _a.hover;
-    return ({
-        '&:hover': {
-            backgroundColor: hover ? '' : theme.palette.background.paper,
-            cursor: hover ? 'pointer' : 'default',
-        },
-    });
-});
-exports["default"] = StyledIconButton;
-
-
-/***/ }),
-
-/***/ 2610:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var ListItemButton_1 = __importDefault(__webpack_require__(1471));
-var system_1 = __webpack_require__(8579);
-var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
-    shouldForwardProp: function (prop) { return prop !== 'hover'; },
-})(function (_a) {
-    var theme = _a.theme, hover = _a.hover;
-    return ({
-        backgroundColor: theme.palette.background.paper,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '65px',
-        '&:hover': {
-            backgroundColor: hover ? '' : theme.palette.background.paper,
-            cursor: hover ? 'pointer' : 'default',
-        },
-    });
-});
-exports["default"] = StyledListItemButton;
-
-
-/***/ }),
-
-/***/ 7040:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var yup_1 = __webpack_require__(2433);
-var material_1 = __webpack_require__(3417);
+var ToggleButton_1 = __importDefault(__webpack_require__(376));
+var ToggleButtonGroup_1 = __importDefault(__webpack_require__(811));
 var react_1 = __importDefault(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var yup = __importStar(__webpack_require__(6310));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-var ModalContainer_1 = __importDefault(__webpack_require__(2816));
-var formSchema = yup.object().shape({
-    query: yup.string().required('Please enter a query'),
-    match: yup
-        .mixed()
-        .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
-    url: yup.mixed().oneOf(['any', 'hostname', 'path', 'query']),
-});
-function AddConditionModal(_a) {
-    var open = _a.open, title = _a.title, body = _a.body, handleClose = _a.handleClose, handleAddCondition = _a.handleAddCondition;
-    var formOptions = {
-        resolver: (0, yup_1.yupResolver)(formSchema),
-    };
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, reset = _b.reset;
-    var onSubmit = function (data) {
-        if ('match' in data) {
-            handleAddCondition(data);
-            reset();
-        }
-    };
-    var urlItems = [
-        { value: 'any', label: 'any' },
-        { value: 'hostname', label: 'hostname' },
-        { value: 'path', label: 'path' },
-        { value: 'query', label: 'query' },
+function Switch(_a) {
+    var currentValue = _a.currentValue, handleChange = _a.handleChange;
+    var items = [
+        { value: 'AND', label: 'AND' },
+        { value: 'OR', label: 'OR ' },
     ];
-    var matchItems = [
-        { value: 'contains', label: 'contains' },
-        { value: 'is equal to', label: 'is equal to' },
-        { value: 'ends with', label: 'ends with' },
-        { value: 'starts with', label: 'starts with' },
-    ];
-    return (react_1.default.createElement(ModalContainer_1.default, { open: open, handleClose: handleClose, title: title },
-        react_1.default.createElement("form", { onSubmit: handleSubmit(onSubmit) },
-            react_1.default.createElement(material_1.DialogContent, null,
-                body !== undefined ? (react_1.default.createElement(material_1.DialogContentText, null, body)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-                react_1.default.createElement(HookFormSelect_1.default, { name: 'url', control: control, menuItems: urlItems, label: 'URL Section' }),
-                react_1.default.createElement(HookFormSelect_1.default, { name: 'match', control: control, menuItems: matchItems, label: 'Match type' }),
-                react_1.default.createElement(HookFormInput_1.default, { label: 'Query', control: control, name: 'query' })),
-            react_1.default.createElement(material_1.DialogActions, null,
-                react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleClose }, "Cancel"),
-                react_1.default.createElement(material_1.Button, { variant: 'contained', type: 'submit' }, "OK")))));
+    return (react_1.default.createElement(ToggleButtonGroup_1.default, { color: 'primary', value: currentValue, onChange: handleChange, exclusive: true }, items.map(function (item) { return (react_1.default.createElement(ToggleButton_1.default, { value: item.value }, item.label)); })));
 }
-exports["default"] = AddConditionModal;
+exports["default"] = Switch;
 
 
 /***/ }),
@@ -51948,7 +51897,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
 function AddTabsModal(_a) {
@@ -51987,7 +51936,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var Input_1 = __importDefault(__webpack_require__(9778));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
@@ -52016,7 +51965,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 function ModalContainer(_a) {
@@ -52029,6 +51978,173 @@ function ModalContainer(_a) {
         children));
 }
 exports["default"] = ModalContainer;
+
+
+/***/ }),
+
+/***/ 304:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var ChevronRight_1 = __importDefault(__webpack_require__(6215));
+var ExpandMore_1 = __importDefault(__webpack_require__(3508));
+var material_1 = __webpack_require__(350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var PopupStatusProvider_1 = __webpack_require__(5671);
+var RowItemWrapper_1 = __importDefault(__webpack_require__(442));
+var StyledListItemButton_1 = __importDefault(__webpack_require__(6));
+function Row(_a) {
+    var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, title = _a.title, _b = _a.hasChildren, hasChildren = _b === void 0 ? false : _b, _c = _a.isChild, isChild = _c === void 0 ? false : _c, _d = _a.secondary, secondary = _d === void 0 ? '' : _d, _e = _a.showChildren, showChildren = _e === void 0 ? false : _e, _f = _a.enableMiddleIconHover, enableMiddleIconHover = _f === void 0 ? true : _f, _g = _a.enableAffixIconHover, enableAffixIconHover = _g === void 0 ? true : _g, _h = _a.enableFullScreenIconHover, enableFullScreenIconHover = _h === void 0 ? true : _h;
+    var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
+    var arrowIcon = showChildren ? (react_1.default.createElement(ExpandMore_1.default, { fontSize: 'large' })) : (react_1.default.createElement(ChevronRight_1.default, { fontSize: 'large' }));
+    var makeClickHandler = function (callback) {
+        return function (e) {
+            e.stopPropagation();
+            callback();
+        };
+    };
+    return (react_1.default.createElement(StyledListItemButton_1.default, { hover: handleClick !== undefined, disableRipple: true, divider: true, onClick: makeClickHandler(function () {
+            if (handleClick)
+                handleClick();
+        }) },
+        PrefixIcon ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: false, handleClick: prefixAction
+                ? makeClickHandler(function () { return prefixAction(); })
+                : undefined }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        title ? (react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary })) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        hasChildren ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: true, handleClick: setShowChildren
+                ? makeClickHandler(function () { return setShowChildren(!showChildren); })
+                : undefined, marginRight: true }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        FullScreenIcon !== undefined &&
+            FullScreenIcon !== null &&
+            !isPopup ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: enableFullScreenIconHover, handleClick: fullScreenAction
+                ? makeClickHandler(function () { return fullScreenAction(); })
+                : undefined, marginRight: true }, FullScreenIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: enableMiddleIconHover, handleClick: middleAction
+                ? makeClickHandler(function () {
+                    middleAction();
+                })
+                : undefined, marginRight: true }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        AffixIcon !== undefined && AffixIcon !== null ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: enableAffixIconHover, handleClick: affixAction
+                ? makeClickHandler(function () {
+                    affixAction();
+                })
+                : undefined }, AffixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null))));
+}
+exports["default"] = Row;
+
+
+/***/ }),
+
+/***/ 442:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var react_1 = __importDefault(__webpack_require__(7294));
+var StyledIconButton_1 = __importDefault(__webpack_require__(409));
+var StyledListItemIcon_1 = __importDefault(__webpack_require__(29));
+function RowItemWrapper(_a) {
+    var children = _a.children, _b = _a.marginRight, marginRight = _b === void 0 ? false : _b, _c = _a.hover, hover = _c === void 0 ? false : _c, handleClick = _a.handleClick;
+    if (handleClick) {
+        return (react_1.default.createElement(StyledIconButton_1.default, { hover: hover, onClick: handleClick, marginRight: marginRight }, children));
+    }
+    else {
+        return (react_1.default.createElement(StyledListItemIcon_1.default, { marginRight: marginRight }, children));
+    }
+}
+exports["default"] = RowItemWrapper;
+
+
+/***/ }),
+
+/***/ 409:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var IconButton_1 = __importDefault(__webpack_require__(4113));
+var system_1 = __webpack_require__(8579);
+var StyledIconButton = (0, system_1.styled)(IconButton_1.default, {
+    shouldForwardProp: function (prop) { return prop !== 'hover' && prop !== 'marginRight'; },
+})(function (_a) {
+    var theme = _a.theme, hover = _a.hover, marginRight = _a.marginRight;
+    return ({
+        '&:hover': {
+            backgroundColor: hover ? '' : theme.palette.background.paper,
+            cursor: hover ? 'pointer' : 'default',
+        },
+        marginRight: marginRight ? '4em' : '0',
+    });
+});
+exports["default"] = StyledIconButton;
+
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var ListItemButton_1 = __importDefault(__webpack_require__(1471));
+var system_1 = __webpack_require__(8579);
+var StyledListItemButton = (0, system_1.styled)(ListItemButton_1.default, {
+    shouldForwardProp: function (prop) { return prop !== 'hover'; },
+})(function (_a) {
+    var theme = _a.theme, hover = _a.hover;
+    return ({
+        backgroundColor: theme.palette.background.paper,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        height: '65px',
+        '&:hover': {
+            backgroundColor: hover ? '' : theme.palette.background.paper,
+            cursor: hover ? 'pointer' : 'default',
+        },
+    });
+});
+exports["default"] = StyledListItemButton;
+
+
+/***/ }),
+
+/***/ 29:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var ListItemIcon_1 = __importDefault(__webpack_require__(330));
+var system_1 = __webpack_require__(8579);
+var StyledListItemIcon = (0, system_1.styled)(ListItemIcon_1.default, {
+    shouldForwardProp: function (prop) { return prop !== 'marginRight'; },
+})(function (_a) {
+    var marginRight = _a.marginRight;
+    return ({
+        marginRight: marginRight ? '4em' : '0',
+    });
+});
+exports["default"] = StyledListItemIcon;
 
 
 /***/ }),
@@ -52134,7 +52250,7 @@ var Add_1 = __importDefault(__webpack_require__(6540));
 var Close_1 = __importDefault(__webpack_require__(594));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
 var Save_1 = __importDefault(__webpack_require__(6818));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
@@ -52142,8 +52258,8 @@ var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
-var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
+var Row_1 = __importDefault(__webpack_require__(304));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 function CurrentGroup(_a) {
@@ -52345,9 +52461,8 @@ var Add_1 = __importDefault(__webpack_require__(6540));
 var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
-var Row_1 = __importDefault(__webpack_require__(9416));
-var StyledChild_1 = __importDefault(__webpack_require__(7229));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
+var Row_1 = __importDefault(__webpack_require__(304));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 var CurrentGroup_1 = __importDefault(__webpack_require__(2595));
@@ -52398,7 +52513,7 @@ function CurrentGroups() {
     }); };
     return (react_1.default.createElement(StyledContainer_1.default, null,
         groups.map(function (groupId) { return (react_1.default.createElement(CurrentGroup_1.default, { key: groupId, groupId: groupId, getGroups: getGroups })); }),
-        react_1.default.createElement(StyledChild_1.default, null,
+        react_1.default.createElement("div", null,
             react_1.default.createElement(Row_1.default, { id: (0, uuid_1.v4)(), title: 'Create new group', PrefixIcon: react_1.default.createElement(Add_1.default, null), handleClick: handleCreateGroup }))));
 }
 exports["default"] = CurrentGroups;
@@ -52461,7 +52576,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 function TabHeader(_a) {
@@ -52526,8 +52641,8 @@ var yup_1 = __webpack_require__(2433);
 var react_1 = __importStar(__webpack_require__(7294));
 var yup = __importStar(__webpack_require__(6310));
 var Rule_1 = __importDefault(__webpack_require__(4235));
-var FormBody_1 = __importDefault(__webpack_require__(448));
 var AlertProvider_1 = __webpack_require__(5648);
+var FormBody_1 = __importDefault(__webpack_require__(5951));
 var formSchema = yup.object().shape({
     title: yup.string().required('Please enter a query'),
     action: yup.mixed().oneOf([0, 1, 2]),
@@ -52537,13 +52652,13 @@ var formSchema = yup.object().shape({
 });
 function AddRuleForm() {
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
-    var _a = (0, react_1.useState)([]), conditions = _a[0], setConditions = _a[1];
+    var _a = (0, react_1.useState)({ all_required: false, groups: [] }), conditionGroups = _a[0], setConditionGroups = _a[1];
     var formOptions = {
         resolver: (0, yup_1.yupResolver)(formSchema),
     };
     var onSubmit = function (data) {
         try {
-            var ruleData = __assign(__assign({}, data), { conditions: conditions });
+            var ruleData = __assign(__assign({}, data), { conditionGroups: conditionGroups });
             var rule = Rule_1.default.build(ruleData);
             rule.save();
             setAlertSettings('success', 'Rule has been created!');
@@ -52553,33 +52668,9 @@ function AddRuleForm() {
             setAlertSettings('error', 'Unable to create new rule.');
         }
     };
-    return (react_1.default.createElement(FormBody_1.default, { conditions: conditions, setConditions: setConditions, onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
+    return (react_1.default.createElement(FormBody_1.default, { conditionGroups: conditionGroups, setConditionGroups: setConditionGroups, onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
 }
 exports["default"] = AddRuleForm;
-
-
-/***/ }),
-
-/***/ 747:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(3417);
-var react_1 = __importDefault(__webpack_require__(7294));
-function ConditionsForm(_a) {
-    var conditions = _a.conditions, handleAddConditions = _a.handleAddConditions;
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "Conditions"),
-        react_1.default.createElement(material_1.List, null,
-            conditions.map(function (condition) { return (react_1.default.createElement("h1", null, condition.query)); }),
-            react_1.default.createElement(material_1.ListItemButton, { onClick: handleAddConditions }, "Add Condition"))));
-}
-exports["default"] = ConditionsForm;
 
 
 /***/ }),
@@ -52666,19 +52757,23 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
-var FormBody_1 = __importDefault(__webpack_require__(448));
 var AlertProvider_1 = __webpack_require__(5648);
+var FormBody_1 = __importDefault(__webpack_require__(5951));
+var defaultConditionGroups = {
+    all_required: false,
+    groups: [],
+};
 function AddRuleForm() {
     var _this = this;
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
-    var _a = (0, react_1.useState)([]), conditions = _a[0], setConditions = _a[1];
+    var _a = (0, react_1.useState)(defaultConditionGroups), ruleConditions = _a[0], setRuleConditions = _a[1];
     var state = (0, react_router_dom_1.useLocation)().state;
     var _b = (0, react_1.useState)({}), formOptions = _b[0], setFormOptions = _b[1];
     (0, react_1.useEffect)(function () {
         updateDefaults();
     }, []);
     var updateDefaults = function () { return __awaiter(_this, void 0, void 0, function () {
-        var ruleId, rule, data, title, action, groupName, groupColor, active;
+        var ruleId, rule, data, conditionGroups, title, action, groupName, groupColor, active;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -52690,10 +52785,14 @@ function AddRuleForm() {
                     data = rule === null || rule === void 0 ? void 0 : rule.getData();
                     console.log('data: ', data);
                     if (data) {
-                        title = data.title, action = data.action, groupName = data.groupName, groupColor = data.groupColor, active = data.active;
+                        conditionGroups = data.conditionGroups, title = data.title, action = data.action, groupName = data.groupName, groupColor = data.groupColor, active = data.active;
                         setFormOptions({
                             defaultValues: { title: title, action: action, groupName: groupName, groupColor: groupColor, active: active },
                         });
+                        if (conditionGroups == undefined) {
+                            throw new Error("Could not get conditions from current rule with id of ".concat(ruleId));
+                        }
+                        setRuleConditions(conditionGroups);
                     }
                     else {
                         console.error("Unable to find data regarding rule with id ".concat(ruleId));
@@ -52706,19 +52805,75 @@ function AddRuleForm() {
     }); };
     var onSubmit = function (data) {
         try {
-            var ruleData = __assign(__assign({}, data), { conditions: conditions });
-            var rule = Rule_1.default.build(ruleData);
-            rule.save();
-            setAlertSettings('success', 'Rule has been created!');
+            var ruleData = __assign(__assign({}, data), { conditionGroups: ruleConditions });
+            console.log('ruleData: ', ruleData);
         }
         catch (err) {
             console.error(err);
             setAlertSettings('error', 'Unable to create new rule.');
         }
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { conditions: conditions, setConditions: setConditions, onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { conditionGroups: ruleConditions, setConditionGroups: setRuleConditions, onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = AddRuleForm;
+
+
+/***/ }),
+
+/***/ 5951:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var react_router_dom_1 = __webpack_require__(9818);
+var types_1 = __webpack_require__(1230);
+var Center_1 = __importDefault(__webpack_require__(1081));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var condition_form_1 = __importDefault(__webpack_require__(6376));
+function FormBody(_a) {
+    var conditionGroups = _a.conditionGroups, setConditionGroups = _a.setConditionGroups, onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
+    var navigate = (0, react_router_dom_1.useNavigate)();
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
+    var menuItems = [
+        { value: 0, label: 'Add tab to a tab group' },
+        { value: 1, label: 'Pin tab' },
+        { value: 2, label: 'Open tab in new window' },
+    ];
+    var handleCancel = function () {
+        navigate(-1);
+    };
+    var colorItems = types_1.colors.map(function (color) {
+        return { label: color, value: color };
+    });
+    var actionWatch = watch('action', 0);
+    var submit = function (data) {
+        onSubmit(data);
+        reset();
+        navigate(-1);
+    };
+    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
+        react_1.default.createElement(Center_1.default, { column: true },
+            react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
+                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
+                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
+                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
+                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
+                react_1.default.createElement(condition_form_1.default, { conditionGroups: conditionGroups, setConditionGroups: setConditionGroups }),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
+                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
+}
+exports["default"] = FormBody;
 
 
 /***/ }),
@@ -52768,26 +52923,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var Add_1 = __importDefault(__webpack_require__(6540));
-var Close_1 = __importDefault(__webpack_require__(594));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var Edit_1 = __importDefault(__webpack_require__(7957));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
-var Rule_1 = __importDefault(__webpack_require__(4235));
 var Circle_1 = __importDefault(__webpack_require__(3970));
-var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 var AlertProvider_1 = __webpack_require__(5648);
-var ModalProvider_1 = __webpack_require__(5125);
 var PopupStatusProvider_1 = __webpack_require__(5671);
 function RuleGroup(_a) {
     var _this = this;
     var rule = _a.rule, updateRules = _a.updateRules;
     var navigate = (0, react_router_dom_1.useNavigate)();
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
-    var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
     var handleChange = function (event) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -52824,55 +52973,334 @@ function RuleGroup(_a) {
             }
         });
     }); };
-    var handleDeleteCondition = function (conditionID) { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4, rule.deleteCondition(conditionID)];
-                case 1:
-                    _a.sent();
-                    return [4, updateRules()];
-                case 2:
-                    _a.sent();
-                    return [2];
-            }
-        });
-    }); };
     var handleEditRule = function () { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             navigate('edit', { state: { ruleId: rule.id } });
             return [2];
         });
     }); };
-    var handleAddCondition = function () { return __awaiter(_this, void 0, void 0, function () {
-        var output;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4, getOutput({
-                        title: 'Add Condition',
-                        type: 'condition',
-                    })];
-                case 1:
-                    output = _a.sent();
-                    if (!output) return [3, 4];
-                    return [4, rule.addCondition(JSON.parse(output))];
-                case 2:
-                    _a.sent();
-                    return [4, updateRules()];
-                case 3:
-                    _a.sent();
-                    _a.label = 4;
-                case 4: return [2];
-            }
-        });
-    }); };
     return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), MiddleIcon: isPopup ? (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })) : (react_1.default.createElement(material_1.Tooltip, { title: 'Edit rule' },
             react_1.default.createElement(Edit_1.default, null))), FullScreenIcon: isPopup ? undefined : (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })), enableFullScreenIconHover: false, enableMiddleIconHover: !isPopup, middleAction: isPopup ? function () { } : handleEditRule, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
             react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() },
-        rule.conditions.map(function (condition) { return (react_1.default.createElement(Row_1.default, { key: condition.query, id: condition.id, isChild: true, title: Rule_1.default.formatConditionText(condition), AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Remove condition from rule' },
-                react_1.default.createElement(Close_1.default, { fontSize: 'small' })), affixAction: function () { return handleDeleteCondition(condition.id); } })); }),
-        react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Condition', handleClick: handleAddCondition })));
+        react_1.default.createElement(react_1.default.Fragment, null)));
 }
 exports["default"] = RuleGroup;
+
+
+/***/ }),
+
+/***/ 5503:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var yup_1 = __webpack_require__(2433);
+var material_1 = __webpack_require__(350);
+var react_1 = __importStar(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var yup = __importStar(__webpack_require__(6310));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var Row_1 = __importDefault(__webpack_require__(304));
+var formSchema = yup.object().shape({
+    query: yup.string().required('Please enter a query'),
+    match: yup
+        .mixed()
+        .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
+    url: yup.mixed().oneOf(['any', 'hostname', 'path', 'query']),
+});
+var urlItems = [
+    { value: 'Hostname', label: 'hostname' },
+    { value: 'Path', label: 'path' },
+    { value: 'Query', label: 'query' },
+    { value: 'Any', label: 'any' },
+];
+var matchItems = [
+    { value: 'is equal to', label: 'is equal to' },
+    { value: 'ends with', label: 'ends with' },
+    { value: 'starts with', label: 'starts with' },
+    { value: 'contains', label: 'contains' },
+];
+var Condition = (0, react_1.memo)(function Condition(_a) {
+    var handleAddCondition = _a.handleAddCondition;
+    var formOptions = {
+        resolver: (0, yup_1.yupResolver)(formSchema),
+        defaultValues: {
+            query: '',
+            match: matchItems[0].value,
+            url: urlItems[0].value,
+        },
+    };
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, reset = _b.reset;
+    var onSubmit = function (data) {
+        if ('match' in data) {
+            reset();
+        }
+    };
+    return (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(material_1.Typography, { variant: 'body1', sx: { alignSelf: 'center', marginRight: '1em' } }, "URL\u00A0"),
+            react_1.default.createElement(HookFormSelect_1.default, { name: 'url', control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: 'match', control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', control: control, name: 'query' }) }));
+});
+exports["default"] = Condition;
+
+
+/***/ }),
+
+/***/ 895:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(350);
+var react_1 = __importStar(__webpack_require__(7294));
+var uuid_1 = __webpack_require__(7429);
+var Condition_1 = __importDefault(__webpack_require__(5503));
+var GroupBuilder_1 = __importDefault(__webpack_require__(306));
+var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
+    var group = _a.group, setConditionGroups = _a.setConditionGroups, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
+    console.log('group: ', group);
+    console.log('read_only: ', read_only);
+    var conditions = group.conditions.map(function (currentCondition) { return (react_1.default.createElement(Condition_1.default, { handleAddCondition: function () { } })); });
+    var handleAddCondition = function () {
+        var newCondition = {
+            url: 'hostname',
+            match: 'is equal to',
+            query: '',
+            id: (0, uuid_1.v4)(),
+        };
+        setConditionGroups(function (previousConditionGroups) { return (__assign(__assign({}, previousConditionGroups), { groups: previousConditionGroups.groups.map(function (currentGroup) {
+                if (currentGroup.id != group.id)
+                    return currentGroup;
+                return __assign(__assign({}, currentGroup), { conditions: __spreadArray(__spreadArray([], currentGroup.conditions, true), [newCondition], false) });
+            }) })); });
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: conditions, label: group.all_required ? 'AND' : 'OR' }),
+        !read_only ? (react_1.default.createElement(material_1.Box, { sx: { display: 'flex', flexDirection: 'column' } },
+            react_1.default.createElement(material_1.Box, null,
+                react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
+            react_1.default.createElement(material_1.Box, null),
+            react_1.default.createElement(material_1.Box, null))) : (react_1.default.createElement(react_1.default.Fragment, null))));
+});
+exports["default"] = ConditionGroup;
+
+
+/***/ }),
+
+/***/ 499:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var react_1 = __importStar(__webpack_require__(7294));
+var ConditionGroup_1 = __importDefault(__webpack_require__(895));
+var GroupBuilder_1 = __importDefault(__webpack_require__(306));
+function ConditionGroups(_a) {
+    var groups = _a.groups, setConditionGroups = _a.setConditionGroups, all_required = _a.all_required;
+    var _b = (0, react_1.useState)(all_required ? 'AND' : 'OR'), label = _b[0], setLabel = _b[1];
+    (0, react_1.useEffect)(function () {
+        var updatedLabel = all_required ? 'AND' : 'OR';
+        setLabel(updatedLabel);
+    }, [all_required]);
+    var renderedGroups = groups.map(function (group) { return (react_1.default.createElement(ConditionGroup_1.default, { group: group, setConditionGroups: setConditionGroups })); });
+    return react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label });
+}
+exports["default"] = ConditionGroups;
+
+
+/***/ }),
+
+/***/ 306:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var system_1 = __webpack_require__(8579);
+var react_1 = __importDefault(__webpack_require__(7294));
+var StyledChip_1 = __importDefault(__webpack_require__(912));
+var StyledDiv = (0, system_1.styled)('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+});
+var StyledRow = (0, system_1.styled)('div')(function (_a) {
+    var indent = _a.indent;
+    return ({
+        width: indent ? '95%' : '100%',
+        height: '100%',
+        alignSelf: 'flex-end',
+    });
+});
+function GroupBuilder(_a) {
+    var childrenArr = _a.childrenArr, label = _a.label;
+    return (react_1.default.createElement(StyledDiv, null, childrenArr.map(function (Child, i) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            i > 0 ? react_1.default.createElement(StyledChip_1.default, { label: label, color: 'primary' }) : null,
+            react_1.default.createElement(StyledRow, { indent: childrenArr.length > 1 }, Child)));
+    })));
+}
+exports["default"] = GroupBuilder;
+
+
+/***/ }),
+
+/***/ 6376:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var uuid_1 = __webpack_require__(7429);
+var Switch_1 = __importDefault(__webpack_require__(556));
+var ConditionGroups_1 = __importDefault(__webpack_require__(499));
+function ConditionForm(_a) {
+    var conditionGroups = _a.conditionGroups, setConditionGroups = _a.setConditionGroups;
+    var handleChange = function (event, newAllRequired) {
+        var isAllRequired = newAllRequired === 'AND' ? true : false;
+        setConditionGroups(function (previousConditionGroups) { return (__assign(__assign({}, previousConditionGroups), { all_required: isAllRequired })); });
+    };
+    var currentValue = conditionGroups.all_required ? 'AND' : 'OR';
+    var handleAddGroup = function () {
+        var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
+        setConditionGroups(function (previousConditionGroups) { return (__assign(__assign({}, previousConditionGroups), { groups: __spreadArray(__spreadArray([], previousConditionGroups.groups, true), [newGroup], false) })); });
+    };
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Conditions"),
+        react_1.default.createElement(Switch_1.default, { handleChange: handleChange, currentValue: currentValue }),
+        react_1.default.createElement(ConditionGroups_1.default, { groups: conditionGroups.groups, setConditionGroups: setConditionGroups, all_required: conditionGroups.all_required }),
+        react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
+}
+exports["default"] = ConditionForm;
 
 
 /***/ }),
@@ -52951,9 +53379,8 @@ var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var Row_1 = __importDefault(__webpack_require__(9416));
-var StyledChild_1 = __importDefault(__webpack_require__(7229));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
+var Row_1 = __importDefault(__webpack_require__(304));
 var PopupStatusProvider_1 = __webpack_require__(5671);
 var RuleGroup_1 = __importDefault(__webpack_require__(2776));
 function Rules() {
@@ -52985,7 +53412,7 @@ function Rules() {
     };
     return (react_1.default.createElement(StyledContainer_1.default, null,
         rules.map(function (rule) { return (react_1.default.createElement(RuleGroup_1.default, { rule: rule, updateRules: updateRules })); }),
-        react_1.default.createElement(StyledChild_1.default, null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit/Add Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule })))));
+        react_1.default.createElement("div", null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit/Add Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule })))));
 }
 exports["default"] = Rules;
 
@@ -53040,14 +53467,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var material_1 = __webpack_require__(3417);
+var material_1 = __webpack_require__(350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
-var Row_1 = __importDefault(__webpack_require__(9416));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
+var Row_1 = __importDefault(__webpack_require__(304));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 function SavedGroup(_a) {
@@ -53506,7 +53933,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useModal = void 0;
 var react_1 = __importStar(__webpack_require__(7294));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
-var AddConditionModal_1 = __importDefault(__webpack_require__(7040));
 var AddTabsModal_1 = __importDefault(__webpack_require__(294));
 var InputModal_1 = __importDefault(__webpack_require__(3771));
 var defaultModalConfig = {
@@ -53522,13 +53948,8 @@ function ModalProvider(_a) {
     var children = _a.children;
     var _b = (0, react_1.useState)(false), open = _b[0], setOpen = _b[1];
     var _c = (0, react_1.useState)(''), inputValue = _c[0], setInputValue = _c[1];
-    var _d = (0, react_1.useState)({
-        url: 'any',
-        match: 'contains',
-        query: '',
-    }), defaultCondition = _d[0], setDefaultConditions = _d[1];
-    var _e = (0, react_1.useState)(defaultModalConfig), modalConfig = _e[0], setModalConfig = _e[1];
-    var _f = (0, react_1.useState)({}), tabs = _f[0], setTabs = _f[1];
+    var _d = (0, react_1.useState)(defaultModalConfig), modalConfig = _d[0], setModalConfig = _d[1];
+    var _e = (0, react_1.useState)({}), tabs = _e[0], setTabs = _e[1];
     var findTabs = function () { return __awaiter(_this, void 0, void 0, function () {
         var tabs, formattedTabs;
         return __generator(this, function (_a) {
@@ -53586,18 +54007,10 @@ function ModalProvider(_a) {
         }
         setOpen(!open);
     };
-    var handleAddCondition = function (data) {
-        var action = modalConfig.actionCallback;
-        if (action !== undefined) {
-            action(JSON.stringify(data));
-        }
-        setOpen(!open);
-    };
     return (react_1.default.createElement(ModalContext.Provider, { value: { showModal: showModal } },
         children,
         modalConfig.type == 'input' ? (react_1.default.createElement(InputModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, inputValue: inputValue, setInputValue: setInputValue, buttonAction: handleSubmitInput, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        modalConfig.type == 'tabs' ? (react_1.default.createElement(AddTabsModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, buttonAction: handleAddTabs, body: modalConfig.body, setTabs: setTabs, tabs: tabs })) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        modalConfig.type == 'condition' ? (react_1.default.createElement(AddConditionModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, handleAddCondition: handleAddCondition, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+        modalConfig.type == 'tabs' ? (react_1.default.createElement(AddTabsModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, buttonAction: handleAddTabs, body: modalConfig.body, setTabs: setTabs, tabs: tabs })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = ModalProvider;
 var useModalContext = function () {
@@ -53806,8 +54219,9 @@ var getDesignTokens = function (mode) { return ({
     palette: __assign({ mode: mode, primary: __assign({}, (mode === 'dark'
             ? {
                 main: '#AE71EA',
+                contrastText: '#000',
             }
-            : { main: '#336E7B' })), secondary: __assign({}, (mode === 'dark'
+            : { main: '#336E7B', contrastText: '#fff' })), secondary: __assign({}, (mode === 'dark'
             ? {
                 main: '#4355FA',
             }
@@ -54166,15 +54580,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -54184,13 +54589,12 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, conditions, id, active, groupName, groupColor) {
-        if (conditions === void 0) { conditions = []; }
+    function Rule(title, action, conditionGroups, id, active, groupName, groupColor) {
         if (id === void 0) { id = (0, uuid_1.v4)(); }
         if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
-        this._conditions = conditions;
+        this._conditionGroups = conditionGroups;
         this._id = id;
         this._active = active;
         this._groupName = groupName;
@@ -54203,12 +54607,12 @@ var Rule = (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Rule.prototype, "conditions", {
+    Object.defineProperty(Rule.prototype, "conditionGroups", {
         get: function () {
-            return this._conditions;
+            return this._conditionGroups;
         },
-        set: function (conditions) {
-            this._conditions = conditions;
+        set: function (conditionGroups) {
+            this._conditionGroups = conditionGroups;
         },
         enumerable: false,
         configurable: true
@@ -54266,7 +54670,7 @@ var Rule = (function () {
         });
     };
     Rule.build = function (ruleData) {
-        return new Rule(ruleData.title, ruleData.action, ruleData.conditions, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
+        return new Rule(ruleData.title, ruleData.action, ruleData.conditionGroups, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
     Rule.findMatch = function (tabId) {
         return __awaiter(this, void 0, Promise, function () {
@@ -54319,17 +54723,49 @@ var Rule = (function () {
         });
     };
     Rule.prototype.isMatch = function (url) {
+        var _this = this;
         if (this.active) {
             var urlUtil_1 = new UrlUtil_1.default(url);
-            var foundMatch_1 = false;
-            this.conditions.forEach(function (condition) {
-                if (Rule.handleCondition(condition, urlUtil_1)) {
-                    foundMatch_1 = true;
-                }
-            });
-            return foundMatch_1;
+            if (this.conditionGroups.all_required) {
+                var foundMatch_1 = true;
+                this.conditionGroups.groups.forEach(function (group) {
+                    if (_this.handleGroup(group, urlUtil_1) === false) {
+                        foundMatch_1 = false;
+                    }
+                });
+                return foundMatch_1;
+            }
+            else {
+                var foundMatch_2 = false;
+                this.conditionGroups.groups.forEach(function (group) {
+                    if (_this.handleGroup(group, urlUtil_1)) {
+                        foundMatch_2 = true;
+                    }
+                });
+                return foundMatch_2;
+            }
         }
         return false;
+    };
+    Rule.prototype.handleGroup = function (group, urlUtil) {
+        if (group.all_required) {
+            var foundMatch_3 = true;
+            group.conditions.forEach(function (condition) {
+                if (Rule.handleCondition(condition, urlUtil) === false) {
+                    foundMatch_3 = false;
+                }
+            });
+            return foundMatch_3;
+        }
+        else {
+            var foundMatch_4 = false;
+            group.conditions.forEach(function (condition) {
+                if (Rule.handleCondition(condition, urlUtil)) {
+                    foundMatch_4 = true;
+                }
+            });
+            return foundMatch_4;
+        }
     };
     Rule.handleCondition = function (condition, urlUtil) {
         var currentUrl = this.extractUrl(condition, urlUtil);
@@ -54374,7 +54810,7 @@ var Rule = (function () {
             groupName: this.groupName,
             id: this.id,
             groupColor: this.groupColor,
-            conditions: this.conditions,
+            conditionGroups: this.conditionGroups,
             active: this.active,
         };
     };
@@ -54420,7 +54856,6 @@ var Rule = (function () {
                     case 2:
                         if (!_a.sent()) return [3, 4];
                         delete savedRules[this.id];
-                        console.log('here in rule.delete();');
                         return [4, Rule.ruleStorage.set(savedRules)];
                     case 3:
                         _a.sent();
@@ -54484,52 +54919,64 @@ var Rule = (function () {
         }
         return;
     };
-    Rule.prototype.deleteCondition = function (id) {
+    Rule.prototype.deleteCondition = function (groupId, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var updatedRules;
+            var groupIndex, conditionIndex, updatedConditionGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!this.conditionExists(id)) return [3, 2];
-                        updatedRules = this.conditions.filter(function (condition) {
-                            return condition.id != id;
-                        });
-                        this.conditions = updatedRules;
-                        return [4, this.update({ conditions: updatedRules })];
+                        groupIndex = this.getConditionGroupIndex(groupId);
+                        conditionIndex = this.getConditionIndex(groupId, id);
+                        if (!(groupIndex != -1 && conditionIndex != -1)) return [3, 2];
+                        updatedConditionGroups = this.conditionGroups;
+                        updatedConditionGroups.groups[groupIndex].conditions.splice(conditionIndex, 1);
+                        this.conditionGroups = updatedConditionGroups;
+                        return [4, this.update({ conditionGroups: updatedConditionGroups })];
                     case 1:
                         _a.sent();
                         return [3, 3];
-                    case 2: throw new Error("No condition exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
+                    case 2: throw new Error("No condition exists with id of ".concat(id, " and group ID ").concat(groupId, " in rule with ID of ").concat(this.id));
                     case 3: return [2];
                 }
             });
         });
     };
-    Rule.prototype.addCondition = function (condition) {
+    Rule.prototype.addCondition = function (groupId, condition) {
         return __awaiter(this, void 0, void 0, function () {
+            var groupIndex, updatedGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ('id' in condition == false) {
-                            Object.assign(condition, { id: (0, uuid_1.v4)() });
-                        }
-                        this.conditions = __spreadArray(__spreadArray([], this.conditions, true), [condition], false);
-                        return [4, this.update({ conditions: this.conditions })];
+                        groupIndex = this.getConditionGroupIndex(groupId);
+                        if (!(groupIndex != -1)) return [3, 2];
+                        updatedGroups = this.conditionGroups;
+                        updatedGroups.groups[groupIndex].conditions.push(condition);
+                        this.conditionGroups = updatedGroups;
+                        return [4, this.update({ conditionGroups: updatedGroups })];
                     case 1:
                         _a.sent();
-                        return [2];
+                        return [3, 3];
+                    case 2: throw new Error("No group with id of ".concat(groupId, " found."));
+                    case 3: return [2];
                 }
             });
         });
     };
-    Rule.prototype.conditionExists = function (id) {
-        var doesExist = false;
-        this.conditions.forEach(function (condition) {
-            if (condition.id == id) {
-                doesExist = true;
-            }
+    Rule.prototype.getConditionGroupIndex = function (groupId) {
+        var index = this.conditionGroups.groups.findIndex(function (group) {
+            return group.id === groupId;
         });
-        return doesExist;
+        return index;
+    };
+    Rule.prototype.getConditionIndex = function (groupId, id) {
+        var conditionGroupIndex = this.getConditionGroupIndex(groupId);
+        var index = -1;
+        if (conditionGroupIndex != -1) {
+            index = this.conditionGroups.groups[conditionGroupIndex].conditions.findIndex(function (condition) {
+                return condition.id === id;
+            });
+        }
+        return index;
     };
     Rule.ruleStorage = new Storage_1.default('rules');
     return Rule;

@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { Resolver } from 'react-hook-form';
 import * as yup from 'yup';
 import {
-   Condition,
+   AllConditionGroupsType,
    ConditionValues,
    RuleType,
    actionRule,
 } from '../../../types';
 import Rule from '../../../utils/Rule';
-import FormBody from '../../components/FormBody';
 import { useAlertProvider } from '../../provider/AlertProvider';
+import FormBody from './FormBody';
 
 const formSchema = yup.object().shape({
    title: yup.string().required('Please enter a query'),
@@ -22,10 +22,13 @@ const formSchema = yup.object().shape({
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   const [conditions, setConditions] = useState<Condition[]>([]);
+   const [conditionGroups, setConditionGroups] =
+      useState<AllConditionGroupsType>({ all_required: false, groups: [] });
 
    const formOptions = {
-      resolver: yupResolver(formSchema) as Resolver<ConditionValues | RuleType>,
+      resolver: yupResolver(formSchema) as Resolver<
+         ConditionValues | Partial<RuleType>
+      >,
    };
 
    /**
@@ -35,7 +38,10 @@ export default function AddRuleForm() {
     */
    const onSubmit = (data: RuleType | ConditionValues) => {
       try {
-         const ruleData = { ...data, conditions } as RuleType;
+         const ruleData = {
+            ...data,
+            conditionGroups: conditionGroups,
+         } as RuleType;
          const rule = Rule.build(ruleData);
          rule.save();
          setAlertSettings('success', 'Rule has been created!');
@@ -47,8 +53,8 @@ export default function AddRuleForm() {
 
    return (
       <FormBody
-         conditions={conditions}
-         setConditions={setConditions}
+         conditionGroups={conditionGroups}
+         setConditionGroups={setConditionGroups}
          onSubmit={onSubmit}
          title={'Add Rule'}
          formOptions={formOptions}

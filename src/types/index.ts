@@ -68,27 +68,29 @@ interface ConditionValues {
    query: string;
 }
 
-interface Condition extends ConditionValues {
+interface ConditionType extends ConditionValues {
    id: string;
+}
+
+interface ConditionGroupType {
+   all_required: boolean;
+   conditions: ConditionType[];
+   id: string;
+}
+
+interface AllConditionGroupsType {
+   all_required: boolean;
+   groups: ConditionGroupType[];
 }
 
 interface RuleType {
    title: string;
    action: actionRule;
-   conditions?: Condition[];
+   conditionGroups: AllConditionGroupsType;
    id?: string;
    groupName: string | undefined;
    groupColor: ColorEnum | undefined;
    active: boolean;
-}
-
-interface UpdateRuleType {
-   title?: string;
-   action?: actionRule;
-   conditions?: Condition[];
-   groupName?: string;
-   groupColor?: ColorEnum;
-   active?: boolean;
 }
 
 interface LocalStorageRules {
@@ -175,6 +177,10 @@ interface RowProps {
     */
    enableMiddleIconHover?: boolean;
    /**
+    * Enable or disable hover effect of affix icon
+    */
+   enableAffixIconHover?: boolean;
+   /**
     * Enable or disable hover effect of full screen icon
     */
    enableFullScreenIconHover?: boolean;
@@ -184,14 +190,17 @@ type RouteType = RouteObject & {
    label?: string | undefined;
 };
 
-/**
- * Inputs for form to add new rules
- */
+type MenuItemType = {
+   value: number | string;
+   label: string;
+};
 
 export {
    AlertSettings,
+   AllConditionGroupsType,
    ColorEnum,
-   Condition,
+   ConditionGroupType,
+   ConditionType,
    ConditionValues,
    FormattedTabs,
    LocalStorageRules,
@@ -199,12 +208,12 @@ export {
    LocalStorageTabGroup,
    LocalStorageTabGroups,
    LocalStorageTitles,
+   MenuItemType,
    RouteType,
    RowProps,
    RuleType,
    SetAlertSettingsType,
    TabOptions,
-   UpdateRuleType,
    actionRule,
    colors,
    matchRule,

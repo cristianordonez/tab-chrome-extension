@@ -6,10 +6,9 @@ import React, {
    useEffect,
    useState,
 } from 'react';
-import { ConditionValues, FormattedTabs } from '../../types';
+import { FormattedTabs } from '../../types';
 import FormattedTab from '../../utils/FormattedTab';
 import TabUtil from '../../utils/TabUtil';
-import AddConditionModal from '../components/modal/AddConditionModal';
 import AddTabsModal from '../components/modal/AddTabsModal';
 import InputModal from '../components/modal/InputModal';
 
@@ -20,7 +19,7 @@ interface Props {
 interface ModalInputs {
    body?: string;
    title: string;
-   type: 'input' | 'confirmation' | 'tabs' | 'condition';
+   type: 'input' | 'confirmation' | 'tabs';
 }
 
 interface ModalConfig extends ModalInputs {
@@ -47,11 +46,6 @@ const ModalContext = createContext<ContextType>(defaultContext);
 export default function ModalProvider({ children }: Props) {
    const [open, setOpen] = useState<boolean>(false);
    const [inputValue, setInputValue] = useState<string>('');
-   const [defaultCondition, setDefaultConditions] = useState<ConditionValues>({
-      url: 'any',
-      match: 'contains',
-      query: '',
-   });
    const [modalConfig, setModalConfig] =
       useState<ModalConfig>(defaultModalConfig);
    const [tabs, setTabs] = useState<FormattedTabs>({});
@@ -127,17 +121,7 @@ export default function ModalProvider({ children }: Props) {
    };
 
    /**
-    * Event triggered when submitting condition form
-    */
-   const handleAddCondition = (data: ConditionValues) => {
-      const action = modalConfig.actionCallback;
-      if (action !== undefined) {
-         action(JSON.stringify(data));
-      }
-      setOpen(!open);
-   };
-   /**
-    * todo Create useEffect that will be called whenever modalConfig changes, and only updattes tabs if the modalConfig.type is set to "tabs"
+    * todo Create useEffect that will be called whenever modalConfig changes, and only updates tabs if the modalConfig.type is set to "tabs"
     */
    return (
       <ModalContext.Provider value={{ showModal }}>
@@ -164,17 +148,6 @@ export default function ModalProvider({ children }: Props) {
                body={modalConfig.body}
                setTabs={setTabs}
                tabs={tabs}
-            />
-         ) : (
-            <></>
-         )}
-         {modalConfig.type == 'condition' ? (
-            <AddConditionModal
-               open={open}
-               handleClose={onClose}
-               title={modalConfig.title}
-               handleAddCondition={handleAddCondition}
-               body={modalConfig.body}
             />
          ) : (
             <></>

@@ -2,29 +2,32 @@ import { Button, Typography } from '@mui/material';
 import React, { Dispatch, SetStateAction } from 'react';
 import { UseFormArgs, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Condition, ConditionValues, RuleType, colors } from '../../types';
-import ConditionForm from '../pages/rules/ConditionsForm';
-import { useModal } from '../provider/ModalProvider';
-import Center from './Center';
-import HookFormInput from './HookFormInput';
-import HookFormSelect from './HookFormSelect';
+import {
+   AllConditionGroupsType,
+   ConditionValues,
+   RuleType,
+   colors,
+} from '../../../types';
+import Center from '../../components/Center';
+import HookFormInput from '../../components/HookFormInput';
+import HookFormSelect from '../../components/HookFormSelect';
+import ConditionForm from './condition-form/';
 
 interface Props {
-   conditions: Condition[];
-   setConditions: Dispatch<SetStateAction<Condition[]>>;
+   conditionGroups: AllConditionGroupsType;
+   setConditionGroups: Dispatch<SetStateAction<AllConditionGroupsType>>;
    onSubmit: (data: RuleType | ConditionValues) => void;
    title: string;
    formOptions: UseFormArgs;
 }
 
 export default function FormBody({
-   conditions,
-   setConditions,
+   conditionGroups,
+   setConditionGroups,
    onSubmit,
    title,
    formOptions,
 }: Props) {
-   const { getOutput } = useModal();
    const navigate = useNavigate();
 
    const { handleSubmit, control, watch, reset } = useForm<
@@ -45,19 +48,6 @@ export default function FormBody({
     */
    const handleCancel = () => {
       navigate(-1);
-   };
-
-   /**
-    * Called when adding new condition button
-    */
-   const handleAddConditions = async () => {
-      const output = await getOutput({
-         title: 'Add Condition',
-         type: 'condition',
-      });
-      if (output) {
-         setConditions([...conditions, JSON.parse(output)]);
-      }
    };
 
    /**
@@ -107,8 +97,8 @@ export default function FormBody({
                   </>
                ) : null}
                <ConditionForm
-                  conditions={conditions}
-                  handleAddConditions={handleAddConditions}
+                  conditionGroups={conditionGroups}
+                  setConditionGroups={setConditionGroups}
                />
                <div>
                   <Button type='submit' variant='contained' color='success'>

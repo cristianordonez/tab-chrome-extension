@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
+   AllConditionGroupsType,
    ColorEnum,
-   Condition,
+   ConditionGroupType,
+   ConditionType,
    LocalStorageRules,
    RuleType,
-   UpdateRuleType,
    actionRule,
 } from '../types';
 import Storage from './Storage';
@@ -25,7 +26,7 @@ class Rule {
    static ruleStorage: Storage = new Storage('rules');
    private _title: string;
    private _action: actionRule;
-   private _conditions: Condition[];
+   private _conditionGroups: AllConditionGroupsType;
    private _id: string;
    private _groupName?: string;
    private _groupColor?: ColorEnum;
@@ -34,7 +35,7 @@ class Rule {
    constructor(
       title: string,
       action: actionRule,
-      conditions: Condition[] = [],
+      conditionGroups: AllConditionGroupsType,
       id: string = uuidv4(),
       active: boolean = true,
       groupName?: string,
@@ -42,7 +43,7 @@ class Rule {
    ) {
       this._title = title;
       this._action = action;
-      this._conditions = conditions;
+      this._conditionGroups = conditionGroups;
       this._id = id;
       this._active = active;
       this._groupName = groupName;
@@ -53,12 +54,12 @@ class Rule {
       return this._title;
    }
 
-   get conditions() {
-      return this._conditions;
+   get conditionGroups() {
+      return this._conditionGroups;
    }
 
-   set conditions(conditions: Condition[]) {
-      this._conditions = conditions;
+   set conditionGroups(conditionGroups: AllConditionGroupsType) {
+      this._conditionGroups = conditionGroups;
    }
 
    get action() {
@@ -104,7 +105,7 @@ class Rule {
       return new Rule(
          ruleData.title,
          ruleData.action,
-         ruleData.conditions,
+         ruleData.conditionGroups,
          ruleData.id,
          ruleData.active,
          ruleData.groupName,
@@ -159,31 +160,61 @@ class Rule {
    }
 
    /**
-    * Determines if url is a match for any existing sub rule
+    * Determines if url is a match for any existing condition
     * @param url full url string
     * @returns true if url matches any condition for this rule
     */
    public isMatch(url: string): boolean {
       if (this.active) {
          const urlUtil = new UrlUtil(url);
+         if (this.conditionGroups.all_required) {
+            let foundMatch = true;
+            this.conditionGroups.groups.forEach((group: ConditionGroupType) => {
+               if (this.handleGroup(group, urlUtil) === false) {
+                  foundMatch = false;
+               }
+            });
+            return foundMatch;
+         } else {
+            let foundMatch = false;
+            this.conditionGroups.groups.forEach((group: ConditionGroupType) => {
+               if (this.handleGroup(group, urlUtil)) {
+                  foundMatch = true;
+               }
+            });
+            return foundMatch;
+         }
+      }
+      return false;
+   }
+
+   private handleGroup(group: ConditionGroupType, urlUtil: UrlUtil): boolean {
+      if (group.all_required) {
+         let foundMatch = true;
+         group.conditions.forEach((condition: ConditionType) => {
+            if (Rule.handleCondition(condition, urlUtil) === false) {
+               foundMatch = false;
+            }
+         });
+         return foundMatch;
+      } else {
          let foundMatch = false;
-         this.conditions.forEach((condition: Condition) => {
+         group.conditions.forEach((condition: ConditionType) => {
             if (Rule.handleCondition(condition, urlUtil)) {
                foundMatch = true;
             }
          });
          return foundMatch;
       }
-      return false;
    }
 
    /**
-    * @param condition Condition interface
+    * @param condition ConditionType interface
     * @param urlUtil UrlUtil class instance
     * @returns true if urlUtil is match for given condition
     */
    private static handleCondition(
-      condition: Condition,
+      condition: ConditionType,
       urlUtil: UrlUtil
    ): boolean {
       const currentUrl = this.extractUrl(condition, urlUtil);
@@ -206,7 +237,10 @@ class Rule {
     * @param urlUtil UrlUtil class instance
     * @returns corresponding part of url for given condition
     */
-   private static extractUrl(condition: Condition, urlUtil: UrlUtil): string {
+   private static extractUrl(
+      condition: ConditionType,
+      urlUtil: UrlUtil
+   ): string {
       switch (condition.url) {
          case 'any':
             return urlUtil.getUrl();
@@ -226,7 +260,7 @@ class Rule {
     * @param condition condition containing url, match and query keys
     * @returns formatted string
     */
-   public static formatConditionText(condition: Condition): string {
+   public static formatConditionText(condition: ConditionType): string {
       let urlText = 'URL ';
       if (condition.url != 'any') urlText += condition.url;
       urlText += ` ${condition.match} '${condition.query}'`;
@@ -244,7 +278,7 @@ class Rule {
          groupName: this.groupName,
          id: this.id,
          groupColor: this.groupColor,
-         conditions: this.conditions,
+         conditionGroups: this.conditionGroups,
          active: this.active,
       };
    }
@@ -279,7 +313,6 @@ class Rule {
       const savedRules = await Rule.ruleStorage.get();
       if (await this.doesIDExist()) {
          delete savedRules[this.id];
-         console.log('here in rule.delete();');
          await Rule.ruleStorage.set(savedRules);
       } else {
          throw new Error(`Given id does not exist in storage: ${this.id}`);
@@ -290,7 +323,7 @@ class Rule {
     * Updates rule in storage with new settings
     * @param updateInfo object containing values to update in storage for given rule ID
     */
-   public async update(updateInfo: UpdateRuleType) {
+   public async update(updateInfo: Partial<RuleType>) {
       if (await this.doesIDExist()) {
          const savedRules = await Rule.ruleStorage.get();
          const currentData = savedRules[this.id] as RuleType;
@@ -336,42 +369,74 @@ class Rule {
    /**
     * Deletes condition from current rule and updates storage
     * @param id ID of condition to delete
+    * @param groupId ID of group condition is in
     */
-   public async deleteCondition(id: string) {
-      if (this.conditionExists(id)) {
-         const updatedRules = this.conditions.filter((condition: Condition) => {
-            return condition.id != id;
-         });
-         this.conditions = updatedRules;
-         await this.update({ conditions: updatedRules });
+   public async deleteCondition(groupId: string, id: string) {
+      const groupIndex = this.getConditionGroupIndex(groupId);
+      const conditionIndex = this.getConditionIndex(groupId, id);
+      if (groupIndex != -1 && conditionIndex != -1) {
+         const updatedConditionGroups = this.conditionGroups;
+         updatedConditionGroups.groups[groupIndex].conditions.splice(
+            conditionIndex,
+            1
+         );
+         this.conditionGroups = updatedConditionGroups;
+         await this.update({ conditionGroups: updatedConditionGroups });
       } else {
          throw new Error(
-            `No condition exists with id of ${id} in rule with ID of ${this.id}`
+            `No condition exists with id of ${id} and group ID ${groupId} in rule with ID of ${this.id}`
          );
       }
    }
 
-   public async addCondition(condition: Condition) {
-      if ('id' in condition == false) {
-         Object.assign(condition, { id: uuidv4() });
+   /**
+    * Adds condition to given group and updates local storage
+    * @param groupId id of group to add condition to
+    * @param condition full condition object
+    */
+   public async addCondition(groupId: string, condition: ConditionType) {
+      const groupIndex = this.getConditionGroupIndex(groupId);
+      if (groupIndex != -1) {
+         const updatedGroups = this.conditionGroups;
+         updatedGroups.groups[groupIndex].conditions.push(condition);
+         this.conditionGroups = updatedGroups;
+         await this.update({ conditionGroups: updatedGroups });
+      } else {
+         throw new Error(`No group with id of ${groupId} found.`);
       }
-      this.conditions = [...this.conditions, condition];
-      await this.update({ conditions: this.conditions });
    }
 
    /**
-    * Finds if a condition exists in this rule with the given id
+    * Gets index of a condition group using its group ID
     * @param id the ID of the condition to delete
-    * @returns true if condition is found, false otherwise
+    * @returns index of condition group, -1 if no matches were found
     */
-   private conditionExists(id: string): boolean {
-      let doesExist = false;
-      this.conditions.forEach((condition: Condition) => {
-         if (condition.id == id) {
-            doesExist = true;
+   private getConditionGroupIndex(groupId: string): number {
+      const index = this.conditionGroups.groups.findIndex(
+         (group: ConditionGroupType) => {
+            return group.id === groupId;
          }
-      });
-      return doesExist;
+      );
+      return index;
+   }
+
+   /**
+    * Finds condition index by group ID and condition ID
+    * @param id the ID of the condition
+    * @param groupId the ID of the group condition is in
+    * @returns index of condition, -1 if doesn't exist
+    */
+   private getConditionIndex(groupId: string, id: string): number {
+      const conditionGroupIndex = this.getConditionGroupIndex(groupId);
+      let index = -1;
+      if (conditionGroupIndex != -1) {
+         index = this.conditionGroups.groups[
+            conditionGroupIndex
+         ].conditions.findIndex((condition: ConditionType) => {
+            return condition.id === id;
+         });
+      }
+      return index;
    }
 }
 

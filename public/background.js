@@ -391,15 +391,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -409,13 +400,12 @@ var Storage_1 = __importDefault(__webpack_require__(8537));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var UrlUtil_1 = __importDefault(__webpack_require__(9660));
 var Rule = (function () {
-    function Rule(title, action, conditions, id, active, groupName, groupColor) {
-        if (conditions === void 0) { conditions = []; }
+    function Rule(title, action, conditionGroups, id, active, groupName, groupColor) {
         if (id === void 0) { id = (0, uuid_1.v4)(); }
         if (active === void 0) { active = true; }
         this._title = title;
         this._action = action;
-        this._conditions = conditions;
+        this._conditionGroups = conditionGroups;
         this._id = id;
         this._active = active;
         this._groupName = groupName;
@@ -428,12 +418,12 @@ var Rule = (function () {
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Rule.prototype, "conditions", {
+    Object.defineProperty(Rule.prototype, "conditionGroups", {
         get: function () {
-            return this._conditions;
+            return this._conditionGroups;
         },
-        set: function (conditions) {
-            this._conditions = conditions;
+        set: function (conditionGroups) {
+            this._conditionGroups = conditionGroups;
         },
         enumerable: false,
         configurable: true
@@ -491,7 +481,7 @@ var Rule = (function () {
         });
     };
     Rule.build = function (ruleData) {
-        return new Rule(ruleData.title, ruleData.action, ruleData.conditions, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
+        return new Rule(ruleData.title, ruleData.action, ruleData.conditionGroups, ruleData.id, ruleData.active, ruleData.groupName, ruleData.groupColor);
     };
     Rule.findMatch = function (tabId) {
         return __awaiter(this, void 0, Promise, function () {
@@ -544,17 +534,49 @@ var Rule = (function () {
         });
     };
     Rule.prototype.isMatch = function (url) {
+        var _this = this;
         if (this.active) {
             var urlUtil_1 = new UrlUtil_1.default(url);
-            var foundMatch_1 = false;
-            this.conditions.forEach(function (condition) {
-                if (Rule.handleCondition(condition, urlUtil_1)) {
-                    foundMatch_1 = true;
-                }
-            });
-            return foundMatch_1;
+            if (this.conditionGroups.all_required) {
+                var foundMatch_1 = true;
+                this.conditionGroups.groups.forEach(function (group) {
+                    if (_this.handleGroup(group, urlUtil_1) === false) {
+                        foundMatch_1 = false;
+                    }
+                });
+                return foundMatch_1;
+            }
+            else {
+                var foundMatch_2 = false;
+                this.conditionGroups.groups.forEach(function (group) {
+                    if (_this.handleGroup(group, urlUtil_1)) {
+                        foundMatch_2 = true;
+                    }
+                });
+                return foundMatch_2;
+            }
         }
         return false;
+    };
+    Rule.prototype.handleGroup = function (group, urlUtil) {
+        if (group.all_required) {
+            var foundMatch_3 = true;
+            group.conditions.forEach(function (condition) {
+                if (Rule.handleCondition(condition, urlUtil) === false) {
+                    foundMatch_3 = false;
+                }
+            });
+            return foundMatch_3;
+        }
+        else {
+            var foundMatch_4 = false;
+            group.conditions.forEach(function (condition) {
+                if (Rule.handleCondition(condition, urlUtil)) {
+                    foundMatch_4 = true;
+                }
+            });
+            return foundMatch_4;
+        }
     };
     Rule.handleCondition = function (condition, urlUtil) {
         var currentUrl = this.extractUrl(condition, urlUtil);
@@ -599,7 +621,7 @@ var Rule = (function () {
             groupName: this.groupName,
             id: this.id,
             groupColor: this.groupColor,
-            conditions: this.conditions,
+            conditionGroups: this.conditionGroups,
             active: this.active,
         };
     };
@@ -645,7 +667,6 @@ var Rule = (function () {
                     case 2:
                         if (!_a.sent()) return [3, 4];
                         delete savedRules[this.id];
-                        console.log('here in rule.delete();');
                         return [4, Rule.ruleStorage.set(savedRules)];
                     case 3:
                         _a.sent();
@@ -709,52 +730,64 @@ var Rule = (function () {
         }
         return;
     };
-    Rule.prototype.deleteCondition = function (id) {
+    Rule.prototype.deleteCondition = function (groupId, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var updatedRules;
+            var groupIndex, conditionIndex, updatedConditionGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!this.conditionExists(id)) return [3, 2];
-                        updatedRules = this.conditions.filter(function (condition) {
-                            return condition.id != id;
-                        });
-                        this.conditions = updatedRules;
-                        return [4, this.update({ conditions: updatedRules })];
+                        groupIndex = this.getConditionGroupIndex(groupId);
+                        conditionIndex = this.getConditionIndex(groupId, id);
+                        if (!(groupIndex != -1 && conditionIndex != -1)) return [3, 2];
+                        updatedConditionGroups = this.conditionGroups;
+                        updatedConditionGroups.groups[groupIndex].conditions.splice(conditionIndex, 1);
+                        this.conditionGroups = updatedConditionGroups;
+                        return [4, this.update({ conditionGroups: updatedConditionGroups })];
                     case 1:
                         _a.sent();
                         return [3, 3];
-                    case 2: throw new Error("No condition exists with id of ".concat(id, " in rule with ID of ").concat(this.id));
+                    case 2: throw new Error("No condition exists with id of ".concat(id, " and group ID ").concat(groupId, " in rule with ID of ").concat(this.id));
                     case 3: return [2];
                 }
             });
         });
     };
-    Rule.prototype.addCondition = function (condition) {
+    Rule.prototype.addCondition = function (groupId, condition) {
         return __awaiter(this, void 0, void 0, function () {
+            var groupIndex, updatedGroups;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ('id' in condition == false) {
-                            Object.assign(condition, { id: (0, uuid_1.v4)() });
-                        }
-                        this.conditions = __spreadArray(__spreadArray([], this.conditions, true), [condition], false);
-                        return [4, this.update({ conditions: this.conditions })];
+                        groupIndex = this.getConditionGroupIndex(groupId);
+                        if (!(groupIndex != -1)) return [3, 2];
+                        updatedGroups = this.conditionGroups;
+                        updatedGroups.groups[groupIndex].conditions.push(condition);
+                        this.conditionGroups = updatedGroups;
+                        return [4, this.update({ conditionGroups: updatedGroups })];
                     case 1:
                         _a.sent();
-                        return [2];
+                        return [3, 3];
+                    case 2: throw new Error("No group with id of ".concat(groupId, " found."));
+                    case 3: return [2];
                 }
             });
         });
     };
-    Rule.prototype.conditionExists = function (id) {
-        var doesExist = false;
-        this.conditions.forEach(function (condition) {
-            if (condition.id == id) {
-                doesExist = true;
-            }
+    Rule.prototype.getConditionGroupIndex = function (groupId) {
+        var index = this.conditionGroups.groups.findIndex(function (group) {
+            return group.id === groupId;
         });
-        return doesExist;
+        return index;
+    };
+    Rule.prototype.getConditionIndex = function (groupId, id) {
+        var conditionGroupIndex = this.getConditionGroupIndex(groupId);
+        var index = -1;
+        if (conditionGroupIndex != -1) {
+            index = this.conditionGroups.groups[conditionGroupIndex].conditions.findIndex(function (condition) {
+                return condition.id === id;
+            });
+        }
+        return index;
     };
     Rule.ruleStorage = new Storage_1.default('rules');
     return Rule;

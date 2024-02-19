@@ -1,17 +1,12 @@
-import AddIcon from '@mui/icons-material/Add';
-import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Switch, Tooltip } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Condition } from '../../../types';
 import Rule from '../../../utils/Rule';
 import Circle from '../../components/Circle';
-import Row from '../../components/Row';
 import RowGroup from '../../components/RowGroupParent';
 import { useAlertProvider } from '../../provider/AlertProvider';
-import { useModal } from '../../provider/ModalProvider';
 import { usePopupStatus } from '../../provider/PopupStatusProvider';
 
 interface Props {
@@ -22,7 +17,6 @@ interface Props {
 export default function RuleGroup({ rule, updateRules }: Props) {
    const navigate = useNavigate();
    const isPopup = usePopupStatus();
-   const { getOutput } = useModal();
    const { setAlertSettings } = useAlertProvider();
 
    /**
@@ -49,33 +43,10 @@ export default function RuleGroup({ rule, updateRules }: Props) {
    };
 
    /**
-    * Deletes a condition from current rule
-    * @returns void
-    */
-   const handleDeleteCondition = async (conditionID: string) => {
-      await rule.deleteCondition(conditionID);
-      await updateRules();
-   };
-
-   /**
     * Handle edit rule. Navigates to /edit route with rule ID in state
     */
    const handleEditRule = async () => {
       navigate('edit', { state: { ruleId: rule.id } });
-   };
-
-   /**
-    * Opens modal and adds condition to current rule and saves to local storage
-    */
-   const handleAddCondition = async () => {
-      const output = await getOutput({
-         title: 'Add Condition',
-         type: 'condition',
-      });
-      if (output) {
-         await rule.addCondition(JSON.parse(output));
-         await updateRules();
-      }
    };
 
    return (
@@ -108,7 +79,7 @@ export default function RuleGroup({ rule, updateRules }: Props) {
          title={rule.title}
          secondary={rule.formatActionText()}
       >
-         {rule.conditions.map((condition: Condition) => (
+         {/* {rule.conditions.map((condition: ConditionType) => (
             <Row
                key={condition.query}
                id={condition.id}
@@ -121,12 +92,8 @@ export default function RuleGroup({ rule, updateRules }: Props) {
                }
                affixAction={() => handleDeleteCondition(condition.id)}
             />
-         ))}
-         <Row
-            PrefixIcon={<AddIcon />}
-            title='Add Condition'
-            handleClick={handleAddCondition}
-         />
+         ))} */}
+         <></>
       </RowGroup>
    );
 }

@@ -52062,7 +52062,7 @@ var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
         control: control,
         name: "conditionGroups.groups.".concat(index, ".conditions"),
     }), fields = _d.fields, append = _d.append;
-    var conditions = group.conditions.map(function (currentCondition) { return (react_1.default.createElement(Condition_1.default, { condition: currentCondition })); });
+    var conditions = fields.map(function (currentCondition) { return (react_1.default.createElement(Condition_1.default, { condition: currentCondition })); });
     var handleAddCondition = function () {
         var newCondition = {
             url: 'hostname',

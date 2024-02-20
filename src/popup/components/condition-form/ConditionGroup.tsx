@@ -58,7 +58,7 @@ const ConditionGroup = memo(function ConditionGroup({
       name: `conditionGroups.groups.${index}.conditions`,
    });
 
-   const conditions = group.conditions.map((currentCondition) => (
+   const conditions = fields.map((currentCondition) => (
       <Condition condition={currentCondition} />
    ));
 

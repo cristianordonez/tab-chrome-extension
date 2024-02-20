@@ -1,36 +1,22 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Typography } from '@mui/material';
 import React, { memo } from 'react';
-import { Resolver, useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import {
-   ConditionType,
-   ConditionValues,
-   RuleType,
-   matchRule,
-   urlRule,
-} from '../../../types';
+import { Control } from 'react-hook-form';
+import { ConditionValues, RuleType } from '../../../types';
 import HookFormInput from '../HookFormInput';
 import HookFormSelect from '../HookFormSelect';
 import Row from '../row/Row';
 
 interface Props {
-   condition: ConditionType;
+   control: Control<ConditionValues | RuleType, unknown>;
+   groupIndex: number;
+   conditionIndex: number;
 }
 
-const formSchema = yup.object().shape({
-   query: yup.string().required('Please enter a query'),
-   match: yup
-      .mixed<matchRule>()
-      .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
-   url: yup.mixed<urlRule>().oneOf(['any', 'hostname', 'path', 'query']),
-});
-
 const urlItems = [
-   { value: 'Hostname', label: 'hostname' },
-   { value: 'Path', label: 'path' },
-   { value: 'Query', label: 'query' },
-   { value: 'Any', label: 'any' },
+   { value: 'hostname', label: 'Hostname' },
+   { value: 'path', label: 'Path' },
+   { value: 'query', label: 'Query' },
+   { value: 'any', label: 'Any' },
 ];
 
 const matchItems = [
@@ -41,20 +27,13 @@ const matchItems = [
 ];
 
 /**
- * TODO like Display
+ * Single condition row
  */
-const Condition = memo(function Condition({ condition }: Props) {
-   const formOptions = {
-      resolver: yupResolver(formSchema) as Resolver<ConditionValues | RuleType>,
-      defaultValues: {
-         query: condition.query,
-         match: condition.match,
-         url: condition.url,
-      },
-   };
-
-   const { control, reset } = useForm<ConditionValues | RuleType>(formOptions);
-
+const Condition = memo(function Condition({
+   control,
+   groupIndex,
+   conditionIndex,
+}: Props) {
    return (
       <Row
          PrefixIcon={
@@ -66,7 +45,7 @@ const Condition = memo(function Condition({ condition }: Props) {
                   URL&nbsp;
                </Typography>
                <HookFormSelect
-                  name='url'
+                  name={`conditionGroups.groups.${groupIndex}.conditions.${conditionIndex}.url`}
                   control={control}
                   menuItems={urlItems}
                   label='URL Section'
@@ -75,14 +54,18 @@ const Condition = memo(function Condition({ condition }: Props) {
          }
          MiddleIcon={
             <HookFormSelect
-               name='match'
+               name={`conditionGroups.groups.${groupIndex}.conditions.${conditionIndex}.match`}
                control={control}
                menuItems={matchItems}
                label='Match type'
             />
          }
          AffixIcon={
-            <HookFormInput label='Match' control={control} name='query' />
+            <HookFormInput
+               label='Match'
+               control={control}
+               name={`conditionGroups.groups.${groupIndex}.conditions.${conditionIndex}.query`}
+            />
          }
       />
    );

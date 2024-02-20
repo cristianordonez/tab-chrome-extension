@@ -51967,26 +51967,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var yup_1 = __webpack_require__(2433);
 var material_1 = __webpack_require__(4350);
 var react_1 = __importStar(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var yup = __importStar(__webpack_require__(6310));
 var HookFormInput_1 = __importDefault(__webpack_require__(3910));
 var HookFormSelect_1 = __importDefault(__webpack_require__(968));
 var Row_1 = __importDefault(__webpack_require__(3304));
-var formSchema = yup.object().shape({
-    query: yup.string().required('Please enter a query'),
-    match: yup
-        .mixed()
-        .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
-    url: yup.mixed().oneOf(['any', 'hostname', 'path', 'query']),
-});
 var urlItems = [
-    { value: 'Hostname', label: 'hostname' },
-    { value: 'Path', label: 'path' },
-    { value: 'Query', label: 'query' },
-    { value: 'Any', label: 'any' },
+    { value: 'hostname', label: 'Hostname' },
+    { value: 'path', label: 'Path' },
+    { value: 'query', label: 'Query' },
+    { value: 'any', label: 'Any' },
 ];
 var matchItems = [
     { value: 'is equal to', label: 'is equal to' },
@@ -51995,19 +51985,10 @@ var matchItems = [
     { value: 'contains', label: 'contains' },
 ];
 var Condition = (0, react_1.memo)(function Condition(_a) {
-    var condition = _a.condition;
-    var formOptions = {
-        resolver: (0, yup_1.yupResolver)(formSchema),
-        defaultValues: {
-            query: condition.query,
-            match: condition.match,
-            url: condition.url,
-        },
-    };
-    var _b = (0, react_hook_form_1.useForm)(formOptions), control = _b.control, reset = _b.reset;
+    var control = _a.control, groupIndex = _a.groupIndex, conditionIndex = _a.conditionIndex;
     return (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(material_1.Typography, { variant: 'body1', sx: { alignSelf: 'center', marginRight: '1em' } }, "URL\u00A0"),
-            react_1.default.createElement(HookFormSelect_1.default, { name: 'url', control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: 'match', control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', control: control, name: 'query' }) }));
+            react_1.default.createElement(HookFormSelect_1.default, { name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".url"), control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".match"), control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', control: control, name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".query") }) }));
 });
 exports["default"] = Condition;
 
@@ -52054,15 +52035,12 @@ var Switch_1 = __importDefault(__webpack_require__(1556));
 var Condition_1 = __importDefault(__webpack_require__(4581));
 var GroupBuilder_1 = __importDefault(__webpack_require__(453));
 var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
-    var control = _a.control, update = _a.update, group = _a.group, index = _a.index, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
-    var _c = (0, react_hook_form_1.useForm)({
-        defaultValues: group,
-    }), register = _c.register, handleSubmit = _c.handleSubmit;
-    var _d = (0, react_hook_form_1.useFieldArray)({
+    var control = _a.control, index = _a.index, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
+    var _c = (0, react_hook_form_1.useFieldArray)({
         control: control,
         name: "conditionGroups.groups.".concat(index, ".conditions"),
-    }), fields = _d.fields, append = _d.append;
-    var conditions = fields.map(function (currentCondition) { return (react_1.default.createElement(Condition_1.default, { condition: currentCondition })); });
+    }), fields = _c.fields, append = _c.append;
+    var conditions = fields.map(function (currentCondition, i) { return (react_1.default.createElement(Condition_1.default, { key: currentCondition.id, control: control, groupIndex: index, conditionIndex: i })); });
     var handleAddCondition = function () {
         var newCondition = {
             url: 'hostname',
@@ -52154,27 +52132,27 @@ function ConditionForm(_a) {
     var _b = (0, react_hook_form_1.useFieldArray)({
         control: control,
         name: 'conditionGroups.groups',
-    }), fields = _b.fields, append = _b.append, update = _b.update;
+    }), fields = _b.fields, append = _b.append;
     var handleAddGroup = function () {
         var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
         append(newGroup);
     };
-    var renderedGroups = fields.map(function (field, index) { return (react_1.default.createElement(ConditionGroup_1.default, { key: field.id, update: update, index: index, group: field, control: control })); });
+    var renderedGroups = fields.map(function (field, index) { return (react_1.default.createElement(ConditionGroup_1.default, { key: field.id, index: index, control: control })); });
     var label = (0, react_hook_form_1.useWatch)({
         control: control,
         name: 'conditionGroups.all_required',
     });
-    console.log('label: ', label);
     return (react_1.default.createElement("div", null,
         react_1.default.createElement("h1", null, "Conditions"),
         react_1.default.createElement(react_hook_form_1.Controller, { name: 'conditionGroups.all_required', control: control, render: function (_a) {
                 var _b = _a.field, onChange = _b.onChange, value = _b.value;
                 return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
-                        return onChange(currentValue === 'AND' ? true : false);
+                        console.log('value: ', value);
+                        console.log('currentValue: ', currentValue);
+                        onChange(currentValue === 'AND' ? true : false);
                     }, currentValue: value ? 'AND' : 'OR' }));
             } }),
         react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label ? 'AND' : 'OR' }),
-        ";",
         react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
 }
 exports["default"] = ConditionForm;
@@ -53269,17 +53247,6 @@ exports["default"] = Rules;
 
 "use strict";
 
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -53310,7 +53277,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var yup_1 = __webpack_require__(2433);
 var react_1 = __importDefault(__webpack_require__(7294));
 var yup = __importStar(__webpack_require__(6310));
-var Rule_1 = __importDefault(__webpack_require__(4235));
 var FormBody_1 = __importDefault(__webpack_require__(448));
 var AlertProvider_1 = __webpack_require__(5648);
 var formSchema = yup.object().shape({
@@ -53327,10 +53293,7 @@ function AddRuleForm() {
     };
     var onSubmit = function (data) {
         try {
-            var ruleData = __assign({}, data);
-            var rule = Rule_1.default.build(ruleData);
-            rule.save();
-            setAlertSettings('success', 'Rule has been created!');
+            console.log('data: ', data);
         }
         catch (err) {
             console.error(err);

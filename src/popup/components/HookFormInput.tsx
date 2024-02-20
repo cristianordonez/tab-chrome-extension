@@ -13,7 +13,8 @@ interface Props {
       | 'title'
       | 'groupName'
       | 'groupColor'
-      | 'action';
+      | 'action'
+      | `conditionGroups.groups.${number}.conditions.${number}.query`;
    defaultValue?: string;
 }
 

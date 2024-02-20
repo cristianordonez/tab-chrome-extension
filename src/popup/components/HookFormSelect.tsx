@@ -8,13 +8,21 @@ interface Props {
    menuItems: MenuItemType[];
    label: string;
    name:
-      | 'match'
-      | 'url'
       | 'query'
       | 'title'
+      | 'id'
+      | 'match'
+      | 'action'
+      | 'url'
       | 'groupName'
       | 'groupColor'
-      | 'action';
+      | 'active'
+      | 'conditionGroups'
+      | 'conditionGroups.all_required'
+      | 'conditionGroups.groups'
+      | `conditionGroups.groups.${number}.conditions.${number}`
+      | `conditionGroups.groups.${number}.conditions.${number}.url`
+      | `conditionGroups.groups.${number}.conditions.${number}.match`;
 }
 
 export default function HookFormSelect({

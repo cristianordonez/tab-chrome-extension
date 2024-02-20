@@ -3,7 +3,6 @@ import React from 'react';
 import { Resolver } from 'react-hook-form';
 import * as yup from 'yup';
 import { ConditionValues, RuleType, actionRule } from '../../../../types';
-import Rule from '../../../../utils/Rule';
 import FormBody from '../../../components/FormBody';
 import { useAlertProvider } from '../../../provider/AlertProvider';
 
@@ -13,12 +12,11 @@ const formSchema = yup.object().shape({
    groupName: yup.string(),
    groupColor: yup.string(),
    active: yup.bool(),
+   // currentGroups: yup.object()
 });
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   // const [conditionGroups, setConditionGroups] =
-   //    useState<AllConditionGroupsType>({ all_required: false, groups: [] });
 
    const formOptions = {
       resolver: yupResolver(formSchema) as Resolver<
@@ -33,13 +31,10 @@ export default function AddRuleForm() {
     */
    const onSubmit = (data: RuleType | ConditionValues) => {
       try {
-         const ruleData = {
-            ...data,
-            // conditionGroups: conditionGroups,
-         } as RuleType;
-         const rule = Rule.build(ruleData);
-         rule.save();
-         setAlertSettings('success', 'Rule has been created!');
+         console.log('data: ', data);
+         // const rule = Rule.build(ruleData);
+         // rule.save();
+         // setAlertSettings('success', 'Rule has been created!');
       } catch (err) {
          console.error(err);
          setAlertSettings('error', 'Unable to create new rule.');
@@ -48,8 +43,6 @@ export default function AddRuleForm() {
 
    return (
       <FormBody
-         // conditionGroups={conditionGroups}
-         // setConditionGroups={setConditionGroups}
          onSubmit={onSubmit}
          title={'Add Rule'}
          formOptions={formOptions}

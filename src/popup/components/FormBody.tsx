@@ -9,20 +9,12 @@ import HookFormSelect from './HookFormSelect';
 import ConditionForm from './condition-form';
 
 interface Props {
-   // conditionGroups: AllConditionGroupsType;
-   // setConditionGroups: Dispatch<SetStateAction<AllConditionGroupsType>>;
    onSubmit: (data: RuleType | ConditionValues) => void;
    title: string;
    formOptions: UseFormArgs;
 }
 
-export default function FormBody({
-   // conditionGroups,
-   // setConditionGroups,
-   onSubmit,
-   title,
-   formOptions,
-}: Props) {
+export default function FormBody({ onSubmit, title, formOptions }: Props) {
    const navigate = useNavigate();
 
    /**

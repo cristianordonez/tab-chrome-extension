@@ -3914,7 +3914,7 @@ const touchRippleClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["defaul
 
 /***/ }),
 
-/***/ 723:
+/***/ 4723:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3964,7 +3964,7 @@ var useThemeProps = __webpack_require__(1657);
 // EXTERNAL MODULE: ./node_modules/@mui/material/styles/styled.js
 var styled = __webpack_require__(948);
 // EXTERNAL MODULE: ./node_modules/@mui/material/Chip/chipClasses.js
-var chipClasses = __webpack_require__(72);
+var chipClasses = __webpack_require__(2072);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/Chip/Chip.js
 'use client';
 
@@ -4364,7 +4364,7 @@ const Chip = /*#__PURE__*/react.forwardRef(function Chip(inProps, ref) {
 
 /***/ }),
 
-/***/ 72:
+/***/ 2072:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4384,7 +4384,7 @@ const chipClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ 
 
 /***/ }),
 
-/***/ 570:
+/***/ 3570:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4394,8 +4394,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _Chip__WEBPACK_IMPORTED_MODULE_0__.Z),
 /* harmony export */   getChipUtilityClass: () => (/* reexport safe */ _chipClasses__WEBPACK_IMPORTED_MODULE_1__.z)
 /* harmony export */ });
-/* harmony import */ var _Chip__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(723);
-/* harmony import */ var _chipClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
+/* harmony import */ var _Chip__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4723);
+/* harmony import */ var _chipClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2072);
 'use client';
 
 
@@ -4853,7 +4853,7 @@ const listItemButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["def
 
 /***/ }),
 
-/***/ 885:
+/***/ 8885:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4867,7 +4867,7 @@ const listItemButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["def
 /* harmony import */ var _mui_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4780);
 /* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(948);
 /* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1657);
-/* harmony import */ var _listItemIconClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(592);
+/* harmony import */ var _listItemIconClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4592);
 /* harmony import */ var _List_ListContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9773);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
@@ -4943,7 +4943,7 @@ const ListItemIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
 
 /***/ }),
 
-/***/ 330:
+/***/ 4539:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4953,8 +4953,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getListItemIconUtilityClass: () => (/* reexport safe */ _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__.f),
 /* harmony export */   listItemIconClasses: () => (/* reexport safe */ _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
 /* harmony export */ });
-/* harmony import */ var _ListItemIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(885);
-/* harmony import */ var _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(592);
+/* harmony import */ var _ListItemIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8885);
+/* harmony import */ var _listItemIconClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4592);
 'use client';
 
 
@@ -4963,7 +4963,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 592:
+/***/ 4592:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5139,7 +5139,7 @@ const svgIconClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] 
 
 /***/ }),
 
-/***/ 290:
+/***/ 7594:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5156,7 +5156,7 @@ const svgIconClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["default"] 
 /* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8216);
 /* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1657);
 /* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(948);
-/* harmony import */ var _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(138);
+/* harmony import */ var _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3138);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5893);
 'use client';
 
@@ -5304,7 +5304,7 @@ const ToggleButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
 
 /***/ }),
 
-/***/ 376:
+/***/ 9376:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5314,8 +5314,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getToggleButtonUtilityClass: () => (/* reexport safe */ _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__.a),
 /* harmony export */   toggleButtonClasses: () => (/* reexport safe */ _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
 /* harmony export */ });
-/* harmony import */ var _ToggleButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(290);
-/* harmony import */ var _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(138);
+/* harmony import */ var _ToggleButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7594);
+/* harmony import */ var _toggleButtonClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3138);
 'use client';
 
 
@@ -5324,7 +5324,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 138:
+/***/ 3138:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5344,7 +5344,7 @@ const toggleButtonClasses = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__/* ["defau
 
 /***/ }),
 
-/***/ 864:
+/***/ 2948:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5385,7 +5385,7 @@ function isValueSelected(value, candidate) {
   return value === candidate;
 }
 // EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButtonGroup/toggleButtonGroupClasses.js
-var toggleButtonGroupClasses = __webpack_require__(640);
+var toggleButtonGroupClasses = __webpack_require__(6640);
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js
@@ -5547,7 +5547,7 @@ const ToggleButtonGroup = /*#__PURE__*/react.forwardRef(function ToggleButtonGro
 
 /***/ }),
 
-/***/ 811:
+/***/ 5811:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5557,8 +5557,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getToggleButtonGroupUtilityClass: () => (/* reexport safe */ _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__.H),
 /* harmony export */   toggleButtonGroupClasses: () => (/* reexport safe */ _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__.Z)
 /* harmony export */ });
-/* harmony import */ var _ToggleButtonGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(864);
-/* harmony import */ var _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(640);
+/* harmony import */ var _ToggleButtonGroup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2948);
+/* harmony import */ var _toggleButtonGroupClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6640);
 'use client';
 
 
@@ -5567,7 +5567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 640:
+/***/ 6640:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5791,7 +5791,7 @@ const red = {
 
 /***/ }),
 
-/***/ 350:
+/***/ 4350:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12295,7 +12295,7 @@ ListSubheader.muiSkipListHighlight = true;
  false ? 0 : void 0;
 /* harmony default export */ const ListSubheader_ListSubheader = (ListSubheader);
 // EXTERNAL MODULE: ./node_modules/@mui/material/Chip/Chip.js + 1 modules
-var Chip = __webpack_require__(723);
+var Chip = __webpack_require__(4723);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/InputBase/inputBaseClasses.js
 
 
@@ -15915,7 +15915,7 @@ const Checkbox = /*#__PURE__*/react.forwardRef(function Checkbox(inProps, ref) {
 
 
 // EXTERNAL MODULE: ./node_modules/@mui/material/Chip/index.js
-var material_Chip = __webpack_require__(570);
+var material_Chip = __webpack_require__(3570);
 // EXTERNAL MODULE: ./node_modules/@emotion/react/dist/emotion-react.browser.esm.js
 var emotion_react_browser_esm = __webpack_require__(917);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/CircularProgress/circularProgressClasses.js
@@ -23850,9 +23850,9 @@ var ListItemButton = __webpack_require__(8619);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemButton/index.js
 var material_ListItemButton = __webpack_require__(1471);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemIcon/ListItemIcon.js
-var ListItemIcon = __webpack_require__(885);
+var ListItemIcon = __webpack_require__(8885);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemIcon/index.js
-var material_ListItemIcon = __webpack_require__(330);
+var material_ListItemIcon = __webpack_require__(4539);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/ListItemSecondaryAction/index.js
 'use client';
 
@@ -24776,7 +24776,7 @@ const Menu = /*#__PURE__*/react.forwardRef(function Menu(inProps, ref) {
 
 
 // EXTERNAL MODULE: ./node_modules/@mui/material/ListItemIcon/listItemIconClasses.js
-var listItemIconClasses = __webpack_require__(592);
+var listItemIconClasses = __webpack_require__(4592);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/MenuItem/menuItemClasses.js
 
 
@@ -35911,13 +35911,13 @@ const TextField = /*#__PURE__*/react.forwardRef(function TextField(inProps, ref)
 
 
 // EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButton/ToggleButton.js
-var ToggleButton = __webpack_require__(290);
+var ToggleButton = __webpack_require__(7594);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButton/index.js
-var material_ToggleButton = __webpack_require__(376);
+var material_ToggleButton = __webpack_require__(9376);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js + 1 modules
-var ToggleButtonGroup = __webpack_require__(864);
+var ToggleButtonGroup = __webpack_require__(2948);
 // EXTERNAL MODULE: ./node_modules/@mui/material/ToggleButtonGroup/index.js
-var material_ToggleButtonGroup = __webpack_require__(811);
+var material_ToggleButtonGroup = __webpack_require__(5811);
 ;// CONCATENATED MODULE: ./node_modules/@mui/material/Toolbar/index.js
 'use client';
 
@@ -51510,7 +51510,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
@@ -51608,7 +51608,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 function CustomAlert(_a) {
     var handleAlert = _a.handleAlert, alertSettings = _a.alertSettings;
@@ -51616,6 +51616,64 @@ function CustomAlert(_a) {
         react_1.default.createElement(material_1.Alert, { onClose: handleAlert, severity: alertSettings.alertSeverity }, alertSettings.alertMessage)));
 }
 exports["default"] = CustomAlert;
+
+
+/***/ }),
+
+/***/ 448:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var react_router_dom_1 = __webpack_require__(9818);
+var types_1 = __webpack_require__(1230);
+var Center_1 = __importDefault(__webpack_require__(1081));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var condition_form_1 = __importDefault(__webpack_require__(731));
+function FormBody(_a) {
+    var onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
+    var navigate = (0, react_router_dom_1.useNavigate)();
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
+    var menuItems = [
+        { value: 0, label: 'Add tab to a tab group' },
+        { value: 1, label: 'Pin tab' },
+        { value: 2, label: 'Open tab in new window' },
+    ];
+    var handleCancel = function () {
+        navigate(-1);
+    };
+    var colorItems = types_1.colors.map(function (color) {
+        return { label: color, value: color };
+    });
+    var actionWatch = watch('action', 0);
+    var submit = function (data) {
+        onSubmit(data);
+        reset();
+        navigate(-1);
+    };
+    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
+        react_1.default.createElement(Center_1.default, { column: true },
+            react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
+                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
+                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
+                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
+                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
+                react_1.default.createElement(condition_form_1.default, { control: control }),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
+                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
+}
+exports["default"] = FormBody;
 
 
 /***/ }),
@@ -51660,7 +51718,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormInput(_a) {
@@ -51719,7 +51777,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormSelect(_a) {
@@ -51746,7 +51804,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 function Input(_a) {
     var value = _a.value, setValue = _a.setValue, _b = _a.label, label = _b === void 0 ? '' : _b, _c = _a.id, id = _c === void 0 ? '' : _c, _d = _a.type, type = _d === void 0 ? 'text' : _d;
@@ -51791,9 +51849,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importStar(__webpack_require__(7294));
-var Row_1 = __importDefault(__webpack_require__(304));
+var Row_1 = __importDefault(__webpack_require__(3304));
 function RowGroupParent(_a) {
     var prefixAction = _a.prefixAction, PrefixIcon = _a.PrefixIcon, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, title = _a.title, secondary = _a.secondary, children = _a.children, handleClick = _a.handleClick, id = _a.id, enableMiddleIconHover = _a.enableMiddleIconHover, enableFullScreenIconHover = _a.enableFullScreenIconHover;
     var _b = (0, react_1.useState)(false), showTabs = _b[0], setShowTabs = _b[1];
@@ -51807,7 +51865,7 @@ exports["default"] = RowGroupParent;
 
 /***/ }),
 
-/***/ 912:
+/***/ 9912:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51816,7 +51874,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var Chip_1 = __importDefault(__webpack_require__(570));
+var Chip_1 = __importDefault(__webpack_require__(3570));
 var system_1 = __webpack_require__(8579);
 var StyledChip = (0, system_1.styled)(Chip_1.default)(function (_a) {
     var isSmall = _a.isSmall;
@@ -51852,7 +51910,7 @@ exports["default"] = StyledContainer;
 
 /***/ }),
 
-/***/ 556:
+/***/ 1556:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51861,8 +51919,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var ToggleButton_1 = __importDefault(__webpack_require__(376));
-var ToggleButtonGroup_1 = __importDefault(__webpack_require__(811));
+var ToggleButton_1 = __importDefault(__webpack_require__(9376));
+var ToggleButtonGroup_1 = __importDefault(__webpack_require__(5811));
 var react_1 = __importDefault(__webpack_require__(7294));
 function Switch(_a) {
     var currentValue = _a.currentValue, handleChange = _a.handleChange;
@@ -51873,6 +51931,253 @@ function Switch(_a) {
     return (react_1.default.createElement(ToggleButtonGroup_1.default, { color: 'primary', value: currentValue, onChange: handleChange, exclusive: true }, items.map(function (item) { return (react_1.default.createElement(ToggleButton_1.default, { value: item.value }, item.label)); })));
 }
 exports["default"] = Switch;
+
+
+/***/ }),
+
+/***/ 4581:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var yup_1 = __webpack_require__(2433);
+var material_1 = __webpack_require__(4350);
+var react_1 = __importStar(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var yup = __importStar(__webpack_require__(6310));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var Row_1 = __importDefault(__webpack_require__(3304));
+var formSchema = yup.object().shape({
+    query: yup.string().required('Please enter a query'),
+    match: yup
+        .mixed()
+        .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
+    url: yup.mixed().oneOf(['any', 'hostname', 'path', 'query']),
+});
+var urlItems = [
+    { value: 'Hostname', label: 'hostname' },
+    { value: 'Path', label: 'path' },
+    { value: 'Query', label: 'query' },
+    { value: 'Any', label: 'any' },
+];
+var matchItems = [
+    { value: 'is equal to', label: 'is equal to' },
+    { value: 'ends with', label: 'ends with' },
+    { value: 'starts with', label: 'starts with' },
+    { value: 'contains', label: 'contains' },
+];
+var Condition = (0, react_1.memo)(function Condition(_a) {
+    var condition = _a.condition;
+    var formOptions = {
+        resolver: (0, yup_1.yupResolver)(formSchema),
+        defaultValues: {
+            query: condition.query,
+            match: condition.match,
+            url: condition.url,
+        },
+    };
+    var _b = (0, react_hook_form_1.useForm)(formOptions), control = _b.control, reset = _b.reset;
+    return (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(material_1.Typography, { variant: 'body1', sx: { alignSelf: 'center', marginRight: '1em' } }, "URL\u00A0"),
+            react_1.default.createElement(HookFormSelect_1.default, { name: 'url', control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: 'match', control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', control: control, name: 'query' }) }));
+});
+exports["default"] = Condition;
+
+
+/***/ }),
+
+/***/ 6122:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importStar(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var uuid_1 = __webpack_require__(7429);
+var Switch_1 = __importDefault(__webpack_require__(1556));
+var Condition_1 = __importDefault(__webpack_require__(4581));
+var GroupBuilder_1 = __importDefault(__webpack_require__(453));
+var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
+    var control = _a.control, update = _a.update, group = _a.group, index = _a.index, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
+    var _c = (0, react_hook_form_1.useForm)({
+        defaultValues: group,
+    }), register = _c.register, handleSubmit = _c.handleSubmit;
+    var _d = (0, react_hook_form_1.useFieldArray)({
+        control: control,
+        name: "conditionGroups.groups.".concat(index, ".conditions"),
+    }), fields = _d.fields, append = _d.append;
+    var conditions = group.conditions.map(function (currentCondition) { return (react_1.default.createElement(Condition_1.default, { condition: currentCondition })); });
+    var handleAddCondition = function () {
+        var newCondition = {
+            url: 'hostname',
+            match: 'is equal to',
+            query: '',
+            id: (0, uuid_1.v4)(),
+        };
+        append(newCondition);
+    };
+    var label = (0, react_hook_form_1.useWatch)({
+        control: control,
+        name: "conditionGroups.groups.".concat(index, ".all_required"),
+    });
+    return (react_1.default.createElement(material_1.Paper, { sx: { padding: '15px' } },
+        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: conditions, label: label ? 'AND' : 'OR' }),
+        !read_only ? (react_1.default.createElement(material_1.Box, { sx: { display: 'flex', flexDirection: 'column' } },
+            react_1.default.createElement(material_1.Box, null,
+                react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
+            react_1.default.createElement(material_1.Box, null,
+                react_1.default.createElement(react_hook_form_1.Controller, { name: "conditionGroups.groups.".concat(index, ".all_required"), control: control, render: function (_a) {
+                        var _b = _a.field, onChange = _b.onChange, value = _b.value;
+                        return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
+                                return onChange(currentValue === 'AND' ? true : false);
+                            }, currentValue: value ? 'AND' : 'OR' }));
+                    } })),
+            react_1.default.createElement(material_1.Box, null))) : (react_1.default.createElement(react_1.default.Fragment, null))));
+});
+exports["default"] = ConditionGroup;
+
+
+/***/ }),
+
+/***/ 453:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var system_1 = __webpack_require__(8579);
+var react_1 = __importDefault(__webpack_require__(7294));
+var StyledChip_1 = __importDefault(__webpack_require__(9912));
+var StyledDiv = (0, system_1.styled)('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+});
+var StyledRow = (0, system_1.styled)('div')(function (_a) {
+    var indent = _a.indent;
+    return ({
+        width: indent ? '95%' : '100%',
+        height: '100%',
+        alignSelf: 'flex-end',
+    });
+});
+function GroupBuilder(_a) {
+    var childrenArr = _a.childrenArr, label = _a.label;
+    return (react_1.default.createElement(StyledDiv, null, childrenArr.map(function (Child, i) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            i > 0 ? react_1.default.createElement(StyledChip_1.default, { label: label, color: 'primary' }) : null,
+            react_1.default.createElement(StyledRow, { indent: childrenArr.length > 1 }, Child)));
+    })));
+}
+exports["default"] = GroupBuilder;
+
+
+/***/ }),
+
+/***/ 731:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var uuid_1 = __webpack_require__(7429);
+var Switch_1 = __importDefault(__webpack_require__(1556));
+var ConditionGroup_1 = __importDefault(__webpack_require__(6122));
+var GroupBuilder_1 = __importDefault(__webpack_require__(453));
+function ConditionForm(_a) {
+    var control = _a.control;
+    var _b = (0, react_hook_form_1.useFieldArray)({
+        control: control,
+        name: 'conditionGroups.groups',
+    }), fields = _b.fields, append = _b.append, update = _b.update;
+    var handleAddGroup = function () {
+        var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
+        append(newGroup);
+    };
+    var renderedGroups = fields.map(function (field, index) { return (react_1.default.createElement(ConditionGroup_1.default, { key: field.id, update: update, index: index, group: field, control: control })); });
+    var label = (0, react_hook_form_1.useWatch)({
+        control: control,
+        name: 'conditionGroups.all_required',
+    });
+    console.log('label: ', label);
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Conditions"),
+        react_1.default.createElement(react_hook_form_1.Controller, { name: 'conditionGroups.all_required', control: control, render: function (_a) {
+                var _b = _a.field, onChange = _b.onChange, value = _b.value;
+                return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
+                        return onChange(currentValue === 'AND' ? true : false);
+                    }, currentValue: value ? 'AND' : 'OR' }));
+            } }),
+        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label ? 'AND' : 'OR' }),
+        ";",
+        react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
+}
+exports["default"] = ConditionForm;
 
 
 /***/ }),
@@ -51897,7 +52202,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
 function AddTabsModal(_a) {
@@ -51936,7 +52241,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var Input_1 = __importDefault(__webpack_require__(9778));
 var ModalContainer_1 = __importDefault(__webpack_require__(2816));
@@ -51965,7 +52270,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var styles_1 = __webpack_require__(123);
 var react_1 = __importDefault(__webpack_require__(7294));
 function ModalContainer(_a) {
@@ -51982,7 +52287,7 @@ exports["default"] = ModalContainer;
 
 /***/ }),
 
-/***/ 304:
+/***/ 3304:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -51993,11 +52298,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var ChevronRight_1 = __importDefault(__webpack_require__(6215));
 var ExpandMore_1 = __importDefault(__webpack_require__(3508));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var PopupStatusProvider_1 = __webpack_require__(5671);
-var RowItemWrapper_1 = __importDefault(__webpack_require__(442));
-var StyledListItemButton_1 = __importDefault(__webpack_require__(6));
+var RowItemWrapper_1 = __importDefault(__webpack_require__(5442));
+var StyledListItemButton_1 = __importDefault(__webpack_require__(2006));
 function Row(_a) {
     var PrefixIcon = _a.PrefixIcon, prefixAction = _a.prefixAction, AffixIcon = _a.AffixIcon, affixAction = _a.affixAction, MiddleIcon = _a.MiddleIcon, middleAction = _a.middleAction, FullScreenIcon = _a.FullScreenIcon, fullScreenAction = _a.fullScreenAction, setShowChildren = _a.setShowChildren, handleClick = _a.handleClick, title = _a.title, _b = _a.hasChildren, hasChildren = _b === void 0 ? false : _b, _c = _a.isChild, isChild = _c === void 0 ? false : _c, _d = _a.secondary, secondary = _d === void 0 ? '' : _d, _e = _a.showChildren, showChildren = _e === void 0 ? false : _e, _f = _a.enableMiddleIconHover, enableMiddleIconHover = _f === void 0 ? true : _f, _g = _a.enableAffixIconHover, enableAffixIconHover = _g === void 0 ? true : _g, _h = _a.enableFullScreenIconHover, enableFullScreenIconHover = _h === void 0 ? true : _h;
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
@@ -52040,7 +52345,7 @@ exports["default"] = Row;
 
 /***/ }),
 
-/***/ 442:
+/***/ 5442:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52050,8 +52355,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var react_1 = __importDefault(__webpack_require__(7294));
-var StyledIconButton_1 = __importDefault(__webpack_require__(409));
-var StyledListItemIcon_1 = __importDefault(__webpack_require__(29));
+var StyledIconButton_1 = __importDefault(__webpack_require__(7409));
+var StyledListItemIcon_1 = __importDefault(__webpack_require__(5029));
 function RowItemWrapper(_a) {
     var children = _a.children, _b = _a.marginRight, marginRight = _b === void 0 ? false : _b, _c = _a.hover, hover = _c === void 0 ? false : _c, handleClick = _a.handleClick;
     if (handleClick) {
@@ -52066,7 +52371,7 @@ exports["default"] = RowItemWrapper;
 
 /***/ }),
 
-/***/ 409:
+/***/ 7409:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52094,7 +52399,7 @@ exports["default"] = StyledIconButton;
 
 /***/ }),
 
-/***/ 6:
+/***/ 2006:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52125,7 +52430,7 @@ exports["default"] = StyledListItemButton;
 
 /***/ }),
 
-/***/ 29:
+/***/ 5029:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -52134,7 +52439,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var ListItemIcon_1 = __importDefault(__webpack_require__(330));
+var ListItemIcon_1 = __importDefault(__webpack_require__(4539));
 var system_1 = __webpack_require__(8579);
 var StyledListItemIcon = (0, system_1.styled)(ListItemIcon_1.default, {
     shouldForwardProp: function (prop) { return prop !== 'marginRight'; },
@@ -52250,7 +52555,7 @@ var Add_1 = __importDefault(__webpack_require__(6540));
 var Close_1 = __importDefault(__webpack_require__(594));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
 var Save_1 = __importDefault(__webpack_require__(6818));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
@@ -52259,7 +52564,7 @@ var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
-var Row_1 = __importDefault(__webpack_require__(304));
+var Row_1 = __importDefault(__webpack_require__(3304));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 function CurrentGroup(_a) {
@@ -52462,7 +52767,7 @@ var react_1 = __importStar(__webpack_require__(7294));
 var uuid_1 = __webpack_require__(7429);
 var CurrentTabGroups_1 = __importDefault(__webpack_require__(1094));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
-var Row_1 = __importDefault(__webpack_require__(304));
+var Row_1 = __importDefault(__webpack_require__(3304));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 var CurrentGroup_1 = __importDefault(__webpack_require__(2595));
@@ -52576,7 +52881,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 function TabHeader(_a) {
@@ -52590,290 +52895,6 @@ function TabHeader(_a) {
             routes.map(function (route, i) { return (react_1.default.createElement(material_1.Tab, { component: react_router_dom_1.Link, value: i, label: route.label, to: route.path, sx: { fontWeight: '700' } })); }))));
 }
 exports["default"] = TabHeader;
-
-
-/***/ }),
-
-/***/ 3013:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var yup_1 = __webpack_require__(2433);
-var react_1 = __importStar(__webpack_require__(7294));
-var yup = __importStar(__webpack_require__(6310));
-var Rule_1 = __importDefault(__webpack_require__(4235));
-var AlertProvider_1 = __webpack_require__(5648);
-var FormBody_1 = __importDefault(__webpack_require__(5951));
-var formSchema = yup.object().shape({
-    title: yup.string().required('Please enter a query'),
-    action: yup.mixed().oneOf([0, 1, 2]),
-    groupName: yup.string(),
-    groupColor: yup.string(),
-    active: yup.bool(),
-});
-function AddRuleForm() {
-    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
-    var _a = (0, react_1.useState)({ all_required: false, groups: [] }), conditionGroups = _a[0], setConditionGroups = _a[1];
-    var formOptions = {
-        resolver: (0, yup_1.yupResolver)(formSchema),
-    };
-    var onSubmit = function (data) {
-        try {
-            var ruleData = __assign(__assign({}, data), { conditionGroups: conditionGroups });
-            var rule = Rule_1.default.build(ruleData);
-            rule.save();
-            setAlertSettings('success', 'Rule has been created!');
-        }
-        catch (err) {
-            console.error(err);
-            setAlertSettings('error', 'Unable to create new rule.');
-        }
-    };
-    return (react_1.default.createElement(FormBody_1.default, { conditionGroups: conditionGroups, setConditionGroups: setConditionGroups, onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
-}
-exports["default"] = AddRuleForm;
-
-
-/***/ }),
-
-/***/ 8045:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var react_1 = __importStar(__webpack_require__(7294));
-var react_router_dom_1 = __webpack_require__(9818);
-var Rule_1 = __importDefault(__webpack_require__(4235));
-var AlertProvider_1 = __webpack_require__(5648);
-var FormBody_1 = __importDefault(__webpack_require__(5951));
-var defaultConditionGroups = {
-    all_required: false,
-    groups: [],
-};
-function AddRuleForm() {
-    var _this = this;
-    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
-    var _a = (0, react_1.useState)(defaultConditionGroups), ruleConditions = _a[0], setRuleConditions = _a[1];
-    var state = (0, react_router_dom_1.useLocation)().state;
-    var _b = (0, react_1.useState)({}), formOptions = _b[0], setFormOptions = _b[1];
-    (0, react_1.useEffect)(function () {
-        updateDefaults();
-    }, []);
-    var updateDefaults = function () { return __awaiter(_this, void 0, void 0, function () {
-        var ruleId, rule, data, conditionGroups, title, action, groupName, groupColor, active;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!state) return [3, 2];
-                    ruleId = state.ruleId;
-                    return [4, Rule_1.default.getById(ruleId)];
-                case 1:
-                    rule = _a.sent();
-                    data = rule === null || rule === void 0 ? void 0 : rule.getData();
-                    console.log('data: ', data);
-                    if (data) {
-                        conditionGroups = data.conditionGroups, title = data.title, action = data.action, groupName = data.groupName, groupColor = data.groupColor, active = data.active;
-                        setFormOptions({
-                            defaultValues: { title: title, action: action, groupName: groupName, groupColor: groupColor, active: active },
-                        });
-                        if (conditionGroups == undefined) {
-                            throw new Error("Could not get conditions from current rule with id of ".concat(ruleId));
-                        }
-                        setRuleConditions(conditionGroups);
-                    }
-                    else {
-                        console.error("Unable to find data regarding rule with id ".concat(ruleId));
-                        setAlertSettings('error', 'Something went wrong.');
-                    }
-                    _a.label = 2;
-                case 2: return [2];
-            }
-        });
-    }); };
-    var onSubmit = function (data) {
-        try {
-            var ruleData = __assign(__assign({}, data), { conditionGroups: ruleConditions });
-            console.log('ruleData: ', ruleData);
-        }
-        catch (err) {
-            console.error(err);
-            setAlertSettings('error', 'Unable to create new rule.');
-        }
-    };
-    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { conditionGroups: ruleConditions, setConditionGroups: setRuleConditions, onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
-}
-exports["default"] = AddRuleForm;
-
-
-/***/ }),
-
-/***/ 5951:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
-var react_1 = __importDefault(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var react_router_dom_1 = __webpack_require__(9818);
-var types_1 = __webpack_require__(1230);
-var Center_1 = __importDefault(__webpack_require__(1081));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-var condition_form_1 = __importDefault(__webpack_require__(6376));
-function FormBody(_a) {
-    var conditionGroups = _a.conditionGroups, setConditionGroups = _a.setConditionGroups, onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
-    var navigate = (0, react_router_dom_1.useNavigate)();
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
-    var menuItems = [
-        { value: 0, label: 'Add tab to a tab group' },
-        { value: 1, label: 'Pin tab' },
-        { value: 2, label: 'Open tab in new window' },
-    ];
-    var handleCancel = function () {
-        navigate(-1);
-    };
-    var colorItems = types_1.colors.map(function (color) {
-        return { label: color, value: color };
-    });
-    var actionWatch = watch('action', 0);
-    var submit = function (data) {
-        onSubmit(data);
-        reset();
-        navigate(-1);
-    };
-    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
-        react_1.default.createElement(Center_1.default, { column: true },
-            react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
-                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
-                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
-                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
-                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
-                react_1.default.createElement(condition_form_1.default, { conditionGroups: conditionGroups, setConditionGroups: setConditionGroups }),
-                react_1.default.createElement("div", null,
-                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success' }, "Submit"),
-                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
-}
-exports["default"] = FormBody;
 
 
 /***/ }),
@@ -52925,7 +52946,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var Edit_1 = __importDefault(__webpack_require__(7957));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Circle_1 = __importDefault(__webpack_require__(3970));
@@ -52989,91 +53010,7 @@ exports["default"] = RuleGroup;
 
 /***/ }),
 
-/***/ 5503:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var yup_1 = __webpack_require__(2433);
-var material_1 = __webpack_require__(350);
-var react_1 = __importStar(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var yup = __importStar(__webpack_require__(6310));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-var Row_1 = __importDefault(__webpack_require__(304));
-var formSchema = yup.object().shape({
-    query: yup.string().required('Please enter a query'),
-    match: yup
-        .mixed()
-        .oneOf(['contains', 'is equal to', 'ends with', 'starts with']),
-    url: yup.mixed().oneOf(['any', 'hostname', 'path', 'query']),
-});
-var urlItems = [
-    { value: 'Hostname', label: 'hostname' },
-    { value: 'Path', label: 'path' },
-    { value: 'Query', label: 'query' },
-    { value: 'Any', label: 'any' },
-];
-var matchItems = [
-    { value: 'is equal to', label: 'is equal to' },
-    { value: 'ends with', label: 'ends with' },
-    { value: 'starts with', label: 'starts with' },
-    { value: 'contains', label: 'contains' },
-];
-var Condition = (0, react_1.memo)(function Condition(_a) {
-    var handleAddCondition = _a.handleAddCondition;
-    var formOptions = {
-        resolver: (0, yup_1.yupResolver)(formSchema),
-        defaultValues: {
-            query: '',
-            match: matchItems[0].value,
-            url: urlItems[0].value,
-        },
-    };
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, reset = _b.reset;
-    var onSubmit = function (data) {
-        if ('match' in data) {
-            reset();
-        }
-    };
-    return (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(material_1.Typography, { variant: 'body1', sx: { alignSelf: 'center', marginRight: '1em' } }, "URL\u00A0"),
-            react_1.default.createElement(HookFormSelect_1.default, { name: 'url', control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: 'match', control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', control: control, name: 'query' }) }));
-});
-exports["default"] = Condition;
-
-
-/***/ }),
-
-/***/ 895:
+/***/ 7358:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -53112,195 +53049,103 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
-var react_1 = __importStar(__webpack_require__(7294));
-var uuid_1 = __webpack_require__(7429);
-var Condition_1 = __importDefault(__webpack_require__(5503));
-var GroupBuilder_1 = __importDefault(__webpack_require__(306));
-var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
-    var group = _a.group, setConditionGroups = _a.setConditionGroups, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
-    console.log('group: ', group);
-    console.log('read_only: ', read_only);
-    var conditions = group.conditions.map(function (currentCondition) { return (react_1.default.createElement(Condition_1.default, { handleAddCondition: function () { } })); });
-    var handleAddCondition = function () {
-        var newCondition = {
-            url: 'hostname',
-            match: 'is equal to',
-            query: '',
-            id: (0, uuid_1.v4)(),
-        };
-        setConditionGroups(function (previousConditionGroups) { return (__assign(__assign({}, previousConditionGroups), { groups: previousConditionGroups.groups.map(function (currentGroup) {
-                if (currentGroup.id != group.id)
-                    return currentGroup;
-                return __assign(__assign({}, currentGroup), { conditions: __spreadArray(__spreadArray([], currentGroup.conditions, true), [newCondition], false) });
-            }) })); });
-    };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: conditions, label: group.all_required ? 'AND' : 'OR' }),
-        !read_only ? (react_1.default.createElement(material_1.Box, { sx: { display: 'flex', flexDirection: 'column' } },
-            react_1.default.createElement(material_1.Box, null,
-                react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
-            react_1.default.createElement(material_1.Box, null),
-            react_1.default.createElement(material_1.Box, null))) : (react_1.default.createElement(react_1.default.Fragment, null))));
-});
-exports["default"] = ConditionGroup;
-
-
-/***/ }),
-
-/***/ 499:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var react_1 = __importStar(__webpack_require__(7294));
-var ConditionGroup_1 = __importDefault(__webpack_require__(895));
-var GroupBuilder_1 = __importDefault(__webpack_require__(306));
-function ConditionGroups(_a) {
-    var groups = _a.groups, setConditionGroups = _a.setConditionGroups, all_required = _a.all_required;
-    var _b = (0, react_1.useState)(all_required ? 'AND' : 'OR'), label = _b[0], setLabel = _b[1];
-    (0, react_1.useEffect)(function () {
-        var updatedLabel = all_required ? 'AND' : 'OR';
-        setLabel(updatedLabel);
-    }, [all_required]);
-    var renderedGroups = groups.map(function (group) { return (react_1.default.createElement(ConditionGroup_1.default, { group: group, setConditionGroups: setConditionGroups })); });
-    return react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label });
-}
-exports["default"] = ConditionGroups;
-
-
-/***/ }),
-
-/***/ 306:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var system_1 = __webpack_require__(8579);
-var react_1 = __importDefault(__webpack_require__(7294));
-var StyledChip_1 = __importDefault(__webpack_require__(912));
-var StyledDiv = (0, system_1.styled)('div')({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-});
-var StyledRow = (0, system_1.styled)('div')(function (_a) {
-    var indent = _a.indent;
-    return ({
-        width: indent ? '95%' : '100%',
-        height: '100%',
-        alignSelf: 'flex-end',
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-});
-function GroupBuilder(_a) {
-    var childrenArr = _a.childrenArr, label = _a.label;
-    return (react_1.default.createElement(StyledDiv, null, childrenArr.map(function (Child, i) {
-        return (react_1.default.createElement(react_1.default.Fragment, null,
-            i > 0 ? react_1.default.createElement(StyledChip_1.default, { label: label, color: 'primary' }) : null,
-            react_1.default.createElement(StyledRow, { indent: childrenArr.length > 1 }, Child)));
-    })));
-}
-exports["default"] = GroupBuilder;
-
-
-/***/ }),
-
-/***/ 6376:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(350);
-var react_1 = __importDefault(__webpack_require__(7294));
-var uuid_1 = __webpack_require__(7429);
-var Switch_1 = __importDefault(__webpack_require__(556));
-var ConditionGroups_1 = __importDefault(__webpack_require__(499));
-function ConditionForm(_a) {
-    var conditionGroups = _a.conditionGroups, setConditionGroups = _a.setConditionGroups;
-    var handleChange = function (event, newAllRequired) {
-        var isAllRequired = newAllRequired === 'AND' ? true : false;
-        setConditionGroups(function (previousConditionGroups) { return (__assign(__assign({}, previousConditionGroups), { all_required: isAllRequired })); });
+var react_1 = __importStar(__webpack_require__(7294));
+var react_router_dom_1 = __webpack_require__(9818);
+var Rule_1 = __importDefault(__webpack_require__(4235));
+var FormBody_1 = __importDefault(__webpack_require__(448));
+var AlertProvider_1 = __webpack_require__(5648);
+function AddRuleForm() {
+    var _this = this;
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
+    var _a = (0, react_1.useState)({ all_required: false, groups: [] }), conditionGroups = _a[0], setConditionGroups = _a[1];
+    var state = (0, react_router_dom_1.useLocation)().state;
+    var _b = (0, react_1.useState)({}), formOptions = _b[0], setFormOptions = _b[1];
+    (0, react_1.useEffect)(function () {
+        updateDefaults();
+    }, []);
+    var updateDefaults = function () { return __awaiter(_this, void 0, void 0, function () {
+        var ruleId, rule, data, conditionGroups_1, title, action, groupName, groupColor, active;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!state) return [3, 2];
+                    ruleId = state.ruleId;
+                    return [4, Rule_1.default.getById(ruleId)];
+                case 1:
+                    rule = _a.sent();
+                    data = rule === null || rule === void 0 ? void 0 : rule.getData();
+                    if (data) {
+                        conditionGroups_1 = data.conditionGroups, title = data.title, action = data.action, groupName = data.groupName, groupColor = data.groupColor, active = data.active;
+                        setFormOptions({
+                            defaultValues: { title: title, action: action, groupName: groupName, groupColor: groupColor, active: active },
+                        });
+                        if (conditionGroups_1 == undefined) {
+                            throw new Error("Could not get conditions from current rule with id of ".concat(ruleId));
+                        }
+                        setConditionGroups(conditionGroups_1);
+                    }
+                    else {
+                        console.error("Unable to find data regarding rule with id ".concat(ruleId));
+                        setAlertSettings('error', 'Something went wrong.');
+                    }
+                    _a.label = 2;
+                case 2: return [2];
+            }
+        });
+    }); };
+    var onSubmit = function (data) {
+        try {
+            var ruleData = __assign(__assign({}, data), { conditionGroups: conditionGroups });
+            console.log('ruleData: ', ruleData);
+        }
+        catch (err) {
+            console.error(err);
+            setAlertSettings('error', 'Unable to create new rule.');
+        }
     };
-    var currentValue = conditionGroups.all_required ? 'AND' : 'OR';
-    var handleAddGroup = function () {
-        var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
-        setConditionGroups(function (previousConditionGroups) { return (__assign(__assign({}, previousConditionGroups), { groups: __spreadArray(__spreadArray([], previousConditionGroups.groups, true), [newGroup], false) })); });
-    };
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "Conditions"),
-        react_1.default.createElement(Switch_1.default, { handleChange: handleChange, currentValue: currentValue }),
-        react_1.default.createElement(ConditionGroups_1.default, { groups: conditionGroups.groups, setConditionGroups: setConditionGroups, all_required: conditionGroups.all_required }),
-        react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
+    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
-exports["default"] = ConditionForm;
+exports["default"] = AddRuleForm;
 
 
 /***/ }),
@@ -53380,7 +53225,7 @@ var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var StyledContainer_1 = __importDefault(__webpack_require__(9693));
-var Row_1 = __importDefault(__webpack_require__(304));
+var Row_1 = __importDefault(__webpack_require__(3304));
 var PopupStatusProvider_1 = __webpack_require__(5671);
 var RuleGroup_1 = __importDefault(__webpack_require__(2776));
 function Rules() {
@@ -53415,6 +53260,86 @@ function Rules() {
         react_1.default.createElement("div", null, isPopup ? (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Edit_1.default, null), title: 'Edit/Add Rules', handleClick: handleOpenFullPage })) : (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(Add_1.default, null), title: 'Add Rule', handleClick: handleAddRule })))));
 }
 exports["default"] = Rules;
+
+
+/***/ }),
+
+/***/ 6206:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var yup_1 = __webpack_require__(2433);
+var react_1 = __importDefault(__webpack_require__(7294));
+var yup = __importStar(__webpack_require__(6310));
+var Rule_1 = __importDefault(__webpack_require__(4235));
+var FormBody_1 = __importDefault(__webpack_require__(448));
+var AlertProvider_1 = __webpack_require__(5648);
+var formSchema = yup.object().shape({
+    title: yup.string().required('Please enter a query'),
+    action: yup.mixed().oneOf([0, 1, 2]),
+    groupName: yup.string(),
+    groupColor: yup.string(),
+    active: yup.bool(),
+});
+function AddRuleForm() {
+    var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
+    var formOptions = {
+        resolver: (0, yup_1.yupResolver)(formSchema),
+    };
+    var onSubmit = function (data) {
+        try {
+            var ruleData = __assign({}, data);
+            var rule = Rule_1.default.build(ruleData);
+            rule.save();
+            setAlertSettings('success', 'Rule has been created!');
+        }
+        catch (err) {
+            console.error(err);
+            setAlertSettings('error', 'Unable to create new rule.');
+        }
+    };
+    return (react_1.default.createElement(FormBody_1.default, { onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
+}
+exports["default"] = AddRuleForm;
 
 
 /***/ }),
@@ -53467,14 +53392,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var Add_1 = __importDefault(__webpack_require__(6540));
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var RemoveCircle_1 = __importDefault(__webpack_require__(336));
-var material_1 = __webpack_require__(350);
+var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
 var SavedTabGroups_1 = __webpack_require__(761);
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var getFaviconURL_1 = __webpack_require__(2198);
 var Circle_1 = __importDefault(__webpack_require__(3970));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
-var Row_1 = __importDefault(__webpack_require__(304));
+var Row_1 = __importDefault(__webpack_require__(3304));
 var AlertProvider_1 = __webpack_require__(5648);
 var ModalProvider_1 = __webpack_require__(5125);
 function SavedGroup(_a) {
@@ -54154,8 +54079,8 @@ var react_1 = __importDefault(__webpack_require__(7294));
 var pages_1 = __importDefault(__webpack_require__(6735));
 var current_groups_1 = __importDefault(__webpack_require__(3137));
 var rules_1 = __importDefault(__webpack_require__(9971));
-var AddRuleForm_1 = __importDefault(__webpack_require__(3013));
-var EditRuleForm_1 = __importDefault(__webpack_require__(8045));
+var EditRuleForm_1 = __importDefault(__webpack_require__(7358));
+var AddRuleForm_1 = __importDefault(__webpack_require__(6206));
 var saved_groups_1 = __importDefault(__webpack_require__(3822));
 exports.routes = [
     {

@@ -5,21 +5,15 @@ import {
    AllConditionGroupsType,
    ConditionValues,
    RuleType,
-} from '../../../types';
-import Rule from '../../../utils/Rule';
-import { useAlertProvider } from '../../provider/AlertProvider';
-import FormBody from './FormBody';
-
-const defaultConditionGroups = {
-   all_required: false,
-   groups: [],
-};
+} from '../../../../types';
+import Rule from '../../../../utils/Rule';
+import FormBody from '../../../components/FormBody';
+import { useAlertProvider } from '../../../provider/AlertProvider';
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   const [ruleConditions, setRuleConditions] = useState<AllConditionGroupsType>(
-      defaultConditionGroups
-   );
+   const [conditionGroups, setConditionGroups] =
+      useState<AllConditionGroupsType>({ all_required: false, groups: [] });
    const { state } = useLocation();
    const [formOptions, setFormOptions] = useState<UseFormArgs>({});
 
@@ -35,7 +29,6 @@ export default function AddRuleForm() {
          const { ruleId } = state;
          const rule = await Rule.getById(ruleId);
          const data = rule?.getData();
-         console.log('data: ', data);
          if (data) {
             const {
                conditionGroups,
@@ -53,7 +46,7 @@ export default function AddRuleForm() {
                   `Could not get conditions from current rule with id of ${ruleId}`
                );
             }
-            setRuleConditions(conditionGroups);
+            setConditionGroups(conditionGroups);
          } else {
             console.error(
                `Unable to find data regarding rule with id ${ruleId}`
@@ -72,7 +65,7 @@ export default function AddRuleForm() {
       try {
          const ruleData = {
             ...data,
-            conditionGroups: ruleConditions,
+            conditionGroups: conditionGroups,
          } as RuleType;
          // const rule = Rule.build(ruleData);
          // rule.save();
@@ -88,8 +81,8 @@ export default function AddRuleForm() {
       <>
          {Object.keys(formOptions).length ? (
             <FormBody
-               conditionGroups={ruleConditions}
-               setConditionGroups={setRuleConditions}
+               // conditionGroups={conditionGroups}
+               // setConditionGroups={setConditionGroups}
                onSubmit={onSubmit}
                title={'Edit Rule'}
                formOptions={formOptions}

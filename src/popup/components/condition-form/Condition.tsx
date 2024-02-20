@@ -4,17 +4,18 @@ import React, { memo } from 'react';
 import { Resolver, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import {
+   ConditionType,
    ConditionValues,
    RuleType,
    matchRule,
    urlRule,
-} from '../../../../types';
-import HookFormInput from '../../../components/HookFormInput';
-import HookFormSelect from '../../../components/HookFormSelect';
-import Row from '../../../components/row/Row';
+} from '../../../types';
+import HookFormInput from '../HookFormInput';
+import HookFormSelect from '../HookFormSelect';
+import Row from '../row/Row';
 
 interface Props {
-   handleAddCondition: () => void;
+   condition: ConditionType;
 }
 
 const formSchema = yup.object().shape({
@@ -40,32 +41,19 @@ const matchItems = [
 ];
 
 /**
- * TODO
+ * TODO like Display
  */
-const Condition = memo(function Condition({ handleAddCondition }: Props) {
+const Condition = memo(function Condition({ condition }: Props) {
    const formOptions = {
       resolver: yupResolver(formSchema) as Resolver<ConditionValues | RuleType>,
       defaultValues: {
-         query: '',
-         match: matchItems[0].value,
-         url: urlItems[0].value,
+         query: condition.query,
+         match: condition.match,
+         url: condition.url,
       },
    };
 
-   const { handleSubmit, control, reset } = useForm<ConditionValues | RuleType>(
-      formOptions
-   );
-
-   /**
-    * Triggered when submitting modal
-    * @param data Object containing new condition data
-    */
-   const onSubmit = (data: ConditionValues | RuleType) => {
-      if ('match' in data) {
-         //  handleAddCondition(data);
-         reset();
-      }
-   };
+   const { control, reset } = useForm<ConditionValues | RuleType>(formOptions);
 
    return (
       <Row

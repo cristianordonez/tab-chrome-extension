@@ -1,16 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
+import React from 'react';
 import { Resolver } from 'react-hook-form';
 import * as yup from 'yup';
-import {
-   AllConditionGroupsType,
-   ConditionValues,
-   RuleType,
-   actionRule,
-} from '../../../types';
-import Rule from '../../../utils/Rule';
-import { useAlertProvider } from '../../provider/AlertProvider';
-import FormBody from './FormBody';
+import { ConditionValues, RuleType, actionRule } from '../../../../types';
+import Rule from '../../../../utils/Rule';
+import FormBody from '../../../components/FormBody';
+import { useAlertProvider } from '../../../provider/AlertProvider';
 
 const formSchema = yup.object().shape({
    title: yup.string().required('Please enter a query'),
@@ -22,8 +17,8 @@ const formSchema = yup.object().shape({
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   const [conditionGroups, setConditionGroups] =
-      useState<AllConditionGroupsType>({ all_required: false, groups: [] });
+   // const [conditionGroups, setConditionGroups] =
+   //    useState<AllConditionGroupsType>({ all_required: false, groups: [] });
 
    const formOptions = {
       resolver: yupResolver(formSchema) as Resolver<
@@ -40,7 +35,7 @@ export default function AddRuleForm() {
       try {
          const ruleData = {
             ...data,
-            conditionGroups: conditionGroups,
+            // conditionGroups: conditionGroups,
          } as RuleType;
          const rule = Rule.build(ruleData);
          rule.save();
@@ -53,8 +48,8 @@ export default function AddRuleForm() {
 
    return (
       <FormBody
-         conditionGroups={conditionGroups}
-         setConditionGroups={setConditionGroups}
+         // conditionGroups={conditionGroups}
+         // setConditionGroups={setConditionGroups}
          onSubmit={onSubmit}
          title={'Add Rule'}
          formOptions={formOptions}

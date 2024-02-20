@@ -1,7 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { AllConditionGroupsType, ConditionGroupType } from '../../../../types';
-import ConditionGroup from './ConditionGroup';
-import GroupBuilder from './GroupBuilder';
+import { AllConditionGroupsType, ConditionGroupType } from '../../../types';
 
 interface Props {
    groups: ConditionGroupType[];
@@ -21,9 +19,10 @@ export default function ConditionGroups({
       setLabel(updatedLabel);
    }, [all_required]);
 
-   const renderedGroups = groups.map((group) => (
-      <ConditionGroup group={group} setConditionGroups={setConditionGroups} />
-   ));
+   // const renderedGroups = groups.map((group) => (
+   //    <ConditionGroup group={group} setConditionGroups={setConditionGroups} />
+   // ));
 
-   return <GroupBuilder childrenArr={renderedGroups} label={label} />;
+   // return <GroupBuilder childrenArr={renderedGroups} label={label} />;
+   return <></>;
 }

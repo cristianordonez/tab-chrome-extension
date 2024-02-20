@@ -1,35 +1,33 @@
 import { Button, Typography } from '@mui/material';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { UseFormArgs, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import {
-   AllConditionGroupsType,
-   ConditionValues,
-   RuleType,
-   colors,
-} from '../../../types';
-import Center from '../../components/Center';
-import HookFormInput from '../../components/HookFormInput';
-import HookFormSelect from '../../components/HookFormSelect';
-import ConditionForm from './condition-form/';
+import { ConditionValues, RuleType, colors } from '../../types';
+import Center from './Center';
+import HookFormInput from './HookFormInput';
+import HookFormSelect from './HookFormSelect';
+import ConditionForm from './condition-form';
 
 interface Props {
-   conditionGroups: AllConditionGroupsType;
-   setConditionGroups: Dispatch<SetStateAction<AllConditionGroupsType>>;
+   // conditionGroups: AllConditionGroupsType;
+   // setConditionGroups: Dispatch<SetStateAction<AllConditionGroupsType>>;
    onSubmit: (data: RuleType | ConditionValues) => void;
    title: string;
    formOptions: UseFormArgs;
 }
 
 export default function FormBody({
-   conditionGroups,
-   setConditionGroups,
+   // conditionGroups,
+   // setConditionGroups,
    onSubmit,
    title,
    formOptions,
 }: Props) {
    const navigate = useNavigate();
 
+   /**
+    * Create react hook form
+    */
    const { handleSubmit, control, watch, reset } = useForm<
       RuleType | ConditionValues
    >(formOptions);
@@ -59,6 +57,10 @@ export default function FormBody({
 
    const actionWatch = watch('action', 0);
 
+   /**
+    * Called on form submission
+    * @param data values passed down to form
+    */
    const submit = (data: RuleType | ConditionValues) => {
       onSubmit(data);
       reset();
@@ -96,10 +98,7 @@ export default function FormBody({
                      />
                   </>
                ) : null}
-               <ConditionForm
-                  conditionGroups={conditionGroups}
-                  setConditionGroups={setConditionGroups}
-               />
+               <ConditionForm control={control} />
                <div>
                   <Button type='submit' variant='contained' color='success'>
                      Submit

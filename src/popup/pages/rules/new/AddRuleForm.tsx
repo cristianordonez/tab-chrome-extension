@@ -13,8 +13,14 @@ const formSchema = yup.object().shape({
       .mixed<actionRule>()
       .oneOf([0, 1, 2])
       .required('Please select an action'),
-   groupName: yup.string().required('Please enter tab group name'),
-   groupColor: yup.string().required('Please select color for tab groups'),
+   groupName: yup.string().when('action', {
+      is: 0,
+      then: () => yup.string().required('Please select a group name'),
+   }),
+   groupColor: yup.string().when('action', {
+      is: 0,
+      then: () => yup.string().required('Please select a group color'),
+   }),
    active: yup.bool(),
    conditionGroups: yup.mixed().nullable(),
 });

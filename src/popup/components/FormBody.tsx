@@ -21,7 +21,8 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
       handleSubmit,
       control,
       watch,
-      reset,
+      clearErrors,
+      unregister,
       formState: { errors },
    } = useForm<RuleType | ConditionValues>(formOptions);
 
@@ -62,7 +63,6 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
       // navigate(-1);
    };
 
-   console.log('errors in formbody: ', errors);
    return (
       <form onSubmit={handleSubmit(submit)}>
          <Center column>

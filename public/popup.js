@@ -51641,7 +51641,7 @@ var condition_form_1 = __importDefault(__webpack_require__(731));
 function FormBody(_a) {
     var onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
     var navigate = (0, react_router_dom_1.useNavigate)();
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset, errors = _b.formState.errors;
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, clearErrors = _b.clearErrors, unregister = _b.unregister, errors = _b.formState.errors;
     var menuItems = [
         { value: 0, label: 'Add tab to a tab group' },
         { value: 1, label: 'Pin tab' },
@@ -51658,7 +51658,6 @@ function FormBody(_a) {
         console.log('errors: ', errors);
         console.log('data: ', data);
     };
-    console.log('errors in formbody: ', errors);
     return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
         react_1.default.createElement(Center_1.default, { column: true },
             react_1.default.createElement(react_1.default.Fragment, null,
@@ -52136,6 +52135,7 @@ function ConditionForm(_a) {
     var _b = (0, react_hook_form_1.useFieldArray)({
         control: control,
         name: 'conditionGroups.groups',
+        rules: { minLength: 1 },
     }), fields = _b.fields, append = _b.append;
     var handleAddGroup = function () {
         var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
@@ -53288,8 +53288,14 @@ var formSchema = yup.object().shape({
         .mixed()
         .oneOf([0, 1, 2])
         .required('Please select an action'),
-    groupName: yup.string().required('Please enter tab group name'),
-    groupColor: yup.string().required('Please select color for tab groups'),
+    groupName: yup.string().when('action', {
+        is: 0,
+        then: function () { return yup.string().required('Please select a group name'); },
+    }),
+    groupColor: yup.string().when('action', {
+        is: 0,
+        then: function () { return yup.string().required('Please select a group color'); },
+    }),
     active: yup.bool(),
     conditionGroups: yup.mixed().nullable(),
 });

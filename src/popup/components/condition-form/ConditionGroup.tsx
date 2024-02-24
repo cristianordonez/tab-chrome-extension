@@ -18,16 +18,10 @@ interface Props {
  * like EDIT example
  */
 const ConditionGroup = memo(function ConditionGroup({
-   // group,
-   // setConditionGroups,
    control,
    index,
    read_only = false,
 }: Props) {
-   // const [label, setLabel] = useState<string>(
-   //    group.all_required ? 'AND' : 'OR'
-   // );
-
    const { fields, append } = useFieldArray({
       control,
       name: `conditionGroups.groups.${index}.conditions`,
@@ -77,13 +71,20 @@ const ConditionGroup = memo(function ConditionGroup({
                   <Controller
                      name={`conditionGroups.groups.${index}.all_required`}
                      control={control}
-                     render={({ field: { onChange, value } }) => (
-                        <Switch
-                           handleChange={(e, currentValue) =>
-                              onChange(currentValue === 'AND' ? true : false)
-                           }
-                           currentValue={value ? 'AND' : 'OR'}
-                        />
+                     render={({
+                        fieldState: { invalid, error },
+                        field: { onChange, value },
+                     }) => (
+                        <>
+                           <Switch
+                              handleChange={(e, currentValue) =>
+                                 onChange(currentValue === 'AND' ? true : false)
+                              }
+                              currentValue={value ? 'AND' : 'OR'}
+                           />
+                           <p>{String(error)}</p>
+                           <p>{String(invalid)}</p>
+                        </>
                      )}
                   />
                </Box>

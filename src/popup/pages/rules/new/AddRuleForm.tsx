@@ -3,16 +3,20 @@ import React from 'react';
 import { Resolver } from 'react-hook-form';
 import * as yup from 'yup';
 import { ConditionValues, RuleType, actionRule } from '../../../../types';
+import Rule from '../../../../utils/Rule';
 import FormBody from '../../../components/FormBody';
 import { useAlertProvider } from '../../../provider/AlertProvider';
 
 const formSchema = yup.object().shape({
-   title: yup.string().required('Please enter a query'),
-   action: yup.mixed<actionRule>().oneOf([0, 1, 2]),
-   groupName: yup.string(),
-   groupColor: yup.string(),
+   title: yup.string().required('Please enter a title'),
+   action: yup
+      .mixed<actionRule>()
+      .oneOf([0, 1, 2])
+      .required('Please select an action'),
+   groupName: yup.string().required('Please enter tab group name'),
+   groupColor: yup.string().required('Please select color for tab groups'),
    active: yup.bool(),
-   // currentGroups: yup.object()
+   conditionGroups: yup.mixed().nullable(),
 });
 
 export default function AddRuleForm() {
@@ -31,10 +35,9 @@ export default function AddRuleForm() {
     */
    const onSubmit = (data: RuleType | ConditionValues) => {
       try {
-         console.log('data: ', data);
-         // const rule = Rule.build(ruleData);
-         // rule.save();
-         // setAlertSettings('success', 'Rule has been created!');
+         const rule = Rule.build(data as RuleType);
+         rule.save();
+         setAlertSettings('success', 'Rule has been created!');
       } catch (err) {
          console.error(err);
          setAlertSettings('error', 'Unable to create new rule.');

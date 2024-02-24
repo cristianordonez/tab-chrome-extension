@@ -43,8 +43,6 @@ export default function ConditionForm({ control }: Props) {
             render={({ field: { onChange, value } }) => (
                <Switch
                   handleChange={(e, currentValue) => {
-                     console.log('value: ', value);
-                     console.log('currentValue: ', currentValue);
                      onChange(currentValue === 'AND' ? true : false);
                   }}
                   currentValue={value ? 'AND' : 'OR'}

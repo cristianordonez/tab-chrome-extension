@@ -51641,7 +51641,7 @@ var condition_form_1 = __importDefault(__webpack_require__(731));
 function FormBody(_a) {
     var onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
     var navigate = (0, react_router_dom_1.useNavigate)();
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset;
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, reset = _b.reset, errors = _b.formState.errors;
     var menuItems = [
         { value: 0, label: 'Add tab to a tab group' },
         { value: 1, label: 'Pin tab' },
@@ -51655,10 +51655,10 @@ function FormBody(_a) {
     });
     var actionWatch = watch('action', 0);
     var submit = function (data) {
-        onSubmit(data);
-        reset();
-        navigate(-1);
+        console.log('errors: ', errors);
+        console.log('data: ', data);
     };
+    console.log('errors in formbody: ', errors);
     return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
         react_1.default.createElement(Center_1.default, { column: true },
             react_1.default.createElement(react_1.default.Fragment, null,
@@ -51722,15 +51722,15 @@ var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormInput(_a) {
-    var control = _a.control, label = _a.label, name = _a.name, defaultValue = _a.defaultValue;
-    var field = (0, react_hook_form_1.useController)({
+    var control = _a.control, label = _a.label, name = _a.name, defaultValue = _a.defaultValue, _b = _a.required, required = _b === void 0 ? true : _b;
+    var _c = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
-        rules: { required: true },
+        rules: { required: required },
         defaultValue: defaultValue,
-    }).field;
+    }), field = _c.field, error = _c.fieldState.error;
     return (React.createElement(React.Fragment, null,
-        React.createElement(material_1.TextField, __assign({}, field, { placeholder: name, label: label }))));
+        React.createElement(material_1.TextField, __assign({ error: error != undefined }, field, { placeholder: name, label: label, helperText: error === null || error === void 0 ? void 0 : error.message }))));
 }
 exports["default"] = HookFormInput;
 
@@ -51781,14 +51781,15 @@ var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormSelect(_a) {
-    var control = _a.control, menuItems = _a.menuItems, label = _a.label, name = _a.name;
-    var field = (0, react_hook_form_1.useController)({
+    var control = _a.control, menuItems = _a.menuItems, label = _a.label, name = _a.name, _b = _a.required, required = _b === void 0 ? true : _b;
+    var _c = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
-        rules: { required: true },
-    }).field;
-    return (React.createElement(material_1.FormControl, { sx: { minWidth: 120 } },
-        React.createElement(material_1.Select, __assign({}, field, { inputProps: { 'aria-label': label } }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); }))));
+        rules: { required: required },
+    }), field = _c.field, error = _c.fieldState.error;
+    return (React.createElement(material_1.FormControl, { sx: { minWidth: 120 }, error: error != undefined },
+        React.createElement(material_1.Select, __assign({}, field, { inputProps: { 'aria-label': label } }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); })),
+        React.createElement(material_1.FormHelperText, null, error === null || error === void 0 ? void 0 : error.message)));
 }
 exports["default"] = HookFormSelect;
 
@@ -52061,10 +52062,13 @@ var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
                 react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
             react_1.default.createElement(material_1.Box, null,
                 react_1.default.createElement(react_hook_form_1.Controller, { name: "conditionGroups.groups.".concat(index, ".all_required"), control: control, render: function (_a) {
-                        var _b = _a.field, onChange = _b.onChange, value = _b.value;
-                        return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
-                                return onChange(currentValue === 'AND' ? true : false);
-                            }, currentValue: value ? 'AND' : 'OR' }));
+                        var _b = _a.fieldState, invalid = _b.invalid, error = _b.error, _c = _a.field, onChange = _c.onChange, value = _c.value;
+                        return (react_1.default.createElement(react_1.default.Fragment, null,
+                            react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
+                                    return onChange(currentValue === 'AND' ? true : false);
+                                }, currentValue: value ? 'AND' : 'OR' }),
+                            react_1.default.createElement("p", null, String(error)),
+                            react_1.default.createElement("p", null, String(invalid))));
                     } })),
             react_1.default.createElement(material_1.Box, null))) : (react_1.default.createElement(react_1.default.Fragment, null))));
 });
@@ -52147,8 +52151,6 @@ function ConditionForm(_a) {
         react_1.default.createElement(react_hook_form_1.Controller, { name: 'conditionGroups.all_required', control: control, render: function (_a) {
                 var _b = _a.field, onChange = _b.onChange, value = _b.value;
                 return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
-                        console.log('value: ', value);
-                        console.log('currentValue: ', currentValue);
                         onChange(currentValue === 'AND' ? true : false);
                     }, currentValue: value ? 'AND' : 'OR' }));
             } }),
@@ -53277,14 +53279,19 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var yup_1 = __webpack_require__(2433);
 var react_1 = __importDefault(__webpack_require__(7294));
 var yup = __importStar(__webpack_require__(6310));
+var Rule_1 = __importDefault(__webpack_require__(4235));
 var FormBody_1 = __importDefault(__webpack_require__(448));
 var AlertProvider_1 = __webpack_require__(5648);
 var formSchema = yup.object().shape({
-    title: yup.string().required('Please enter a query'),
-    action: yup.mixed().oneOf([0, 1, 2]),
-    groupName: yup.string(),
-    groupColor: yup.string(),
+    title: yup.string().required('Please enter a title'),
+    action: yup
+        .mixed()
+        .oneOf([0, 1, 2])
+        .required('Please select an action'),
+    groupName: yup.string().required('Please enter tab group name'),
+    groupColor: yup.string().required('Please select color for tab groups'),
     active: yup.bool(),
+    conditionGroups: yup.mixed().nullable(),
 });
 function AddRuleForm() {
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
@@ -53293,7 +53300,9 @@ function AddRuleForm() {
     };
     var onSubmit = function (data) {
         try {
-            console.log('data: ', data);
+            var rule = Rule_1.default.build(data);
+            rule.save();
+            setAlertSettings('success', 'Rule has been created!');
         }
         catch (err) {
             console.error(err);

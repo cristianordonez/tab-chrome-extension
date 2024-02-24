@@ -17,12 +17,13 @@ interface Props {
 export default function FormBody({ onSubmit, title, formOptions }: Props) {
    const navigate = useNavigate();
 
-   /**
-    * Create react hook form
-    */
-   const { handleSubmit, control, watch, reset } = useForm<
-      RuleType | ConditionValues
-   >(formOptions);
+   const {
+      handleSubmit,
+      control,
+      watch,
+      reset,
+      formState: { errors },
+   } = useForm<RuleType | ConditionValues>(formOptions);
 
    /**
     * Items used for select action element
@@ -54,11 +55,14 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
     * @param data values passed down to form
     */
    const submit = (data: RuleType | ConditionValues) => {
-      onSubmit(data);
-      reset();
-      navigate(-1);
+      console.log('errors: ', errors);
+      console.log('data: ', data);
+      // onSubmit(data);
+      // reset();
+      // navigate(-1);
    };
 
+   console.log('errors in formbody: ', errors);
    return (
       <form onSubmit={handleSubmit(submit)}>
          <Center column>

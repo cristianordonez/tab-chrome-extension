@@ -52060,13 +52060,11 @@ var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
                 react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
             react_1.default.createElement(material_1.Box, null,
                 react_1.default.createElement(react_hook_form_1.Controller, { name: "conditionGroups.groups.".concat(index, ".all_required"), control: control, render: function (_a) {
-                        var _b = _a.fieldState, invalid = _b.invalid, error = _b.error, _c = _a.field, onChange = _c.onChange, value = _c.value;
+                        var _b = _a.field, onChange = _b.onChange, value = _b.value;
                         return (react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
                                     return onChange(currentValue === 'AND' ? true : false);
-                                }, currentValue: value ? 'AND' : 'OR' }),
-                            react_1.default.createElement("p", null, String(error)),
-                            react_1.default.createElement("p", null, String(invalid))));
+                                }, currentValue: value ? 'AND' : 'OR' })));
                     } })),
             react_1.default.createElement(material_1.Box, null))) : (react_1.default.createElement(react_1.default.Fragment, null))));
 });
@@ -52130,11 +52128,13 @@ var Switch_1 = __importDefault(__webpack_require__(1556));
 var ConditionGroup_1 = __importDefault(__webpack_require__(6122));
 var GroupBuilder_1 = __importDefault(__webpack_require__(453));
 function ConditionForm(_a) {
+    var _b, _c;
     var control = _a.control;
-    var _b = (0, react_hook_form_1.useFieldArray)({
+    var _d = (0, react_hook_form_1.useFieldArray)({
         control: control,
         name: 'conditionGroups.groups',
-    }), fields = _b.fields, append = _b.append;
+    }), fields = _d.fields, append = _d.append;
+    var errors = (0, react_hook_form_1.useFormState)({ control: control }).errors;
     var handleAddGroup = function () {
         var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
         append(newGroup);
@@ -52144,6 +52144,7 @@ function ConditionForm(_a) {
         control: control,
         name: 'conditionGroups.all_required',
     });
+    console.log('errors: ', errors);
     return (react_1.default.createElement("div", null,
         react_1.default.createElement("h1", null, "Conditions"),
         react_1.default.createElement(react_hook_form_1.Controller, { name: 'conditionGroups.all_required', control: control, render: function (_a) {
@@ -52153,6 +52154,9 @@ function ConditionForm(_a) {
                     }, currentValue: value ? 'AND' : 'OR' }));
             } }),
         react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label ? 'AND' : 'OR' }),
+        errors &&
+            ((_b = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _b === void 0 ? void 0 : _b.groups) &&
+            !Array.isArray((_c = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _c === void 0 ? void 0 : _c.groups) ? (react_1.default.createElement(material_1.Typography, { variant: 'body2', color: 'error' }, "At least 1 condition is required to create a rule")) : (react_1.default.createElement(react_1.default.Fragment, null)),
         react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
 }
 exports["default"] = ConditionForm;
@@ -53299,22 +53303,20 @@ var formSchema = yup.object().shape({
         all_required: yup.bool(),
         groups: yup
             .array()
-            .min(1, 'at least 1')
+            .min(1, 'At least 1 condition is required to create a rule')
             .required()
             .of(yup.object().shape({
             all_required: yup.bool(),
             conditions: yup
                 .array()
-                .min(1, 'Please provide a condition')
+                .min(1, 'Please provide at least 1 condition for current group')
                 .required()
                 .of(yup.object().shape({
                 url: yup.string().required('Please provide url'),
                 match: yup
                     .string()
                     .required('Please provide match condition'),
-                query: yup
-                    .string()
-                    .required('Please enter a query for your condition'),
+                query: yup.string().required('Please enter a query'),
             })),
         })),
     }),

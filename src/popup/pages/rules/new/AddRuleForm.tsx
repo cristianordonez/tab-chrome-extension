@@ -26,14 +26,17 @@ const formSchema = yup.object().shape({
       all_required: yup.bool(),
       groups: yup
          .array()
-         .min(1, 'at least 1')
+         .min(1, 'At least 1 condition is required to create a rule')
          .required()
          .of(
             yup.object().shape({
                all_required: yup.bool(),
                conditions: yup
                   .array()
-                  .min(1, 'Please provide a condition')
+                  .min(
+                     1,
+                     'Please provide at least 1 condition for current group'
+                  )
                   .required()
                   .of(
                      yup.object().shape({
@@ -41,9 +44,7 @@ const formSchema = yup.object().shape({
                         match: yup
                            .string()
                            .required('Please provide match condition'),
-                        query: yup
-                           .string()
-                           .required('Please enter a query for your condition'),
+                        query: yup.string().required('Please enter a query'),
                      })
                   ),
             })

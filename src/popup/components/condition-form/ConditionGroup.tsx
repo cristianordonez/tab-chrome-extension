@@ -71,10 +71,7 @@ const ConditionGroup = memo(function ConditionGroup({
                   <Controller
                      name={`conditionGroups.groups.${index}.all_required`}
                      control={control}
-                     render={({
-                        fieldState: { invalid, error },
-                        field: { onChange, value },
-                     }) => (
+                     render={({ field: { onChange, value } }) => (
                         <>
                            <Switch
                               handleChange={(e, currentValue) =>
@@ -82,8 +79,6 @@ const ConditionGroup = memo(function ConditionGroup({
                               }
                               currentValue={value ? 'AND' : 'OR'}
                            />
-                           <p>{String(error)}</p>
-                           <p>{String(invalid)}</p>
                         </>
                      )}
                   />

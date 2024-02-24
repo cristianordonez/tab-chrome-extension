@@ -1,6 +1,12 @@
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
-import { Control, Controller, useFieldArray, useWatch } from 'react-hook-form';
+import {
+   Control,
+   Controller,
+   useFieldArray,
+   useFormState,
+   useWatch,
+} from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { ConditionValues, RuleType } from '../../../types';
 import Switch from '../Switch';
@@ -17,6 +23,7 @@ export default function ConditionForm({ control }: Props) {
       name: 'conditionGroups.groups',
    });
 
+   const { errors } = useFormState({ control });
    /**
     * Adds new default group to group array
     */
@@ -34,6 +41,7 @@ export default function ConditionForm({ control }: Props) {
       name: 'conditionGroups.all_required',
    });
 
+   console.log('errors: ', errors);
    return (
       <div>
          <h1>Conditions</h1>
@@ -53,6 +61,15 @@ export default function ConditionForm({ control }: Props) {
             childrenArr={renderedGroups}
             label={label ? 'AND' : 'OR'}
          />
+         {errors &&
+         (errors as RuleType)?.conditionGroups?.groups &&
+         !Array.isArray((errors as RuleType)?.conditionGroups?.groups) ? (
+            <Typography variant='body2' color={'error'}>
+               At least 1 condition is required to create a rule
+            </Typography>
+         ) : (
+            <></>
+         )}
          <Button onClick={handleAddGroup}>Add Group</Button>
       </div>
    );

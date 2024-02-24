@@ -52034,11 +52034,13 @@ var Switch_1 = __importDefault(__webpack_require__(1556));
 var Condition_1 = __importDefault(__webpack_require__(4581));
 var GroupBuilder_1 = __importDefault(__webpack_require__(453));
 var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
-    var control = _a.control, index = _a.index, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
-    var _c = (0, react_hook_form_1.useFieldArray)({
+    var _b, _c;
+    var control = _a.control, index = _a.index, _d = _a.read_only, read_only = _d === void 0 ? false : _d;
+    var _e = (0, react_hook_form_1.useFieldArray)({
         control: control,
         name: "conditionGroups.groups.".concat(index, ".conditions"),
-    }), fields = _c.fields, append = _c.append;
+    }), fields = _e.fields, append = _e.append;
+    var errors = (0, react_hook_form_1.useFormState)({ control: control }).errors;
     var conditions = fields.map(function (currentCondition, i) { return (react_1.default.createElement(Condition_1.default, { key: currentCondition.id, control: control, groupIndex: index, conditionIndex: i })); });
     var handleAddCondition = function () {
         var newCondition = {
@@ -52054,6 +52056,9 @@ var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
         name: "conditionGroups.groups.".concat(index, ".all_required"),
     });
     return (react_1.default.createElement(material_1.Paper, { sx: { padding: '15px' } },
+        errors &&
+            ((_b = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _b === void 0 ? void 0 : _b.groups[index].conditions) &&
+            !Array.isArray((_c = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _c === void 0 ? void 0 : _c.groups[index].conditions) ? (react_1.default.createElement(material_1.Typography, { variant: 'body2', color: 'error' }, "Please provide at least 1 condition for current group")) : (react_1.default.createElement(react_1.default.Fragment, null)),
         react_1.default.createElement(GroupBuilder_1.default, { childrenArr: conditions, label: label ? 'AND' : 'OR' }),
         !read_only ? (react_1.default.createElement(material_1.Box, { sx: { display: 'flex', flexDirection: 'column' } },
             react_1.default.createElement(material_1.Box, null,
@@ -52065,8 +52070,7 @@ var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
                             react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
                                     return onChange(currentValue === 'AND' ? true : false);
                                 }, currentValue: value ? 'AND' : 'OR' })));
-                    } })),
-            react_1.default.createElement(material_1.Box, null))) : (react_1.default.createElement(react_1.default.Fragment, null))));
+                    } })))) : (react_1.default.createElement(react_1.default.Fragment, null))));
 });
 exports["default"] = ConditionGroup;
 

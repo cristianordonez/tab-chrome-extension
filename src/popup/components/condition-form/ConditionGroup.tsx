@@ -1,6 +1,12 @@
-import { Box, Button, Paper } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import React, { memo } from 'react';
-import { Control, Controller, useFieldArray, useWatch } from 'react-hook-form';
+import {
+   Control,
+   Controller,
+   useFieldArray,
+   useFormState,
+   useWatch,
+} from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { ConditionType, ConditionValues, RuleType } from '../../../types';
 import Switch from '../Switch';
@@ -27,6 +33,7 @@ const ConditionGroup = memo(function ConditionGroup({
       name: `conditionGroups.groups.${index}.conditions`,
    });
 
+   const { errors } = useFormState({ control });
    /**
     * Rendered array of conditions
     */
@@ -59,6 +66,17 @@ const ConditionGroup = memo(function ConditionGroup({
 
    return (
       <Paper sx={{ padding: '15px' }}>
+         {errors &&
+         (errors as RuleType)?.conditionGroups?.groups[index].conditions &&
+         !Array.isArray(
+            (errors as RuleType)?.conditionGroups?.groups[index].conditions
+         ) ? (
+            <Typography variant='body2' color={'error'}>
+               Please provide at least 1 condition for current group
+            </Typography>
+         ) : (
+            <></>
+         )}
          <GroupBuilder childrenArr={conditions} label={label ? 'AND' : 'OR'} />
          {!read_only ? (
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -83,7 +101,6 @@ const ConditionGroup = memo(function ConditionGroup({
                      )}
                   />
                </Box>
-               <Box></Box>
             </Box>
          ) : (
             <></>

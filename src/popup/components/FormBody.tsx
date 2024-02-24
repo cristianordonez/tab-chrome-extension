@@ -63,6 +63,8 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
       // navigate(-1);
    };
 
+   console.log('errors: ', errors);
+
    return (
       <form onSubmit={handleSubmit(submit)}>
          <Center column>

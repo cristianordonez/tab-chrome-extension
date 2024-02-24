@@ -23,7 +23,6 @@ interface Props {
       | `conditionGroups.groups.${number}.conditions.${number}`
       | `conditionGroups.groups.${number}.conditions.${number}.url`
       | `conditionGroups.groups.${number}.conditions.${number}.match`;
-   required?: boolean;
 }
 
 export default function HookFormSelect({
@@ -31,7 +30,6 @@ export default function HookFormSelect({
    menuItems,
    label,
    name,
-   required = true,
 }: Props) {
    const {
       field,
@@ -39,7 +37,6 @@ export default function HookFormSelect({
    } = useController({
       name,
       control,
-      rules: { required: required },
    });
 
    return (

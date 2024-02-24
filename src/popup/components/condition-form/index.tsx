@@ -15,7 +15,6 @@ export default function ConditionForm({ control }: Props) {
    const { fields, append } = useFieldArray({
       control,
       name: 'conditionGroups.groups',
-      rules: { minLength: 1 },
    });
 
    /**

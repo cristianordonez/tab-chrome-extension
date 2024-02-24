@@ -16,7 +16,6 @@ interface Props {
       | 'action'
       | `conditionGroups.groups.${number}.conditions.${number}.query`;
    defaultValue?: string;
-   required?: boolean;
 }
 
 export default function HookFormInput({
@@ -24,7 +23,6 @@ export default function HookFormInput({
    label,
    name,
    defaultValue,
-   required = true,
 }: Props) {
    const {
       field,
@@ -32,7 +30,6 @@ export default function HookFormInput({
    } = useController({
       name,
       control,
-      rules: { required: required },
       defaultValue,
    });
    return (

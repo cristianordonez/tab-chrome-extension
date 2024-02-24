@@ -51658,6 +51658,7 @@ function FormBody(_a) {
         console.log('errors: ', errors);
         console.log('data: ', data);
     };
+    console.log('errors: ', errors);
     return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
         react_1.default.createElement(Center_1.default, { column: true },
             react_1.default.createElement(react_1.default.Fragment, null,
@@ -51721,13 +51722,12 @@ var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormInput(_a) {
-    var control = _a.control, label = _a.label, name = _a.name, defaultValue = _a.defaultValue, _b = _a.required, required = _b === void 0 ? true : _b;
-    var _c = (0, react_hook_form_1.useController)({
+    var control = _a.control, label = _a.label, name = _a.name, defaultValue = _a.defaultValue;
+    var _b = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
-        rules: { required: required },
         defaultValue: defaultValue,
-    }), field = _c.field, error = _c.fieldState.error;
+    }), field = _b.field, error = _b.fieldState.error;
     return (React.createElement(React.Fragment, null,
         React.createElement(material_1.TextField, __assign({ error: error != undefined }, field, { placeholder: name, label: label, helperText: error === null || error === void 0 ? void 0 : error.message }))));
 }
@@ -51780,12 +51780,11 @@ var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormSelect(_a) {
-    var control = _a.control, menuItems = _a.menuItems, label = _a.label, name = _a.name, _b = _a.required, required = _b === void 0 ? true : _b;
-    var _c = (0, react_hook_form_1.useController)({
+    var control = _a.control, menuItems = _a.menuItems, label = _a.label, name = _a.name;
+    var _b = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
-        rules: { required: required },
-    }), field = _c.field, error = _c.fieldState.error;
+    }), field = _b.field, error = _b.fieldState.error;
     return (React.createElement(material_1.FormControl, { sx: { minWidth: 120 }, error: error != undefined },
         React.createElement(material_1.Select, __assign({}, field, { inputProps: { 'aria-label': label } }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); })),
         React.createElement(material_1.FormHelperText, null, error === null || error === void 0 ? void 0 : error.message)));
@@ -52135,7 +52134,6 @@ function ConditionForm(_a) {
     var _b = (0, react_hook_form_1.useFieldArray)({
         control: control,
         name: 'conditionGroups.groups',
-        rules: { minLength: 1 },
     }), fields = _b.fields, append = _b.append;
     var handleAddGroup = function () {
         var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
@@ -53297,7 +53295,29 @@ var formSchema = yup.object().shape({
         then: function () { return yup.string().required('Please select a group color'); },
     }),
     active: yup.bool(),
-    conditionGroups: yup.mixed().nullable(),
+    conditionGroups: yup.object().shape({
+        all_required: yup.bool(),
+        groups: yup
+            .array()
+            .min(1, 'at least 1')
+            .required()
+            .of(yup.object().shape({
+            all_required: yup.bool(),
+            conditions: yup
+                .array()
+                .min(1, 'Please provide a condition')
+                .required()
+                .of(yup.object().shape({
+                url: yup.string().required('Please provide url'),
+                match: yup
+                    .string()
+                    .required('Please provide match condition'),
+                query: yup
+                    .string()
+                    .required('Please enter a query for your condition'),
+            })),
+        })),
+    }),
 });
 function AddRuleForm() {
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;

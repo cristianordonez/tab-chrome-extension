@@ -22,14 +22,40 @@ const formSchema = yup.object().shape({
       then: () => yup.string().required('Please select a group color'),
    }),
    active: yup.bool(),
-   conditionGroups: yup.mixed().nullable(),
+   conditionGroups: yup.object().shape({
+      all_required: yup.bool(),
+      groups: yup
+         .array()
+         .min(1, 'at least 1')
+         .required()
+         .of(
+            yup.object().shape({
+               all_required: yup.bool(),
+               conditions: yup
+                  .array()
+                  .min(1, 'Please provide a condition')
+                  .required()
+                  .of(
+                     yup.object().shape({
+                        url: yup.string().required('Please provide url'),
+                        match: yup
+                           .string()
+                           .required('Please provide match condition'),
+                        query: yup
+                           .string()
+                           .required('Please enter a query for your condition'),
+                     })
+                  ),
+            })
+         ),
+   }),
 });
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
 
    const formOptions = {
-      resolver: yupResolver(formSchema) as Resolver<
+      resolver: yupResolver(formSchema) as unknown as Resolver<
          ConditionValues | Partial<RuleType>
       >,
    };

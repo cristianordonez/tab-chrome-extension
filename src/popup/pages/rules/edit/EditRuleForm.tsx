@@ -1,19 +1,15 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect, useState } from 'react';
-import { UseFormArgs } from 'react-hook-form';
+import { Resolver, UseFormArgs } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import {
-   AllConditionGroupsType,
-   ConditionValues,
-   RuleType,
-} from '../../../../types';
+import { ConditionValues, RuleType } from '../../../../types';
 import Rule from '../../../../utils/Rule';
+import formSchema from '../../../../utils/formSchema';
 import FormBody from '../../../components/FormBody';
 import { useAlertProvider } from '../../../provider/AlertProvider';
 
 export default function AddRuleForm() {
    const { setAlertSettings } = useAlertProvider();
-   const [conditionGroups, setConditionGroups] =
-      useState<AllConditionGroupsType>({ all_required: false, groups: [] });
    const { state } = useLocation();
    const [formOptions, setFormOptions] = useState<UseFormArgs>({});
 
@@ -30,23 +26,27 @@ export default function AddRuleForm() {
          const rule = await Rule.getById(ruleId);
          const data = rule?.getData();
          if (data) {
-            const {
-               conditionGroups,
-               title,
-               action,
-               groupName,
-               groupColor,
-               active,
-            } = data;
+            // const {
+            //    conditionGroups,
+            //    title,
+            //    action,
+            //    groupName,
+            //    groupColor,
+            //    active,
+            // } = data;
             setFormOptions({
-               defaultValues: { title, action, groupName, groupColor, active },
+               defaultValues: data,
+               //    title,
+               //    action,
+               //    groupName,
+               //    groupColor,
+               //    active,
+               //    conditionGroups,
+               // },
+               resolver: yupResolver(formSchema) as unknown as Resolver<
+                  ConditionValues | Partial<RuleType>
+               >,
             });
-            if (conditionGroups == undefined) {
-               throw new Error(
-                  `Could not get conditions from current rule with id of ${ruleId}`
-               );
-            }
-            setConditionGroups(conditionGroups);
          } else {
             console.error(
                `Unable to find data regarding rule with id ${ruleId}`
@@ -61,15 +61,11 @@ export default function AddRuleForm() {
     * @param data
     * @returns void
     */
-   const onSubmit = (data: RuleType | ConditionValues) => {
+   const onSubmit = async (data: RuleType | ConditionValues) => {
       try {
-         const ruleData = {
-            ...data,
-            conditionGroups: conditionGroups,
-         } as RuleType;
-         // const rule = Rule.build(ruleData);
-         // rule.save();
-         console.log('ruleData: ', ruleData);
+         // const rule = Rule.build(data);
+         // await rule.save();
+         console.log('ruleData: ', data);
          // setAlertSettings('success', 'Rule has been created!');
       } catch (err) {
          console.error(err);
@@ -81,8 +77,6 @@ export default function AddRuleForm() {
       <>
          {Object.keys(formOptions).length ? (
             <FormBody
-               // conditionGroups={conditionGroups}
-               // setConditionGroups={setConditionGroups}
                onSubmit={onSubmit}
                title={'Edit Rule'}
                formOptions={formOptions}

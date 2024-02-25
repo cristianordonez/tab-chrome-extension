@@ -41,7 +41,6 @@ export default function ConditionForm({ control }: Props) {
       name: 'conditionGroups.all_required',
    });
 
-   console.log('errors: ', errors);
    return (
       <div>
          <h1>Conditions</h1>

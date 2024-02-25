@@ -20,8 +20,7 @@ interface Props {
 }
 
 /**
- * TODO
- * like EDIT example
+ * Single group of rules/conditions
  */
 const ConditionGroup = memo(function ConditionGroup({
    control,

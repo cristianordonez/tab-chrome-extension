@@ -14,6 +14,14 @@ interface Props {
    formOptions: UseFormArgs;
 }
 
+/**
+ * Form used for creating or adding rules
+ * @param props
+ * onSubmit: function  to call when submitting form
+ * title: will be displayed in h1 tag
+ * formOptions: arguments passed to react hook forms useForms hook
+ * @returns
+ */
 export default function FormBody({ onSubmit, title, formOptions }: Props) {
    const navigate = useNavigate();
 
@@ -21,9 +29,8 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
       handleSubmit,
       control,
       watch,
-      clearErrors,
-      unregister,
       formState: { errors },
+      reset,
    } = useForm<RuleType | ConditionValues>(formOptions);
 
    /**
@@ -56,14 +63,10 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
     * @param data values passed down to form
     */
    const submit = (data: RuleType | ConditionValues) => {
-      console.log('errors: ', errors);
-      console.log('data: ', data);
-      // onSubmit(data);
-      // reset();
-      // navigate(-1);
+      onSubmit(data);
+      reset();
+      navigate(-1);
    };
-
-   console.log('errors: ', errors);
 
    return (
       <form onSubmit={handleSubmit(submit)}>

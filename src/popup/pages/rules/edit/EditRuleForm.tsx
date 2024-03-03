@@ -8,7 +8,7 @@ import formSchema from '../../../../utils/formSchema';
 import FormBody from '../../../components/FormBody';
 import { useAlertProvider } from '../../../provider/AlertProvider';
 
-export default function AddRuleForm() {
+export default function EditRuleForm() {
    const { setAlertSettings } = useAlertProvider();
    const { state } = useLocation();
    const [formOptions, setFormOptions] = useState<UseFormArgs>({});
@@ -26,23 +26,8 @@ export default function AddRuleForm() {
          const rule = await Rule.getById(ruleId);
          const data = rule?.getData();
          if (data) {
-            // const {
-            //    conditionGroups,
-            //    title,
-            //    action,
-            //    groupName,
-            //    groupColor,
-            //    active,
-            // } = data;
             setFormOptions({
                defaultValues: data,
-               //    title,
-               //    action,
-               //    groupName,
-               //    groupColor,
-               //    active,
-               //    conditionGroups,
-               // },
                resolver: yupResolver(formSchema) as unknown as Resolver<
                   ConditionValues | Partial<RuleType>
                >,
@@ -57,19 +42,19 @@ export default function AddRuleForm() {
    };
 
    /**
-    * todo Submits form
+    * Submits form to update rule in storage
     * @param data
     * @returns void
     */
    const onSubmit = async (data: RuleType | ConditionValues) => {
       try {
-         // const rule = Rule.build(data);
-         // await rule.save();
-         console.log('ruleData: ', data);
-         // setAlertSettings('success', 'Rule has been created!');
+         const updatedData = data as RuleType;
+         const rule = Rule.build(updatedData);
+         await rule.update(updatedData);
+         setAlertSettings('success', 'Rule has been updated!');
       } catch (err) {
          console.error(err);
-         setAlertSettings('error', 'Unable to create new rule.');
+         setAlertSettings('error', 'Unable to update rule.');
       }
    };
 

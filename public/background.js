@@ -637,10 +637,7 @@ var Rule = (function () {
                         rules = _a.sent();
                         doesExist = false;
                         Object.values(rules).forEach(function (ruleData) {
-                            if (data.id == ruleData.id) {
-                                doesExist = true;
-                            }
-                            else if (data.title == ruleData.title) {
+                            if (data.id == ruleData.id || data.title == ruleData.title) {
                                 doesExist = true;
                             }
                         });

@@ -291,9 +291,7 @@ class Rule {
       const rules = await Rule.ruleStorage.get();
       let doesExist = false;
       Object.values(rules).forEach((ruleData: RuleType) => {
-         if (data.id == ruleData.id) {
-            doesExist = true;
-         } else if (data.title == ruleData.title) {
+         if (data.id == ruleData.id || data.title == ruleData.title) {
             doesExist = true;
          }
       });

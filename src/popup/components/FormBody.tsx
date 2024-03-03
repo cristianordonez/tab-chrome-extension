@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
 import { UseFormArgs, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ConditionValues, RuleType, colors } from '../../types';
 import Center from './Center';
 import HookFormInput from './HookFormInput';
@@ -9,7 +9,7 @@ import HookFormSelect from './HookFormSelect';
 import ConditionForm from './condition-form';
 
 interface Props {
-   onSubmit: (data: RuleType | ConditionValues) => void;
+   onSubmit: (data: RuleType | ConditionValues) => Promise<void>;
    title: string;
    formOptions: UseFormArgs;
 }
@@ -24,15 +24,18 @@ interface Props {
  */
 export default function FormBody({ onSubmit, title, formOptions }: Props) {
    const navigate = useNavigate();
-
+   const location = useLocation();
+   const { pathname } = location;
+   console.log('pathname: ', pathname);
    const {
       handleSubmit,
       control,
       watch,
-      formState: { errors },
+      formState: { isDirty, errors },
       reset,
    } = useForm<RuleType | ConditionValues>(formOptions);
 
+   console.log('isDirty: ', isDirty);
    /**
     * Items used for select action element
     */
@@ -62,8 +65,8 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
     * Called on form submission
     * @param data values passed down to form
     */
-   const submit = (data: RuleType | ConditionValues) => {
-      onSubmit(data);
+   const submit = async (data: RuleType | ConditionValues) => {
+      await onSubmit(data);
       reset();
       navigate(-1);
    };
@@ -101,8 +104,13 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
                ) : null}
                <ConditionForm control={control} />
                <div>
-                  <Button type='submit' variant='contained' color='success'>
-                     Submit
+                  <Button
+                     type='submit'
+                     variant='contained'
+                     color='success'
+                     disabled={pathname.includes('edit') && isDirty == false}
+                  >
+                     {pathname.includes('edit') ? 'Save Changes' : 'Submit'}
                   </Button>
                   <Button
                      variant='contained'

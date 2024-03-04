@@ -50,10 +50,10 @@ export default function CurrentGroup({ groupId, getGroups }: Props) {
    const saveGroup = async () => {
       try {
          if (groupId == -1) {
-            const output = await getOutput({
+            const output = (await getOutput({
                title: 'Group Name',
                type: 'input',
-            });
+            })) as string;
             if (output) {
                const tabIds = tabs.reduce((accumulator, currentValue) => {
                   if (currentValue.id) {

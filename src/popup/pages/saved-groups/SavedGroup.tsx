@@ -81,7 +81,10 @@ export default function SavedGroup({
     * Opens popup window allowing user to select tabs, then adds those selected to current saved group
     */
    const handleAddTab = async () => {
-      const output = await getOutput({ title: 'Add tabs', type: 'tabs' });
+      const output = (await getOutput({
+         title: 'Add tabs',
+         type: 'tabs',
+      })) as string;
       if (output) {
          const tabsToSave = JSON.parse(output) as chrome.tabs.Tab[];
          try {

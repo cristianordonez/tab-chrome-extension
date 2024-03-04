@@ -9,9 +9,9 @@ import {
 } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { ConditionValues, RuleType } from '../../../types';
+import ConditionGroup from '../ConditionGroup';
+import GroupBuilder from '../GroupBuilder';
 import Switch from '../Switch';
-import ConditionGroup from './ConditionGroup';
-import GroupBuilder from './GroupBuilder';
 
 interface Props {
    control: Control<ConditionValues | RuleType, unknown>;
@@ -36,6 +36,9 @@ export default function ConditionForm({ control }: Props) {
       <ConditionGroup key={field.id} index={index} control={control} />
    ));
 
+   /**
+    * Watch label to update group builder when toggled between 'AND' & 'OR'
+    */
    const label = useWatch({
       control,
       name: 'conditionGroups.all_required',

@@ -1,15 +1,15 @@
-import { Typography } from '@mui/material';
 import React, { memo } from 'react';
 import { Control } from 'react-hook-form';
-import { ConditionValues, RuleType } from '../../../types';
-import HookFormInput from '../HookFormInput';
-import HookFormSelect from '../HookFormSelect';
-import Row from '../row/Row';
+import { ConditionValues, RuleType } from '../../types';
+import HookFormInput from './HookFormInput';
+import HookFormSelect from './HookFormSelect';
+import Row from './row/Row';
 
 interface Props {
    control: Control<ConditionValues | RuleType, unknown>;
    groupIndex: number;
    conditionIndex: number;
+   read_only?: boolean;
 }
 
 const urlItems = [
@@ -32,19 +32,15 @@ const matchItems = [
 const Condition = memo(function Condition({
    control,
    groupIndex,
+   read_only = false,
    conditionIndex,
 }: Props) {
    return (
       <Row
          PrefixIcon={
             <>
-               <Typography
-                  variant='body1'
-                  sx={{ alignSelf: 'center', marginRight: '1em' }}
-               >
-                  URL&nbsp;
-               </Typography>
                <HookFormSelect
+                  read_only={read_only}
                   name={`conditionGroups.groups.${groupIndex}.conditions.${conditionIndex}.url`}
                   control={control}
                   menuItems={urlItems}
@@ -55,6 +51,7 @@ const Condition = memo(function Condition({
          MiddleIcon={
             <HookFormSelect
                name={`conditionGroups.groups.${groupIndex}.conditions.${conditionIndex}.match`}
+               read_only={read_only}
                control={control}
                menuItems={matchItems}
                label='Match type'
@@ -63,6 +60,7 @@ const Condition = memo(function Condition({
          AffixIcon={
             <HookFormInput
                label='Match'
+               read_only={read_only}
                control={control}
                name={`conditionGroups.groups.${groupIndex}.conditions.${conditionIndex}.query`}
             />

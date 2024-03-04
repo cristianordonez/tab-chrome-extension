@@ -112,9 +112,6 @@ class SavedTabGroups {
 
    // gets all currently saved tab groups from local storage
    public async get(): Promise<LocalStorageTabGroups> {
-      // const saved = (await SavedTabGroups.getKey(
-      //    'groups'
-      // )) as LocalStorageTabGroups;
       const saved = (await this.groupStorage.get()) as LocalStorageTabGroups;
       return saved;
    }
@@ -123,9 +120,6 @@ class SavedTabGroups {
    public async getInfo(id: number): Promise<LocalStorageTabGroup | null> {
       const savedGroups =
          (await this.groupStorage.get()) as LocalStorageTabGroups;
-      // const savedGroups = (await SavedTabGroups.getKey(
-      //    'groups'
-      // )) as LocalStorageTabGroups;
       if (`${id}` in savedGroups) {
          return savedGroups[`${id}`];
       } else {
@@ -136,7 +130,6 @@ class SavedTabGroups {
    // removes given tabs from saved tab group given its group id
    public async removeTab(groupId: number, tabIds: number[]) {
       const groupInfo = await this.getInfo(groupId);
-      // const groupInfo = await SavedTabGroups.getInfo(groupId);
       if (groupInfo !== null) {
          const updatedTabs = groupInfo?.tabs.filter(
             (tab) => tabIds.includes(tab.id) === false

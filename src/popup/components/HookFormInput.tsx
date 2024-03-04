@@ -5,6 +5,7 @@ import { ConditionValues, RuleType } from '../../types';
 
 interface Props {
    control: Control<ConditionValues | RuleType, unknown>;
+   read_only?: boolean;
    label: string;
    name:
       | 'match'
@@ -21,6 +22,7 @@ interface Props {
 export default function HookFormInput({
    control,
    label,
+   read_only = false,
    name,
    defaultValue,
 }: Props) {
@@ -35,11 +37,13 @@ export default function HookFormInput({
    return (
       <>
          <TextField
+            disabled={read_only}
             error={error != undefined}
             {...field}
             placeholder={name}
             label={label}
             helperText={error?.message}
+            size='small'
          />
       </>
    );

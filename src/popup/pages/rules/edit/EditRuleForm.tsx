@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { ConditionValues, RuleType } from '../../../../types';
 import Rule from '../../../../utils/Rule';
 import formSchema from '../../../../utils/formSchema';
-import FormBody from '../../../components/FormBody';
+import FormBody from '../../../components/rule-form';
 import { useAlertProvider } from '../../../provider/AlertProvider';
 
 export default function EditRuleForm() {

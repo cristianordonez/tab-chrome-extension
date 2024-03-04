@@ -51599,6 +51599,147 @@ exports["default"] = Circle;
 
 /***/ }),
 
+/***/ 1468:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var react_1 = __importStar(__webpack_require__(7294));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var Row_1 = __importDefault(__webpack_require__(3304));
+var urlItems = [
+    { value: 'hostname', label: 'Hostname' },
+    { value: 'path', label: 'Path' },
+    { value: 'query', label: 'Query' },
+    { value: 'any', label: 'Any' },
+];
+var matchItems = [
+    { value: 'is equal to', label: 'is equal to' },
+    { value: 'ends with', label: 'ends with' },
+    { value: 'starts with', label: 'starts with' },
+    { value: 'contains', label: 'contains' },
+];
+var Condition = (0, react_1.memo)(function Condition(_a) {
+    var control = _a.control, groupIndex = _a.groupIndex, _b = _a.read_only, read_only = _b === void 0 ? false : _b, conditionIndex = _a.conditionIndex;
+    return (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(HookFormSelect_1.default, { read_only: read_only, name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".url"), control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".match"), read_only: read_only, control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', read_only: read_only, control: control, name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".query") }) }));
+});
+exports["default"] = Condition;
+
+
+/***/ }),
+
+/***/ 7392:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importStar(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var uuid_1 = __webpack_require__(7429);
+var Condition_1 = __importDefault(__webpack_require__(1468));
+var GroupBuilder_1 = __importDefault(__webpack_require__(1316));
+var Switch_1 = __importDefault(__webpack_require__(1556));
+var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
+    var _b, _c;
+    var control = _a.control, index = _a.index, _d = _a.read_only, read_only = _d === void 0 ? false : _d;
+    var _e = (0, react_hook_form_1.useFieldArray)({
+        control: control,
+        name: "conditionGroups.groups.".concat(index, ".conditions"),
+    }), fields = _e.fields, append = _e.append;
+    var errors = (0, react_hook_form_1.useFormState)({ control: control }).errors;
+    var conditions = fields.map(function (currentCondition, i) { return (react_1.default.createElement(Condition_1.default, { key: currentCondition.id, control: control, read_only: read_only, groupIndex: index, conditionIndex: i })); });
+    var handleAddCondition = function () {
+        var newCondition = {
+            url: 'hostname',
+            match: 'is equal to',
+            query: '',
+            id: (0, uuid_1.v4)(),
+        };
+        append(newCondition);
+    };
+    var label = (0, react_hook_form_1.useWatch)({
+        control: control,
+        name: "conditionGroups.groups.".concat(index, ".all_required"),
+    });
+    return (react_1.default.createElement(material_1.Paper, { sx: { padding: '15px' } },
+        errors &&
+            ((_b = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _b === void 0 ? void 0 : _b.groups[index].conditions) &&
+            !Array.isArray((_c = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _c === void 0 ? void 0 : _c.groups[index].conditions) ? (react_1.default.createElement(material_1.Typography, { variant: 'body2', color: 'error' }, "Please provide at least 1 condition for current group")) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: conditions, label: label ? 'AND' : 'OR' }),
+        !read_only ? (react_1.default.createElement(material_1.Box, { sx: { display: 'flex', flexDirection: 'column' } },
+            react_1.default.createElement(material_1.Box, null,
+                react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
+            react_1.default.createElement(material_1.Box, null,
+                react_1.default.createElement(react_hook_form_1.Controller, { name: "conditionGroups.groups.".concat(index, ".all_required"), control: control, render: function (_a) {
+                        var _b = _a.field, onChange = _b.onChange, value = _b.value;
+                        return (react_1.default.createElement(react_1.default.Fragment, null,
+                            react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
+                                    return onChange(currentValue === 'AND' ? true : false);
+                                }, currentValue: value ? 'AND' : 'OR' })));
+                    } })))) : (react_1.default.createElement(react_1.default.Fragment, null))));
+});
+exports["default"] = ConditionGroup;
+
+
+/***/ }),
+
 /***/ 6210:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -51620,108 +51761,40 @@ exports["default"] = CustomAlert;
 
 /***/ }),
 
-/***/ 448:
+/***/ 1316:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(4350);
+var system_1 = __webpack_require__(8579);
 var react_1 = __importDefault(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var react_router_dom_1 = __webpack_require__(9818);
-var types_1 = __webpack_require__(1230);
-var Center_1 = __importDefault(__webpack_require__(1081));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-var condition_form_1 = __importDefault(__webpack_require__(731));
-function FormBody(_a) {
-    var _this = this;
-    var onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
-    var navigate = (0, react_router_dom_1.useNavigate)();
-    var location = (0, react_router_dom_1.useLocation)();
-    var pathname = location.pathname;
-    console.log('pathname: ', pathname);
-    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, _c = _b.formState, isDirty = _c.isDirty, errors = _c.errors, reset = _b.reset;
-    console.log('isDirty: ', isDirty);
-    var menuItems = [
-        { value: 0, label: 'Add tab to a tab group' },
-        { value: 1, label: 'Pin tab' },
-        { value: 2, label: 'Open tab in new window' },
-    ];
-    var handleCancel = function () {
-        navigate(-1);
-    };
-    var colorItems = types_1.colors.map(function (color) {
-        return { label: color, value: color };
+var StyledChip_1 = __importDefault(__webpack_require__(9912));
+var StyledDiv = (0, system_1.styled)('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+});
+var StyledRow = (0, system_1.styled)('div')(function (_a) {
+    var indent = _a.indent;
+    return ({
+        width: indent ? '95%' : '100%',
+        height: '100%',
+        alignSelf: 'flex-end',
     });
-    var actionWatch = watch('action', 0);
-    var submit = function (data) { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4, onSubmit(data)];
-                case 1:
-                    _a.sent();
-                    reset();
-                    navigate(-1);
-                    return [2];
-            }
-        });
-    }); };
-    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
-        react_1.default.createElement(Center_1.default, { column: true },
-            react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
-                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
-                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
-                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
-                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
-                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
-                react_1.default.createElement(condition_form_1.default, { control: control }),
-                react_1.default.createElement("div", null,
-                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success', disabled: pathname.includes('edit') && isDirty == false }, pathname.includes('edit') ? 'Save Changes' : 'Submit'),
-                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
+});
+function GroupBuilder(_a) {
+    var childrenArr = _a.childrenArr, label = _a.label;
+    return (react_1.default.createElement(StyledDiv, null, childrenArr.map(function (Child, i) {
+        return (react_1.default.createElement(react_1.default.Fragment, null,
+            i > 0 ? react_1.default.createElement(StyledChip_1.default, { label: label, color: 'primary' }) : null,
+            react_1.default.createElement(StyledRow, { indent: childrenArr.length > 1 }, Child)));
+    })));
 }
-exports["default"] = FormBody;
+exports["default"] = GroupBuilder;
 
 
 /***/ }),
@@ -51770,14 +51843,14 @@ var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormInput(_a) {
-    var control = _a.control, label = _a.label, name = _a.name, defaultValue = _a.defaultValue;
-    var _b = (0, react_hook_form_1.useController)({
+    var control = _a.control, label = _a.label, _b = _a.read_only, read_only = _b === void 0 ? false : _b, name = _a.name, defaultValue = _a.defaultValue;
+    var _c = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
         defaultValue: defaultValue,
-    }), field = _b.field, error = _b.fieldState.error;
+    }), field = _c.field, error = _c.fieldState.error;
     return (React.createElement(React.Fragment, null,
-        React.createElement(material_1.TextField, __assign({ error: error != undefined }, field, { placeholder: name, label: label, helperText: error === null || error === void 0 ? void 0 : error.message }))));
+        React.createElement(material_1.TextField, __assign({ disabled: read_only, error: error != undefined }, field, { placeholder: name, label: label, helperText: error === null || error === void 0 ? void 0 : error.message, size: 'small' }))));
 }
 exports["default"] = HookFormInput;
 
@@ -51828,13 +51901,14 @@ var material_1 = __webpack_require__(4350);
 var React = __importStar(__webpack_require__(7294));
 var react_hook_form_1 = __webpack_require__(930);
 function HookFormSelect(_a) {
-    var control = _a.control, menuItems = _a.menuItems, label = _a.label, name = _a.name;
-    var _b = (0, react_hook_form_1.useController)({
+    var control = _a.control, menuItems = _a.menuItems, label = _a.label, name = _a.name, _b = _a.read_only, read_only = _b === void 0 ? false : _b;
+    var _c = (0, react_hook_form_1.useController)({
         name: name,
         control: control,
-    }), field = _b.field, error = _b.fieldState.error;
-    return (React.createElement(material_1.FormControl, { sx: { minWidth: 120 }, error: error != undefined },
-        React.createElement(material_1.Select, __assign({}, field, { inputProps: { 'aria-label': label } }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); })),
+    }), field = _c.field, error = _c.fieldState.error;
+    return (React.createElement(material_1.FormControl, { size: 'small', sx: { minWidth: 120 }, error: error != undefined },
+        React.createElement(material_1.InputLabel, { id: 'name', shrink: true }, label),
+        React.createElement(material_1.Select, __assign({ disabled: read_only }, field, { inputProps: { 'aria-label': label } }), menuItems.map(function (menuItem) { return (React.createElement(material_1.MenuItem, { value: menuItem.value }, menuItem.label)); })),
         React.createElement(material_1.FormHelperText, null, error === null || error === void 0 ? void 0 : error.message)));
 }
 exports["default"] = HookFormSelect;
@@ -51982,239 +52056,6 @@ exports["default"] = Switch;
 
 /***/ }),
 
-/***/ 4581:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(4350);
-var react_1 = __importStar(__webpack_require__(7294));
-var HookFormInput_1 = __importDefault(__webpack_require__(3910));
-var HookFormSelect_1 = __importDefault(__webpack_require__(968));
-var Row_1 = __importDefault(__webpack_require__(3304));
-var urlItems = [
-    { value: 'hostname', label: 'Hostname' },
-    { value: 'path', label: 'Path' },
-    { value: 'query', label: 'Query' },
-    { value: 'any', label: 'Any' },
-];
-var matchItems = [
-    { value: 'is equal to', label: 'is equal to' },
-    { value: 'ends with', label: 'ends with' },
-    { value: 'starts with', label: 'starts with' },
-    { value: 'contains', label: 'contains' },
-];
-var Condition = (0, react_1.memo)(function Condition(_a) {
-    var control = _a.control, groupIndex = _a.groupIndex, conditionIndex = _a.conditionIndex;
-    return (react_1.default.createElement(Row_1.default, { PrefixIcon: react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(material_1.Typography, { variant: 'body1', sx: { alignSelf: 'center', marginRight: '1em' } }, "URL\u00A0"),
-            react_1.default.createElement(HookFormSelect_1.default, { name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".url"), control: control, menuItems: urlItems, label: 'URL Section' })), MiddleIcon: react_1.default.createElement(HookFormSelect_1.default, { name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".match"), control: control, menuItems: matchItems, label: 'Match type' }), AffixIcon: react_1.default.createElement(HookFormInput_1.default, { label: 'Match', control: control, name: "conditionGroups.groups.".concat(groupIndex, ".conditions.").concat(conditionIndex, ".query") }) }));
-});
-exports["default"] = Condition;
-
-
-/***/ }),
-
-/***/ 6122:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(4350);
-var react_1 = __importStar(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var uuid_1 = __webpack_require__(7429);
-var Switch_1 = __importDefault(__webpack_require__(1556));
-var Condition_1 = __importDefault(__webpack_require__(4581));
-var GroupBuilder_1 = __importDefault(__webpack_require__(453));
-var ConditionGroup = (0, react_1.memo)(function ConditionGroup(_a) {
-    var _b, _c;
-    var control = _a.control, index = _a.index, _d = _a.read_only, read_only = _d === void 0 ? false : _d;
-    var _e = (0, react_hook_form_1.useFieldArray)({
-        control: control,
-        name: "conditionGroups.groups.".concat(index, ".conditions"),
-    }), fields = _e.fields, append = _e.append;
-    var errors = (0, react_hook_form_1.useFormState)({ control: control }).errors;
-    var conditions = fields.map(function (currentCondition, i) { return (react_1.default.createElement(Condition_1.default, { key: currentCondition.id, control: control, groupIndex: index, conditionIndex: i })); });
-    var handleAddCondition = function () {
-        var newCondition = {
-            url: 'hostname',
-            match: 'is equal to',
-            query: '',
-            id: (0, uuid_1.v4)(),
-        };
-        append(newCondition);
-    };
-    var label = (0, react_hook_form_1.useWatch)({
-        control: control,
-        name: "conditionGroups.groups.".concat(index, ".all_required"),
-    });
-    return (react_1.default.createElement(material_1.Paper, { sx: { padding: '15px' } },
-        errors &&
-            ((_b = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _b === void 0 ? void 0 : _b.groups[index].conditions) &&
-            !Array.isArray((_c = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _c === void 0 ? void 0 : _c.groups[index].conditions) ? (react_1.default.createElement(material_1.Typography, { variant: 'body2', color: 'error' }, "Please provide at least 1 condition for current group")) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: conditions, label: label ? 'AND' : 'OR' }),
-        !read_only ? (react_1.default.createElement(material_1.Box, { sx: { display: 'flex', flexDirection: 'column' } },
-            react_1.default.createElement(material_1.Box, null,
-                react_1.default.createElement(material_1.Button, { onClick: handleAddCondition }, "Add New Condition")),
-            react_1.default.createElement(material_1.Box, null,
-                react_1.default.createElement(react_hook_form_1.Controller, { name: "conditionGroups.groups.".concat(index, ".all_required"), control: control, render: function (_a) {
-                        var _b = _a.field, onChange = _b.onChange, value = _b.value;
-                        return (react_1.default.createElement(react_1.default.Fragment, null,
-                            react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
-                                    return onChange(currentValue === 'AND' ? true : false);
-                                }, currentValue: value ? 'AND' : 'OR' })));
-                    } })))) : (react_1.default.createElement(react_1.default.Fragment, null))));
-});
-exports["default"] = ConditionGroup;
-
-
-/***/ }),
-
-/***/ 453:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var system_1 = __webpack_require__(8579);
-var react_1 = __importDefault(__webpack_require__(7294));
-var StyledChip_1 = __importDefault(__webpack_require__(9912));
-var StyledDiv = (0, system_1.styled)('div')({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-});
-var StyledRow = (0, system_1.styled)('div')(function (_a) {
-    var indent = _a.indent;
-    return ({
-        width: indent ? '95%' : '100%',
-        height: '100%',
-        alignSelf: 'flex-end',
-    });
-});
-function GroupBuilder(_a) {
-    var childrenArr = _a.childrenArr, label = _a.label;
-    return (react_1.default.createElement(StyledDiv, null, childrenArr.map(function (Child, i) {
-        return (react_1.default.createElement(react_1.default.Fragment, null,
-            i > 0 ? react_1.default.createElement(StyledChip_1.default, { label: label, color: 'primary' }) : null,
-            react_1.default.createElement(StyledRow, { indent: childrenArr.length > 1 }, Child)));
-    })));
-}
-exports["default"] = GroupBuilder;
-
-
-/***/ }),
-
-/***/ 731:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var material_1 = __webpack_require__(4350);
-var react_1 = __importDefault(__webpack_require__(7294));
-var react_hook_form_1 = __webpack_require__(930);
-var uuid_1 = __webpack_require__(7429);
-var Switch_1 = __importDefault(__webpack_require__(1556));
-var ConditionGroup_1 = __importDefault(__webpack_require__(6122));
-var GroupBuilder_1 = __importDefault(__webpack_require__(453));
-function ConditionForm(_a) {
-    var _b, _c;
-    var control = _a.control;
-    var _d = (0, react_hook_form_1.useFieldArray)({
-        control: control,
-        name: 'conditionGroups.groups',
-    }), fields = _d.fields, append = _d.append;
-    var errors = (0, react_hook_form_1.useFormState)({ control: control }).errors;
-    var handleAddGroup = function () {
-        var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
-        append(newGroup);
-    };
-    var renderedGroups = fields.map(function (field, index) { return (react_1.default.createElement(ConditionGroup_1.default, { key: field.id, index: index, control: control })); });
-    var label = (0, react_hook_form_1.useWatch)({
-        control: control,
-        name: 'conditionGroups.all_required',
-    });
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "Conditions"),
-        react_1.default.createElement(react_hook_form_1.Controller, { name: 'conditionGroups.all_required', control: control, render: function (_a) {
-                var _b = _a.field, onChange = _b.onChange, value = _b.value;
-                return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
-                        onChange(currentValue === 'AND' ? true : false);
-                    }, currentValue: value ? 'AND' : 'OR' }));
-            } }),
-        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label ? 'AND' : 'OR' }),
-        errors &&
-            ((_b = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _b === void 0 ? void 0 : _b.groups) &&
-            !Array.isArray((_c = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _c === void 0 ? void 0 : _c.groups) ? (react_1.default.createElement(material_1.Typography, { variant: 'body2', color: 'error' }, "At least 1 condition is required to create a rule")) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
-}
-exports["default"] = ConditionForm;
-
-
-/***/ }),
-
 /***/ 294:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -52261,6 +52102,32 @@ function AddTabsModal(_a) {
                     react_1.default.createElement(material_1.Button, { variant: 'contained', onClick: buttonAction }, "OK"))))));
 }
 exports["default"] = AddTabsModal;
+
+
+/***/ }),
+
+/***/ 9058:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var ModalContainer_1 = __importDefault(__webpack_require__(2816));
+function ConfirmationModal(_a) {
+    var body = _a.body, buttonAction = _a.buttonAction, open = _a.open, title = _a.title, handleClose = _a.handleClose;
+    return (react_1.default.createElement(ModalContainer_1.default, { open: open, handleClose: handleClose, title: title },
+        react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(material_1.DialogContent, null, body !== undefined ? (react_1.default.createElement(material_1.DialogContentText, null, body)) : (react_1.default.createElement(react_1.default.Fragment, null))),
+            react_1.default.createElement(material_1.DialogActions, null,
+                react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleClose }, "Cancel"),
+                react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'success', onClick: buttonAction }, "Delete")))));
+}
+exports["default"] = ConfirmationModal;
 
 
 /***/ }),
@@ -52353,7 +52220,7 @@ function Row(_a) {
         PrefixIcon ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: false, handleClick: prefixAction
                 ? makeClickHandler(function () { return prefixAction(); })
                 : undefined }, PrefixIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        title ? (react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary })) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        title ? (react_1.default.createElement(material_1.ListItemText, { primaryTypographyProps: { fontSize: isChild ? '14px' : '16px' }, secondaryTypographyProps: { fontSize: '12px' }, inset: isChild, primary: title, secondary: secondary, sx: { width: 'fit-content' } })) : (react_1.default.createElement(react_1.default.Fragment, null)),
         hasChildren ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: true, handleClick: setShowChildren
                 ? makeClickHandler(function () { return setShowChildren(!showChildren); })
                 : undefined, marginRight: true }, arrowIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
@@ -52361,12 +52228,12 @@ function Row(_a) {
             FullScreenIcon !== null &&
             !isPopup ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: enableFullScreenIconHover, handleClick: fullScreenAction
                 ? makeClickHandler(function () { return fullScreenAction(); })
-                : undefined, marginRight: true }, FullScreenIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+                : undefined }, FullScreenIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         MiddleIcon !== undefined && MiddleIcon !== null ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: enableMiddleIconHover, handleClick: middleAction
                 ? makeClickHandler(function () {
                     middleAction();
                 })
-                : undefined, marginRight: true }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
+                : undefined }, MiddleIcon)) : (react_1.default.createElement(react_1.default.Fragment, null)),
         AffixIcon !== undefined && AffixIcon !== null ? (react_1.default.createElement(RowItemWrapper_1.default, { hover: enableAffixIconHover, handleClick: affixAction
                 ? makeClickHandler(function () {
                     affixAction();
@@ -52420,6 +52287,7 @@ var StyledIconButton = (0, system_1.styled)(IconButton_1.default, {
 })(function (_a) {
     var theme = _a.theme, hover = _a.hover, marginRight = _a.marginRight;
     return ({
+        margin: '1em',
         '&:hover': {
             backgroundColor: hover ? '' : theme.palette.background.paper,
             cursor: hover ? 'pointer' : 'default',
@@ -52483,6 +52351,162 @@ var StyledListItemIcon = (0, system_1.styled)(ListItemIcon_1.default, {
     });
 });
 exports["default"] = StyledListItemIcon;
+
+
+/***/ }),
+
+/***/ 3475:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var uuid_1 = __webpack_require__(7429);
+var ConditionGroup_1 = __importDefault(__webpack_require__(7392));
+var GroupBuilder_1 = __importDefault(__webpack_require__(1316));
+var Switch_1 = __importDefault(__webpack_require__(1556));
+function ConditionForm(_a) {
+    var _b, _c;
+    var control = _a.control;
+    var _d = (0, react_hook_form_1.useFieldArray)({
+        control: control,
+        name: 'conditionGroups.groups',
+    }), fields = _d.fields, append = _d.append;
+    var errors = (0, react_hook_form_1.useFormState)({ control: control }).errors;
+    var handleAddGroup = function () {
+        var newGroup = { all_required: true, conditions: [], id: (0, uuid_1.v4)() };
+        append(newGroup);
+    };
+    var renderedGroups = fields.map(function (field, index) { return (react_1.default.createElement(ConditionGroup_1.default, { key: field.id, index: index, control: control })); });
+    var label = (0, react_hook_form_1.useWatch)({
+        control: control,
+        name: 'conditionGroups.all_required',
+    });
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Conditions"),
+        react_1.default.createElement(react_hook_form_1.Controller, { name: 'conditionGroups.all_required', control: control, render: function (_a) {
+                var _b = _a.field, onChange = _b.onChange, value = _b.value;
+                return (react_1.default.createElement(Switch_1.default, { handleChange: function (e, currentValue) {
+                        onChange(currentValue === 'AND' ? true : false);
+                    }, currentValue: value ? 'AND' : 'OR' }));
+            } }),
+        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: label ? 'AND' : 'OR' }),
+        errors &&
+            ((_b = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _b === void 0 ? void 0 : _b.groups) &&
+            !Array.isArray((_c = errors === null || errors === void 0 ? void 0 : errors.conditionGroups) === null || _c === void 0 ? void 0 : _c.groups) ? (react_1.default.createElement(material_1.Typography, { variant: 'body2', color: 'error' }, "At least 1 condition is required to create a rule")) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        react_1.default.createElement(material_1.Button, { onClick: handleAddGroup }, "Add Group")));
+}
+exports["default"] = ConditionForm;
+
+
+/***/ }),
+
+/***/ 9791:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var material_1 = __webpack_require__(4350);
+var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
+var react_router_dom_1 = __webpack_require__(9818);
+var types_1 = __webpack_require__(1230);
+var Center_1 = __importDefault(__webpack_require__(1081));
+var HookFormInput_1 = __importDefault(__webpack_require__(3910));
+var HookFormSelect_1 = __importDefault(__webpack_require__(968));
+var ConditionForm_1 = __importDefault(__webpack_require__(3475));
+function RuleForm(_a) {
+    var _this = this;
+    var onSubmit = _a.onSubmit, title = _a.title, formOptions = _a.formOptions;
+    var navigate = (0, react_router_dom_1.useNavigate)();
+    var location = (0, react_router_dom_1.useLocation)();
+    var pathname = location.pathname;
+    var _b = (0, react_hook_form_1.useForm)(formOptions), handleSubmit = _b.handleSubmit, control = _b.control, watch = _b.watch, isDirty = _b.formState.isDirty, reset = _b.reset;
+    var menuItems = [
+        { value: 0, label: 'Add tab to a tab group' },
+        { value: 1, label: 'Pin tab' },
+        { value: 2, label: 'Open tab in new window' },
+    ];
+    var handleCancel = function () {
+        navigate(-1);
+    };
+    var colorItems = types_1.colors.map(function (color) {
+        return { label: color, value: color };
+    });
+    var actionWatch = watch('action', 0);
+    var submit = function (data) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, onSubmit(data)];
+                case 1:
+                    _a.sent();
+                    reset();
+                    navigate(-1);
+                    return [2];
+            }
+        });
+    }); };
+    return (react_1.default.createElement("form", { onSubmit: handleSubmit(submit) },
+        react_1.default.createElement(Center_1.default, { column: true },
+            react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement(material_1.Typography, { variant: 'h1' }, title),
+                react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Rule Title', control: control, name: 'title' }),
+                react_1.default.createElement(HookFormSelect_1.default, { name: 'action', control: control, menuItems: menuItems, label: 'Select Action' }),
+                actionWatch == 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(HookFormInput_1.default, { label: 'Enter Group Name', control: control, name: 'groupName' }),
+                    react_1.default.createElement(HookFormSelect_1.default, { name: 'groupColor', control: control, label: 'Enter Group Color', menuItems: colorItems }))) : null,
+                react_1.default.createElement(ConditionForm_1.default, { control: control }),
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement(material_1.Button, { type: 'submit', variant: 'contained', color: 'success', disabled: pathname.includes('edit') && isDirty == false }, pathname.includes('edit') ? 'Save Changes' : 'Submit'),
+                    react_1.default.createElement(material_1.Button, { variant: 'contained', color: 'error', onClick: handleCancel }, "Cancel"))))));
+}
+exports["default"] = RuleForm;
 
 
 /***/ }),
@@ -52649,7 +52673,7 @@ function CurrentGroup(_a) {
                             type: 'input',
                         })];
                 case 1:
-                    output = _a.sent();
+                    output = (_a.sent());
                     if (!output) return [3, 3];
                     tabIds = tabs.reduce(function (accumulator, currentValue) {
                         if (currentValue.id) {
@@ -52836,9 +52860,12 @@ function CurrentGroups() {
         var output;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, getOutput({ title: 'Group Name', type: 'input' })];
+                case 0: return [4, getOutput({
+                        title: 'Group Name',
+                        type: 'input',
+                    })];
                 case 1:
-                    output = _a.sent();
+                    output = (_a.sent());
                     if (!output) return [3, 3];
                     return [4, CurrentTabGroups_1.default.create(output)];
                 case 2:
@@ -52977,14 +53004,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+var yup_1 = __webpack_require__(2433);
 var Delete_1 = __importDefault(__webpack_require__(1733));
 var Edit_1 = __importDefault(__webpack_require__(7957));
 var material_1 = __webpack_require__(4350);
 var react_1 = __importDefault(__webpack_require__(7294));
+var react_hook_form_1 = __webpack_require__(930);
 var react_router_dom_1 = __webpack_require__(9818);
+var formSchema_1 = __importDefault(__webpack_require__(641));
 var Circle_1 = __importDefault(__webpack_require__(3970));
+var ConditionGroup_1 = __importDefault(__webpack_require__(7392));
+var GroupBuilder_1 = __importDefault(__webpack_require__(1316));
 var RowGroupParent_1 = __importDefault(__webpack_require__(7685));
 var AlertProvider_1 = __webpack_require__(5648);
+var ModalProvider_1 = __webpack_require__(5125);
 var PopupStatusProvider_1 = __webpack_require__(5671);
 function RuleGroup(_a) {
     var _this = this;
@@ -52992,6 +53025,7 @@ function RuleGroup(_a) {
     var navigate = (0, react_router_dom_1.useNavigate)();
     var isPopup = (0, PopupStatusProvider_1.usePopupStatus)();
     var setAlertSettings = (0, AlertProvider_1.useAlertProvider)().setAlertSettings;
+    var getOutput = (0, ModalProvider_1.useModal)().getOutput;
     var handleChange = function (event) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -53006,24 +53040,33 @@ function RuleGroup(_a) {
         });
     }); };
     var handleDeleteRule = function () { return __awaiter(_this, void 0, void 0, function () {
-        var err_1;
+        var output, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4, rule.delete()];
+                    _a.trys.push([0, 5, , 6]);
+                    return [4, getOutput({
+                            title: 'Delete rule?',
+                            type: 'confirmation',
+                            body: 'This will permanently delete this rule from your Chrome storage.',
+                        })];
                 case 1:
-                    _a.sent();
-                    return [4, updateRules()];
+                    output = _a.sent();
+                    if (!output) return [3, 4];
+                    return [4, rule.delete()];
                 case 2:
                     _a.sent();
-                    return [3, 4];
+                    return [4, updateRules()];
                 case 3:
+                    _a.sent();
+                    _a.label = 4;
+                case 4: return [3, 6];
+                case 5:
                     err_1 = _a.sent();
                     console.error(err_1);
                     setAlertSettings('error', 'Something went wrong.');
-                    return [3, 4];
-                case 4: return [2];
+                    return [3, 6];
+                case 6: return [2];
             }
         });
     }); };
@@ -53033,10 +53076,19 @@ function RuleGroup(_a) {
             return [2];
         });
     }); };
+    var control = (0, react_hook_form_1.useForm)({
+        defaultValues: { conditionGroups: rule.conditionGroups },
+        resolver: (0, yup_1.yupResolver)(formSchema_1.default),
+    }).control;
+    var fields = (0, react_hook_form_1.useFieldArray)({
+        control: control,
+        name: 'conditionGroups.groups',
+    }).fields;
+    var renderedGroups = fields.map(function (field, index) { return (react_1.default.createElement(ConditionGroup_1.default, { key: field.id, index: index, control: control, read_only: true })); });
     return (react_1.default.createElement(RowGroupParent_1.default, { id: rule.id, PrefixIcon: react_1.default.createElement(Circle_1.default, { color: rule.groupColor || 'grey' }), MiddleIcon: isPopup ? (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })) : (react_1.default.createElement(material_1.Tooltip, { title: 'Edit rule' },
             react_1.default.createElement(Edit_1.default, null))), FullScreenIcon: isPopup ? undefined : (react_1.default.createElement(material_1.Switch, { checked: rule.active, onChange: handleChange })), enableFullScreenIconHover: false, enableMiddleIconHover: !isPopup, middleAction: isPopup ? function () { } : handleEditRule, AffixIcon: react_1.default.createElement(material_1.Tooltip, { title: 'Delete this rule from storage' },
             react_1.default.createElement(Delete_1.default, { fontSize: 'small' })), affixAction: handleDeleteRule, title: rule.title, secondary: rule.formatActionText() },
-        react_1.default.createElement(react_1.default.Fragment, null)));
+        react_1.default.createElement(GroupBuilder_1.default, { childrenArr: renderedGroups, label: rule.conditionGroups.all_required ? 'AND' : 'OR' })));
 }
 exports["default"] = RuleGroup;
 
@@ -53116,7 +53168,7 @@ var react_1 = __importStar(__webpack_require__(7294));
 var react_router_dom_1 = __webpack_require__(9818);
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var formSchema_1 = __importDefault(__webpack_require__(641));
-var FormBody_1 = __importDefault(__webpack_require__(448));
+var rule_form_1 = __importDefault(__webpack_require__(9791));
 var AlertProvider_1 = __webpack_require__(5648);
 function EditRuleForm() {
     var _this = this;
@@ -53174,7 +53226,7 @@ function EditRuleForm() {
             }
         });
     }); };
-    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(FormBody_1.default, { onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+    return (react_1.default.createElement(react_1.default.Fragment, null, Object.keys(formOptions).length ? (react_1.default.createElement(rule_form_1.default, { onSubmit: onSubmit, title: 'Edit Rule', formOptions: formOptions })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = EditRuleForm;
 
@@ -53344,7 +53396,7 @@ var yup_1 = __webpack_require__(2433);
 var react_1 = __importDefault(__webpack_require__(7294));
 var Rule_1 = __importDefault(__webpack_require__(4235));
 var formSchema_1 = __importDefault(__webpack_require__(641));
-var FormBody_1 = __importDefault(__webpack_require__(448));
+var rule_form_1 = __importDefault(__webpack_require__(9791));
 var AlertProvider_1 = __webpack_require__(5648);
 function AddRuleForm() {
     var _this = this;
@@ -53373,7 +53425,7 @@ function AddRuleForm() {
             }
         });
     }); };
-    return (react_1.default.createElement(FormBody_1.default, { onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
+    return (react_1.default.createElement(rule_form_1.default, { onSubmit: onSubmit, title: 'Add Rule', formOptions: formOptions }));
 }
 exports["default"] = AddRuleForm;
 
@@ -53515,9 +53567,12 @@ function SavedGroup(_a) {
         var output, tabsToSave, err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, getOutput({ title: 'Add tabs', type: 'tabs' })];
+                case 0: return [4, getOutput({
+                        title: 'Add tabs',
+                        type: 'tabs',
+                    })];
                 case 1:
-                    output = _a.sent();
+                    output = (_a.sent());
                     if (!output) return [3, 6];
                     tabsToSave = JSON.parse(output);
                     _a.label = 2;
@@ -53895,6 +53950,7 @@ exports.useModal = void 0;
 var react_1 = __importStar(__webpack_require__(7294));
 var TabUtil_1 = __importDefault(__webpack_require__(4470));
 var AddTabsModal_1 = __importDefault(__webpack_require__(294));
+var ConfirmationModal_1 = __importDefault(__webpack_require__(9058));
 var InputModal_1 = __importDefault(__webpack_require__(3771));
 var defaultModalConfig = {
     title: '',
@@ -53950,28 +54006,39 @@ function ModalProvider(_a) {
     var onClose = function () {
         setOpen(!open);
         var action = modalConfig.actionCallback;
-        if (action !== undefined) {
+        if (action) {
             action(null);
+        }
+        else {
+            throw new Error('ERROR: no action is defined when attempting to close modal');
         }
     };
     var handleAddTabs = function () {
-        var action = modalConfig.actionCallback;
-        var result = [];
-        if (action !== undefined) {
+        var actionCallback = modalConfig.actionCallback;
+        if (actionCallback) {
+            var result_1 = [];
             Object.keys(tabs).forEach(function (tabId) {
                 var currentTab = tabs[Number(tabId)];
                 if (currentTab.isChecked == true) {
-                    result.push(currentTab);
+                    result_1.push(currentTab);
                 }
             });
-            action(JSON.stringify(result));
+            actionCallback(JSON.stringify(result_1));
+        }
+        setOpen(!open);
+    };
+    var confirmAction = function () {
+        var action = modalConfig.actionCallback;
+        if (action) {
+            action(true);
         }
         setOpen(!open);
     };
     return (react_1.default.createElement(ModalContext.Provider, { value: { showModal: showModal } },
         children,
         modalConfig.type == 'input' ? (react_1.default.createElement(InputModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, inputValue: inputValue, setInputValue: setInputValue, buttonAction: handleSubmitInput, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null)),
-        modalConfig.type == 'tabs' ? (react_1.default.createElement(AddTabsModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, buttonAction: handleAddTabs, body: modalConfig.body, setTabs: setTabs, tabs: tabs })) : (react_1.default.createElement(react_1.default.Fragment, null))));
+        modalConfig.type == 'tabs' ? (react_1.default.createElement(AddTabsModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, buttonAction: handleAddTabs, body: modalConfig.body, setTabs: setTabs, tabs: tabs })) : (react_1.default.createElement(react_1.default.Fragment, null)),
+        modalConfig.type == 'confirmation' ? (react_1.default.createElement(ConfirmationModal_1.default, { open: open, handleClose: onClose, title: modalConfig.title, buttonAction: confirmAction, body: modalConfig.body })) : (react_1.default.createElement(react_1.default.Fragment, null))));
 }
 exports["default"] = ModalProvider;
 var useModalContext = function () {

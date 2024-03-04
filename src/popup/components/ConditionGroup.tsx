@@ -8,10 +8,10 @@ import {
    useWatch,
 } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
-import { ConditionType, ConditionValues, RuleType } from '../../../types';
-import Switch from '../Switch';
+import { ConditionType, ConditionValues, RuleType } from '../../types';
 import Condition from './Condition';
 import GroupBuilder from './GroupBuilder';
+import Switch from './Switch';
 
 interface Props {
    control: Control<ConditionValues | RuleType, unknown>;
@@ -27,12 +27,19 @@ const ConditionGroup = memo(function ConditionGroup({
    index,
    read_only = false,
 }: Props) {
+   /**
+    * Render field array for conditions in current group
+    */
    const { fields, append } = useFieldArray({
       control,
       name: `conditionGroups.groups.${index}.conditions`,
    });
 
+   /**
+    * Get errors from form state
+    */
    const { errors } = useFormState({ control });
+
    /**
     * Rendered array of conditions
     */
@@ -40,6 +47,7 @@ const ConditionGroup = memo(function ConditionGroup({
       <Condition
          key={currentCondition.id}
          control={control}
+         read_only={read_only}
          groupIndex={index}
          conditionIndex={i}
       />
@@ -58,6 +66,9 @@ const ConditionGroup = memo(function ConditionGroup({
       append(newCondition);
    };
 
+   /**
+    * Watch label to render 'AND' or 'OR' in group builder component
+    */
    const label = useWatch({
       control,
       name: `conditionGroups.groups.${index}.all_required`,

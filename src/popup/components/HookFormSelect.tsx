@@ -1,4 +1,10 @@
-import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material';
+import {
+   FormControl,
+   FormHelperText,
+   InputLabel,
+   MenuItem,
+   Select,
+} from '@mui/material';
 import * as React from 'react';
 import { Control, useController } from 'react-hook-form';
 import { ConditionValues, MenuItemType, RuleType } from '../../types';
@@ -7,6 +13,7 @@ interface Props {
    control: Control<ConditionValues | RuleType, unknown>;
    menuItems: MenuItemType[];
    label: string;
+   read_only?: boolean;
    name:
       | 'query'
       | 'title'
@@ -30,6 +37,7 @@ export default function HookFormSelect({
    menuItems,
    label,
    name,
+   read_only = false,
 }: Props) {
    const {
       field,
@@ -40,8 +48,19 @@ export default function HookFormSelect({
    });
 
    return (
-      <FormControl sx={{ minWidth: 120 }} error={error != undefined}>
-         <Select {...field} inputProps={{ 'aria-label': label }}>
+      <FormControl
+         size='small'
+         sx={{ minWidth: 120 }}
+         error={error != undefined}
+      >
+         <InputLabel id='name' shrink={true}>
+            {label}
+         </InputLabel>
+         <Select
+            disabled={read_only}
+            {...field}
+            inputProps={{ 'aria-label': label }}
+         >
             {menuItems.map((menuItem: MenuItemType) => (
                <MenuItem value={menuItem.value}>{menuItem.label}</MenuItem>
             ))}

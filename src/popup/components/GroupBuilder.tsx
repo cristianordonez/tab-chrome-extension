@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 import React from 'react';
-import StyledChip from '../StyledChip';
+import StyledChip from './StyledChip';
 
 interface Props {
    childrenArr: React.ReactNode[];

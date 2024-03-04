@@ -74,6 +74,7 @@ export default function Row({
                inset={isChild}
                primary={title}
                secondary={secondary}
+               sx={{ width: 'fit-content' }}
             />
          ) : (
             <></>
@@ -103,7 +104,7 @@ export default function Row({
                      ? makeClickHandler(() => fullScreenAction())
                      : undefined
                }
-               marginRight
+               // marginRight
             >
                {FullScreenIcon}
             </RowItemWrapper>
@@ -120,7 +121,7 @@ export default function Row({
                        })
                      : undefined
                }
-               marginRight
+               // marginRight
             >
                {MiddleIcon}
             </RowItemWrapper>

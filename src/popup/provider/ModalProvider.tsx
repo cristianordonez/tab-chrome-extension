@@ -10,6 +10,7 @@ import { FormattedTabs } from '../../types';
 import FormattedTab from '../../utils/FormattedTab';
 import TabUtil from '../../utils/TabUtil';
 import AddTabsModal from '../components/modal/AddTabsModal';
+import ConfirmationModal from '../components/modal/ConfirmationModal';
 import InputModal from '../components/modal/InputModal';
 
 interface Props {
@@ -23,7 +24,7 @@ interface ModalInputs {
 }
 
 interface ModalConfig extends ModalInputs {
-   actionCallback?: (output: string | null) => void;
+   actionCallback?: (output: boolean | string | null) => void;
 }
 
 const defaultModalConfig = {
@@ -52,6 +53,7 @@ export default function ModalProvider({ children }: Props) {
 
    /**
     * Updates tabs state with object of formatted active tabs (contain isChecked key)
+    * Necessary for when type is set to tabs
     */
    const findTabs = async () => {
       const tabs = await TabUtil.getAll();
@@ -93,29 +95,47 @@ export default function ModalProvider({ children }: Props) {
 
    /**
     * Called when user clicks on cancel button
+    * Used for all modals regardless of type
     */
    const onClose = () => {
       setOpen(!open);
       const action = modalConfig.actionCallback;
-      if (action !== undefined) {
+      if (action) {
          action(null);
+      } else {
+         throw new Error(
+            'ERROR: no action is defined when attempting to close modal'
+         );
       }
    };
 
    /**
     * Gets passed down to AddTabsModal as prop and handles when user submits their choices, passing the tabs to getOutput
+    * Only used when type is set to tabs
     */
    const handleAddTabs = () => {
-      const action = modalConfig.actionCallback;
-      const result: FormattedTab[] = [];
-      if (action !== undefined) {
+      const { actionCallback } = modalConfig;
+      if (actionCallback) {
+         const result: FormattedTab[] = [];
          Object.keys(tabs).forEach((tabId) => {
             const currentTab = tabs[Number(tabId)];
             if (currentTab.isChecked == true) {
                result.push(currentTab);
             }
          });
-         action(JSON.stringify(result));
+         actionCallback(JSON.stringify(result));
+      }
+      setOpen(!open);
+   };
+
+   /**
+    * Gets passed down to confirmationModal as prop and handles when user clicks Delete button
+    * Used only when type is set to 'confirmation'
+    */
+   const confirmAction = () => {
+      const action = modalConfig.actionCallback;
+      if (action) {
+         action(true);
       }
       setOpen(!open);
    };
@@ -152,6 +172,17 @@ export default function ModalProvider({ children }: Props) {
          ) : (
             <></>
          )}
+         {modalConfig.type == 'confirmation' ? (
+            <ConfirmationModal
+               open={open}
+               handleClose={onClose}
+               title={modalConfig.title}
+               buttonAction={confirmAction}
+               body={modalConfig.body}
+            />
+         ) : (
+            <></>
+         )}
       </ModalContext.Provider>
    );
 }
@@ -173,6 +204,10 @@ const useModalContext = () => {
 /**
  * Hook that is used to open modal, getting the value of input on close
  * @returns function use to get output from modal
+ * Example usage: 
+      const output = await getOutput({ title: 'Add tabs', type: 'tabs' });
+      const output = await getOutput({ title: 'Group Name', type: 'input' });
+      const output = await getOutput({ title: 'Confirm', type: 'confirmation' });
  */
 export const useModal = () => {
    const { showModal } = useModalContext();
@@ -181,7 +216,7 @@ export const useModal = () => {
       title,
       body,
       type,
-   }: ModalInputs): Promise<string | null> =>
+   }: ModalInputs): Promise<boolean | string | null> =>
       new Promise((resolve) => {
          // * actionCallback is used to ensure no value is returned until modal is closed
          if (showModal !== null) {

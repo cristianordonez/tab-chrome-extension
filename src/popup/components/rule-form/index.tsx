@@ -2,11 +2,11 @@ import { Button, Typography } from '@mui/material';
 import React from 'react';
 import { UseFormArgs, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ConditionValues, RuleType, colors } from '../../types';
-import Center from './Center';
-import HookFormInput from './HookFormInput';
-import HookFormSelect from './HookFormSelect';
-import ConditionForm from './condition-form';
+import { ConditionValues, RuleType, colors } from '../../../types';
+import Center from '../Center';
+import HookFormInput from '../HookFormInput';
+import HookFormSelect from '../HookFormSelect';
+import ConditionForm from './ConditionForm';
 
 interface Props {
    onSubmit: (data: RuleType | ConditionValues) => Promise<void>;
@@ -22,20 +22,18 @@ interface Props {
  * formOptions: arguments passed to react hook forms useForms hook
  * @returns
  */
-export default function FormBody({ onSubmit, title, formOptions }: Props) {
+export default function RuleForm({ onSubmit, title, formOptions }: Props) {
    const navigate = useNavigate();
    const location = useLocation();
    const { pathname } = location;
-   console.log('pathname: ', pathname);
    const {
       handleSubmit,
       control,
       watch,
-      formState: { isDirty, errors },
+      formState: { isDirty },
       reset,
    } = useForm<RuleType | ConditionValues>(formOptions);
 
-   console.log('isDirty: ', isDirty);
    /**
     * Items used for select action element
     */
@@ -59,6 +57,9 @@ export default function FormBody({ onSubmit, title, formOptions }: Props) {
       return { label: color, value: color };
    });
 
+   /**
+    * Watch action so that certain inputs are rendered conditionally
+    */
    const actionWatch = watch('action', 0);
 
    /**

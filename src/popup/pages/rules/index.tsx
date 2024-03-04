@@ -22,6 +22,9 @@ export default function Rules() {
       setRules(currentRules);
    };
 
+   /**
+    * Get rules from storage on initial render
+    */
    useEffect(() => {
       updateRules();
    }, []);

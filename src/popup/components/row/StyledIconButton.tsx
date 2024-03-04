@@ -12,6 +12,7 @@ interface StyledIconButtonProps extends IconButtonProps {
 const StyledIconButton = styled(IconButton, {
    shouldForwardProp: (prop) => prop !== 'hover' && prop !== 'marginRight',
 })<StyledIconButtonProps>(({ theme, hover, marginRight }) => ({
+   margin: '1em',
    '&:hover': {
       backgroundColor: hover ? '' : theme.palette.background.paper,
       cursor: hover ? 'pointer' : 'default',
